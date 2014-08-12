@@ -1,5 +1,5 @@
 {
-  "name": "llama-charts",
+  "name": "axisJS",
   "version": "0.0.0",
   "dependencies": {
     "angular": "~1.3",
