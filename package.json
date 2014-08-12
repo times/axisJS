@@ -1,6 +1,6 @@
 {
-  "name": "llamacharts",
-  "version": "0.0.0",
+  "name": "axisJS",
+  "version": "0.1.0",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.1",
