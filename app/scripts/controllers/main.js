@@ -136,7 +136,6 @@ angular.module('axisJSApp')
 
     // Repopulate if data is being sent in from WordPress.
     if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined' ) {
-      console.log('yay');
       $scope.config = angular.fromJson(window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
       $scope.updateData();
     }
