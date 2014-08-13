@@ -47,6 +47,7 @@ any documentation or unit testing PRs!
 ### API Docs
 
 Inline documentation is in ngDoc format and gets built to `docs` during `grunt build`.
+View API docs online [here](http://times.github.io/axisJS/docs/).
 
 ### Roadmap/ToDos
 
