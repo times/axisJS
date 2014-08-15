@@ -59,6 +59,9 @@ angular.module('axisJSApp')
             format: function(d){return d;}
           }
         }
+      },
+      point: {
+          show: false
       }
     };
 
