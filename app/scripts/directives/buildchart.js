@@ -1,4 +1,4 @@
-/*global c3*/
+/*global c3,d3*/
 'use strict';
 
 /**
@@ -28,9 +28,9 @@ angular.module('axisJSApp')
           d3.selectAll('svg g.titles').remove();
           var svg = d3.select('svg').attr('height', 420);
           var titlesGroup = svg.insert('g').attr('class', 'titles');
-          var chartTitle = titlesGroup.insert('text').text(scope.config.chartTitle).attr('font-size', '30px').attr('text-anchor', 'middle');
-          var chartCredit = titlesGroup.insert('text').text(scope.config.chartCredit).attr('font-size', '25px').attr('y', '30').attr('text-anchor', 'middle');
-          var chartSource = titlesGroup.insert('text').text(scope.config.chartSource.length > 0 ? 'source: ' + scope.config.chartSource : '').attr('font-size', '20px').attr('y', scope.config.chartCredit.length > 0 ? '60' : '30').attr('text-anchor', 'middle').attr('font-style', 'oblique');
+          titlesGroup.insert('text').text(scope.config.chartTitle).attr('font-size', '30px').attr('text-anchor', 'middle');
+          titlesGroup.insert('text').text(scope.config.chartCredit).attr('font-size', '25px').attr('y', '30').attr('text-anchor', 'middle');
+          titlesGroup.insert('text').text(scope.config.chartSource.length > 0 ? 'source: ' + scope.config.chartSource : '').attr('font-size', '20px').attr('y', scope.config.chartCredit.length > 0 ? '60' : '30').attr('text-anchor', 'middle').attr('font-style', 'oblique');
           titlesGroup.attr('transform', 'translate(332,350)');
         }
 
@@ -47,7 +47,8 @@ angular.module('axisJSApp')
               colors: scope.config.data.colors
             },
             axis: scope.config.axis,
-            legend: scope.config.legend
+            legend: scope.config.legend,
+            point: scope.config.point
           });
 
           doTitles();
@@ -59,7 +60,7 @@ angular.module('axisJSApp')
         // YYYYYYEEAH, I'm not sure using $watch like this is kosher...
 
         // Change the data structure (modified by PapaParse in main.js)
-        scope.$watch('config.data.columns', function(newVal){
+        scope.$watch('config.data.columns', function(){
           redraw();
 
           // Assign the new colours specified by C3 to the inputs.
@@ -77,7 +78,7 @@ angular.module('axisJSApp')
         }, true);
 
         // Change the chart types
-        scope.$watch('config.data.types', function(newValues){
+        scope.$watch('config.data.types', function(){
           redraw();
         }, true);
 
@@ -129,7 +130,7 @@ angular.module('axisJSApp')
         });
 
         // Do titles
-        scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource'], function(newValues){
+        scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource'], function(){
           redraw();
         });
       }
