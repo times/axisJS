@@ -39,17 +39,16 @@
             <div class="input-group">
               <span class="input-group-addon">
                 <select ui-jq="colorselector" ng-model="config.data.colors[col]">
-                    <option value="#AEC1D0" data-color="#AEC1D0">light blue</option>
-                    <option value="#44a4ed" data-color="#44a4ed">darker blue</option>
-                    <option value="#A0522D" data-color="#A0522D">sienna</option>
-                    <option value="#CD5C5C" data-color="#CD5C5C" selected="selected">indianred</option>
-                    <option value="#FF4500" data-color="#FF4500">orangered</option>
-                    <option value="#DC143C" data-color="#DC143C">crimson</option>
-                    <option value="#FF8C00" data-color="#FF8C00">darkorange</option>
-                    <option value="#C71585" data-color="#C71585">mediumvioletred</option>
-                    <!-- defaults from C3 -->
-                    <option value="#ff7f0e" data-color="#ff7f0e">orangey</option>
-                    <option value="#1f77b4" data-color="#1f77b4">bluey</option>
+                    <option value="#78B8DF" data-color="#78B8DF">neutral 1</option>
+                    <option value="#AFCBCE" data-color="#AFCBCE">neutral 2</option>
+                    <option value="#23393D" data-color="#23393D">neutral 3</option>
+                    <option value="#87AF9C" data-color="#87AF9C">neutral 4</option>
+                    <option value="#0EBF00" data-color="#0EBF00">yes</option>
+                    <option value="#ED1B24" data-color="#ED1B24">no</option>
+                    <option value="#808080" data-color="#808080">maybe</option>
+                    <option value="#ED1B24" data-color="#ED1B24">Labour</option>
+                    <option value="#022397" data-color="#022397">Conservative</option>
+                    <option value="#FDBB30" data-color="#FDBB30">LibDem</option>
                 </select>
               </span>
               <select class="form-control" id="type-{{col}}" ng-model="config.data.types[col]" ng-disabled="config.chartGlobalType !== 'series'">

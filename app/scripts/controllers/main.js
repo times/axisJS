@@ -36,8 +36,8 @@ angular.module('axisJSApp')
           data2: 'line'
         },
         colors: {
-          data1: '#44a4ed',
-          data2: '#AEC1D0'
+          data1: '#78B8DF',
+          data2: '#AFCBCE'
         }
       },
       axis: {
