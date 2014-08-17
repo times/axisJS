@@ -83,12 +83,37 @@ angular.module('axisJSApp')
     $scope.config.axis.x.show = true;
     $scope.config.axis.y.show = true;
     $scope.config.axis.y2.show = false;
+    $scope.config.axis.x.accuracy = 0;
+    $scope.config.axis.y.accuracy = 0;
+    $scope.config.axis.y2.accuracy = 0;
+    $scope.config.axis.x.prefix = '';
+    $scope.config.axis.y.prefix = '';
+    $scope.config.axis.y2.prefix = '';
+    $scope.config.axis.x.suffix = '';
+    $scope.config.axis.y.suffix = '';
+    $scope.config.axis.y2.suffix = '';
+    $scope.config.axis.x.tick = {
+      format: function (d) {
+        return $scope.config.axis.x.prefix + d.toFixed($scope.config.axis.x.accuracy).toString() + $scope.config.axis.x.suffix;
+      }
+    };
+    $scope.config.axis.y.tick = {
+      format: function (d) {
+        return $scope.config.axis.y.prefix + d.toFixed($scope.config.axis.y.accuracy).toString() + $scope.config.axis.y.suffix;
+      }
+    };
+    $scope.config.axis.y2.tick = {
+      format: function (d) {
+        return $scope.config.axis.y2.prefix + d.toFixed($scope.config.axis.y2.accuracy).toString() + $scope.config.axis.y2.suffix;
+      }
+    };
     $scope.config.chartTitle = '';
     $scope.config.chartCredit = '';
     $scope.config.chartSource = '';
     $scope.config.chartWidth = 1000;
     $scope.config.chartGlobalType = 'series';
     $scope.config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
+
 
     $scope.updateData = function() {
       $scope.chartData = []; // Empty, or else new column names will break ng-grid

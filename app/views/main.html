@@ -85,7 +85,7 @@
             <div class="form-group">
               <label for="chartWidth" class="col-sm-2 control-label">Width (in px)</label>
               <div class="col-sm-10">
-                <input type="number" class="form-control" id="chartWidth" ng-model="config.chartWidth" ng-model="chartWidth">
+                <input type="number" class="form-control" id="chartWidth" ng-model="config.chartWidth">
               </div>
             </div>
           </form>
@@ -160,6 +160,17 @@
                     <input type="text" id="xAxisMax" class="form-control" ng-model="config.axis.x.max" />
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisAccuracy">Accuracy</label>
+                  <div class="col-sm-9">
+                    <select id="xAxisAccuracy" class="form-control" ng-model="config.axis.x.accuracy">
+                      <option value="0">No decimal places</option>
+                      <option value="1">1 decimal places</option>
+                      <option value="2">2 decimal places</option>
+                      <option value="3">3 decimal places</option>
+                    </select>
+                  </div>
+                </div>
               </fieldset>
 
               <!-- y axis -->
@@ -204,6 +215,17 @@
                     <input type="text" id="yAxisMax" class="form-control" ng-model="config.axis.y.max" />
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="yAxisAccuracy">Accuracy</label>
+                  <div class="col-sm-9">
+                    <select id="yAxisAccuracy" class="form-control" ng-model="config.axis.y.accuracy">
+                      <option value="0">No decimal places</option>
+                      <option value="1">1 decimal places</option>
+                      <option value="2">2 decimal places</option>
+                      <option value="3">3 decimal places</option>
+                    </select>
+                  </div>
+                </div>
               </fieldset>
 
               <!-- y2 axis -->
@@ -246,6 +268,17 @@
                   <label class="col-sm-3 control-label" for="y2AxisMax">Max.</label>
                   <div class="col-sm-9">
                     <input type="text" id="y2AxisMax" class="form-control" ng-model="config.axis.y2.max" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="y2AxisAccuracy">Accuracy</label>
+                  <div class="col-sm-9">
+                    <select id="y2AxisAccuracy" class="form-control" ng-model="config.axis.y2.accuracy">
+                      <option value="0">No decimal places</option>
+                      <option value="1">1 decimal places</option>
+                      <option value="2">2 decimal places</option>
+                      <option value="3">3 decimal places</option>
+                    </select>
                   </div>
                 </div>
               </fieldset>

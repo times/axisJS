@@ -100,29 +100,31 @@ angular.module('axisJSApp')
               }
 
               // Setup prefix/suffix
-              if (newValues[key].hasOwnProperty('prefix') || newValues[key].hasOwnProperty('suffix')) { // redraw if axis visibility changed
+              if (newValues[key].hasOwnProperty('prefix') || newValues[key].hasOwnProperty('suffix') || newValues[key].hasOwnProperty('accuracy')) { // redraw if axis visibility changed
                 if (typeof newValues[key].prefix === 'undefined') {
-                  pre = '';
+                  scope.config.axis[key].prefix = '';
                 } else {
-                  pre = newValues[key].prefix;
+                  scope.config.axis[key].prefix = newValues[key].prefix;
                 }
 
                 if (typeof newValues[key].suffix === 'undefined') {
-                  suff = '';
+                  scope.config.axis[key].suffix = '';
                 } else {
-                  suff = newValues[key].suffix;
+                  scope.config.axis[key].suffix = newValues[key].suffix;
                 }
 
-                scope.config.axis[key].tick.format = tickFormat;
+                if (typeof newValues[key].accuracy === 'undefined') {
+                  scope.config.axis[key].accuracy = 0;
+                } else {
+                  scope.config.axis[key].accuracy = newValues[key].accuracy;
+                }
               }
             }
           }
         }, true);
 
-        var pre, suff;
-        var tickFormat = function(d) {
-          return pre + d.toString() + suff;
-        };
+
+
 
         // Modify data association
         scope.$watchGroup(['config.data.x', 'config.data.y', 'config.data.y2'], function(){
