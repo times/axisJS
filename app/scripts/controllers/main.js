@@ -94,17 +94,29 @@ angular.module('axisJSApp')
     $scope.config.axis.y2.suffix = '';
     $scope.config.axis.x.tick = {
       format: function (d) {
-        return $scope.config.axis.x.prefix + d.toFixed($scope.config.axis.x.accuracy).toString() + $scope.config.axis.x.suffix;
+        if ($scope.config.chartGlobalType === 'series') {
+          return $scope.config.axis.x.prefix + d.toFixed($scope.config.axis.x.accuracy).toString() + $scope.config.axis.x.suffix;
+        } else {
+          return d;
+        }
       }
     };
     $scope.config.axis.y.tick = {
       format: function (d) {
-        return $scope.config.axis.y.prefix + d.toFixed($scope.config.axis.y.accuracy).toString() + $scope.config.axis.y.suffix;
+        if ($scope.config.chartGlobalType === 'series') {
+          return $scope.config.axis.y.prefix + d.toFixed($scope.config.axis.y.accuracy).toString() + $scope.config.axis.y.suffix;
+        } else {
+          return d;
+        }
       }
     };
     $scope.config.axis.y2.tick = {
       format: function (d) {
-        return $scope.config.axis.y2.prefix + d.toFixed($scope.config.axis.y2.accuracy).toString() + $scope.config.axis.y2.suffix;
+        if ($scope.config.chartGlobalType === 'series') {
+          return $scope.config.axis.y2.prefix + d.toFixed($scope.config.axis.y2.accuracy).toString() + $scope.config.axis.y2.suffix;
+        } else {
+          return d;
+        }
       }
     };
     $scope.config.chartTitle = '';
@@ -112,6 +124,7 @@ angular.module('axisJSApp')
     $scope.config.chartSource = '';
     $scope.config.chartWidth = 1000;
     $scope.config.chartGlobalType = 'series';
+    $scope.config.chartAccuracy = 1;
     $scope.config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
 
 

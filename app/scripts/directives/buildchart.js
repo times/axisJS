@@ -48,7 +48,28 @@ angular.module('axisJSApp')
             },
             axis: scope.config.axis,
             legend: scope.config.legend,
-            point: scope.config.point
+            point: scope.config.point,
+            pie: {
+              label: {
+                format: function(val, percentage) {
+                  return (percentage * 100).toFixed(scope.config.chartAccuracy) + '%';
+                }
+              }
+            },
+            donut: {
+              label: {
+                format: function(val, percentage) {
+                  return (percentage * 100).toFixed(scope.config.chartAccuracy) + '%';
+                }
+              }
+            },
+            gauge: {
+              label: {
+                format: function(val, percentage) {
+                  return (percentage * 100).toFixed(scope.config.chartAccuracy) + '%';
+                }
+              }
+            }
           });
 
           doTitles();
@@ -123,7 +144,9 @@ angular.module('axisJSApp')
           }
         }, true);
 
-
+        scope.$watch('config.chartAccuracy', function(){
+          redraw();
+        });
 
 
         // Modify data association
