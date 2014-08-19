@@ -167,7 +167,13 @@ module.exports = function (grunt) {
       },
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath:  /\.\.\//,
+        dependencies: false,
+        devDependencies: true,
+        exclude: [
+          /angular-mocks/,
+          /angular-scenario/
+        ],
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
