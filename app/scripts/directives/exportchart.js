@@ -18,7 +18,7 @@ angular.module('axisJSApp')
           switch(attrs.exportChart) {
             case 'cms':
               createChartImages(scope.config.chartWidth);
-              parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(scope.config)) + '\' class="mceItem" /></div><br />');
+              parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(scope.config)) + '\' class="mceItem axisChart" /></div><br />');
               parent.tinymce.activeEditor.windowManager.close();
             break;
             case 'images':
