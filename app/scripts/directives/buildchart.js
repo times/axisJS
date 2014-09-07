@@ -23,15 +23,49 @@ angular.module('axisJSApp')
          * If somebody picks this up before I get to it, I OWE YOU A BEER.
          */
 
-        // This is a really brute-force manner of doing things. This can be done better.
         function doTitles() {
-          d3.selectAll('svg g.titles').remove();
-          var svg = d3.select('svg').attr('height', 420);
-          var titlesGroup = svg.insert('g').attr('class', 'titles');
-          titlesGroup.insert('text').text(scope.config.chartTitle).attr('font-size', '30px').attr('text-anchor', 'middle');
-          titlesGroup.insert('text').text(scope.config.chartCredit).attr('font-size', '25px').attr('y', '30').attr('text-anchor', 'middle');
-          titlesGroup.insert('text').text(scope.config.chartSource.length > 0 ? 'source: ' + scope.config.chartSource : '').attr('font-size', '20px').attr('y', scope.config.chartCredit.length > 0 ? '60' : '30').attr('text-anchor', 'middle').attr('font-style', 'oblique');
-          titlesGroup.attr('transform', 'translate(332,350)');
+          var svg = d3.select('svg');
+          var titlesGroup, chartTitle, chartCredit, chartSource;
+          var svgWidth = svg.attr('width');
+
+          // Insert titles if non-existent; otherwise select them.
+          if (svg.select('text.titles')[0][0] !== null) { // d3.select is weird.
+            titlesGroup = svg.select('text.titles');
+            chartTitle = titlesGroup.select('tspan.chartTitle');
+            chartCredit = titlesGroup.select('tspan.chartCredit');
+            chartSource = titlesGroup.select('tspan.chartSource');
+          } else {
+            titlesGroup = svg.insert('text').attr('class', 'titles').attr('text-anchor', 'middle');
+            chartTitle = titlesGroup.insert('tspan').attr('class', 'chartTitle');
+            chartCredit = titlesGroup.insert('tspan').attr('class', 'chartCredit');
+            chartSource = titlesGroup.insert('tspan').attr('class', 'chartSource');
+          }
+
+          // Set text
+          chartTitle.text(scope.config.chartTitle).attr('font-size', '32px');
+          chartCredit.text(scope.config.chartCredit).attr('font-size', '30px');
+          chartSource.text(scope.config.chartSource).attr({'font-size': '28px', 'font-style': 'oblique'});
+
+          // Position text relative to each line
+          chartTitle.attr({'dy': 0, 'x': 0});
+          chartCredit.attr({'dy': 32, 'x': 0});
+          chartSource.attr({'dy': 30, 'x': 0});
+
+          while (chartTitle.node().getComputedTextLength() > svgWidth || chartCredit.node().getComputedTextLength() > svgWidth || chartSource.node().getComputedTextLength() > svgWidth) {
+            var newTitleSize = parseInt(chartTitle.attr('font-size').replace('px', '')) - 1;
+            var newCreditSize = parseInt(chartCredit.attr('font-size').replace('px', '')) - 1;
+            var newSourceSize = parseInt(chartSource.attr('font-size').replace('px', '')) - 1;
+            chartTitle.attr('font-size', newTitleSize + 'px');
+            chartCredit.attr('font-size', newCreditSize + 'px');
+            chartSource.attr('font-size', newSourceSize + 'px');
+            chartCredit.attr({'dy': newTitleSize, 'x': 0});
+            chartSource.attr({'dy': newCreditSize, 'x': 0});
+          }
+
+          // Position text group
+          titlesGroup.attr('width', svgWidth).attr('transform', 'translate(' + svgWidth / 2 + ',350)');
+          // Resize SVG
+          svg.attr('height', svg.node().getBBox().height + titlesGroup.node().getBBox().height + 'px');
         }
 
         function redraw() {
@@ -78,7 +112,9 @@ angular.module('axisJSApp')
         var chart;
         redraw(); // initial draw.
 
-        // YYYYYYEEAH, I'm not sure using $watch like this is kosher...
+        // Watch all the different scope variables, redraw if necessary.
+        // This might need a refactor at some point. Not sure using $watch like
+        // this is kosher, given how AngularJS checks for var changes.
 
         // Change the data structure (modified by PapaParse in main.js)
         scope.$watch('config.data.columns', function(){
@@ -116,7 +152,7 @@ angular.module('axisJSApp')
               }
 
               // Show or hide an axis; set maximums or minimums (requires simple redraw)
-              if (newValues[key].hasOwnProperty('show') || newValues[key].hasOwnProperty('max') || newValues[key].hasOwnProperty('min')) { // redraw if axis visibility changed
+              if (newValues[key].hasOwnProperty('show') || newValues[key].hasOwnProperty('max') || newValues[key].hasOwnProperty('min')) {
                 redraw();
               }
 
@@ -144,13 +180,22 @@ angular.module('axisJSApp')
           }
         }, true);
 
-        scope.$watch('config.chartAccuracy', function(){
-          redraw();
-        });
-
-
         // Modify data association
-        scope.$watchGroup(['config.data.x', 'config.data.y', 'config.data.y2'], function(){
+        scope.$watchGroup(['config.data.x', 'config.data.y', 'config.data.y2'], function(newValues){
+          // Check if the column has categorical data strings
+          newValues.forEach(function(v, i){
+            var axis = (i === 0 ? 'x' : i === 1 ? 'y' : i === 2 ? 'y2' : '');
+            scope.config.data.columns.forEach(function(column){
+              for (var i = 1; i < column.length; i++) {
+                if (isNaN(column[i]) && column[0] === v) { // Column is NaN
+                  scope.config.axis[axis].type = 'category';
+                  scope.config.axis[axis].tick = undefined;
+                  break;
+                }
+              }
+            });
+          });
+
           redraw();
         });
 

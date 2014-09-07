@@ -6,7 +6,7 @@
 
 <!-- chart controls -->
 <div class="col-sm-7" id="chartControls">
-  <h1><small>axisJS v0.1.0</small></h1>
+  <h1><small>axisJS v0.1.1</small></h1>
 
   <!-- data input/display -->
   <div class="row">
@@ -49,6 +49,7 @@
                     <option value="#ED1B24" data-color="#ED1B24">Labour</option>
                     <option value="#022397" data-color="#022397">Conservative</option>
                     <option value="#FDBB30" data-color="#FDBB30">LibDem</option>
+                    <option value="#722889" data-color="#722889">Ukip</option>
                 </select>
               </span>
               <select class="form-control" id="type-{{col}}" ng-model="config.data.types[col]" ng-disabled="config.chartGlobalType !== 'series'">
@@ -174,7 +175,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="xAxisAccuracy">Accuracy</label>
                   <div class="col-sm-9">
-                    <select id="xAxisAccuracy" class="form-control" ng-model="config.axis.x.accuracy">
+                    <select id="xAxisAccuracy" class="form-control" ng-model="config.axis.x.accuracy" ng-disabled="config.data.x">
                       <option value="0">No decimal places</option>
                       <option value="1">1 decimal places</option>
                       <option value="2">2 decimal places</option>
@@ -229,7 +230,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="yAxisAccuracy">Accuracy</label>
                   <div class="col-sm-9">
-                    <select id="yAxisAccuracy" class="form-control" ng-model="config.axis.y.accuracy">
+                    <select id="yAxisAccuracy" class="form-control" ng-model="config.axis.y.accuracy" ng-disabled="config.data.y">
                       <option value="0">No decimal places</option>
                       <option value="1">1 decimal places</option>
                       <option value="2">2 decimal places</option>
@@ -284,7 +285,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="y2AxisAccuracy">Accuracy</label>
                   <div class="col-sm-9">
-                    <select id="y2AxisAccuracy" class="form-control" ng-model="config.axis.y2.accuracy">
+                    <select id="y2AxisAccuracy" class="form-control" ng-model="config.axis.y2.accuracy" ng-disabled="config.data.y2">
                       <option value="0">No decimal places</option>
                       <option value="1">1 decimal places</option>
                       <option value="2">2 decimal places</option>

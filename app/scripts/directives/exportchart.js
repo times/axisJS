@@ -1,4 +1,5 @@
-/*global $,d3*/
+/*global $*/ //Disabling loopfunc linting options because it's dumb.
+/*jshint -W083 */
 'use strict';
 
 /**
@@ -17,7 +18,7 @@ angular.module('axisJSApp')
           switch(attrs.exportChart) {
             case 'cms':
               createChartImages(scope.config.chartWidth);
-              parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(scope.config)) + '\' class="mceItem" /></div><br />');
+              parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(scope.config)) + '\' class="mceItem axisChart" /></div><br />');
               parent.tinymce.activeEditor.windowManager.close();
             break;
             case 'images':
@@ -67,14 +68,14 @@ angular.module('axisJSApp')
 
       		filename = filename.join('-').replace(/[^\w\d]+/gi, '-');
 
-      		angular.element(".savePNG").attr("href",canvas.toDataURL("png"))
-      			.attr("download",function(){ return filename + "_axisJS.png";
+      		angular.element('.savePNG').attr('href',canvas.toDataURL('png'))
+      			.attr('download', function(){ return filename + '_axisJS.png';
       			});
 
       		var svgContent = createSVGContent(angular.element('#chart > svg')[0]);
 
-      		$(".saveSVG").attr("href","data:text/svg,"+ svgContent.source[0])
-      			.attr("download",function(){ return filename + "_axisJS.svg";});
+      		$('.saveSVG').attr('href','data:text/svg,'+ svgContent.source[0])
+      			.attr('download', function(){ return filename + '_axisJS.svg';});
 
           // Disabling blob support below because data URLs are easier to move out of WordPress.
 
@@ -147,7 +148,7 @@ angular.module('axisJSApp')
 
               angular.element('.c3-chart path')
                 .filter(function(){
-                  return !angular.element(this).css('fill') === 'none';
+                  return angular.element(this).css('fill') !== 'none';
                 })
                 .attr('fill', function(){
                   return angular.element(this).css('fill');
@@ -183,36 +184,36 @@ angular.module('axisJSApp')
       		//via https://github.com/NYTimes/svg-crowbar
 
       		var prefix = {
-      			xmlns: "http://www.w3.org/2000/xmlns/",
-      			xlink: "http://www.w3.org/1999/xlink",
-      			svg: "http://www.w3.org/2000/svg"
+      			xmlns: 'http://www.w3.org/2000/xmlns/',
+      			xlink: 'http://www.w3.org/1999/xlink',
+      			svg: 'http://www.w3.org/2000/svg'
       		};
 
       		var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
 
-      		svg.setAttribute("version", "1.1");
+      		svg.setAttribute('version', '1.1');
 
           // Disabled defs because it was screwing up PNG output
       		//var defsEl = document.createElement("defs");
       		//svg.insertBefore(defsEl, svg.firstChild); //TODO   .insert("defs", ":first-child")
 
-      		var styleEl = document.createElement("style");
+      		var styleEl = document.createElement('style');
       		//defsEl.appendChild(styleEl);
-      		styleEl.setAttribute("type", "text/css");
+      		styleEl.setAttribute('type', 'text/css');
 
 
       		// removing attributes so they aren't doubled up
-      		svg.removeAttribute("xmlns");
-      		svg.removeAttribute("xlink");
+      		svg.removeAttribute('xmlns');
+      		svg.removeAttribute('xlink');
 
       		// These are needed for the svg
-      		if (!svg.hasAttributeNS(prefix.xmlns, "xmlns")) {
-      			svg.setAttributeNS(prefix.xmlns, "xmlns", prefix.svg);
+      		if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns')) {
+      			svg.setAttributeNS(prefix.xmlns, 'xmlns', prefix.svg);
       		}
 
-      		if (!svg.hasAttributeNS(prefix.xmlns, "xmlns:xlink")) {
-      			svg.setAttributeNS(prefix.xmlns, "xmlns:xlink", prefix.xlink);
+      		if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns:xlink')) {
+      			svg.setAttributeNS(prefix.xmlns, 'xmlns:xlink', prefix.xlink);
       		}
 
       		var source = (new XMLSerializer()).serializeToString(svg).replace('</style>', '<![CDATA[' + styles + ']]></style>');

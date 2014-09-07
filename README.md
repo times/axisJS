@@ -1,5 +1,5 @@
 # axisJS
-## version 0.1.0
+## version 0.1.1
 ### 2014 [Ændrew Rininsland](http://www.github.com/aendrew) for [The Times and Sunday Times](http://www.github.com/times)
 
 axisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
@@ -60,5 +60,5 @@ and `app/scripts/directives/exportchart.js` aren't so tightly bound to C3
 6. Create an external config file with settings like colour scheme
 7. Improve inline documentation
 8. Fix "ui-grid" for tabular data import
-9. Make adding categorical axes more straight-forward
+9. ~~Make adding categorical axes more straight-forward~~
 10. Create adapters for [nvd3](http://www.nvd3.org) and other SVG-based charting libraries.

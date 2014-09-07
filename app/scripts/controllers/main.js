@@ -28,7 +28,7 @@ angular.module('axisJSApp')
           ['data1', 30, 200, 100, 400, 150, 250],
           ['data2', 50, 20, 10, 40, 15, 25]
         ],
-        axes: {
+        axes: { // This is used in a similar fashion to config.axis.
         },
         type: '',
         types: {
@@ -43,21 +43,21 @@ angular.module('axisJSApp')
       axis: {
         x: {
           show: true,
-          tick: {
-            format: function(d){return d;}
-          }
+          // tick: {
+          //   format: function(d){return d;}
+          // }
         },
         y: {
           show: true,
-          tick: {
-            format: function(d){return d;}
-          }
+          // tick: {
+          //   format: function(d){return d;}
+          // }
         },
         y2: {
           show: false,
-          tick: {
-            format: function(d){return d;}
-          }
+          // tick: {
+          //   format: function(d){return d;}
+          // }
         }
       },
       point: {
@@ -94,7 +94,7 @@ angular.module('axisJSApp')
     $scope.config.axis.y2.suffix = '';
     $scope.config.axis.x.tick = {
       format: function (d) {
-        if ($scope.config.chartGlobalType === 'series') {
+        if ($scope.config.chartGlobalType === 'series' && $scope.config.axis.x.type !== 'category') {
           return $scope.config.axis.x.prefix + d.toFixed($scope.config.axis.x.accuracy).toString() + $scope.config.axis.x.suffix;
         } else {
           return d;
@@ -103,7 +103,7 @@ angular.module('axisJSApp')
     };
     $scope.config.axis.y.tick = {
       format: function (d) {
-        if ($scope.config.chartGlobalType === 'series') {
+        if ($scope.config.chartGlobalType === 'series' && $scope.config.axis.y.type !== 'category') {
           return $scope.config.axis.y.prefix + d.toFixed($scope.config.axis.y.accuracy).toString() + $scope.config.axis.y.suffix;
         } else {
           return d;
@@ -112,7 +112,7 @@ angular.module('axisJSApp')
     };
     $scope.config.axis.y2.tick = {
       format: function (d) {
-        if ($scope.config.chartGlobalType === 'series') {
+        if ($scope.config.chartGlobalType === 'series' && $scope.config.axis.y2.type !== 'category') {
           return $scope.config.axis.y2.prefix + d.toFixed($scope.config.axis.y2.accuracy).toString() + $scope.config.axis.y2.suffix;
         } else {
           return d;
@@ -159,6 +159,9 @@ angular.module('axisJSApp')
       }
     };
 
+
+
+
     $scope.setGlobalType = function(type) {
       for (var key in $scope.config.data.types) {
         if ($scope.config.data.types.hasOwnProperty(key)) {
@@ -173,7 +176,10 @@ angular.module('axisJSApp')
     };
 
     $scope.updateData(); // Push the initial data.
-    //$scope.$watch('chartData', function(){$scope.apply;}); // needed? probably not...
+
+    window.getConfig = function(){
+      console.dir($scope.config);
+    };
 
     // Repopulate if data is being sent in from WordPress.
     if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined' ) {
