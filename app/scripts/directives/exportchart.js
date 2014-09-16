@@ -18,7 +18,15 @@ angular.module('axisJSApp')
           switch(attrs.exportChart) {
             case 'cms':
               createChartImages(scope.config.chartWidth);
-              parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(scope.config)) + '\' class="mceItem axisChart" /></div><br />');
+              var chartConfig = scope.config;
+              chartConfig.axis.x.tick = chartConfig.axis.x.tick.format.toString();
+              chartConfig.axis.y.tick = chartConfig.axis.y.tick.format.toString();
+              chartConfig.axis.y2.tick = chartConfig.axis.y2.tick.format.toString();
+              chartConfig.pie = chartConfig.pie.label.format.toString();
+              chartConfig.donut = chartConfig.donut.label.format.toString();
+              chartConfig.gauge = chartConfig.gauge.label.format.toString();
+
+              parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(chartConfig)) + '\' class="mceItem axisChart" /></div><br />');
               parent.tinymce.activeEditor.windowManager.close();
             break;
             case 'images':
@@ -53,11 +61,6 @@ angular.module('axisJSApp')
 
 
       		var canvasContext = canvas.getContext('2d');
-
-          if (scope.config.chartBackground) {
-            canvasContext.fillStyle = scope.config.chartBackground;
-            canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-          }
 
       		var svg = $.trim(angular.element('#chart > svg')[0].outerHTML);
 

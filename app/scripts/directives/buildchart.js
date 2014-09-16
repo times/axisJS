@@ -83,27 +83,9 @@ angular.module('axisJSApp')
             axis: scope.config.axis,
             legend: scope.config.legend,
             point: scope.config.point,
-            pie: {
-              label: {
-                format: function(val, percentage) {
-                  return (percentage * 100).toFixed(scope.config.chartAccuracy) + '%';
-                }
-              }
-            },
-            donut: {
-              label: {
-                format: function(val, percentage) {
-                  return (percentage * 100).toFixed(scope.config.chartAccuracy) + '%';
-                }
-              }
-            },
-            gauge: {
-              label: {
-                format: function(val, percentage) {
-                  return (percentage * 100).toFixed(scope.config.chartAccuracy) + '%';
-                }
-              }
-            }
+            pie: scope.config.pie,
+            donut: scope.config.donut,
+            gauge: scope.config.gauge
           });
 
           doTitles();
@@ -200,7 +182,7 @@ angular.module('axisJSApp')
         });
 
         // Do titles
-        scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource'], function(){
+        scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource', 'config.chartAccuracy'], function(){
           redraw();
         });
       }

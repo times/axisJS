@@ -62,7 +62,7 @@ angular.module('axisJSApp')
       },
       point: {
           show: false
-      }
+      },
     };
 
     $scope.chartTypes = [ // TODO: Abstract this into the ChartProvider service.
@@ -119,6 +119,7 @@ angular.module('axisJSApp')
         }
       }
     };
+
     $scope.config.chartTitle = '';
     $scope.config.chartCredit = '';
     $scope.config.chartSource = '';
@@ -126,7 +127,30 @@ angular.module('axisJSApp')
     $scope.config.chartGlobalType = 'series';
     $scope.config.chartAccuracy = 1;
     $scope.config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
-    $scope.config.chartBackground = '';
+
+    $scope.config.pie = {
+      label: {
+        format: function(val, percentage) {
+          return (percentage * 100).toFixed($scope.config.chartAccuracy) + '%';
+        }
+      }
+    };
+
+    $scope.config.donut = {
+      label: {
+        format: function(val, percentage) {
+          return (percentage * 100).toFixed($scope.config.chartAccuracy) + '%';
+        }
+      }
+    };
+
+    $scope.config.gauge = {
+      label: {
+        format: function(val, percentage) {
+          return (percentage * 100).toFixed($scope.config.chartAccuracy) + '%';
+        }
+      }
+    };
 
 
     $scope.updateData = function() {
@@ -180,6 +204,7 @@ angular.module('axisJSApp')
 
     window.getConfig = function(){
       console.dir($scope.config);
+      window.chartConfig = $scope.config;
     };
 
     // Repopulate if data is being sent in from WordPress.
