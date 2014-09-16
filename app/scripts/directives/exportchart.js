@@ -53,9 +53,15 @@ angular.module('axisJSApp')
 
 
       		var canvasContext = canvas.getContext('2d');
-      		var svg = $.trim(angular.element('#chart > svg')[0].outerHTML);
-      		canvasContext.drawSvg(svg,0,0);
 
+          if (scope.config.chartBackground) {
+            canvasContext.fillStyle = scope.config.chartBackground;
+            canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+          }
+
+      		var svg = $.trim(angular.element('#chart > svg')[0].outerHTML);
+
+          canvasContext.drawSvg(svg,0,0);
 
       		var filename = [];
       		for (var i=0; i < scope.columns.length; i++) {

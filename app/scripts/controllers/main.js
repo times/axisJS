@@ -126,6 +126,7 @@ angular.module('axisJSApp')
     $scope.config.chartGlobalType = 'series';
     $scope.config.chartAccuracy = 1;
     $scope.config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
+    $scope.config.chartBackground = '';
 
 
     $scope.updateData = function() {

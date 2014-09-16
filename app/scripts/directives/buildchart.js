@@ -65,7 +65,6 @@ angular.module('axisJSApp')
           // Position text group
           titlesGroup.attr('width', svgWidth).attr('transform', 'translate(' + svgWidth / 2 + ',350)');
           // Resize SVG
-          console.log(svg.node().getBBox().height + titlesGroup.node().getBBox().height);
           svg.attr('height', svg.node().getBBox().height + 'px');
         }
 
