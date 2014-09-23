@@ -19,12 +19,12 @@ angular.module('axisJSApp')
             case 'cms':
               createChartImages(scope.config.chartWidth);
               var chartConfig = scope.config;
-              chartConfig.axis.x.tick = chartConfig.axis.x.tick.format.toString();
-              chartConfig.axis.y.tick = chartConfig.axis.y.tick.format.toString();
-              chartConfig.axis.y2.tick = chartConfig.axis.y2.tick.format.toString();
-              chartConfig.pie = chartConfig.pie.label.format.toString();
-              chartConfig.donut = chartConfig.donut.label.format.toString();
-              chartConfig.gauge = chartConfig.gauge.label.format.toString();
+              chartConfig.axis.x.tick.format = chartConfig.axis.x.tick.format.toString();
+              chartConfig.axis.y.tick.format = chartConfig.axis.y.tick.format.toString();
+              chartConfig.axis.y2.tick.format = chartConfig.axis.y2.tick.format.toString();
+              chartConfig.pie.label.format = chartConfig.pie.label.format.toString();
+              chartConfig.donut.label.format = chartConfig.donut.label.format.toString();
+              chartConfig.gauge.label.format = chartConfig.gauge.label.format.toString();
 
               parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(chartConfig)) + '\' class="mceItem axisChart" /></div><br />');
               parent.tinymce.activeEditor.windowManager.close();
