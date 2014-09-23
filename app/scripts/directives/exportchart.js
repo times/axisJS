@@ -62,7 +62,9 @@ angular.module('axisJSApp')
 
       		var canvasContext = canvas.getContext('2d');
 
-      		var svg = $.trim(angular.element('#chart > svg')[0].outerHTML);
+          var svg = document.getElementsByTagName('svg')[0];
+          var serializer = new XMLSerializer();
+          svg = serializer.serializeToString(svg);
 
           canvasContext.drawSvg(svg,0,0);
 
