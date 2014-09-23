@@ -78,7 +78,8 @@ angular.module('axisJSApp')
               columns: scope.config.data.columns, //expects multi-dimensional array containing one array per column.
               axes: scope.config.data.axes, //expects object mapping columns to axis objects (below)
               types: scope.config.data.types, //expects an object mapping each data column to a type
-              colors: scope.config.data.colors
+              colors: scope.config.data.colors,
+              groups: scope.config.data.groups
             },
             axis: scope.config.axis,
             legend: scope.config.legend,
@@ -185,6 +186,11 @@ angular.module('axisJSApp')
         scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource', 'config.chartAccuracy'], function(){
           redraw();
         });
+
+        // Watch for groups
+        scope.$watch('config.data.groups', function(){
+          redraw();
+        }, true);
       }
     };
   });

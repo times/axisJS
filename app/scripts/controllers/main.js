@@ -30,6 +30,8 @@ angular.module('axisJSApp')
         ],
         axes: { // This is used in a similar fashion to config.axis.
         },
+        groups: { // Ditto.
+        },
         type: '',
         types: {
           data1: 'line', // Currently must set explictly on initialisation to populate view.
@@ -77,6 +79,8 @@ angular.module('axisJSApp')
       // 'gauge',
       // 'pie'
     ];
+
+    $scope.config.groups = {};
 
     $scope.config.defaultColors = ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5'];
 
@@ -204,6 +208,18 @@ angular.module('axisJSApp')
             $scope.config.data.types[key] = 'line';
           }
 
+        }
+      }
+    };
+
+    $scope.setGroups = function() {
+      $scope.config.data.groups = [];
+      for (var group in $scope.config.groups) {
+        if ($scope.config.groups.hasOwnProperty(group)) {
+          if (typeof $scope.config.data.groups[$scope.config.groups[group]] === 'undefined') {
+            $scope.config.data.groups[$scope.config.groups[group]] = [];
+          }
+          $scope.config.data.groups[$scope.config.groups[group]].push(group);
         }
       }
     };

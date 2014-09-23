@@ -2,7 +2,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 // endbower
 
-
 // Comment out for debugging PNG output
 .rendering canvas {
   display: none !important;
@@ -37,6 +36,10 @@ html, body {
   .ngViewport {
     max-height: 100px;
   }
+}
+
+.input-group-addon select {
+  border: 0px;
 }
 
 .panel-body h4 {
