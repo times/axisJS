@@ -137,61 +137,6 @@
           <form class="form-horizontal" role="form">
             <fieldset ng-disabled="config.chartGlobalType !== 'series'">
 
-              <!-- x axis -->
-              <h4>Bottom Axis <input type="checkbox" ng-model="config.axis.x.show" /></h4>
-              <fieldset ng-disabled="!config.axis.x.show">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="xAxisColumn">Column</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="xAxisColumn" ng-model="config.data.x">
-                      <option value=""></option>
-                      <option value="{{col}}" ng-repeat="col in columns">{{col}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="xAxisLabel">Label</label>
-                  <div class="col-sm-9">
-                    <input type="text" id="xAxisLabel" class="form-control" ng-model="config.axis.x.label" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="xAxisPrefix">Prefix</label>
-                  <div class="col-sm-9">
-                    <input type="text" id="xAxisPrefix" class="form-control" ng-model="config.axis.x.prefix" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="xAxisSuffix">Suffix</label>
-                  <div class="col-sm-9">
-                    <input type="text" id="xAxisSuffix" class="form-control" ng-model="config.axis.x.suffix" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="xAxisMin">Minimum</label>
-                  <div class="col-sm-9">
-                    <input type="text" id="xAxisMin" class="form-control" ng-model="config.axis.x.min"/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="xAxisMax">Maximum</label>
-                  <div class="col-sm-9">
-                    <input type="text" id="xAxisMax" class="form-control" ng-model="config.axis.x.max" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="xAxisAccuracy">Accuracy</label>
-                  <div class="col-sm-9">
-                    <select id="xAxisAccuracy" class="form-control" ng-model="config.axis.x.accuracy" ng-disabled="config.data.x">
-                      <option value="0">No decimal places</option>
-                      <option value="1">1 decimal places</option>
-                      <option value="2">2 decimal places</option>
-                      <option value="3">3 decimal places</option>
-                    </select>
-                  </div>
-                </div>
-              </fieldset>
-
               <!-- y axis -->
               <h4>Left Axis <input type="checkbox" ng-model="config.axis.y.show" /></h4>
               <fieldset ng-disabled="!config.axis.y.show">
@@ -225,19 +170,74 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="yAxisMin">Min.</label>
                   <div class="col-sm-9">
-                    <input type="text" id="yAxisMin" class="form-control" ng-model="config.axis.y.min" />
+                    <input type="number" id="yAxisMin" class="form-control" ng-model="config.axis.y.min" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="yAxisMax">Max.</label>
                   <div class="col-sm-9">
-                    <input type="text" id="yAxisMax" class="form-control" ng-model="config.axis.y.max" />
+                    <input type="number" id="yAxisMax" class="form-control" ng-model="config.axis.y.max" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="yAxisAccuracy">Accuracy</label>
                   <div class="col-sm-9">
                     <select id="yAxisAccuracy" class="form-control" ng-model="config.axis.y.accuracy" ng-disabled="config.data.y">
+                      <option value="0">No decimal places</option>
+                      <option value="1">1 decimal places</option>
+                      <option value="2">2 decimal places</option>
+                      <option value="3">3 decimal places</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- x axis -->
+              <h4>Bottom Axis <input type="checkbox" ng-model="config.axis.x.show" /></h4>
+              <fieldset ng-disabled="!config.axis.x.show">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisColumn">Column</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="xAxisColumn" ng-model="config.data.x">
+                      <option value=""></option>
+                      <option value="{{col}}" ng-repeat="col in columns">{{col}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisLabel">Label</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="xAxisLabel" class="form-control" ng-model="config.axis.x.label" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisPrefix">Prefix</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="xAxisPrefix" class="form-control" ng-model="config.axis.x.prefix" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisSuffix">Suffix</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="xAxisSuffix" class="form-control" ng-model="config.axis.x.suffix" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisMin">Minimum</label>
+                  <div class="col-sm-9">
+                    <input type="number" id="xAxisMin" class="form-control" ng-model="config.axis.x.min"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisMax">Maximum</label>
+                  <div class="col-sm-9">
+                    <input type="number" id="xAxisMax" class="form-control" ng-model="config.axis.x.max" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisAccuracy">Accuracy</label>
+                  <div class="col-sm-9">
+                    <select id="xAxisAccuracy" class="form-control" ng-model="config.axis.x.accuracy" ng-disabled="config.data.x">
                       <option value="0">No decimal places</option>
                       <option value="1">1 decimal places</option>
                       <option value="2">2 decimal places</option>
@@ -280,13 +280,13 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="y2AxisMin">Min.</label>
                   <div class="col-sm-9">
-                    <input type="text" id="y2AxisMin" class="form-control" ng-model="config.axis.y2.min" />
+                    <input type="number" id="y2AxisMin" class="form-control" ng-model="config.axis.y2.min" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="y2AxisMax">Max.</label>
                   <div class="col-sm-9">
-                    <input type="text" id="y2AxisMax" class="form-control" ng-model="config.axis.y2.max" />
+                    <input type="number" id="y2AxisMax" class="form-control" ng-model="config.axis.y2.max" />
                   </div>
                 </div>
                 <div class="form-group">
