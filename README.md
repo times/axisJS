@@ -1,5 +1,5 @@
 # axisJS
-## version 0.1.1
+## version 0.1.2
 ### 2014 [Ændrew Rininsland](http://www.github.com/aendrew) for [The Times and Sunday Times](http://www.github.com/times)
 
 axisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
