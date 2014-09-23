@@ -156,36 +156,42 @@ angular.module('axisJSApp')
 
 
     $scope.updateData = function() {
-      $scope.chartData = []; // Empty, or else new column names will break ng-grid
-      $scope.columns = []; // Clear existing
-      $scope.config.data.columns = [];
+      if ($scope.inputs.csvData) {
+        $scope.chartData = []; // Empty, or else new column names will break ng-grid
+        $scope.columns = []; // Clear existing
+        $scope.config.data.columns = [];
 
-      $scope.chartData = Papa.parse($scope.inputs.csvData, {header: true}).data;
-      // n.b., you can also use rows in C3 instead, which is like Papa.parse() without
-      // header: true. TODO for anyone wanting to play some code golf...
+        $scope.chartData = Papa.parse($scope.inputs.csvData, {header: true}).data;
+        // n.b., you can also use rows in C3 instead, which is like Papa.parse() without
+        // header: true. TODO for anyone wanting to play some code golf...
 
-      if ($scope.chartData.length > 0) {
-        $scope.columns = Object.keys($scope.chartData[0]);
-        angular.forEach($scope.columns, function(colName) {
-          var column = [];
-          column.push(colName);
-          angular.forEach($scope.chartData, function(datum) {
-            column.push(datum[colName]);
-          });
+        if ($scope.chartData.length > 0) {
+          $scope.columns = Object.keys($scope.chartData[0]);
+          angular.forEach($scope.columns, function(colName) {
+            var column = [];
+            column.push(colName);
+            angular.forEach($scope.chartData, function(datum) {
+              column.push(datum[colName]);
+            });
 
-          $scope.config.data.columns.push(column);
-          if (typeof $scope.config.data.types[colName] === 'undefined') {
-            if ($scope.config.chartGlobalType === 'series') {
-              $scope.config.data.types[colName] = 'line'; // default to line.
-            } else { // else the global chart type
-              $scope.config.data.types[colName] = $scope.config.chartGlobalType;
+            $scope.config.data.columns.push(column);
+            if (typeof $scope.config.data.types[colName] === 'undefined') {
+              if ($scope.config.chartGlobalType === 'series') {
+                $scope.config.data.types[colName] = 'line'; // default to line.
+              } else { // else the global chart type
+                $scope.config.data.types[colName] = $scope.config.chartGlobalType;
+              }
+
             }
-
-          }
-        });
+          });
+        }
       }
     };
 
+    $scope.validateCSV = function(value) {
+      var csv = Papa.parse(value, {header: true});
+      return (csv.errors.length > 0 ? false : true);
+    };
 
 
 
