@@ -13,6 +13,5 @@ angular
     'ngAnimate',
     'ngResource',
     'ngSanitize',
-    'ngGrid',
     'ui'
   ]);

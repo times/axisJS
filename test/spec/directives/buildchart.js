@@ -3,18 +3,22 @@
 describe('Directive: BuildChart', function () {
 
   // load the directive's module
-  beforeEach(module('llamaChartsApp'));
+  beforeEach(module('axisJSApp'));
 
-  var element,
-    scope;
+  var MainCtrl,
+      scope;
 
-  beforeEach(inject(function ($rootScope) {
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
+    MainCtrl = $controller('MainCtrl', {
+      $scope: scope
+    });
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<-build-chart></-build-chart>');
+  it('should instantiate C3 on the #chart element', inject(function ($compile) {
+    var element = angular.element('<div id="chart" build-chart></div>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the BuildChart directive');
+    expect(element.children('svg').length).toBe(1);
   }));
 });

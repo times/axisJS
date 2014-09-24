@@ -12,12 +12,12 @@ angular.module('axisJSApp')
     $scope.inputs = {};
     $scope.columns = [];
     $scope.chartData = {};
-    $scope.gridOptions = {
-      data: 'chartData',
-      plugins: [
-        new ngGridFlexibleHeightPlugin()
-      ]
-    };
+    // $scope.gridOptions = {
+    //   data: 'chartData',
+    //   plugins: [
+    //     new ngGridFlexibleHeightPlugin()
+    //   ]
+    // };
 
     $scope.config = {
       data: {

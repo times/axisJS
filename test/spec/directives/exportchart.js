@@ -3,7 +3,7 @@
 describe('Directive: exportChart', function () {
 
   // load the directive's module
-  beforeEach(module('llamaChartsApp'));
+  beforeEach(module('axisJSApp'));
 
   var element,
     scope;
@@ -12,9 +12,15 @@ describe('Directive: exportChart', function () {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<export-chart></export-chart>');
+  it('should create chart images if the "save" button is clicked', inject(function ($compile) {
+    // Arrange
+    element = angular.element('<a href="#" export-chart id="a-button">');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the exportChart directive');
+
+    // Act
+    angular.element(element).trigger('click');
+
+    // Assert
+    expect(angular.element('canvas').length).toBe(1);
   }));
 });

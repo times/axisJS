@@ -18,13 +18,34 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/mutationobserver-shim/MutationObserver.js',
       'bower_components/angular/angular.js',
+      'bower_components/jquery/dist/jquery.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-ui/build/angular-ui.js',
+      'bower_components/c3/c3.js',
+      'bower_components/d3/d3.js',
+      'bower_components/Papa-Parse/papaparse.js',
+      'bower_components/canvg/dist/canvg.bundle.js',
+      'bower_components/json3/lib/json3.js',
+      'bower_components/bootstrap-colorselector/lib/bootstrap-colorselector-0.2.0/js/bootstrap-colorselector.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js',
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js',
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
+      //'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -44,13 +65,18 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers: [
       'PhantomJS'
+      //'Chrome'
     ],
 
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      //'karma-chrome-launcher',
+      'karma-jasmine',
+      'karma-nyan-reporter'
     ],
+
+    reporters: ['nyan'],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

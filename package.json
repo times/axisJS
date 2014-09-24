@@ -1,7 +1,10 @@
 {
   "name": "axisJS",
   "version": "0.1.2",
-  "dependencies": {},
+  "dependencies": {
+    "grunt-karma": "^0.9.0",
+    "karma": "^0.12.23"
+  },
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
@@ -25,7 +28,10 @@
     "grunt-usemin": "^2.1.1",
     "grunt-wiredep": "^1.7.0",
     "jshint-stylish": "^0.2.0",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-nyan-reporter": "0.0.47",
     "load-grunt-tasks": "^0.4.0",
+    "mutationobserver-shim": "^0.2.8",
     "time-grunt": "^0.3.1"
   },
   "engines": {
