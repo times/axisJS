@@ -53,7 +53,7 @@ View API docs online [here](http://times.github.io/axisJS/docs/).
 
 1. Abstract chart configuration into a provider so that `app/scripts/directives/buildchart.js`
 and `app/scripts/directives/exportchart.js` aren't so tightly bound to C3
-2. **ALL** the unit tests
+2. ~~**ALL** the unit tests~~
 3. Documentation and cleanup of `buildchart.js` and `exportchart.js`
 4. Abstract each output format into factories so more can be modularly added
 5. Abstract out vendor functionality — i.e., make the colour picker replaceable
