@@ -8,7 +8,7 @@
  * Base directive for building the chart preview.
  */
 angular.module('axisJSApp')
-  .directive('buildChart', function () {
+  .directive('buildChart', ['$timeout', function ($timeout) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
@@ -89,7 +89,9 @@ angular.module('axisJSApp')
             gauge: scope.config.gauge
           });
 
-          doTitles();
+          $timeout(function(){
+            doTitles();
+          });
         }
 
         var chart;
@@ -193,4 +195,4 @@ angular.module('axisJSApp')
         }, true);
       }
     };
-  });
+  }]);

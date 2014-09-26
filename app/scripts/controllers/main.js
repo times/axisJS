@@ -1,4 +1,4 @@
-/* global ngGridFlexibleHeightPlugin, Papa*/
+/* global Papa*/
 'use strict';
 
 /**

@@ -8,7 +8,7 @@ describe('Directive: BuildChart', function () {
   var MainCtrl,
       scope;
 
-  // Initialize the controller and a mock scope
+  // Initialize the controller and a mock MainCtrl scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
@@ -19,6 +19,10 @@ describe('Directive: BuildChart', function () {
   it('should instantiate C3 on the #chart element', inject(function ($compile) {
     var element = angular.element('<div id="chart" build-chart></div>');
     element = $compile(element)(scope);
-    expect(element.children('svg').length).toBe(1);
+    scope.$apply();
+
+    setTimeout(function(){
+      expect(element.children('svg')).toBeTruthy();
+    }, 500);
   }));
 });

@@ -19,8 +19,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/mutationobserver-shim/MutationObserver.js',
-      'bower_components/angular/angular.js',
       'bower_components/jquery/dist/jquery.js',
+      'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-resource/angular-resource.js',
@@ -64,14 +64,14 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
-      //'Chrome'
+      //'PhantomJS'
+      'Chrome'
     ],
 
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      //'karma-chrome-launcher',
+      'karma-chrome-launcher',
       'karma-jasmine',
       'karma-nyan-reporter'
     ],
