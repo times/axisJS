@@ -10,7 +10,7 @@
  * @todo Refactor the hell out of this.
  */
 angular.module('axisJSApp')
-  .directive('exportChart', function () {
+  .directive('exportChart', ['$http', function ($http) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -25,9 +25,36 @@ angular.module('axisJSApp')
               chartConfig.pie.label.format = chartConfig.pie.label.format.toString();
               chartConfig.donut.label.format = chartConfig.donut.label.format.toString();
               chartConfig.gauge.label.format = chartConfig.gauge.label.format.toString();
+              var axisConfig = String(angular.toJson(chartConfig));
+              var axisChart = String(angular.element('.savePNG').attr('href'));
+              var axisWP = parent.tinymce.activeEditor.windowManager.getParams().axisWP;
+              var payload = {
+                action: 'insert_axis_attachment',
+                axisConfig: axisConfig,
+                axisChart: axisChart,
+                parentID: axisWP.parentID
+              };
+              $.post(parent.ajaxurl, payload, function(res){
+                res = angular.fromJson(res);
+                parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
+                parent.tinymce.activeEditor.windowManager.close();
+              });
 
-              parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + angular.element('.savePNG').attr('href') + '" data-axisjs=\'' + window.btoa(angular.toJson(chartConfig)) + '\' class="mceItem axisChart" /></div><br />');
-              parent.tinymce.activeEditor.windowManager.close();
+              // TODO Figure out why the following doesn't work due to lns. 22-27
+              // $http({
+              //   method: 'POST',
+              //   url: parent.ajaxurl,
+              //   data: $.param(payload),
+              //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+              // })
+              //   .success(function(res){
+              //     parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
+              //     parent.tinymce.activeEditor.windowManager.close();
+              //   })
+              //   .error(function(res){
+              //     console.log('Error saving to CMS: ');
+              //     console.dir(res);
+              //   });
             break;
             case 'images':
               createChartImages(scope.config.chartWidth);
@@ -79,7 +106,7 @@ angular.module('axisJSApp')
 
       		filename = filename.join('-').replace(/[^\w\d]+/gi, '-');
 
-      		angular.element('.savePNG').attr('href',canvas.toDataURL('png'))
+      		angular.element('.savePNG').attr('href', canvas.toDataURL('png'))
       			.attr('download', function(){ return filename + '_axisJS.png';
       			});
 
@@ -240,4 +267,4 @@ angular.module('axisJSApp')
       	};
       }
     };
-  });
+  }]);
