@@ -10,7 +10,7 @@
  * @todo Refactor the hell out of this.
  */
 angular.module('axisJSApp')
-  .directive('exportChart', ['$http', function ($http) {
+  .directive('exportChart', function () {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -34,6 +34,8 @@ angular.module('axisJSApp')
                 axisChart: axisChart,
                 parentID: axisWP.parentID
               };
+
+              // Have WordPress process the data-URI PNG and return some config data
               $.post(parent.ajaxurl, payload, function(res){
                 res = angular.fromJson(res);
                 parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
@@ -267,4 +269,4 @@ angular.module('axisJSApp')
       	};
       }
     };
-  }]);
+  });
