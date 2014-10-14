@@ -10,14 +10,9 @@ See [semver.org](http://semver.org) for full details.
 
 ### axisJS
 
-#### 0.1.1
+#### 0.2.0
 
-Bug-fix release intended to target a variety of issues.
-
-- [ ] fix excess whitespace beneath charts with no title » times/axisJS#8
-- [ ] fix chart legend centring bug » times/axisJS#9
-- [ ] add ability to do stacked bar charts » times/axisJS#7
-- [ ] fix PNG output in Safari » times/axisJS#5
+Functionality making it work with AxisJS 1.0.0. No longer outputs data-URI PNGs.
 
 #### 0.1.2
 
@@ -28,6 +23,15 @@ Maintenance release intended to facilitate future development.
 - [ ] abstract output formats into a provider
 - [ ] abstract input formats into a provider
 - [ ] add unit tests for all of the above
+
+#### 0.1.1
+
+Bug-fix release intended to target a variety of issues.
+
+- [ ] fix excess whitespace beneath charts with no title » times/axisJS#8
+- [ ] fix chart legend centring bug » times/axisJS#9
+- [ ] add ability to do stacked bar charts » times/axisJS#7
+- [ ] fix PNG output in Safari » times/axisJS#5
 
 ### Axis for WordPress
 

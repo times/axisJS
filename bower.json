@@ -1,7 +1,7 @@
 {
   "name": "axisJS",
   "description": "Modular, Angular-based framework for creating basic charts",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": [
     "app/scripts/app.js"
   ],
