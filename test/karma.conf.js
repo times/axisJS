@@ -20,6 +20,7 @@ module.exports = function(config) {
     files: [
       'node_modules/mutationobserver-shim/MutationObserver.js',
       'bower_components/jquery/dist/jquery.js',
+      'bower_components/jquery.soap/jquery.soap.js', // Used for validation checking
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-animate/angular-animate.js',

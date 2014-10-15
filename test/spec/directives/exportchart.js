@@ -1,4 +1,5 @@
 'use strict';
+/*global $,xit*/
 
 describe('Directive: exportChart', function () {
 
@@ -79,7 +80,33 @@ describe('Directive: exportChart', function () {
 
     // Assert
     setTimeout(function(){
-      expect(angular.element('.saveSVG').attr('src').length).toMatch(/\?xml/);
+      expect(angular.element('.saveSVG').attr('href')).toMatch(/\?xml/);
+    }, 500);
+  }));
+
+  // Disabled because of CORS restrictions
+  xit('should export W3C-compliant SVG', inject(function ($compile) {
+    // Arrange
+    element = angular.element('<a href="#" export-chart id="a-button">');
+    element = $compile(element)(scope);
+    scope.$apply();
+
+    // Act
+    angular.element(element).trigger('click');
+
+    // Assert
+    setTimeout(function(){
+      var svgContent = angular.element('.saveSVG').attr('href').replace('data:text/svg,', '');
+      $.soap({
+        url: 'http://validator.w3.org/',
+        method: 'check',
+        data: {
+          fragment: svgContent
+        }
+      })
+      .done(function(data, status, jqXHR){
+        console.dir([data, status, jqXHR]);
+      });
     }, 500);
   }));
 
