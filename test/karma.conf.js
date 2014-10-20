@@ -6,7 +6,7 @@
 module.exports = function(config) {
   'use strict';
 
-  config.set({
+  var defaultConfig = {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -66,8 +66,8 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers: [
       //'PhantomJS',
-      //'Chrome',
-      'Firefox'
+      'Chrome',
+      //'Firefox'
     ],
 
     // Which plugins to enable
@@ -97,5 +97,12 @@ module.exports = function(config) {
     // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
-  });
+  };
+
+  if (typeof process.env.TRAVIS !== 'undefined') {
+    defaultConfig.reporters = ['dots'];
+    defaultConfig.browsers = ['Firefox'];
+  }
+
+  config.set(defaultConfig);
 };
