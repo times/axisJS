@@ -139,7 +139,7 @@
 
               <!-- y axis -->
               <h4>Left Axis <input type="checkbox" ng-model="config.axis.y.show" /></h4>
-              <fieldset ng-disabled="!config.axis.y.show">
+              <fieldset ng-hide="!config.axis.y.show">
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="yAxisColumn">Column</label>
                   <div class="col-sm-9">
@@ -194,7 +194,7 @@
 
               <!-- x axis -->
               <h4>Bottom Axis <input type="checkbox" ng-model="config.axis.x.show" /></h4>
-              <fieldset ng-disabled="!config.axis.x.show">
+              <fieldset ng-hide="!config.axis.x.show">
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="xAxisColumn">Column</label>
                   <div class="col-sm-9">
@@ -249,7 +249,7 @@
 
               <!-- y2 axis -->
               <h4>Right Axis <input type="checkbox" ng-model="config.axis.y2.show" /></h4>
-              <fieldset ng-disabled="!config.axis.y2.show">
+              <fieldset ng-hide="!config.axis.y2.show">
                 <div class="form-group">
                   <label class="col-sm-3 control-label" for="y2AxisColumn">Column</label>
                   <div class="col-sm-9">
