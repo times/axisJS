@@ -35,7 +35,7 @@ describe('Directive: BuildChart', function () {
       scope.$apply();
 
       setTimeout(function(){
-        
+
       }, 500);
     }));
 
@@ -56,24 +56,5 @@ describe('Directive: BuildChart', function () {
     it('should update the colour pickers when data is added (#30)', inject(function ($compile) {
 
     }));
-
-    it('should should work properly when the dataset only has one non-header row', inject(function ($compile) {
-
-    }));
   });
-
-
-
-  // @TODO This probably won't work until after I abstract redraw() into a Service.
-  // @sa #15.
-
-  // it('should fire redraw when sundry config options change', inject(function($compile){
-  //   var element = angular.element('<div id="chart" build-chart></div>');
-  //   element = $compile(element)(scope);
-  //   scope.$apply();
-  //
-  //   setTimeout(function(){
-  //     expect(element.children('svg')).toBeTruthy();
-  //   }, 500);
-  // }));
 });

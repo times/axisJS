@@ -260,7 +260,7 @@ angular.module('axisJSApp')
 
           // Quick 'n' shitty hacks to remove stuff that prevents AI from opening SVG
           source = source.replace(/\sfont-.*?: .*?;/gi, '');
-          source = source.replace(/\sclip-.*?="url\(http:\/\/localhost:9000\/.*?\)"/gi, '');
+          source = source.replace(/\sclip-.*?="url\(http:\/\/.*?\)"/gi, '');
           source = source.replace(/\stransform="scale\(2\)"/gi, '');
           // not needed but good so it validates
           source = source.replace(/<defs xmlns="http:\/\/www.w3.org\/1999\/xhtml">/gi, '<defs>');

@@ -132,4 +132,25 @@ describe('Directive: exportChart', function () {
       expect(foo.length).toBeGreaterThan(1);
     }, 1000);
   }));
+
+  describe('a spec with tests intended to prevent regression on closed issues', function() {
+    it('should not add cruft that prevents Illustrator from opening (#31)', inject(function ($compile) {
+      // Arrange
+      element = angular.element('<a href="#" export-chart id="a-button">');
+      element = $compile(element)(scope);
+      scope.$apply();
+
+      // Act
+      angular.element(element).trigger('click');
+      var svg = angular.element('.saveSVG').attr('href');
+
+      // Assert
+      setTimeout(function(){
+        expect(svg).toMatch(/\?xml/);
+        expect(svg).not.toMatch(/\sfont-.*?: .*?;/gi);
+        expect(svg).not.toMatch(/\sclip-.*?="url\(http:\/\/.*?\)"/gi); // This one is particularly important.
+        expect(svg).not.toMatch(/\stransform="scale\(2\)"/gi);
+      }, 500);
+    }));
+  });
 });
