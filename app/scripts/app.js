@@ -15,3 +15,8 @@ angular
     'ngSanitize',
     'ui'
   ]);
+//   .value('uiJqConfig', {
+//     colorselector: {
+//
+//     }
+// });

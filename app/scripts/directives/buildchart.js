@@ -86,7 +86,10 @@ angular.module('axisJSApp')
             point: scope.config.point,
             pie: scope.config.pie,
             donut: scope.config.donut,
-            gauge: scope.config.gauge
+            gauge: scope.config.gauge,
+            color: {
+              pattern: scope.config.defaultColors
+            }
           });
 
           $timeout(function(){
@@ -107,11 +110,11 @@ angular.module('axisJSApp')
 
           // Assign the new colours specified by C3 to the inputs.
           // Needs to be done after redraw().
-          for (var color in chart.data.colors()) {
-            if (typeof scope.config.data.colors[color] === 'undefined') {
-              scope.config.data.colors[color] = chart.data.colors()[color];
-            }
+          console.dir(scope.config.data.colors);
+          for (var column in chart.data.colors()) {
+            scope.config.data.colors[column] = chart.data.colors()[column];
           }
+          console.dir(scope.config.data.colors);
         });
 
         // Change the colours
