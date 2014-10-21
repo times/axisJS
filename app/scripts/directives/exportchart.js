@@ -234,7 +234,7 @@ angular.module('axisJSApp')
 
       		svg.setAttribute('version', '1.1');
 
-          // Disabled defs because it was screwing up PNG output
+          // Disabled defs because it was screwing up SVG output
       		//var defsEl = document.createElement("defs");
       		//svg.insertBefore(defsEl, svg.firstChild); //TODO   .insert("defs", ":first-child")
 

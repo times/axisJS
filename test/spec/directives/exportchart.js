@@ -1,6 +1,8 @@
 'use strict';
 /*global $,xit*/
 
+var timeoutDuration = 2000;
+
 describe('Directive: exportChart', function () {
 
   // load the directive's module
@@ -51,7 +53,7 @@ describe('Directive: exportChart', function () {
     // Assert
     setTimeout(function(){
       expect(angular.element('canvas').length).toBe(1);
-    }, 500);
+    }, timeoutDuration);
   }));
 
   it('should save a PNG if the "Save to PNG" button is clicked', inject(function ($compile) {
@@ -66,7 +68,7 @@ describe('Directive: exportChart', function () {
     // Assert
     setTimeout(function(){
       expect(angular.element('.savePNG').attr('src').length).toMatch(/base64/);
-    }, 500);
+    }, timeoutDuration);
   }));
 
   it('should save a SVG if the "Save to PNG" button is clicked', inject(function ($compile) {
@@ -81,7 +83,7 @@ describe('Directive: exportChart', function () {
     // Assert
     setTimeout(function(){
       expect(angular.element('.saveSVG').attr('href')).toMatch(/\?xml/);
-    }, 500);
+    }, timeoutDuration);
   }));
 
   // Disabled because of CORS restrictions
@@ -107,14 +109,14 @@ describe('Directive: exportChart', function () {
       .done(function(data, status, jqXHR){
         console.dir([data, status, jqXHR]);
       });
-    }, 500);
+    }, timeoutDuration);
   }));
 
   it('should display the "Copy to CMS" button', function(){
     // Assert
     setTimeout(function(){
       expect(angular.element('.saveCMS').length).toBe(1);
-    }, 500);
+    }, timeoutDuration);
   });
 
   it('should export data back to WordPress if the "Copy to CMS" button is clicked', inject(function ($compile){
@@ -130,7 +132,7 @@ describe('Directive: exportChart', function () {
     setTimeout(function(){
       expect(parent.tinymce.activeEditor.insertContent).toHaveBeenCalled();
       expect(foo.length).toBeGreaterThan(1);
-    }, 1000);
+    }, timeoutDuration);
   }));
 
   describe('a spec with tests intended to prevent regression on closed issues', function() {
@@ -150,7 +152,7 @@ describe('Directive: exportChart', function () {
         expect(svg).not.toMatch(/\sfont-.*?: .*?;/gi);
         expect(svg).not.toMatch(/\sclip-.*?="url\(http:\/\/.*?\)"/gi); // This one is particularly important.
         expect(svg).not.toMatch(/\stransform="scale\(2\)"/gi);
-      }, 500);
+      }, timeoutDuration);
     }));
   });
 });
