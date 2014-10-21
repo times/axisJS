@@ -50,8 +50,27 @@
                     <option value="#ED1B24" data-color="#ED1B24">Labour</option>
                     <option value="#022397" data-color="#022397">Conservative</option>
                     <option value="#FDBB30" data-color="#FDBB30">LibDem</option>
-                    <option value="#722889" data-color="#722889">Ukip</option>
-                    <option value="{{color}}" data-color="{{color}}" ng-repeat="color in config.defaultColors">{{color}}</option>
+                    <!-- TODO figure out why I can't use ng-repeat on scope.config.defaultColors with these... -->
+                    <option value="#1f77b4" data-color="#1f77b4">#1f77b4</option>
+                    <option value="#aec7e8" data-color="#aec7e8">#aec7e8</option>
+                    <option value="#ff7f0e" data-color="#ff7f0e">#ff7f0e</option>
+                    <option value="#ffbb78" data-color="#ffbb78">#ffbb78</option>
+                    <option value="#2ca02c" data-color="#2ca02c">#2ca02c</option>
+                    <option value="#98df8a" data-color="#98df8a">#98df8a</option>
+                    <option value="#d62728" data-color="#d62728">#d62728</option>
+                    <option value="#ff9896" data-color="#ff9896">#ff9896</option>
+                    <option value="#9467bd" data-color="#9467bd">#9467bd</option>
+                    <option value="#c5b0d5" data-color="#c5b0d5">#c5b0d5</option>
+                    <option value="#8c564b" data-color="#8c564b">#8c564b</option>
+                    <option value="#c49c94" data-color="#c49c94">#c49c94</option>
+                    <option value="#e377c2" data-color="#e377c2">#e377c2</option>
+                    <option value="#f7b6d2" data-color="#f7b6d2">#f7b6d2</option>
+                    <option value="#7f7f7f" data-color="#7f7f7f">#7f7f7f</option>
+                    <option value="#c7c7c7" data-color="#c7c7c7">#c7c7c7</option>
+                    <option value="#bcbd22" data-color="#bcbd22">#bcbd22</option>
+                    <option value="#dbdb8d" data-color="#dbdb8d">#dbdb8d</option>
+                    <option value="#17becf" data-color="#17becf">#17becf</option>
+                    <option value="#9edae5" data-color="#9edae5">#9edae5</option>
                 </select>
               </span>
               <select class="form-control" id="type-{{col}}" ng-model="config.data.types[col]" ng-disabled="config.chartGlobalType !== 'series'">
