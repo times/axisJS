@@ -185,7 +185,7 @@ angular.module('axisJSApp')
         });
 
         // Do titles
-        scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource', 'config.chartAccuracy'], function(){
+        scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource', 'config.chartAccuracy', 'config.legend.position', 'config.legend.show'], function(){
           redraw();
         });
 

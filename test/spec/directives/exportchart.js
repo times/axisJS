@@ -1,7 +1,9 @@
 'use strict';
 /*global $,xit*/
 
-describe('Directive: exportChart', function () {
+var timeoutDuration = 2000;
+
+xdescribe('Directive: exportChart', function () {
 
   // load the directive's module
   beforeEach(module('axisJSApp'));
@@ -49,9 +51,7 @@ describe('Directive: exportChart', function () {
     angular.element(element).trigger('click');
 
     // Assert
-    setTimeout(function(){
-      expect(angular.element('canvas').length).toBe(1);
-    }, 500);
+    expect(angular.element('canvas').length).toBe(1);
   }));
 
   it('should save a PNG if the "Save to PNG" button is clicked', inject(function ($compile) {
@@ -64,9 +64,7 @@ describe('Directive: exportChart', function () {
     angular.element(element).trigger('click');
 
     // Assert
-    setTimeout(function(){
-      expect(angular.element('.savePNG').attr('src').length).toMatch(/base64/);
-    }, 500);
+    expect(angular.element('.savePNG').attr('src').length).toMatch(/base64/);
   }));
 
   it('should save a SVG if the "Save to PNG" button is clicked', inject(function ($compile) {
@@ -79,9 +77,7 @@ describe('Directive: exportChart', function () {
     angular.element(element).trigger('click');
 
     // Assert
-    setTimeout(function(){
-      expect(angular.element('.saveSVG').attr('href')).toMatch(/\?xml/);
-    }, 500);
+    expect(angular.element('.saveSVG').attr('href')).toMatch(/\?xml/);
   }));
 
   // Disabled because of CORS restrictions
@@ -95,26 +91,24 @@ describe('Directive: exportChart', function () {
     angular.element(element).trigger('click');
 
     // Assert
-    setTimeout(function(){
-      var svgContent = angular.element('.saveSVG').attr('href').replace('data:text/svg,', '');
-      $.soap({
-        url: 'http://validator.w3.org/',
-        method: 'check',
-        data: {
-          fragment: svgContent
-        }
-      })
-      .done(function(data, status, jqXHR){
-        console.dir([data, status, jqXHR]);
-      });
-    }, 500);
+    var svgContent = angular.element('.saveSVG').attr('href').replace('data:text/svg,', '');
+
+    // Doesn't work due to CORS restrictions
+    // $.soap({
+    //   url: 'http://validator.w3.org/',
+    //   method: 'check',
+    //   data: {
+    //     fragment: svgContent
+    //   }
+    // })
+    // .done(function(data, status, jqXHR){
+    //   console.dir([data, status, jqXHR]);
+    // });
   }));
 
   it('should display the "Copy to CMS" button', function(){
     // Assert
-    setTimeout(function(){
-      expect(angular.element('.saveCMS').length).toBe(1);
-    }, 500);
+    expect(angular.element('.saveCMS').length).toBe(1);
   });
 
   it('should export data back to WordPress if the "Copy to CMS" button is clicked', inject(function ($compile){
@@ -127,10 +121,8 @@ describe('Directive: exportChart', function () {
     angular.element(element).trigger('click');
 
     // Assert
-    setTimeout(function(){
-      expect(parent.tinymce.activeEditor.insertContent).toHaveBeenCalled();
-      expect(foo.length).toBeGreaterThan(1);
-    }, 1000);
+    expect(parent.tinymce.activeEditor.insertContent).toHaveBeenCalled();
+    expect(foo.length).toBeGreaterThan(1);
   }));
 
   describe('a spec with tests intended to prevent regression on closed issues', function() {
@@ -145,12 +137,10 @@ describe('Directive: exportChart', function () {
       var svg = angular.element('.saveSVG').attr('href');
 
       // Assert
-      setTimeout(function(){
-        expect(svg).toMatch(/\?xml/);
-        expect(svg).not.toMatch(/\sfont-.*?: .*?;/gi);
-        expect(svg).not.toMatch(/\sclip-.*?="url\(http:\/\/.*?\)"/gi); // This one is particularly important.
-        expect(svg).not.toMatch(/\stransform="scale\(2\)"/gi);
-      }, 500);
+      expect(svg).toMatch(/\?xml/);
+      expect(svg).not.toMatch(/\sfont-.*?: .*?;/gi);
+      expect(svg).not.toMatch(/\sclip-.*?="url\(http:\/\/.*?\)"/gi); // This one is particularly important.
+      expect(svg).not.toMatch(/\stransform="scale\(2\)"/gi);
     }));
   });
 });

@@ -63,8 +63,12 @@ angular.module('axisJSApp')
         }
       },
       point: {
-          show: false
+        show: false
       },
+      legend: {
+        position: 'bottom',
+        show: true
+      }
     };
 
     $scope.chartTypes = [ // TODO: Abstract this into the ChartProvider service.

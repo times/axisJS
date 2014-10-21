@@ -73,6 +73,22 @@
         <div class="panel-body">
           <form class="form-horizontal" role="form">
             <div class="form-group">
+              <label for="legendPosition" class="col-sm-2 control-label">Legend</label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <select class="form-control" id="legendPosition" ng-model="config.legend.position">
+                    <option value="bottom">bottom</option>
+                    <!-- <option value="top">top</option>
+                    <option value="left">left</option> -->
+                    <option value="right">right</option>
+                  </select>
+                  <span class="input-group-addon">
+                    <input type="checkbox" ng-model="config.legend.show" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
               <label for="chartTitle" class="col-sm-2 control-label">Title</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="chartTitle" ng-model="config.chartTitle" placeholder="">
