@@ -20,6 +20,10 @@ describe('Controller: MainCtrl -- WITHOUT external data', function () {
     expect(typeof scope.config).not.toBe('undefined');
   });
 
+  it('should validate if the data is only one column', function () {
+    var gaugeCSV = 'llamas\n70';
+    expect(scope.validateCSV(gaugeCSV)).toBeTruthy();
+  });
 });
 
 describe('Controller: MainCtrl -- WITH external data', function () {

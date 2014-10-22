@@ -1,9 +1,10 @@
 'use strict';
+/*global waitsFor*/
 
 describe('Service: configProvider', function () {
 
   // load the service's module
-  beforeEach(module('axisJsApp'));
+  beforeEach(module('axisJSApp'));
 
   // instantiate service
   var configProvider;
@@ -11,8 +12,19 @@ describe('Service: configProvider', function () {
     configProvider = _configProvider_;
   }));
 
-  it('should do something', function () {
-    expect(!!configProvider).toBe(true);
+  it('should load the default config', function () {
+
+    var config;
+
+    waitsFor(function(){
+      configProvider.then(function(data){
+        dumps(data);
+        config = data;
+      });
+
+      return config;
+    }, 5000);
+
   });
 
 });

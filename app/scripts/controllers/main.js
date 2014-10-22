@@ -191,7 +191,8 @@ angular.module('axisJSApp')
 
       $scope.validateCSV = function(value) {
         var csv = Papa.parse(value, {header: true});
-        return (csv.errors.length > 0 ? false : true);
+        var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
+        return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
       };
 
 
