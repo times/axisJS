@@ -28,7 +28,11 @@ angular.module('axisJSApp')
 
       return $q.all([defaultConfig, userConfig]).then(function(values){
         var defaultConfigYaml = jsyaml.safeLoad(values[0].data);
-        var userConfigYaml = values[1].length ? jsyaml.safeLoad(values[1].data) : {};
+        var userConfigYaml = jsyaml.safeLoad(values[1].data);
+
+        // Oddly, js-yaml returns string 'undefined' on fail and not type undefined
+        userConfigYaml = userConfigYaml !== 'undefined' ? userConfigYaml : {};
+
         return angular.extend(defaultConfigYaml, userConfigYaml);
       });
     };

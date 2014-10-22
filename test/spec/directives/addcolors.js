@@ -2,19 +2,38 @@
 
 describe('Directive: addColors', function () {
 
-  // load the directive's module
-  beforeEach(module('axisJsApp'));
+  // load the controller's module
+  beforeEach(module('axisJSApp'));
 
-  var element,
-    scope;
+  var MainCtrl,
+      scope;
 
-  beforeEach(inject(function ($rootScope) {
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+    $httpBackend.whenGET('default.config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
+    $httpBackend.whenGET('config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.expectGET('config.yaml');
+
     scope = $rootScope.$new();
+    MainCtrl = $controller('MainCtrl', {
+      $scope: scope
+    });
+    scope.$digest();
+    $httpBackend.flush();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<add-colors></add-colors>');
+  afterEach(function(){
+    angular.element('body').empty();
+  });
+
+  it('should add data attributes to select options', inject(function ($compile, $timeout) {
+    var element = angular.element('<select add-colors id="a-select"><option value="0">#ffcc00</option></select>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the addColors directive');
+    angular.element('body').append(element);
+    scope.$apply();
+    $timeout.flush(500);
+
+    expect(angular.element('select > option').eq(0).attr('data-color')).toBe('#ffcc00');
   }));
 });

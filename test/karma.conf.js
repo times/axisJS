@@ -45,6 +45,7 @@ module.exports = function(config) {
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js',
+      'bower_components/js-yaml/dist/js-yaml.js',
       'app/scripts/**/*.js',
       //'test/mock/**/*.js',
       'test/spec/**/*.js',

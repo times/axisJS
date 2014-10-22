@@ -1,5 +1,4 @@
 'use strict';
-/*global waitsFor*/
 
 describe('Service: configProvider', function () {
 
@@ -12,19 +11,16 @@ describe('Service: configProvider', function () {
     configProvider = _configProvider_;
   }));
 
-  it('should load the default config', function () {
+  it('should load the default config', inject(function ($httpBackend) {
 
-    var config;
+    $httpBackend.whenGET('default.config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
+    $httpBackend.whenGET('config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.expectGET('config.yaml');
+    $httpBackend.flush();
 
-    waitsFor(function(){
-      configProvider.then(function(data){
-        dumps(data);
-        config = data;
-      });
+    expect(configProvider.$$state.value.colors.length).toBe(2);
 
-      return config;
-    }, 5000);
-
-  });
+  }));
 
 });

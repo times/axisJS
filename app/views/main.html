@@ -39,8 +39,7 @@
             <label for="type-{{col}}">{{col}}</label>
             <div class="input-group">
               <span class="input-group-addon">
-                <select add-colors ng-model="config.data.colors[col]" ng-options="color.value as color.value for color in appConfig.colors">
-                </select>
+                <select add-colors ng-model="config.data.colors[col]" ng-options="color.value as color.value for color in appConfig.colors"></select>
               </span>
               <select class="form-control" id="type-{{col}}" ng-model="config.data.types[col]" ng-disabled="config.chartGlobalType !== 'series'">
                 <option value="{{chart}}" ng-repeat="chart in chartTypes">{{chart}}</option>

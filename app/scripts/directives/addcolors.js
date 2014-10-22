@@ -4,7 +4,8 @@
  * @ngdoc directive
  * @name axisJsApp.directive:addColors
  * @description
- * # Lame hack to add data attributes to select options, for Bootstrap Color Picker.
+ * Lame hack to add data attributes to select options, for Bootstrap Color Picker.
+ * Might be doable with $watch instead of $timeout. Feels sloppy doing it that way...
  */
 angular.module('axisJSApp')
   .directive('addColors', ['$timeout', function ($timeout) {

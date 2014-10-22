@@ -1,8 +1,6 @@
 /*global xit*/
 'use strict';
 
-var timeoutDuration = 2000;
-
 describe('Directive: BuildChart', function () {
 
   // load the directive's module
@@ -11,12 +9,19 @@ describe('Directive: BuildChart', function () {
   var MainCtrl,
       scope;
 
-  // Initialize the controller and a mock MainCtrl scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+    $httpBackend.whenGET('default.config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
+    $httpBackend.whenGET('config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.expectGET('config.yaml');
+
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
+    scope.$digest();
+    $httpBackend.flush();
   }));
 
   it('should instantiate C3 on the #chart element', inject(function ($compile) {
