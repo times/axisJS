@@ -110,11 +110,9 @@ angular.module('axisJSApp')
 
           // Assign the new colours specified by C3 to the inputs.
           // Needs to be done after redraw().
-          console.dir(scope.config.data.colors);
           for (var column in chart.data.colors()) {
             scope.config.data.colors[column] = chart.data.colors()[column];
           }
-          console.dir(scope.config.data.colors);
         });
 
         // Change the colours
