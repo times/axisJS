@@ -23,17 +23,22 @@ describe('Controller: MainCtrl -- WITHOUT external data', function () {
     $httpBackend.flush();
   }));
 
-  it('should attach a list of config options to the scope', function () {
+  it('should attach a list of config options to the scope', function() {
     expect(typeof scope.config).not.toBe('undefined');
   });
 
-  it('should validate if the data is only one column', function () {
+  it('should validate if the data is only one column', function() {
     var gaugeCSV = 'llamas\n70';
     expect(scope.validateCSV(gaugeCSV)).toBeTruthy();
   });
+
+  it('should validate non-string-delimited TSV input with commas (#39)', function() {
+    var wordyTSV = 'The PM should pay up	The PM should try to reduce the bill, but if unsuccessful, should still pay	The PM should try to reduce the bill, and refuse to pay if unsuccessful	Don\'t know\n9	25	54	12';
+    expect(scope.validateCSV(wordyTSV)).toBeTruthy();
+  });
 });
 
-describe('Controller: MainCtrl -- WITH external data', function () {
+describe('Controller: MainCtrl -- WITH external data', function() {
 
   // load the controller's module
   beforeEach(module('axisJSApp'));

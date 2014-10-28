@@ -161,8 +161,16 @@ angular.module('axisJSApp')
           $scope.chartData = []; // Empty, or else new column names will break ng-grid
           $scope.columns = []; // Clear existing
           $scope.config.data.columns = [];
+          var parserConfig = {
+            header: true
+          };
 
-          $scope.chartData = Papa.parse($scope.inputs.csvData, {header: true}).data;
+          // Detect TSV; fallback to auto-detection. @see #39.
+          if ($scope.inputs.csvData.match('\t')) {
+            parserConfig.delimiter = '\t';
+          }
+
+          $scope.chartData = Papa.parse($scope.inputs.csvData, parserConfig).data;
           // n.b., you can also use rows in C3 instead, which is like Papa.parse() without
           // header: true. TODO for anyone wanting to play some code golf...
 
@@ -190,7 +198,16 @@ angular.module('axisJSApp')
       };
 
       $scope.validateCSV = function(value) {
-        var csv = Papa.parse(value, {header: true});
+        var parserConfig = {
+          header: true
+        };
+
+        // Detect TSV; fallback to auto-detection. @see #39.
+        if ($scope.inputs.csvData.match('\t')) {
+          parserConfig.delimiter = '\t';
+        }
+        var csv = Papa.parse(value, parserConfig);
+        
         var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
         return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
       };
