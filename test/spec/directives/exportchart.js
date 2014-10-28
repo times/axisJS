@@ -80,32 +80,6 @@ xdescribe('Directive: exportChart', function () {
     expect(angular.element('.saveSVG').attr('href')).toMatch(/\?xml/);
   }));
 
-  // Disabled because of CORS restrictions
-  xit('should export W3C-compliant SVG', inject(function ($compile) {
-    // Arrange
-    element = angular.element('<a href="#" export-chart id="a-button">');
-    element = $compile(element)(scope);
-    scope.$apply();
-
-    // Act
-    angular.element(element).trigger('click');
-
-    // Assert
-    var svgContent = angular.element('.saveSVG').attr('href').replace('data:text/svg,', '');
-
-    // Doesn't work due to CORS restrictions
-    // $.soap({
-    //   url: 'http://validator.w3.org/',
-    //   method: 'check',
-    //   data: {
-    //     fragment: svgContent
-    //   }
-    // })
-    // .done(function(data, status, jqXHR){
-    //   console.dir([data, status, jqXHR]);
-    // });
-  }));
-
   it('should display the "Copy to CMS" button', function(){
     // Assert
     expect(angular.element('.saveCMS').length).toBe(1);

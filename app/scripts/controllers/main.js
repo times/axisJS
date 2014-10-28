@@ -1,12 +1,13 @@
-/* global Papa*/
-'use strict';
-
 /**
  * @ngdoc function
  * @name axisJSApp.controller:MainCtrl
  * @description
  * Main controller. Populates and links the input fields.
  */
+
+ /* global Papa*/
+ 'use strict';
+
 angular.module('axisJSApp')
   .controller('MainCtrl', function (configProvider, $scope) {
     configProvider.then(function(appConfig){
@@ -208,7 +209,6 @@ angular.module('axisJSApp')
         }
 
         var csv = Papa.parse(value, parserConfig);
-        console.dir(csv);
         var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
         return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
       };
@@ -242,6 +242,7 @@ angular.module('axisJSApp')
 
       $scope.updateData(); // Push the initial data.
 
+      // Debugging function — run getConfig() in the console to get current config object
       window.getConfig = function(){
         console.dir($scope.config);
         window.chartConfig = $scope.config;

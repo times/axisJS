@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc overview
  * @name axisJSApp
@@ -8,6 +6,9 @@
  *
  * Main module of the application.
  */
+
+ 'use strict';
+ 
 angular
   .module('axisJSApp', [
     'ngAnimate',

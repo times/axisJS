@@ -1,5 +1,5 @@
 # axisJS [![Build Status](https://travis-ci.org/times/axisJS.svg?branch=master)](https://travis-ci.org/times/axisJS)
-## version 0.2.0
+## version 0.2.1
 ### 2014 [Ændrew Rininsland](http://www.github.com/aendrew) for [The Times and Sunday Times](http://www.github.com/times)
 
 axisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
@@ -51,14 +51,14 @@ View API docs online [here](http://times.github.io/axisJS/docs/).
 
 ### Roadmap/ToDos
 
-1. Abstract chart configuration into a provider so that `app/scripts/directives/buildchart.js`
-and `app/scripts/directives/exportchart.js` aren't so tightly bound to C3
-2. ~~**ALL** the unit tests~~
-3. Documentation and cleanup of `buildchart.js` and `exportchart.js`
-4. Abstract each output format into factories so more can be modularly added
-5. Abstract out vendor functionality — i.e., make the colour picker replaceable
-6. Create an external config file with settings like colour scheme
-7. Improve inline documentation
-8. Fix "ui-grid" for tabular data import
-9. ~~Make adding categorical axes more straight-forward~~
-10. Create adapters for [nvd3](http://www.nvd3.org) and other SVG-based charting libraries.
+- [ ] Abstract chart configuration into a provider so that `app/scripts/directives/buildchart.js`
+      and `app/scripts/directives/exportchart.js` aren't so tightly bound to C3
+- [x] **ALL** the unit tests
+- [ ] Documentation and cleanup of `buildchart.js` and `exportchart.js`
+- [ ] Abstract each output format into factories so more can be modularly added
+- [ ] Abstract out vendor functionality — i.e., make the colour picker replaceable
+- [x] Create an external config file with settings like colour scheme
+- [ ] Improve inline documentation
+- [ ] Fix "ui-grid" for tabular data import
+- [x] Make adding categorical axes more straight-forward
+- [ ] Create adapters for [nvd3](http://www.nvd3.org) and other SVG-based charting libraries.

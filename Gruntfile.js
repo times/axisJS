@@ -172,7 +172,8 @@ module.exports = function (grunt) {
         devDependencies: true,
         exclude: [
           /angular-mocks/,
-          /angular-scenario/
+          /angular-scenario/,
+          /canvg\.bundle\.min\.js/
         ],
       },
       sass: {
