@@ -203,11 +203,12 @@ angular.module('axisJSApp')
         };
 
         // Detect TSV; fallback to auto-detection. @see #39.
-        if ($scope.inputs.csvData.match('\t')) {
+        if (value.match('\t')) {
           parserConfig.delimiter = '\t';
         }
+
         var csv = Papa.parse(value, parserConfig);
-        
+        console.dir(csv);
         var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
         return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
       };

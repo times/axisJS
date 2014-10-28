@@ -36,6 +36,11 @@ describe('Controller: MainCtrl -- WITHOUT external data', function () {
     var wordyTSV = 'The PM should pay up	The PM should try to reduce the bill, but if unsuccessful, should still pay	The PM should try to reduce the bill, and refuse to pay if unsuccessful	Don\'t know\n9	25	54	12';
     expect(scope.validateCSV(wordyTSV)).toBeTruthy();
   });
+
+  it('should also still validate CSV (#39)', function() {
+    var wordyCSV = '"The PM should pay up","The PM should try to reduce the bill, but if unsuccessful, should still pay","The PM should try to reduce the bill, and refuse to pay if unsuccessful","Don\'t know"\n9,25,54,12';
+    expect(scope.validateCSV(wordyCSV)).toBeTruthy();
+  });
 });
 
 describe('Controller: MainCtrl -- WITH external data', function() {
