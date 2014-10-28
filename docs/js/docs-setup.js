@@ -14,12 +14,30 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.configProvider",
+      "shortName": "axisJsApp.configProvider",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "configProvider",
+      "keywords": "api axisjsapp configprovider provider service"
+    },
+    {
+      "section": "api",
       "id": "axisJSApp.controller:MainCtrl",
       "shortName": "MainCtrl",
       "type": "function",
       "moduleName": "axisJSApp",
       "shortDescription": "Main controller. Populates and links the input fields.",
       "keywords": "api axisjsapp controller fields function input links main populates"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.directive:addColors",
+      "shortName": "addColors",
+      "type": "directive",
+      "moduleName": "axisJsApp",
+      "shortDescription": "Lame hack to add data attributes to select options, for Bootstrap Color Picker.",
+      "keywords": "$timeout $watch add api attributes axisjsapp bootstrap color data directive doable feels hack lame options picker select sloppy"
     },
     {
       "section": "api",
