@@ -22,6 +22,10 @@ colors:
     value: '#022397'
   - label: 'LibDem'
     value: '#FDBB30'
+  - label: 'Ukip'
+    value: '#722889'
+  - label: 'Green'
+    value: '#6AB023'
   - label: '#1f77b4' # begin c3JS defaults
     value: '#1f77b4'
   - label: '#aec7e8'
