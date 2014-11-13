@@ -10,7 +10,7 @@
  * @todo Refactor the hell out of this.
  */
 angular.module('axisJSApp')
-  .directive('exportChart', function () {
+  .directive('exportChart', function (outputService) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -18,48 +18,11 @@ angular.module('axisJSApp')
           switch(attrs.exportChart) {
             case 'cms':
               createChartImages(scope.config.chartWidth);
-              var chartConfig = scope.config;
-              chartConfig.axis.x.tick.format = chartConfig.axis.x.tick.format.toString();
-              chartConfig.axis.y.tick.format = chartConfig.axis.y.tick.format.toString();
-              chartConfig.axis.y2.tick.format = chartConfig.axis.y2.tick.format.toString();
-              chartConfig.pie.label.format = chartConfig.pie.label.format.toString();
-              chartConfig.donut.label.format = chartConfig.donut.label.format.toString();
-              chartConfig.gauge.label.format = chartConfig.gauge.label.format.toString();
-              var axisConfig = String(angular.toJson(chartConfig));
-              var axisChart = String(angular.element('.savePNG').attr('href'));
-              var axisWP = parent.tinymce.activeEditor.windowManager.getParams().axisWP;
-              var payload = {
-                action: 'insert_axis_attachment',
-                axisConfig: axisConfig,
-                axisChart: axisChart,
-                parentID: axisWP.parentID
-              };
-
-              // Have WordPress process the data-URI PNG and return some config data
-              $.post(parent.ajaxurl, payload, function(res){
-                res = angular.fromJson(res);
-                parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
-                parent.tinymce.activeEditor.windowManager.close();
-              });
-
-              // TODO Figure out why the following doesn't work due to lns. 22-27
-              // $http({
-              //   method: 'POST',
-              //   url: parent.ajaxurl,
-              //   data: $.param(payload),
-              //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-              // })
-              //   .success(function(res){
-              //     parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
-              //     parent.tinymce.activeEditor.windowManager.close();
-              //   })
-              //   .error(function(res){
-              //     console.log('Error saving to CMS: ');
-              //     console.dir(res);
-              //   });
+              outputService(scope, 'export');
             break;
             case 'images':
               createChartImages(scope.config.chartWidth);
+              //outputService(scope, 'output');
             break;
           }
         });
@@ -116,26 +79,6 @@ angular.module('axisJSApp')
 
       		$('.saveSVG').attr('href','data:text/svg,'+ svgContent.source[0])
       			.attr('download', function(){ return filename + '_axisJS.svg';});
-
-          // Disabling blob support below because data URLs are easier to move out of WordPress.
-
-      		// if(!(/Apple/).test(navigator.vendor)) {
-      		// 	//blobs dont work in Safari so don't use that method
-      		// 	var base64 = canvas.toDataURL("png").split(",")[1];
-      		// 	var bytes = window.atob(base64);
-      		// 	var ui8a = new Uint8Array(bytes.length);
-          //
-      		// 	for (var i = 0; i < bytes.length; i++)
-      		// 		ui8a[i] = bytes[i].charCodeAt(0);
-          //
-      		// 	var blob = new Blob([ui8a], { type: 'image/png' });
-      		// 	var url = URL.createObjectURL(blob);
-          //   angular.element('.savePNG').attr('href', url);
-          //
-      		// 	blob = new Blob(svgContent.source, { type: '"text\/xml"' });
-      		// 	url = URL.createObjectURL(blob);
-      		// 	angular.element('.saveSVG').attr('href', url);
-      		// }
         };
 
         // This needs to be more abstracted. Currently it's built to handle C3's quirks.

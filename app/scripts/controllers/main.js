@@ -5,8 +5,8 @@
  * Main controller. Populates and links the input fields.
  */
 
- /* global Papa*/
- 'use strict';
+/* global Papa*/
+'use strict';
 
 angular.module('axisJSApp')
   .controller('MainCtrl', function (configProvider, $scope) {

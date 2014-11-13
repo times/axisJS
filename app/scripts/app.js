@@ -8,7 +8,6 @@
  */
 
  'use strict';
- 
 angular
   .module('axisJSApp', [
     'ngAnimate',

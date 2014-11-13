@@ -1,6 +1,11 @@
 # axisJS config
 ---
 framework: 'c3js'
+export:
+  - 'WordPress'
+output:
+  - 'png'
+  - 'svg'
 colors:
   - label: 'neutral 1'
     value: '#78B8DF'
