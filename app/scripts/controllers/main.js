@@ -9,153 +9,16 @@
 'use strict';
 
 angular.module('axisJSApp')
-  .controller('MainCtrl', function (configProvider, $scope) {
+  .controller('MainCtrl', function (configProvider, chartProvider, $scope) {
     configProvider.then(function(appConfig){
       $scope.appConfig = appConfig;
       $scope.inputs = {};
       $scope.columns = [];
       $scope.chartData = {};
-      $scope.config = {
-        data: {
-          x: '',
-          y: '',
-          y2: '',
-          columns: [
-            ['data1', 30, 200, 100, 400, 150, 250],
-            ['data2', 50, 20, 10, 40, 15, 25]
-          ],
-          axes: { // This is used in a similar fashion to config.axis.
-          },
-          groups: { // Ditto.
-          },
-          type: '',
-          types: {
-            data1: 'line', // Currently must set explictly on initialisation to populate view.
-            data2: 'line'
-          },
-          colors: {
-            data1: appConfig.colors[0].value,
-            data2: appConfig.colors[1].value
-          }
-        },
-        axis: {
-          x: {
-            show: true,
-            // tick: {
-            //   format: function(d){return d;}
-            // }
-          },
-          y: {
-            show: true,
-            // tick: {
-            //   format: function(d){return d;}
-            // }
-          },
-          y2: {
-            show: false,
-            // tick: {
-            //   format: function(d){return d;}
-            // }
-          }
-        },
-        point: {
-          show: false
-        },
-        legend: {
-          position: 'bottom',
-          show: true
-        }
-      };
-
-      $scope.chartTypes = [ // TODO: Abstract this into the ChartProvider service.
-        'line',
-        'step',
-        'area',
-        'area-step',
-        'scatter',
-        'bar',
-        'spline',
-        // 'donut', // These are handled via $scope.config.chartGlobalType
-        // 'gauge',
-        // 'pie'
-      ];
-
-      $scope.config.groups = {};
-
-      // Populate Initial
+      $scope.config = chartProvider(appConfig).config;
+      $scope.chartTypes = chartProvider(appConfig).chartTypes;
+      console.dir($scope.chartTypes);
       $scope.inputs.csvData = 'data1\tdata2\n30\t50\n200\t20\n100\t10\n400\t40\n150\t15\n250\t25';
-      $scope.config.axis.x.show = true;
-      $scope.config.axis.y.show = true;
-      $scope.config.axis.y2.show = false;
-      $scope.config.axis.x.accuracy = 0;
-      $scope.config.axis.y.accuracy = 0;
-      $scope.config.axis.y2.accuracy = 0;
-      $scope.config.axis.x.prefix = '';
-      $scope.config.axis.y.prefix = '';
-      $scope.config.axis.y2.prefix = '';
-      $scope.config.axis.x.suffix = '';
-      $scope.config.axis.y.suffix = '';
-      $scope.config.axis.y2.suffix = '';
-      $scope.config.axis.x.tick = {
-        format: function (d) {
-          if ($scope.config.chartGlobalType === 'series' && $scope.config.axis.x.type !== 'category') {
-            return $scope.config.axis.x.prefix + d.toFixed($scope.config.axis.x.accuracy).toString() + $scope.config.axis.x.suffix;
-          } else {
-            return d;
-          }
-        }
-      };
-      $scope.config.axis.y.tick = {
-        format: function (d) {
-          if ($scope.config.chartGlobalType === 'series' && $scope.config.axis.y.type !== 'category') {
-            return $scope.config.axis.y.prefix + d.toFixed($scope.config.axis.y.accuracy).toString() + $scope.config.axis.y.suffix;
-          } else {
-            return d;
-          }
-        }
-      };
-      $scope.config.axis.y2.tick = {
-        format: function (d) {
-          if ($scope.config.chartGlobalType === 'series' && $scope.config.axis.y2.type !== 'category') {
-            return $scope.config.axis.y2.prefix + d.toFixed($scope.config.axis.y2.accuracy).toString() + $scope.config.axis.y2.suffix;
-          } else {
-            return d;
-          }
-        }
-      };
-
-      $scope.config.chartTitle = '';
-      $scope.config.chartCredit = '';
-      $scope.config.chartSource = '';
-      $scope.config.chartWidth = 1000;
-      $scope.config.chartGlobalType = 'series';
-      $scope.config.chartAccuracy = 1;
-      $scope.config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
-
-      $scope.config.pie = {
-        label: {
-          format: function(val, percentage) {
-            return (percentage * 100).toFixed($scope.config.chartAccuracy) + '%';
-          }
-        }
-      };
-
-      $scope.config.donut = {
-        label: {
-          format: function(val, percentage) {
-            return (percentage * 100).toFixed($scope.config.chartAccuracy) + '%';
-          }
-        }
-      };
-
-      $scope.config.gauge = {
-        label: {
-          format: function(val, percentage) {
-            return (percentage * 100).toFixed($scope.config.chartAccuracy) + '%';
-          }
-        }
-      };
-
 
       $scope.updateData = function() {
         if ($scope.inputs.csvData) {

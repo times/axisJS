@@ -1,6 +1,6 @@
 # axisJS config
 ---
-framework: 'c3js'
+framework: 'c3'
 export:
   - 'WordPress'
 output:
