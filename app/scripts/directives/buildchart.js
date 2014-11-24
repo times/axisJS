@@ -168,6 +168,7 @@ angular.module('axisJSApp')
 
         // Modify data association
         scope.$watchGroup(['config.data.x', 'config.data.y', 'config.data.y2'], function(newValues){
+          console.dir(newValues);
           // Check if the column has categorical data strings
           newValues.forEach(function(v, i){
             var axis = (i === 0 ? 'x' : i === 1 ? 'y' : i === 2 ? 'y2' : '');
@@ -177,10 +178,14 @@ angular.module('axisJSApp')
                   scope.config.axis[axis].type = 'category';
                   scope.config.axis[axis].tick = undefined;
                   break;
+                } else if (column[0] === v) {
+                  scope.config.data.axes[v] = axis;
                 }
               }
             });
           });
+
+
 
           redraw();
         });
