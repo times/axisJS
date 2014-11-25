@@ -1,6 +1,6 @@
 <!doctype html>
-<html class="no-js">
-  <head>
+<html class="no-js" ng-app="axisJSApp">
+  <head ng-controller="HeadCtrl">
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="axisJS » chart building tool">
@@ -17,8 +17,10 @@
     <!-- endbuild -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css" />
     <link rel="stylesheet" href="bower_components/c3/c3.css" /> <!-- separate because of exportchart.inlineAllStyles() -->
+    <link rel="stylesheet" ng-href="{{stylesheet}}" /> <!-- Pull in custom stylesheet from config -->
+    <link rel="stylesheet" ng-href="{{font}}" ng-repeat="font in fonts" />
   </head>
-  <body ng-app="axisJSApp">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -74,6 +76,7 @@
     <script src="scripts/services/outputservice.js"></script>
     <script src="scripts/services/chartprovider.js"></script>
     <script src="scripts/services/c3service.js"></script>
+    <script src="scripts/controllers/head.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -17,7 +17,7 @@ angular.module('axisJSApp')
       $scope.chartData = {};
       $scope.config = chartProvider(appConfig).config;
       $scope.chartTypes = chartProvider(appConfig).chartTypes;
-      console.dir($scope.chartTypes);
+      // TODO put the following into a CSV input service
       $scope.inputs.csvData = 'data1\tdata2\n30\t50\n200\t20\n100\t10\n400\t40\n150\t15\n250\t25';
 
       $scope.updateData = function() {
@@ -111,6 +111,7 @@ angular.module('axisJSApp')
         window.chartConfig = $scope.config;
       };
 
+      // TODO abstract into an input service or something.
       // Repopulate if data is being sent in from WordPress.
       if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined' ) {
         $scope.config = angular.fromJson(window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));

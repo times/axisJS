@@ -1,4 +1,4 @@
-/*global c3,d3*/
+/*global d3*/
 'use strict';
 
 /**
@@ -8,20 +8,11 @@
  * Base directive for building the chart preview.
  */
 angular.module('axisJSApp')
-  .directive('buildChart', ['$timeout', function ($timeout) {
+  .directive('buildChart', ['chartProvider', '$timeout', function (chartProvider, $timeout) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
         element.children('svg').attr('transform', 'scale(2)'); // Needed to prevent pixely canvas
-        /**
-         * Multiline "this needs to be unfucked @TODO" comment
-         *
-         * This is HEAVILY bound to C3js at the moment. To make this wipe the floor
-         * with Quartz's ChartBuilder, it needs to be abstracted to allow drop-in-place
-         * charting libraries (highcharts, nvd3, etc. etc.)
-         *
-         * If somebody picks this up before I get to it, I OWE YOU A BEER.
-         */
 
         function doTitles() {
           var svg = d3.select('svg');
@@ -35,21 +26,28 @@ angular.module('axisJSApp')
             chartCredit = titlesGroup.select('tspan.chartCredit');
             chartSource = titlesGroup.select('tspan.chartSource');
           } else {
-            titlesGroup = svg.insert('text').attr('class', 'titles').attr('text-anchor', 'middle');
+            titlesGroup = svg.insert('text').attr('class', 'titles').attr('text-anchor', scope.appConfig.titles.align);
             chartTitle = titlesGroup.insert('tspan').attr('class', 'chartTitle');
             chartCredit = titlesGroup.insert('tspan').attr('class', 'chartCredit');
             chartSource = titlesGroup.insert('tspan').attr('class', 'chartSource');
           }
 
           // Set text
-          chartTitle.text(scope.config.chartTitle).attr('font-size', '32px');
-          chartCredit.text(scope.config.chartCredit).attr('font-size', '30px');
-          chartSource.text(scope.config.chartSource).attr({'font-size': '28px', 'font-style': 'oblique'});
+          chartTitle.text(scope.config.chartTitle).attr('font-size', scope.appConfig.titles['title size']);
+          chartCredit.text(scope.config.chartCredit).attr('font-size', scope.appConfig.titles['credit size']);
+
+          var sourceText = (scope.appConfig.titles['append source'] && scope.config.chartSource ? 'Source: ' : '') + scope.config.chartSource;
+          chartSource.text(sourceText).attr({'font-size': scope.appConfig.titles['source size'], 'font-style': scope.appConfig.titles['source style']});
 
           // Position text relative to each line
-          chartTitle.attr({'dy': 0, 'x': 0});
-          chartCredit.attr({'dy': 32, 'x': 0});
-          chartSource.attr({'dy': 30, 'x': 0});
+          var chartTitleTranslateY = typeof scope.appConfig.titles['title translateY'] !== 'undefined' ? scope.appConfig.titles['title translateY'] : 0;
+          chartTitle.attr({'dy': chartTitleTranslateY, 'x': 0});
+
+          var chartCreditTranslateY = typeof scope.appConfig.titles['credit translateY'] !== 'undefined' ? scope.appConfig.titles['credit translateY'] : 32;
+          chartCredit.attr({'dy': chartCreditTranslateY, 'x': 0});
+
+          var chartSourceTranslateY = typeof scope.appConfig.titles['source translateY'] !== 'undefined' ? scope.appConfig.titles['source translateY'] : 30;
+          chartSource.attr({'dy': chartSourceTranslateY, 'x': 0});
 
           while (chartTitle.node().getComputedTextLength() > svgWidth || chartCredit.node().getComputedTextLength() > svgWidth || chartSource.node().getComputedTextLength() > svgWidth) {
             var newTitleSize = parseInt(chartTitle.attr('font-size').replace('px', '')) - 1;
@@ -62,35 +60,30 @@ angular.module('axisJSApp')
             chartSource.attr({'dy': newCreditSize, 'x': 0});
           }
 
+          if (scope.appConfig.titles['title background'] && chartTitle.text().length > 0) {
+            chartTitle.attr('fill', 'white');
+            var bbox = chartTitle.node().parentNode.getBBox();
+            var padding = scope.appConfig.titles['background padding'];
+            var rect = d3.select(chartTitle.node().parentNode.parentNode).insert('rect', 'text.titles');
+
+            rect.attr('x', 0)
+                .attr('y', 0)
+                .attr('width', bbox.width + (padding*2))
+                .attr('height', bbox.height + (padding*2))
+                .style('fill', scope.config.data.colors[scope.config.data.columns[0][0]]);
+            chartTitle.attr({'x': 0 + padding, 'dy': chartTitleTranslateY + padding});
+          }
+
           // Position text group
-          titlesGroup.attr('width', svgWidth).attr('transform', 'translate(' + svgWidth / 2 + ',350)');
+          var translateGroupX = typeof scope.appConfig.titles.translateX !== 'undefined' ? scope.appConfig.titles.translateX : svgWidth / 2;
+          var translateGroupY = typeof scope.appConfig.titles.translateY !== 'undefined' ? scope.appConfig.titles.translateY : 350;
+          titlesGroup.attr('width', svgWidth).attr('transform', 'translate(' + translateGroupX + ',' + translateGroupY + ')');
           // Resize SVG
           svg.attr('height', svg.node().getBBox().height + 'px');
         }
 
         function redraw() {
-          chart = c3.generate({
-            bindto: '#' + element[0].id,
-            data: {
-              x: scope.config.data.x,
-              y: scope.config.data.y,
-              y2: scope.config.data.y2,
-              columns: scope.config.data.columns, //expects multi-dimensional array containing one array per column.
-              axes: scope.config.data.axes, //expects object mapping columns to axis objects (below)
-              types: scope.config.data.types, //expects an object mapping each data column to a type
-              colors: scope.config.data.colors,
-              groups: scope.config.data.groups
-            },
-            axis: scope.config.axis,
-            legend: scope.config.legend,
-            point: scope.config.point,
-            pie: scope.config.pie,
-            donut: scope.config.donut,
-            gauge: scope.config.gauge,
-            color: {
-              pattern: scope.config.defaultColors
-            }
-          });
+          chart = chartProvider(scope.appConfig).generate(element[0].id, scope.config);
 
           $timeout(function(){
             doTitles();
@@ -100,9 +93,9 @@ angular.module('axisJSApp')
         var chart;
         redraw(); // initial draw.
 
-        // Watch all the different scope variables, redraw if necessary.
-        // This might need a refactor at some point. Not sure using $watch like
-        // this is kosher, given how AngularJS checks for var changes.
+        /**
+         * TODO refactor the following to make use of the ChartProvider service.
+         */
 
         // Change the data structure (modified by PapaParse in main.js)
         scope.$watch('config.data.columns', function(){
@@ -168,7 +161,6 @@ angular.module('axisJSApp')
 
         // Modify data association
         scope.$watchGroup(['config.data.x', 'config.data.y', 'config.data.y2'], function(newValues){
-          console.dir(newValues);
           // Check if the column has categorical data strings
           newValues.forEach(function(v, i){
             var axis = (i === 0 ? 'x' : i === 1 ? 'y' : i === 2 ? 'y2' : '');
@@ -184,8 +176,6 @@ angular.module('axisJSApp')
               }
             });
           });
-
-
 
           redraw();
         });

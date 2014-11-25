@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc service
  * @name axisJsApp.c3Service
@@ -7,10 +5,34 @@
  * # c3Service
  * Factory in the axisJsApp.
  */
+
+'use strict';
+/*global c3*/
+
 angular.module('axisJSApp')
   .factory('c3Service', function () {
     return {
+      /**
+       * Generates a chart based on config data
+       * @param  {string} selectorID DOM ID to select
+       * @param  {object} config     Config object passed in from scope
+       * @return {object}            An instance of C3.js
+       */
+      generate: function(selectorID, config) {
+        var chartConfig = angular.extend({bindto: '#' + selectorID}, config);
+        return c3.generate(chartConfig);
+      },
+
+      /**
+       * Builds a config object
+       * @param {object} appConfig App config object via ConfigProvider.
+       */
       getConfig: function (appConfig) {
+        var defaultColors = [];
+        angular.forEach(appConfig.colors, function(color){
+          defaultColors.push(color.value);
+        });
+
         var config = {
           data: {
             x: '',
@@ -34,32 +56,43 @@ angular.module('axisJSApp')
               data2: appConfig.colors[1].value
             }
           },
+          grid: {
+            x: {
+              show: typeof appConfig.defaults['grid x'] !== 'undefined' ? appConfig.defaults['grid x'] : false
+            },
+            y: {
+              show: typeof appConfig.defaults['grid y'] !== 'undefined' ? appConfig.defaults['grid y'] : false
+            }
+          },
           axis: {
             x: {
-              show: true,
+              show: typeof appConfig.defaults['axis x'] !== 'undefined' ? appConfig.defaults['axis x'] : true,
               // tick: {
               //   format: function(d){return d;}
               // }
             },
             y: {
-              show: true,
+              show: typeof appConfig.defaults['axis y'] !== 'undefined' ? appConfig.defaults['axis y'] : true,
               // tick: {
               //   format: function(d){return d;}
               // }
             },
             y2: {
-              show: false,
+              show: typeof appConfig.defaults['axis y2'] !== 'undefined' ? appConfig.defaults['axis y2'] : false,
               // tick: {
               //   format: function(d){return d;}
               // }
             }
           },
           point: {
-            show: false
+            show:  typeof appConfig.defaults.point !== 'undefined' ? appConfig.defaults.point : false
           },
           legend: {
-            position: 'bottom',
-            show: true
+            position: appConfig.defaults['legend position'] !== 'undefined' ? appConfig.defaults['legend position'] : 'bottom',
+            show:  typeof appConfig.defaults.legend !== 'undefined' ? appConfig.defaults.legend : true
+          },
+          color: {
+            pattern: defaultColors
           }
         };
 
@@ -79,9 +112,6 @@ angular.module('axisJSApp')
         config.groups = {};
 
         // Populate Initial
-        config.axis.x.show = true;
-        config.axis.y.show = true;
-        config.axis.y2.show = false;
         config.axis.x.accuracy = 0;
         config.axis.y.accuracy = 0;
         config.axis.y2.accuracy = 0;
