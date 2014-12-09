@@ -3,7 +3,7 @@
 describe('Service: c3Service', function () {
 
   // load the service's module
-  beforeEach(module('axisJsApp'));
+  beforeEach(module('axisJSApp'));
 
   // instantiate service
   var c3Service;

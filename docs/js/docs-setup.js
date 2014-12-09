@@ -14,12 +14,39 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.c3Service",
+      "shortName": "axisJsApp.c3Service",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "c3Service",
+      "keywords": "api axisjsapp c3service factory service"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.chartProvider",
+      "shortName": "axisJsApp.chartProvider",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "chartProvider",
+      "keywords": "api axisjsapp chartprovider service"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.configProvider",
       "shortName": "axisJsApp.configProvider",
       "type": "service",
       "moduleName": "axisJsApp",
       "shortDescription": "configProvider",
       "keywords": "api axisjsapp configprovider provider service"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.controller:HeadCtrl",
+      "shortName": "HeadCtrl",
+      "type": "function",
+      "moduleName": "axisJsApp",
+      "shortDescription": "HeadCtrl",
+      "keywords": "api axisjsapp controller function headctrl"
     },
     {
       "section": "api",
@@ -56,6 +83,33 @@ NG_DOCS={
       "moduleName": "axisJSApp",
       "shortDescription": "Most of this is shamelessly stolen from Quartz&#39;s ChartBuilder.",
       "keywords": "api axisjsapp chartbuilder directive hell quartz refactor shamelessly stolen"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.GenericOutputService",
+      "shortName": "axisJsApp.GenericOutputService",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "GenericOutput",
+      "keywords": "api axisjsapp extended genericoutput genericoutputservice meant service useless"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.outputProvider",
+      "shortName": "axisJsApp.outputProvider",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "outputProvider",
+      "keywords": "api axisjsapp config output outputprovider pulls service services yaml"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.WordPressOutput",
+      "shortName": "axisJsApp.WordPressOutput",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "WordPressOutput",
+      "keywords": "api axisjsapp service wordpressoutput"
     }
   ],
   "apis": {

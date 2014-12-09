@@ -193,6 +193,12 @@
                     </select>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="yAxisTickCulling">Culling</label>
+                  <div class="col-sm-9">
+                    <input type="number" id="yAxisTickCulling" class="form-control" ng-model="config.axis.y.tick.culling.max" />
+                  </div>
+                </div>
               </fieldset>
 
               <!-- x axis -->
@@ -246,6 +252,12 @@
                       <option value="2">2 decimal places</option>
                       <option value="3">3 decimal places</option>
                     </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="xAxisTickCulling">Culling</label>
+                  <div class="col-sm-9">
+                    <input type="number" id="xAxisTickCulling" class="form-control" ng-model="config.axis.x.tick.culling.max" />
                   </div>
                 </div>
               </fieldset>
@@ -303,6 +315,12 @@
                     </select>
                   </div>
                 </div>
+                 <div class="form-group">
+                   <label class="col-sm-3 control-label" for="y2AxisTickCulling">Culling</label>
+                   <div class="col-sm-9">
+                     <input type="number" id="y2AxisTickCulling" class="form-control" ng-model="config.axis.y2.tick.culling.max" />
+                   </div>
+                 </div>
               </fieldset>
             </fieldset>
           </form>

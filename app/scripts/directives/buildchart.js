@@ -62,14 +62,15 @@ angular.module('axisJSApp')
 
           if (scope.appConfig.titles['title background'] && chartTitle.text().length > 0) {
             chartTitle.attr('fill', 'white');
-            var bbox = chartTitle.node().parentNode.getBBox();
+            var bbox = chartTitle.node().getBBox();
             var padding = scope.appConfig.titles['background padding'];
             var rect = d3.select(chartTitle.node().parentNode.parentNode).insert('rect', 'text.titles');
 
             rect.attr('x', 0)
                 .attr('y', 0)
+                .attr('class', 'title-background')
                 .attr('width', bbox.width + (padding*2))
-                .attr('height', bbox.height + (padding*2))
+                .attr('height', 18 + (padding*2)) //TODO get rid of magic number. bbox.height includes source.
                 .style('fill', scope.config.data.colors[scope.config.data.columns[0][0]]);
             chartTitle.attr({'x': 0 + padding, 'dy': chartTitleTranslateY + padding});
           }

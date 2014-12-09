@@ -3,7 +3,7 @@
 describe('Service: chartProvider', function () {
 
   // load the service's module
-  beforeEach(module('axisJsApp'));
+  beforeEach(module('axisJSApp'));
 
   // instantiate service
   var chartProvider;
