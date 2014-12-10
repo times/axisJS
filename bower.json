@@ -33,6 +33,7 @@
     "url": "git://github.com/times/axisJS.git"
   },
   "dependencies": {
+    "angular-ui-router": "~0.2.13"
   },
   "devDependencies": {
     "js-yaml": "~3.2.2",

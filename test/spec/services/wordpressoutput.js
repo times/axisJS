@@ -1,6 +1,7 @@
 'use strict';
 
-describe('Service: WordPressOutput', function () {
+// TODO write WordPressOutputService tests
+xdescribe('Service: WordPressOutput', function () {
 
   // load the service's module
   beforeEach(module('axisJSApp'));

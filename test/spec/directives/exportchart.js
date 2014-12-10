@@ -1,5 +1,4 @@
 'use strict';
-/*global $,xit*/
 
 // Suite disabled because there's no good way of getting the buttons it tests into the DOM.
 

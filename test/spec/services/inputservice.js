@@ -1,6 +1,8 @@
 'use strict';
 
-describe('Service: inputService', function () {
+// TODO write testes for inputService
+
+xdescribe('Service: inputService', function () {
 
   // load the service's module
   beforeEach(module('axisJSApp'));

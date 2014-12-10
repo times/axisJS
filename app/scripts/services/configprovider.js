@@ -40,10 +40,7 @@ angular.module('axisJSApp')
         });
       }
     };
-  })
-  // .run(['configProvider', '$rootScope', function(configProvider, $rootScope){
-  //
-  // }]);
+  });
   // .config(function(configProviderProvider){ // "Natascha! Launch the anti-anti-missile-missile-missile!"
   //   configProviderProvider.setConfigFile('themes/sundaytimes.config.yaml');
   // });

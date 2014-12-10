@@ -26,6 +26,7 @@ module.exports = function(config) {
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-ui/build/angular-ui.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/c3/c3.js',
       'bower_components/d3/d3.js',
       'bower_components/Papa-Parse/papaparse.js',

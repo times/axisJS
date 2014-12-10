@@ -10,6 +10,7 @@
 angular.module('axisJSApp')
   .controller('HeadCtrl', function (configProvider, $scope) {
     configProvider.then(function(appConfig){
+      $scope.conf = appConfig;
       $scope.stylesheet = typeof appConfig.stylesheet !== 'undefined' ? appConfig.stylesheet : '';
       $scope.fonts = typeof appConfig.fonts !== 'undefined' ? appConfig.fonts : [];
     });

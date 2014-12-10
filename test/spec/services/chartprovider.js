@@ -1,5 +1,6 @@
 'use strict';
 
+// TODO write tests for chartProvider
 describe('Service: chartProvider', function () {
 
   // load the service's module

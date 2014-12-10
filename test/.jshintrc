@@ -30,7 +30,10 @@
     "inject": false,
     "it": false,
     "jasmine": false,
-    "spyOn": false
+    "spyOn": false,
+    "waitsFor": false,
+    "runs": false,
+    "xdescribe": false,
+    "xit": false
   }
 }
-

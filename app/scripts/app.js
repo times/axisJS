@@ -4,7 +4,7 @@
  * @description
  * # axisJSApp
  *
- * Main module of the application.
+ * Main module of the application. Bootstraps config via ui-router.
  */
 
  'use strict';
@@ -13,5 +13,20 @@ angular
     'ngAnimate',
     'ngResource',
     'ngSanitize',
-    'ui'
-  ]);
+    'ui',
+    'ui.router'
+  ])
+  .config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('index', {
+        url: '/',
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        resolve: {
+          appConfig: function(configProvider) {
+            return configProvider;
+          }
+        }
+      });
+  });

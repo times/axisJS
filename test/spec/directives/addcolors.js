@@ -1,26 +1,14 @@
 'use strict';
 
 describe('Directive: addColors', function () {
-
-  // load the controller's module
+  // load the directive's module
   beforeEach(module('axisJSApp'));
 
-  var MainCtrl,
-      scope;
+  var scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
-    $httpBackend.whenGET('default.config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
-    $httpBackend.whenGET('config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
-    $httpBackend.expectGET('default.config.yaml');
-    $httpBackend.expectGET('config.yaml');
-
+  beforeEach(inject(function ($rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
-    });
-    scope.$digest();
-    $httpBackend.flush();
   }));
 
   afterEach(function(){

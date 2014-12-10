@@ -1,5 +1,6 @@
 'use strict';
 
+// TODO write tests for c3Service
 describe('Service: c3Service', function () {
 
   // load the service's module
