@@ -109,6 +109,12 @@ angular.module('axisJSApp')
           // 'pie'
         ];
 
+        var axesConfig = [
+          {value: 'x', label: 'Bottom'},
+          {value: 'y', label: 'Left'},
+          {value: 'y2', label: 'Right'}
+        ];
+
         config.groups = {};
 
         // Populate Initial
@@ -181,7 +187,11 @@ angular.module('axisJSApp')
           }
         };
 
-        return {config: config, chartTypes: chartTypes};
+        return {
+          config: config,
+          chartTypes: chartTypes,
+          axesConfig: axesConfig
+        };
       }
     };
   });

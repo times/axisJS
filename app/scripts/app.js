@@ -19,12 +19,13 @@ angular
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
-      .state('index', {
+      .state('root', {
         url: '/',
-        templateUrl: 'views/main.html',
+        templateUrl: 'partials/main.html',
         controller: 'MainCtrl',
         resolve: {
-          appConfig: function(configProvider) {
+          appConfig: function(configProvider, $rootScope) {
+            $rootScope.version = '0.2.2';
             return configProvider;
           }
         }

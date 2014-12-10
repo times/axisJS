@@ -16,6 +16,8 @@ angular.module('axisJSApp')
     $scope.chartData = {};
     $scope.config = chartProvider(appConfig).config;
     $scope.chartTypes = chartProvider(appConfig).chartTypes;
+    $scope.axesConfig = chartProvider(appConfig).axesConfig;
+
     // TODO put the following into a CSV input service
     $scope.inputs.csvData = 'data1\tdata2\n30\t50\n200\t20\n100\t10\n400\t40\n150\t15\n250\t25';
 
