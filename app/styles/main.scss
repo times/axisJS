@@ -16,8 +16,8 @@ html, body {
 }
 
 #chartControls {
-  height: 100%;
-  overflow: scroll;
+  /* height: 100%;
+  overflow: scroll; */
 }
 
 #chartGlobalType {
@@ -33,9 +33,9 @@ html, body {
 #dataGrid {
   max-height: 100px;
   overflow: scroll;
-  .ngViewport {
+  /* .ngViewport {
     max-height: 100px;
-  }
+  } */
 }
 
 .input-group-addon select {

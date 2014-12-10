@@ -10,7 +10,7 @@
  * @todo Refactor the hell out of this.
  */
 angular.module('axisJSApp')
-  .directive('exportChart', function (outputService) {
+  .directive('exportChart', function (outputService, embedOutput) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -19,6 +19,10 @@ angular.module('axisJSApp')
             case 'cms':
               createChartImages(scope.config.chartWidth);
               outputService(scope, 'export');
+            break;
+            case 'embed':
+              createChartImages(scope.config.chartWidth);
+              embedOutput.export(scope); // TODO make this more abstract.
             break;
             case 'images':
               createChartImages(scope.config.chartWidth);

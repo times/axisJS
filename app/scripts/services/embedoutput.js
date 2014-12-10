@@ -5,19 +5,53 @@
  * @name axisJsApp.embedOutput
  * @description
  * # embedOutput
- * Factory in the axisJsApp.
+ * Factory to generate embed codes, beautifully displayed in a handle little modal!
  */
+
 angular.module('axisJSApp')
-  .factory('embedOutput', function () {
-    // Service logic
-    // ...
+.factory('embedOutput', function embedOutput(GenericOutput, chartProvider, $modal) {
+  var embed = angular.copy(GenericOutput);
 
-    var meaningOfLife = 42;
+  embed.serviceConfig = {
+    type: 'export', // Options: 'save' and 'export'.
+    label: 'Generate embed code' // Label to use on button.
+  };
 
-    // Public API here
+  embed.preprocess = function(scope){
+    scope.config.bindto = '#chart-' + Math.floor((Math.random()*6)+1);
+
     return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+      config: scope.config,
+      dependencies: chartProvider(scope.appConfig).dependencies
     };
-  });
+  };
+
+  embed.process = function(payload){
+    var output = [];
+    var config = String(angular.toJson(payload.config));
+
+    // Needs to be above script declarations.
+    output.push('<div id="' + payload.config.bindto.replace('#', '') + '"></div>');
+
+    angular.forEach(payload.dependencies.css, function(v){
+      output.push('<link rel="stylesheet" href="' + v + '" />');
+    });
+    angular.forEach(payload.dependencies.js, function(v){
+      output.push('<script src="' + v + '"></script>');
+    });
+    output.push('<script type="text/javascript">(function(){c3.generate(' + config + ');})();</script>');
+
+    return output.join('\n');
+  };
+
+  embed.complete = function(output){
+    $modal.open({
+      template: '<textarea width="100%" height="400">{{output}}</textarea>',
+      controller: function($scope) {
+        $scope.output = output;
+      }
+    });
+  };
+
+  return embed;
+});

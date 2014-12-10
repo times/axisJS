@@ -9,19 +9,24 @@
  */
 angular.module('axisJSApp')
   .factory('GenericOutput', function GenericOutput() {
-    var generic = {};
-    generic.serviceConfig = {
+    this.serviceConfig = {
       type: 'save', // Options: 'save' and 'export'
       label: ''
     };
-    generic.preprocess = function(){};
-    generic.process = function(){};
-    generic.complete = function(){};
-    generic.export = function(scope){
-      var payload = generic.preprocess(scope);
-      generic.process(payload);
-      generic.complete();
+    this.preprocess = function(scope){
+      return scope;
+    };
+    this.process = function(payload){
+      return payload;
+    };
+    this.complete = function(output){
+      console.log(output);
+    };
+    this.export = function(scope){
+      var payload = this.preprocess(scope);
+      var output = this.process(payload);
+      this.complete(output);
     };
 
-    return generic;
+    return this;
   });

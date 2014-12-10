@@ -1,6 +1,8 @@
 'use strict';
 
-describe('Service: embedOutput', function () {
+// TODO write unit tests for this.
+
+xdescribe('Service: embedOutput', function () {
 
   // load the service's module
   beforeEach(module('axisJSApp'));

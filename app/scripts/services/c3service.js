@@ -190,7 +190,20 @@ angular.module('axisJSApp')
         return {
           config: config,
           chartTypes: chartTypes,
-          axesConfig: axesConfig
+          axesConfig: axesConfig,
+          dependencies: this.getExternalDependencies()
+        };
+      },
+
+      getExternalDependencies: function(){
+        return {
+          css: [
+            '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.css'
+          ],
+          js: [
+            '//cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js',
+            '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.js'
+          ]
         };
       }
     };
