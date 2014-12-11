@@ -46,7 +46,7 @@ angular.module('axisJSApp')
 
   embed.complete = function(output){
     $modal.open({
-      template: '<h1><abbr title="Copy and paste this into a new HTML document">Embed code</abbr>: <textarea width="100%" height="400" class="form-control">{{output}}</textarea>',
+      template: '<h1>Embed code: <br /><small>Copy and paste this into a new HTML document</small></h1> <textarea width="100%" height="400" class="form-control">{{output}}</textarea>',
       controller: function($scope) {
         $scope.output = output;
       }
