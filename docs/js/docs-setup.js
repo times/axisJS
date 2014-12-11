@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "axisJSApp",
       "shortDescription": "axisJSApp",
-      "keywords": "api application axisjsapp main module overview"
+      "keywords": "api application axisjsapp bootstraps config main module overview ui-router"
     },
     {
       "section": "api",
@@ -59,6 +59,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.csvService",
+      "shortName": "axisJsApp.csvService",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "csvService",
+      "keywords": "api axisjsapp csvservice factory service"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.directive:addColors",
       "shortName": "addColors",
       "type": "directive",
@@ -86,12 +95,30 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.embedOutput",
+      "shortName": "axisJsApp.embedOutput",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "embedOutput",
+      "keywords": "api axisjsapp beautifully codes displayed embed embedoutput factory generate handle modal service"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.GenericOutputService",
       "shortName": "axisJsApp.GenericOutputService",
       "type": "service",
       "moduleName": "axisJsApp",
       "shortDescription": "GenericOutput",
       "keywords": "api axisjsapp extended genericoutput genericoutputservice meant service useless"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.inputService",
+      "shortName": "axisJsApp.inputService",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "inputService",
+      "keywords": "api axisjsapp config input inputservice pulls service services yaml"
     },
     {
       "section": "api",

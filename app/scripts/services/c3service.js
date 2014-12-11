@@ -88,7 +88,7 @@ angular.module('axisJSApp')
             show:  typeof appConfig.defaults.point !== 'undefined' ? appConfig.defaults.point : false
           },
           legend: {
-            position: appConfig.defaults['legend position'] !== 'undefined' ? appConfig.defaults['legend position'] : 'bottom',
+            position: typeof appConfig.defaults['legend position'] !== 'undefined' ? appConfig.defaults['legend position'] : 'bottom',
             show:  typeof appConfig.defaults.legend !== 'undefined' ? appConfig.defaults.legend : true
           },
           color: {
