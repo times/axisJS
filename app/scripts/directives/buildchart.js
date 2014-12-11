@@ -190,6 +190,20 @@ angular.module('axisJSApp')
         scope.$watch('config.data.groups', function(){
           redraw();
         }, true);
+
+        // Watch for background
+        scope.$watch('config.background', function(val){
+          if (val === true) {
+            d3.select('svg')
+              .insert('rect', ':first-child')
+              .attr('class', 'chart-bg')
+              .attr('width', '100%')
+              .attr('height', '100%')
+              .attr('fill', scope.config.backgroundColor);
+          } else {
+            d3.select('.chart-bg').remove();
+          }
+        });
       }
     };
   }]);

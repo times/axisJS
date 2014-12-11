@@ -21,6 +21,10 @@ angular.module('axisJSApp')
     // TODO put the following into a CSV input service
     $scope.inputs.csvData = 'data1\tdata2\n30\t50\n200\t20\n100\t10\n400\t40\n150\t15\n250\t25';
 
+    // TODO find somewhere smarter to put this
+    $scope.config.background = false;
+    $scope.config.backgroundColor = $scope.appConfig.backgroundColor ? $scope.appConfig.backgroundColor : 'white';
+
     $scope.updateData = function() {
       if ($scope.inputs.csvData) {
         $scope.chartData = []; // Empty, or else new column names will break ng-grid
