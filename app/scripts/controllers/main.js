@@ -9,8 +9,9 @@
 'use strict';
 
 angular.module('axisJSApp')
-  .controller('MainCtrl', ['chartProvider', 'appConfig', '$scope', function (chartProvider, appConfig, $scope) {
+  .controller('MainCtrl', ['chartProvider', 'configChooser', 'appConfig', '$scope', function (chartProvider, configChooser, appConfig, $scope) {
     $scope.appConfig = appConfig;
+    $scope.appConfig.toggleChooser = configChooser.toggle;
     $scope.inputs = {};
     $scope.columns = [];
     $scope.chartData = {};

@@ -15,6 +15,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/off-canvas.css" />
     <!-- endbuild -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css" />
     <link rel="stylesheet" href="bower_components/c3/c3.css" /> <!-- separate because of exportchart.inlineAllStyles() -->
@@ -63,6 +64,7 @@
     <script src="bower_components/canvg/dist/canvg.bundle.js"></script>
     <script src="bower_components/jquery-minicolors/jquery.minicolors.js"></script>
     <script src="bower_components/angular-minicolors/angular-minicolors.js"></script>
+    <script src="bower_components/angular-off-canvas/off-canvas.js"></script>
     <!-- endbower -->
     <script src="bower_components/angular-ui/build/angular-ui.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -72,6 +74,7 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/services/configchooser.js"></script>
     <script src="scripts/services/configprovider.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/directives/buildchart.js"></script>
@@ -86,6 +89,7 @@
     <script src="scripts/services/inputservice.js"></script>
     <script src="scripts/services/csvservice.js"></script>
     <script src="scripts/services/embedoutput.js"></script>
+    <script src="scripts/directives/maintainfocus.js"></script>
     <!-- endbuild -->
 </body>
 </html>

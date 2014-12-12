@@ -16,7 +16,8 @@ angular
     'ui',
     'ui.router',
     'ui.bootstrap',
-    'minicolors'
+    'minicolors',
+    'cn.offCanvas'
   ])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
