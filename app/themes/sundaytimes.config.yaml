@@ -76,3 +76,5 @@ fonts:
   - 'http://www.thetimes.co.uk/fonts/Solido-Bold.css'
   - 'http://www.thetimes.co.uk/fonts/Solido-ExtraBold.css'
   - 'http://www.thetimes.co.uk/fonts/Solido-Book-Italic.css'
+
+colorPicker: 'simple'

@@ -15,7 +15,8 @@ angular
     'ngSanitize',
     'ui',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'minicolors'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
