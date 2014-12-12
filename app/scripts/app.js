@@ -18,18 +18,18 @@ angular
     'ui.bootstrap',
     'minicolors'
   ])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
-      .state('root', {
+      .state('index', {
         url: '/',
         templateUrl: 'partials/main.html',
         controller: 'MainCtrl',
         resolve: {
-          appConfig: function(configProvider, $rootScope) {
+          appConfig: ['configProvider', '$rootScope', function(configProvider, $rootScope) {
             $rootScope.version = '0.2.2';
             return configProvider;
-          }
+          }]
         }
       });
-  });
+  }]);

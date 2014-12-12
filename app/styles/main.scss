@@ -3,8 +3,13 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 // Comment out for debugging PNG output
-.rendering canvas {
-  display: none !important;
+.rendering {
+  #chart {
+    margin-left: -10px;
+  }
+  canvas {
+    display: none !important;
+  }
 }
 
 html, body {
@@ -22,6 +27,11 @@ html, body {
 #chartControls {
   /* height: 100%;
   overflow: scroll; */
+}
+
+.input-group.chartWidth-group {
+  padding-left:13px !important;
+  padding-right:13px !important;
 }
 
 #chartGlobalType {

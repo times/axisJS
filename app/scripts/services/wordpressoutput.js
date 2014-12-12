@@ -8,7 +8,7 @@
  * Service in the axisJsApp.
  */
 angular.module('axisJSApp')
-  .factory('WordPressOutput', function WordPressOutput(GenericOutput) {
+  .factory('WordPressOutput', ['GenericOutput', function WordPressOutput(GenericOutput) {
     var wordpress = angular.copy(GenericOutput);
 
     wordpress.serviceConfig = {
@@ -55,4 +55,4 @@ angular.module('axisJSApp')
     };
 
     return wordpress;
-  });
+  }]);

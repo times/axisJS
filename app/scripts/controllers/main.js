@@ -9,7 +9,7 @@
 'use strict';
 
 angular.module('axisJSApp')
-  .controller('MainCtrl', function (chartProvider, appConfig, $scope) {
+  .controller('MainCtrl', ['chartProvider', 'appConfig', '$scope', function (chartProvider, appConfig, $scope) {
     $scope.appConfig = appConfig;
     $scope.inputs = {};
     $scope.columns = [];
@@ -128,4 +128,4 @@ angular.module('axisJSApp')
   		$scope.config.gauge.label.format = function (b,c){return(100*c).toFixed($scope.config.chartAccuracy)+'%';};
       $scope.updateData();
     }
-  });
+  }]);

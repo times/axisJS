@@ -93,3 +93,7 @@ titles:
   source size: '28px'
   source style: 'oblique'
   align: 'middle'
+
+backgroundColor: 'white'
+
+colorPicker: 'default'

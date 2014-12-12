@@ -9,7 +9,7 @@
  */
 
 angular.module('axisJSApp')
-.factory('embedOutput', function embedOutput(GenericOutput, chartProvider, $modal) {
+.factory('embedOutput', ['GenericOutput', 'chartProvider', '$modal', function embedOutput(GenericOutput, chartProvider, $modal) {
   var embed = angular.copy(GenericOutput);
 
   embed.serviceConfig = {
@@ -54,4 +54,4 @@ angular.module('axisJSApp')
   };
 
   return embed;
-});
+}]);

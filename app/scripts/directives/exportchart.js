@@ -10,7 +10,7 @@
  * @todo Refactor the hell out of this.
  */
 angular.module('axisJSApp')
-  .directive('exportChart', function (outputService, embedOutput) {
+  .directive('exportChart', ['outputService', 'embedOutput', function (outputService, embedOutput) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -216,4 +216,4 @@ angular.module('axisJSApp')
       	};
       }
     };
-  });
+  }]);
