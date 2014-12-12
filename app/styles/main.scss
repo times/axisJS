@@ -15,6 +15,10 @@ html, body {
   text-align: center;
 }
 
+#chart {
+  position: fixed !important; /* !important needed to prevent C3 from overriding */
+}
+
 #chartControls {
   /* height: 100%;
   overflow: scroll; */
