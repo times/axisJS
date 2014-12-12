@@ -9,7 +9,7 @@
  */
 
 angular.module('axisJSApp')
-.factory('embedOutput', ['GenericOutput', 'chartProvider', '$modal', function embedOutput(GenericOutput, chartProvider, $modal) {
+.factory('embedOutput', ['GenericOutput', 'chartProvider', '$modal', function (GenericOutput, chartProvider, $modal) {
   var embed = angular.copy(GenericOutput);
 
   embed.serviceConfig = {
@@ -46,7 +46,7 @@ angular.module('axisJSApp')
 
   embed.complete = function(output){
     $modal.open({
-      template: '<h1>Embed code: <br /><small>Copy and paste this into a new HTML document</small></h1> <textarea width="100%" height="400" class="form-control">{{output}}</textarea>',
+      template: '<h1 style="text-align: center;">Embed code: <br /><small style="text-align: center;">Copy and paste this into a new HTML document</small></h1> <textarea width="100%" height="400" class="form-control">{{output}}</textarea>',
       controller: function($scope) {
         $scope.output = output;
       }

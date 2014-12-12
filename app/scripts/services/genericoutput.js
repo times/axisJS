@@ -8,7 +8,7 @@
  * Useless service. Meant to be extended.
  */
 angular.module('axisJSApp')
-  .factory('GenericOutput', function GenericOutput() {
+  .factory('GenericOutput', [function() {
     this.serviceConfig = {
       type: 'save', // Options: 'save' and 'export'
       label: ''
@@ -29,4 +29,4 @@ angular.module('axisJSApp')
     };
 
     return this;
-  });
+  }]);
