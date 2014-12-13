@@ -47,6 +47,8 @@ module.exports = function(config) {
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js',
       'bower_components/js-yaml/dist/js-yaml.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/angular-minicolors/angular-minicolors.js',
+      'bower_components/angular-off-canvas/off-canvas.js',
       'app/scripts/**/*.js',
       //'test/mock/**/*.js',
       'test/spec/**/*.js',

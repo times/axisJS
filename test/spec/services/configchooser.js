@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Service: configChooser', function () {
+xdescribe('Service: configChooser', function () {
 
   // load the service's module
-  beforeEach(module('axisJsApp'));
+  beforeEach(module('axisJSApp'));
 
   // instantiate service
   var configChooser;

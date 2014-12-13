@@ -9,8 +9,10 @@ describe('Directive: BuildChart', function () {
       scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     scope = $rootScope.$new();
+    $httpBackend.expectGET('partials/configChooser.html');
+    $httpBackend.whenGET('partials/configChooser.html').respond(''); // due to angular-off-canvas
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
       appConfig: {

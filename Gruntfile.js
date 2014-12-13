@@ -30,7 +30,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
-        files: ['bower.json'],
+        files: ['./bower.json'],
         tasks: ['wiredep']
       },
       js: {
@@ -164,7 +164,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       options: {
-        cwd: '<%= yeoman.app %>'
+        // cwd: '<%= yeoman.app %>',  // This seems to break newer versions of wiredep.
       },
       app: {
         src: ['<%= yeoman.app %>/index.html'],
