@@ -1,6 +1,10 @@
 {
   "name": "axisJS",
   "version": "0.2.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/times/axisJS.git"
+  },
   "dependencies": {
     "grunt-karma": "^0.9.0",
     "karma": "^0.12.23"
