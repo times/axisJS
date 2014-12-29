@@ -56,7 +56,7 @@ describe('Directive: BuildChart', function () {
         // TODO
     }));
 
-    xit('should be able to render a pie chart', inject(function ($compile) {
+    xit('should be able to render a pie chart', inject(function () {
       // Arrange
         // TODO
 
@@ -67,7 +67,7 @@ describe('Directive: BuildChart', function () {
         // TODO
     }));
 
-    xit('should be able to render a donut chart', inject(function ($compile) {
+    xit('should be able to render a donut chart', inject(function () {
       // Arrange
         // TODO
 
@@ -78,7 +78,7 @@ describe('Directive: BuildChart', function () {
         // TODO
     }));
 
-    xit('should be able to render a gauge chart', inject(function ($compile) {
+    xit('should be able to render a gauge chart', inject(function () {
       // Arrange
         // TODO
 

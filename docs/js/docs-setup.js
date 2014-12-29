@@ -32,6 +32,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.configChooser",
+      "shortName": "axisJsApp.configChooser",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "configChooser",
+      "keywords": "api axisjsapp configchooser factory service"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.configProvider",
       "shortName": "axisJsApp.configProvider",
       "type": "service",
@@ -92,6 +101,15 @@ NG_DOCS={
       "moduleName": "axisJSApp",
       "shortDescription": "Most of this is shamelessly stolen from Quartz&#39;s ChartBuilder.",
       "keywords": "api axisjsapp chartbuilder directive hell quartz refactor shamelessly stolen"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.directive:maintainFocus",
+      "shortName": "maintainFocus",
+      "type": "directive",
+      "moduleName": "axisJsApp",
+      "shortDescription": "maintainFocus",
+      "keywords": "api axisjsapp directive maintainfocus"
     },
     {
       "section": "api",

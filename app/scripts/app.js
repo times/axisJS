@@ -28,7 +28,7 @@ angular
         controller: 'MainCtrl',
         resolve: {
           appConfig: ['configProvider', '$rootScope', function(configProvider, $rootScope) {
-            $rootScope.version = '0.2.2';
+            $rootScope.version = '0.2.3';
             return configProvider;
           }]
         }
