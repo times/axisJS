@@ -1,0 +1,30 @@
+/** Sunday Times styles **/
+
+/** C3 **/
+g.c3-axis-y2 g.tick > line {
+  display: none;
+}
+
+g.c3-axis-y2 g.tick > text {
+  font-family: 'Solido-ExtraBold', Times, serif;
+}
+
+g.c3-axis-x g.tick > text {
+  font-family: 'Solido-Book-Italic', Times, serif;
+}
+
+g.c3-axis-y2 .domain {
+  display: none;
+}
+
+g.c3-grid g.c3-ygrids line {
+  stroke-dasharray: 1, 1;
+}
+
+.chartTitle {
+  font-family: 'Solido-ExtraBold', Times, serif;
+}
+
+.chartSource {
+  font-family: 'Solido-Book-Italic', Times, serif;
+}

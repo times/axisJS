@@ -1,6 +1,17 @@
 # axisJS config
 ---
-framework: 'c3js'
+framework: 'c3'
+
+input:
+  - 'csv'
+
+export:
+  - 'WordPress'
+
+output:
+  - 'png'
+  - 'svg'
+
 colors:
   - label: 'neutral 1'
     value: '#78B8DF'
@@ -22,7 +33,11 @@ colors:
     value: '#022397'
   - label: 'LibDem'
     value: '#FDBB30'
-  - label: '#1f77b4' # begin c3JS defaults
+  - label: 'Ukip'
+    value: '#722889'
+  - label: 'Green'
+    value: '#6AB023'
+  - label: '#1f77b4' # begin c3.js defaults
     value: '#1f77b4'
   - label: '#aec7e8'
     value: '#aec7e8'
@@ -62,3 +77,23 @@ colors:
     value: '#17becf'
   - label: '#9edae5'
     value: '#9edae5'
+
+defaults:
+  grid x: false
+  grid y: false
+  axis y: true
+  axis y2: false
+  axis x: true
+  legend: true
+  point: false
+
+titles:
+  title size: '32px'
+  credit size: '30px'
+  source size: '28px'
+  source style: 'oblique'
+  align: 'middle'
+
+backgroundColor: 'white'
+
+colorPicker: 'default'

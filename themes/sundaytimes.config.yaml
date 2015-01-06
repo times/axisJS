@@ -1,0 +1,80 @@
+# Sunday Times axisJS configuration
+---
+framework: 'c3'
+
+export:
+  - 'WordPress'
+
+output:
+  - 'png'
+  - 'svg'
+
+colors:
+  - label: 'Appointments'
+    value: '#A8C6D6'
+  - label: 'Business'
+    value: '#0076A3'
+  - label: 'Culture'
+    value: '#C2DBE8'
+  - label: 'Comment'
+    value: '#6398B0'
+  - label: 'Driving'
+    value: '#F58220'
+  - label: 'Focus'
+    value: '#DA2128'
+  - label: 'Home'
+    value: '#00A88E'
+  - label: 'Money'
+    value: '#00ACCD'
+  - label: 'News'
+    value: '#286FB7'
+  - label: 'News Review'
+    value: '#0083CA'
+  - label: 'Sport'
+    value: '#39B54A'
+  - label: 'Sport Dark Blue'
+    value: '#2B4C5A'
+  - label: 'Sunday'
+    value: '#005B7F'
+  - label: 'Travel'
+    value: '#00AEEF'
+
+stylesheet: 'themes/sundaytimes.css'
+
+screen margins:
+  top: '12px'
+  bottom: '12px'
+  left: '12px'
+  right: '12px'
+
+defaults:
+  grid x: false
+  grid y: true
+  axis y: false
+  axis y2: true
+  axis x: true
+  legend: false
+  legend position: 'bottom'
+  point: false
+
+titles:
+  align: 'left'
+  title size: '15px'
+  title translateY: -220
+  credit size: '30px'
+  credit translateY:
+  source size: '12px'
+  source style: 'oblique'
+  source translateY: 250
+  translateX: 0
+  translateY: 235
+  append source: true
+  title background: true
+  background padding: 4
+
+fonts:
+  - 'http://www.thetimes.co.uk/fonts/Solido-Bold.css'
+  - 'http://www.thetimes.co.uk/fonts/Solido-ExtraBold.css'
+  - 'http://www.thetimes.co.uk/fonts/Solido-Book-Italic.css'
+
+colorPicker: 'simple'
