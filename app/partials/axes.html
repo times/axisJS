@@ -61,6 +61,12 @@
               <input type="number" id="{{axis.value}}AxisTickCulling" class="form-control" ng-model="config.axis[axis.value].tick.culling.max" />
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="{{axis.value}}AxisTickCount">Count</label>
+            <div class="col-sm-9">
+              <input type="number" id="{{axis.value}}AxisTickCount" class="form-control" ng-model="config.axis[axis.value].tick.count" />
+            </div>
+          </div>
         </fieldset>
       </fieldset>
     </form>
