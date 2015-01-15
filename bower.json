@@ -3,7 +3,7 @@
   "description": "Modular, Angular-based framework for creating basic charts",
   "version": "0.2.4",
   "main": [
-    "app/scripts/app.js"
+    "dist/scripts/scripts.js"
   ],
   "license": "MIT",
   "ignore": [
