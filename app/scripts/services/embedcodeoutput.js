@@ -18,18 +18,18 @@ angular.module('axisJSApp')
   };
 
   embed.preprocess = function(scope){
-    var config = angular.copy(scope.config); // Needs to copy or else scope breaks. See #45.
-    config.bindto = '#chart-' + Math.floor((Math.random()*6)+1);
-
+    var chartConfig = angular.copy(scope.config); // Needs to copy or else scope breaks. See #45.
+    chartConfig.bindto = '#chart-' + Math.floor((Math.random()*10000)+1);
     return {
-      config: config,
+      config: chartConfig,
       dependencies: chartProvider(scope.appConfig).dependencies
     };
   };
 
   embed.process = function(payload){
     var output = [];
-    var config = String(angular.toJson(payload.config));
+    // var config = String(angular.toJson(payload.config));
+    var config = String(encodeURI(JSONfn.stringify(payload.config)));
 
     // Needs to be above script declarations.
     output.push('<div id="' + payload.config.bindto.replace('#', '') + '"></div>');
@@ -40,7 +40,11 @@ angular.module('axisJSApp')
     angular.forEach(payload.dependencies.js, function(v){
       output.push('<script src="' + v + '"></script>');
     });
-    output.push('<script type="text/javascript">(function(){c3.generate(' + config + ');})();</script>');
+    output.push(
+      '<script type="text/javascript">' +
+      'var config = JSONfn.parse(decodeURI("' + config + '"));' +
+      '(function(){c3.generate(config);})();</script>'
+    );
 
     return output.join('\n');
   };
