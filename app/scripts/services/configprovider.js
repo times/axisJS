@@ -41,7 +41,7 @@ angular.module('axisJSApp')
       }
     };
   })
-  .config(['configProviderProvider', function(configProviderProvider){ // "Natascha! Launch the anti-anti-missile-missile-missile!"
+  .config(['configProviderProvider', function(configProviderProvider){ // "Natascha! Launch the anti-anti-missile-missile missile!"
     var config = window.location.href.match(/config=([a-z]+)/i);
     if (config && config.length > 0) {
       configProviderProvider.setConfigFile('themes/' + config[1] + '.config.yaml');

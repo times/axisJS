@@ -41,11 +41,17 @@ colors:
 
 stylesheet: 'themes/sundaytimes.css'
 
-screen margins:
+screen margins: # in pixels
   top: '12px'
   bottom: '12px'
   left: '12px'
   right: '12px'
+
+print margins: # in points
+  top: '5'
+  bottom: '5'
+  left: '5'
+  right: '5'
 
 defaults:
   grid x: false

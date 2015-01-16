@@ -10,10 +10,7 @@
 angular.module('axisJSApp')
   .service('outputService', ['configProvider', '$injector', function (configProvider, $injector) {
     return function(scope, type){
-      var appConfig = scope.appConfig;
-      angular.forEach(appConfig[type], function(value){
-        var output = $injector.get(value + 'Output');
-        output.export(scope);
-      });
+      var output = $injector.get(type + 'Output');
+      output.export(scope);
     };
   }]);

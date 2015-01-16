@@ -10,24 +10,15 @@
  * @todo Refactor the hell out of this.
  */
 angular.module('axisJSApp')
-  .directive('exportChart', ['outputService', 'embedOutput', function (outputService, embedOutput) {
+  .directive('exportChart', ['outputService', function (outputService) {
     return {
       restrict: 'A',
+      scope: '@',
       link: function postLink(scope, element, attrs) {
         element.on('click', function(){
-          switch(attrs.exportChart) {
-            case 'cms':
-              createChartImages(scope.config.chartWidth);
-              outputService(scope, 'export');
-            break;
-            case 'embed':
-              createChartImages(scope.config.chartWidth);
-              embedOutput.export(scope); // TODO make this more abstract.
-            break;
-            case 'images':
-              createChartImages(scope.config.chartWidth);
-              //outputService(scope, 'output');
-            break;
+          createChartImages(scope.config.chartWidth);
+          if (attrs.exportChart !== 'save') {
+            outputService(scope, attrs.exportChart);
           }
         });
 

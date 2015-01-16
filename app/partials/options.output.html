@@ -1,15 +1,20 @@
 <div class="panel panel-default">
   <div class="panel-heading">Output</div>
   <div class="panel-body" style="text-align: center;">
-    <button class="btn btn-success saveCMS" export-chart="cms" ng-if="!!config.cms">Copy to CMS</button>
-    <button class="btn btn-success saveExport" export-chart="embed">Generate embed code</button>
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" export-chart="images">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+        Export to... <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="output in appConfig.export"><a ng-class="'export' + output" href="#" export-chart="{{output.toLowerCase().replace(' ', '')}}">{{output}}</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" export-chart="save">
         Save... <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a class="savePNG" href="#">Save as PNG (for email)</a></li>
-        <li><a class="saveSVG" href="#">Save as SVG (for print)</a></li>
+        <li ng-repeat="output in appConfig.save"><a ng-class="'save' + output.toUpperCase()" href="#">Save as {{output.toUpperCase()}}</a></li>
       </ul>
     </div>
   </div> <!-- /.panel-body -->
