@@ -149,6 +149,33 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.pdfOutputService",
+      "shortName": "axisJsApp.pdfOutputService",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "pdfOutputService",
+      "keywords": "api axisjsapp pdfoutputservice service"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.pngService",
+      "shortName": "axisJsApp.pngService",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "pngService",
+      "keywords": "api axisjsapp pngservice service"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.svgOutputService",
+      "shortName": "axisJsApp.svgOutputService",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "svgOutputService",
+      "keywords": "api axisjsapp service svgoutputservice"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.WordPressOutput",
       "shortName": "axisJsApp.WordPressOutput",
       "type": "service",

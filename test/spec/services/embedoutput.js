@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: embedOutput', function () {
+describe('Service: embedcodeOutput', function () {
 
   // load the service's module
   beforeEach(module('axisJSApp'));
@@ -15,7 +15,7 @@ describe('Service: embedOutput', function () {
     scope = $rootScope.$new();
     $httpBackend.expectGET('partials/configChooser.html'); // due to angular-off-canvas.
     $httpBackend.whenGET('partials/configChooser.html').respond('');
-    
+
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
       appConfig: {

@@ -48,7 +48,7 @@
     "angular-sanitize": "~1.3",
     "angular-animate": "~1.3",
     "angular-ui": "~0.4.0",
-    "c3": "795219f7d1a07c697c73fcc2ea812583b578b9ef",
+    "c3": "aendrew/c3#no_ondrag",
     "Papa-Parse": "mholt/PapaParse#346d4aeb5675195d6ed3fecd2e4aa5e0983c3cb3",
     "bootstrap-colorselector": "*",
     "canvg": "~1.3.0",
