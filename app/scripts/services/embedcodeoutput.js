@@ -18,10 +18,11 @@ angular.module('axisJSApp')
   };
 
   embed.preprocess = function(scope){
-    scope.config.bindto = '#chart-' + Math.floor((Math.random()*6)+1);
+    var config = angular.copy(scope.config); // Needs to copy or else scope breaks. See #45.
+    config.bindto = '#chart-' + Math.floor((Math.random()*6)+1);
 
     return {
-      config: scope.config,
+      config: config,
       dependencies: chartProvider(scope.appConfig).dependencies
     };
   };
