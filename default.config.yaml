@@ -7,8 +7,10 @@ input:
 
 export:
   - 'WordPress'
+  - 'Embed code'
+  - 'pdf'
 
-output:
+save:
   - 'png'
   - 'svg'
 
