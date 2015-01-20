@@ -5,11 +5,13 @@
  * Main controller. Populates and links the input fields.
  */
 
-/* global Papa*/
 'use strict';
 
 angular.module('axisJSApp')
-  .controller('MainCtrl', ['chartProvider', 'configChooser', 'appConfig', '$scope', function (chartProvider, configChooser, appConfig, $scope) {
+  .controller('MainCtrl', function (chartProvider, inputProvider, configChooser, appConfig, $scope) {
+    /**
+     * Sets up the configuration object from YAML
+     */
     $scope.appConfig = appConfig;
     $scope.appConfig.toggleChooser = configChooser.toggle;
     $scope.inputs = {};
@@ -18,72 +20,28 @@ angular.module('axisJSApp')
     $scope.config = chartProvider(appConfig).config;
     $scope.chartTypes = chartProvider(appConfig).chartTypes;
     $scope.axesConfig = chartProvider(appConfig).axesConfig;
+    $scope.config.background = appConfig.background ? appConfig.background : false;
+    $scope.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
+    var inputService = inputProvider(appConfig);
 
-    // TODO put the following into a CSV input service
-    $scope.inputs.csvData = 'data1\tdata2\n30\t50\n200\t20\n100\t10\n400\t40\n150\t15\n250\t25';
-
-    // TODO find somewhere smarter to put this
-    $scope.config.background = false;
-    $scope.config.backgroundColor = $scope.appConfig.backgroundColor ? $scope.appConfig.backgroundColor : 'white';
-
+    /**
+     * Updates the data. Runs whenever data is added, deleted or modified.
+     */
     $scope.updateData = function() {
-      if ($scope.inputs.csvData) {
-        $scope.chartData = []; // Empty, or else new column names will break ng-grid
-        $scope.columns = []; // Clear existing
-        $scope.config.data.columns = [];
-        var parserConfig = {
-          header: true
-        };
-
-        // Detect TSV; fallback to auto-detection. @see #39.
-        if ($scope.inputs.csvData.match('\t')) {
-          parserConfig.delimiter = '\t';
-        }
-
-        $scope.chartData = Papa.parse($scope.inputs.csvData, parserConfig).data;
-        // n.b., you can also use rows in C3 instead, which is like Papa.parse() without
-        // header: true. TODO for anyone wanting to play some code golf...
-
-        if ($scope.chartData.length > 0) {
-          $scope.columns = Object.keys($scope.chartData[0]);
-          angular.forEach($scope.columns, function(colName) {
-            var column = [];
-            column.push(colName);
-            angular.forEach($scope.chartData, function(datum) {
-              column.push(datum[colName]);
-            });
-
-            $scope.config.data.columns.push(column);
-            if (typeof $scope.config.data.types[colName] === 'undefined') {
-              if ($scope.config.chartGlobalType === 'series') {
-                $scope.config.data.types[colName] = 'line'; // default to line.
-              } else { // else the global chart type
-                $scope.config.data.types[colName] = $scope.config.chartGlobalType;
-              }
-
-            }
-          });
-        }
-      }
+      return inputService.input($scope);
     };
 
-    $scope.validateCSV = function(value) {
-      var parserConfig = {
-        header: true
-      };
-
-      // Detect TSV; fallback to auto-detection. @see #39.
-      if (value.match('\t')) {
-        parserConfig.delimiter = '\t';
-      }
-
-      var csv = Papa.parse(value, parserConfig);
-      var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
-      return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
+    /**
+     * Validates the data. Runs on data change.
+     */
+    $scope.validateData = function(value) {
+      return inputService.validate(value);
     };
 
-
-
+    /**
+     * Sets the global chart type.
+     * TODO move to c3Service
+     */
     $scope.setGlobalType = function(type) {
       for (var key in $scope.config.data.types) {
         if ($scope.config.data.types.hasOwnProperty(key)) {
@@ -97,6 +55,10 @@ angular.module('axisJSApp')
       }
     };
 
+    /**
+     * Sets data groups. Used with stacked bar charts.
+     * TODO move to c3Service
+     */
     $scope.setGroups = function() {
       $scope.config.data.groups = [];
       for (var group in $scope.config.groups) {
@@ -109,16 +71,16 @@ angular.module('axisJSApp')
       }
     };
 
-    $scope.updateData(); // Push the initial data.
-
     // Debugging function — run getConfig() in the console to get current config object
     window.getConfig = function(){
-      console.dir($scope.config);
+      console.dir($scope);
       window.chartConfig = $scope.config;
     };
 
-    // TODO abstract into an input service or something.
-    // Repopulate if data is being sent in from WordPress.
+    /**
+     * Sets up callback functions broken by JSON stringify.
+     * TODO replace with calls to JSONfn as per embedcodeService.
+     */
     if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined' ) {
       $scope.config = angular.fromJson(window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
   		$scope.config.axis.x.tick.format = function (b){return'series'===$scope.config.chartGlobalType&&'category'!==$scope.config.axis.x.type?$scope.config.axis.x.prefix+b.toFixed($scope.config.axis.x.accuracy).toString()+$scope.config.axis.x.suffix:b;};
@@ -129,4 +91,11 @@ angular.module('axisJSApp')
   		$scope.config.gauge.label.format = function (b,c){return(100*c).toFixed($scope.config.chartAccuracy)+'%';};
       $scope.updateData();
     }
-  }]);
+
+    /**
+     * Push the initial data.
+     */
+    $scope.inputs.csvData = inputService.defaultData.csvData;
+    $scope.updateData();
+
+  });
