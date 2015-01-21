@@ -1,11 +1,9 @@
 'use strict';
 
-// TODO write a really cursory basic test for this.
-
-xdescribe('Directive: maintainFocus', function () {
+describe('Directive: maintainFocus', function () {
 
   // load the directive's module
-  beforeEach(module('axisJsApp'));
+  beforeEach(module('axisJSApp'));
 
   var element,
     scope;
@@ -14,9 +12,18 @@ xdescribe('Directive: maintainFocus', function () {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<maintain-focus></maintain-focus>');
+  /**
+   * N.b., the following test passes, but triggering keyCode 9 programmatically
+   * doesn't seem to unfocus it. Better test needed.
+   */
+
+  it('should maintain focus when tab is pressed', inject(function ($compile) {
+    element = angular.element('<textarea id="data-input" maintain-focus></textarea>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the maintainFocus directive');
+    angular.element('body').append(element);
+    angular.element('#data-input').focus(); // grant focus
+    angular.element.event.trigger('keydown', {keyCode: 9}); // emulate pressing tab
+
+    expect(document.activeElement).toBe(angular.element('#data-input')[0]);
   }));
 });

@@ -8,7 +8,7 @@
  * Service in the axisJsApp.
  */
 angular.module('axisJSApp')
-  .factory('wordpressOutput', ['GenericOutput', function wordpressOutput(GenericOutput) {
+  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http) {
     var wordpress = angular.copy(GenericOutput);
 
     wordpress.serviceConfig = {
@@ -37,15 +37,12 @@ angular.module('axisJSApp')
 
     wordpress.process = function(payload){
       // Have WordPress process the data-URI PNG and return some config data
-      $.post(parent.ajaxurl, payload, function(res){
-        res = angular.fromJson(res);
-        parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
-        parent.tinymce.activeEditor.windowManager.close();
-      });
-    };
-
-    wordpress.complete = function(){
-      console.log('Complete.');
+      $http.post(parent.ajaxurl, payload)
+        .success(function(res){
+          res = angular.fromJson(res);
+          parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
+          parent.tinymce.activeEditor.windowManager.close();
+        });
     };
 
     wordpress.export = function(scope){
@@ -55,4 +52,4 @@ angular.module('axisJSApp')
     };
 
     return wordpress;
-  }]);
+  });

@@ -11,6 +11,6 @@ angular.module('axisJSApp')
   .service('outputService', ['configProvider', '$injector', function (configProvider, $injector) {
     return function(scope, type){
       var output = $injector.get(type + 'Output');
-      output.export(scope);
+      return output.export(scope);
     };
   }]);

@@ -1,18 +1,18 @@
 'use strict';
-
-describe('Service: svgOutputService', function () {
+// Disabled until svgOutput service is populated.
+xdescribe('Service: svgOutput', function () {
 
   // load the service's module
-  beforeEach(module('axisJsApp'));
+  beforeEach(module('axisJSApp'));
 
   // instantiate service
-  var svgOutputService;
-  beforeEach(inject(function (_svgOutputService_) {
-    svgOutputService = _svgOutputService_;
+  var svgOutput;
+  beforeEach(inject(function (_svgOutput_) {
+    svgOutput = _svgOutput_;
   }));
 
   it('should do something', function () {
-    expect(!!svgOutputService).toBe(true);
+    expect(!!svgOutput).toBe(true);
   });
 
 });

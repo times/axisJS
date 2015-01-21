@@ -1,5 +1,3 @@
-'use strict';
-// TODO abstract CSV input into csvService
 /**
  * @ngdoc service
  * @name axisJsApp.csvService
@@ -7,6 +5,9 @@
  * # csvService
  * Factory in the axisJsApp.
  */
+
+'use strict';
+
 angular.module('axisJSApp')
   .factory('csvInput', function () {
 
@@ -66,6 +67,8 @@ angular.module('axisJSApp')
           });
         }
       }
+
+      return scope;
     };
 
     // Public API here

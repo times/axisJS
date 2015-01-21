@@ -1,20 +1,21 @@
 'use strict';
 
-// TODO write tests for OutputService
-
-xdescribe('Service: outputService', function () {
+describe('Service: outputService', function () {
 
   // load the service's module
   beforeEach(module('axisJSApp'));
 
   // instantiate service
-  var outputService;
+  var outputService,
+      genericOutput;
+
   beforeEach(inject(function (_outputService_) {
     outputService = _outputService_;
+    genericOutput = outputService({'llama': 'duck'}, 'Generic');
   }));
 
-  it('should do something', function () {
-    expect(!!outputService).toBe(true);
+  it('should return the above object', function () {
+    expect(genericOutput.llama).toBe('duck');
   });
 
 });

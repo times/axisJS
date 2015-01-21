@@ -18,7 +18,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/mutationobserver-shim/MutationObserver.js',
+      'node_modules/mutationobserver-shim/MutationObserver.js', // Is this needed given C3 now includes a shim?
       'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
@@ -49,6 +49,8 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-minicolors/angular-minicolors.js',
       'bower_components/angular-off-canvas/off-canvas.js',
+      'bower_components/jsonfn/jsonfn.js',
+      'bower_components/jspdf/dist/jspdf.min.js',
       'app/scripts/**/*.js',
       //'test/mock/**/*.js',
       'test/spec/**/*.js',
@@ -69,9 +71,9 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      //'PhantomJS',
+      // 'PhantomJS',
       'Chrome',
-      //'Firefox'
+      // 'Firefox'
     ],
 
     // Which plugins to enable

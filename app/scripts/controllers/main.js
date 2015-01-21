@@ -8,7 +8,7 @@
 'use strict';
 
 angular.module('axisJSApp')
-  .controller('MainCtrl', function (chartProvider, inputProvider, configChooser, appConfig, $scope) {
+  .controller('MainCtrl', function (chartProvider, inputService, configChooser, appConfig, $scope) {
     /**
      * Sets up the configuration object from YAML
      */
@@ -22,20 +22,20 @@ angular.module('axisJSApp')
     $scope.axesConfig = chartProvider(appConfig).axesConfig;
     $scope.config.background = appConfig.background ? appConfig.background : false;
     $scope.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
-    var inputService = inputProvider(appConfig);
+    var input = inputService(appConfig);
 
     /**
      * Updates the data. Runs whenever data is added, deleted or modified.
      */
     $scope.updateData = function() {
-      return inputService.input($scope);
+      return input.input($scope);
     };
 
     /**
      * Validates the data. Runs on data change.
      */
     $scope.validateData = function(value) {
-      return inputService.validate(value);
+      return input.validate(value);
     };
 
     /**
@@ -95,7 +95,7 @@ angular.module('axisJSApp')
     /**
      * Push the initial data.
      */
-    $scope.inputs.csvData = inputService.defaultData.csvData;
+    $scope.inputs.csvData = input.defaultData.csvData;
     $scope.updateData();
 
   });

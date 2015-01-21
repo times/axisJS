@@ -20,12 +20,12 @@ angular.module('axisJSApp')
       return payload;
     };
     this.complete = function(output){
-      console.log(output);
+      return output; // This generally doesn't return anything, but is doing so for tests in this case.
     };
     this.export = function(scope){
       var payload = this.preprocess(scope);
       var output = this.process(payload);
-      this.complete(output);
+      return this.complete(output);
     };
 
     return this;

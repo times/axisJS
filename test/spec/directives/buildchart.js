@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+ * N.b., the tests in this spec are a TOTAL mess.
+ * Mainly because the buildChart directive itself is a total mess.
+ *
+ * Please, if you want some project credit, FIX THIS MESS.
+ * #messymessmessmess
+ */
+
 describe('Directive: BuildChart', function () {
 
   // load the directive's module
@@ -11,15 +19,20 @@ describe('Directive: BuildChart', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     scope = $rootScope.$new();
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.whenGET('default.config.yaml').respond('');
+    $httpBackend.expectGET('config.yaml');
+    $httpBackend.whenGET('config.yaml').respond('');
     $httpBackend.expectGET('partials/configChooser.html');
     $httpBackend.whenGET('partials/configChooser.html').respond(''); // due to angular-off-canvas
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
       appConfig: {
         framework: 'c3',
+        input: 'csv',
         colors: [
-        {value: 'blue'},
-        {value: 'red'}
+          {value: 'blue'},
+          {value: 'red'}
         ],
         defaults: {},
       }
@@ -39,56 +52,6 @@ describe('Directive: BuildChart', function () {
     // Assert
     expect(angular.element('#chart').children('svg')).toBeTruthy();
   }));
-
-  // TODO flesh out these tests
-  describe('a spec with chart-specific tests', function() {
-    xit('should be able to render a series chart', inject(function ($compile) {
-      // Arrange
-      var element = angular.element('<div id="chart" build-chart></div>');
-      var configJSON = '{"data":{"x":"","y":"","y2":"","columns":[["dogs","10","20","40","60"],["bears","10","15","20","25"],["llamas","15","40","70","80"],["ducks","20","10","30","70"],["cows","30","20","10","60"],["sheep","40","25","35","50"],["orangutans","20","30","10","40"]],"axes":{},"groups":{},"type":"","types":{"data1":"line","data2":"line","dogs":"line","bears":"step","llamas":"area","ducks":"area-step","cows":"scatter","sheep":"bar","orangutans":"spline"},"colors":{"data1":"#78B8DF","data2":"#AFCBCE","dogs":"#1f77b4","bears":"#ff7f0e","llamas":"#2ca02c","ducks":"#d62728","cows":"#9467bd","sheep":"#8c564b","orangutans":"#e377c2"}},"axis":{"x":{"show":true,"accuracy":0,"prefix":"","suffix":"","tick":{}},"y":{"show":true,"accuracy":0,"prefix":"","suffix":"","tick":{}},"y2":{"show":false,"accuracy":0,"prefix":"","suffix":"","tick":{}}},"point":{"show":false},"groups":{},"defaultColors":["#1f77b4","#aec7e8","#ff7f0e","#ffbb78","#2ca02c","#98df8a","#d62728","#ff9896","#9467bd","#c5b0d5","#8c564b","#c49c94","#e377c2","#f7b6d2","#7f7f7f","#c7c7c7","#bcbd22","#dbdb8d","#17becf","#9edae5"],"chartTitle":"","chartCredit":"","chartSource":"","chartWidth":1000,"chartGlobalType":"series","chartAccuracy":1,"cms":false,"pie":{"label":{}},"donut":{"label":{}},"gauge":{"label":{}}}';
-      scope.config = angular.fromJson(configJSON);
-
-      // Act
-      element = $compile(element)(scope);
-      scope.$apply();
-
-      // Assert
-        // TODO
-    }));
-
-    xit('should be able to render a pie chart', inject(function () {
-      // Arrange
-        // TODO
-
-      // Act
-        // TODO
-
-      // Assert
-        // TODO
-    }));
-
-    xit('should be able to render a donut chart', inject(function () {
-      // Arrange
-        // TODO
-
-      // Act
-        // TODO
-
-      // Assert
-        // TODO
-    }));
-
-    xit('should be able to render a gauge chart', inject(function () {
-      // Arrange
-        // TODO
-
-      // Act
-        // TODO
-
-      // Assert
-        // TODO
-    }));
-  });
 
   describe('a spec with tests intended to prevent regression on closed issues', function() {
     var element;
@@ -117,7 +80,7 @@ describe('Directive: BuildChart', function () {
       scope.$digest();
 
       // Assert
-      expect(angular.element('#chart').find('.c3-legend-item').css('visibility')).toBe('hidden');
+      expect(angular.element('#chart > svg > g').eq(2).css('visibility')).toBe('hidden'); // Updated — C3 0.4.9 removes all legend elements if hidden.
     });
 
     // Disabled because I can't get Jasmine to populate the DOM with the main.html view.

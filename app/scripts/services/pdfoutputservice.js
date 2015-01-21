@@ -8,7 +8,7 @@
  * Service in the axisJsApp.
  */
 angular.module('axisJSApp')
-  .service('pdfOutput', function pdfOutput(GenericOutput, chartProvider, $location) {
+  .service('pdfOutput', function pdfOutput(GenericOutput) {
     var pdf = angular.copy(GenericOutput);
 
     pdf.preprocess = function(scope) {

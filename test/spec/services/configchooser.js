@@ -1,5 +1,6 @@
 'use strict';
 
+// There is like literally nothing to test with this.
 xdescribe('Service: configChooser', function () {
 
   // load the service's module

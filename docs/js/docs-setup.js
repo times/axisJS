@@ -163,7 +163,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "axisJsApp",
       "shortDescription": "pngService",
-      "keywords": "api axisjsapp pngservice service"
+      "keywords": "api axisjsapp creation logic move png pngservice service todo"
     },
     {
       "section": "api",
@@ -172,7 +172,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "axisJsApp",
       "shortDescription": "svgOutputService",
-      "keywords": "api axisjsapp service svgoutputservice"
+      "keywords": "api axisjsapp code creation directive exportchart move service svg svgoutputservice todo"
     },
     {
       "section": "api",

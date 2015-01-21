@@ -6,13 +6,17 @@ describe('Service: embedcodeOutput', function () {
   beforeEach(module('axisJSApp'));
 
   // instantiate service
-  var embedOutput,
+  var embedcodeOutput,
       scope,
       MainCtrl;
 
-  beforeEach(inject(function (_embedOutput_, $controller, $rootScope, $httpBackend) {
-    embedOutput = _embedOutput_;
+  beforeEach(inject(function (_embedcodeOutput_, $controller, $rootScope, $httpBackend) {
+    embedcodeOutput = _embedcodeOutput_;
     scope = $rootScope.$new();
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.whenGET('default.config.yaml').respond('');
+    $httpBackend.expectGET('config.yaml');
+    $httpBackend.whenGET('config.yaml').respond('');
     $httpBackend.expectGET('partials/configChooser.html'); // due to angular-off-canvas.
     $httpBackend.whenGET('partials/configChooser.html').respond('');
 
@@ -20,9 +24,11 @@ describe('Service: embedcodeOutput', function () {
       $scope: scope,
       appConfig: {
         framework: 'c3',
+        input: 'csv',
+        export: 'Embed code',
         colors: [
-        {value: 'blue'},
-        {value: 'red'}
+          {value: 'blue'},
+          {value: 'red'}
         ],
         defaults: {},
       }
@@ -30,7 +36,7 @@ describe('Service: embedcodeOutput', function () {
   }));
 
   it('should launch a modal window', function () {
-    embedOutput.export(scope);
+    embedcodeOutput.export(scope);
     scope.$apply();
     var modal = angular.element('.modal');
     expect(modal.length).toBe(1);

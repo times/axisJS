@@ -20,6 +20,9 @@
   "smarttabs": true,
   "globals": {
     "angular": false,
-    "Papa": true
+    "Papa": true,
+    "jsPDF": true,
+    "JSONfn": true,
+    "c3": true
   }
 }
