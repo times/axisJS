@@ -1,5 +1,4 @@
 # axisJS [![Build Status](https://travis-ci.org/times/axisJS.svg?branch=master)](https://travis-ci.org/times/axisJS)
-## version 0.2.1
 ### 2014 [Ændrew Rininsland](http://www.github.com/aendrew) for [The Times and Sunday Times](http://www.github.com/times)
 
 axisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
