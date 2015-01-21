@@ -2,8 +2,7 @@
 ---
 framework: 'c3'
 
-input:
-  - 'csv'
+input: 'csv'
 
 export:
   - 'WordPress'
