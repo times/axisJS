@@ -202,8 +202,7 @@ angular.module('axisJSApp')
           ],
           js: [
             '//cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js',
-            '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.js',
-            '//cdn.rawgit.com/vkiryukhin/jsonfn/master/jsonfn.js'
+            '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.js'
           ]
         };
       }
