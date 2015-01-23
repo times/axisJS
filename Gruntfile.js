@@ -114,8 +114,7 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish'),
-        ignores: ['<%= yeoman.app %>/scripts/uglifyjs.min.js']
+        reporter: require('jshint-stylish')
       },
       all: {
         src: [
@@ -265,6 +264,13 @@ module.exports = function (grunt) {
     // concat: {
     //   dist: {}
     // },
+
+    uglify: {
+      options: {
+        mangle: false
+      }
+    },
+
 
     imagemin: {
       dist: {
