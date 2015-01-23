@@ -43,7 +43,7 @@ angular.module('axisJSApp')
     output.push(
       '<script type="text/javascript">(function(){' +
         'var configJSON = JSON.parse(\'' + config + '\');' +
-        'var fixJson = function(obj){for(var i in obj)obj.hasOwnProperty(i)&&("string"==typeof obj[i]&&obj[i].match(/^function/)?(console.log("func"),obj[i]=eval("("+obj[i]+")")):"object"==typeof obj[i]&&fixJson(obj[i]));return obj};' +
+        'var fixJson = function(obj){for(var i in obj)obj.hasOwnProperty(i)&&("string"==typeof obj[i]&&obj[i].match(/^function/)?obj[i]=eval("("+obj[i]+")"):"object"==typeof obj[i]&&fixJson(obj[i]));return obj};' +
         'var config = fixJson(configJSON);' +
         'c3.generate(config);' +
       '})();</script>'
