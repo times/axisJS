@@ -43,9 +43,9 @@ angular.module('axisJSApp')
         }
 
         scope.chartData = Papa.parse(scope.inputs.csvData, parserConfig).data;
-        // n.b., you can also use rows in C3 instead, which is like Papa.parse() without
-        // header: true. TODO for anyone wanting to play some code golf...
 
+        // Convert objects into arrays. Might be better long-term to use C3's JSON input.
+        // Lots of this stuff is C3-specific. TODO move to c3Service.
         if (scope.chartData.length > 0) {
           scope.columns = Object.keys(scope.chartData[0]);
           angular.forEach(scope.columns, function(colName) {
@@ -56,14 +56,6 @@ angular.module('axisJSApp')
             });
 
             scope.config.data.columns.push(column);
-            if (typeof scope.config.data.types[colName] === 'undefined') {
-              if (scope.config.chartGlobalType === 'series') {
-                scope.config.data.types[colName] = 'line'; // default to line.
-              } else { // else the global chart type
-                scope.config.data.types[colName] = scope.config.chartGlobalType;
-              }
-
-            }
           });
         }
       }

@@ -101,15 +101,26 @@ angular.module('axisJSApp')
         // Change the data structure (modified by PapaParse in main.js)
         scope.$watch('config.data.columns', function(){
           redraw();
+          scope.config.data.colors = {}; // empty to prevent cruft from building. See #58.
+          scope.config.data.types = {};
+          scope.config.data.axes = {};
 
-          // Assign the new colours specified by C3 to the inputs.
-          // Needs to be done after redraw().
-          for (var column in chart.data.colors()) {
+          angular.forEach(scope.columns, function(column){
+            // Set default y-axis. Should maybe be in csvInput or main?
             if (!scope.config.data.axes[column]) {
               scope.config.data.axes[column] = scope.appConfig.defaults['y axis'] ? scope.appConfig.defaults['y axis'] : 'y';
             }
+            // Configure colours.
+
             scope.config.data.colors[column] = chart.data.colors()[column];
-          }
+
+            // Set default types. Unfortunately, this loses existing types.
+            if (scope.config.chartGlobalType === 'series') {
+              scope.config.data.types[column] = 'line'; // default to line.
+            } else { // else the global chart type
+              scope.config.data.types[column] = scope.config.chartGlobalType;
+            }
+          });
         });
 
         // Change the colours
