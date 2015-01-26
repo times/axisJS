@@ -53,7 +53,7 @@ angular.module('axisJSApp')
               str.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
             }
           }
-          return str.join("&");
+          return str.join('&');
         }
       })
         .success(function(res){

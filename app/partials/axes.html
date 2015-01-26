@@ -67,6 +67,18 @@
               <input type="number" id="{{axis.value}}AxisTickCount" class="form-control" ng-model="config.axis[axis.value].tick.count" />
             </div>
           </div>
+          <div class="form-group" ng-if="config.data[axis.value]">
+            <label class="col-sm-3 control-label" for="{{axis.value}}TimeseriesBoolean">Timeseries?</label>
+            <div class="col-sm-9 checkbox">
+              <input type="checkbox" id="{{axis.value}}TimeseriesBoolean" ng-true-value="'timeseries'" ng-model="config.axis[axis.value].type" />
+            </div>
+          </div>
+          <div class="form-group" ng-if="config.axis[axis.value].type === 'timeseries'">
+            <label class="col-sm-3 control-label" for="{{axis.value}}TimeseriesFormat"><a href="https://github.com/mbostock/d3/wiki/Time-Formatting" target="_blank">Datetime format</a></label>
+            <div class="col-sm-9">
+              <input type="text" id="{{axis.value}}TimeseriesFormat" class="form-control" value="timeseries" ng-model="config.axis[axis.value].tick.format" />
+            </div>
+          </div>
         </fieldset>
       </fieldset>
     </form>
