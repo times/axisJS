@@ -14,7 +14,8 @@
     ".jshintrc",
     ".travis.yml",
     ".gitignore",
-    "bower_components/"
+    "bower_components/",
+    "docs/"
   ],
   "keywords": [
     "charts",

@@ -1,5 +1,4 @@
 'use strict';
-/*global $*/
 /**
  * @ngdoc service
  * @name axisJsApp.WordPressOutput
@@ -17,7 +16,7 @@ angular.module('axisJSApp')
     };
 
     wordpress.preprocess = function(scope){
-      var chartConfig = scope.config;
+      var chartConfig = angular.copy(scope.config);
       chartConfig.axis.x.tick.format = chartConfig.axis.x.tick.format.toString();
       chartConfig.axis.y.tick.format = chartConfig.axis.y.tick.format.toString();
       chartConfig.axis.y2.tick.format = chartConfig.axis.y2.tick.format.toString();
@@ -37,7 +36,26 @@ angular.module('axisJSApp')
 
     wordpress.process = function(payload){
       // Have WordPress process the data-URI PNG and return some config data
-      $http.post(parent.ajaxurl, payload)
+      $http.post(parent.ajaxurl, payload, {
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}, // $http sends as JSON, WP expects form.
+        transformRequest: function(obj) { // Via http://stackoverflow.com/a/19270196/467760
+          var str = [];
+          for (var key in obj) {
+            if (obj[key] instanceof Array) {
+              for(var idx in obj[key]){
+                var subObj = obj[key][idx];
+                for(var subKey in subObj){
+                  str.push(encodeURIComponent(key) + '[' + idx + '][' + encodeURIComponent(subKey) + ']=' + encodeURIComponent(subObj[subKey]));
+                }
+              }
+            }
+            else {
+              str.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
+            }
+          }
+          return str.join("&");
+        }
+      })
         .success(function(res){
           res = angular.fromJson(res);
           parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
