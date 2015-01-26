@@ -62,6 +62,7 @@ defaults:
   legend: false
   legend position: 'bottom'
   point: false
+  y axis: 'y2'
 
 titles:
   align: 'left'

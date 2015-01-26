@@ -105,6 +105,9 @@ angular.module('axisJSApp')
           // Assign the new colours specified by C3 to the inputs.
           // Needs to be done after redraw().
           for (var column in chart.data.colors()) {
+            if (!scope.config.data.axes[column]) {
+              scope.config.data.axes[column] = scope.appConfig.defaults['y axis'] ? scope.appConfig.defaults['y axis'] : 'y';
+            }
             scope.config.data.colors[column] = chart.data.colors()[column];
           }
         });

@@ -43,6 +43,8 @@ angular.module('axisJSApp')
               ['data2', 50, 20, 10, 40, 15, 25]
             ],
             axes: { // This is used in a similar fashion to config.axis.
+              data1: appConfig.defaults['y axis'],
+              data2: appConfig.defaults['y axis']
             },
             groups: { // Ditto.
             },

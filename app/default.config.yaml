@@ -87,6 +87,7 @@ defaults:
   axis x: true
   legend: true
   point: false
+  y axis: 'y'
 
 titles:
   title size: '32px'
@@ -97,4 +98,4 @@ titles:
 
 backgroundColor: 'white'
 
-colorPicker: 'default'
+colorPicker: 'simple'
