@@ -99,10 +99,23 @@ angular.module('axisJSApp')
          */
 
         // Change the data structure (modified by PapaParse in main.js)
-        scope.$watch('config.data.columns', function(){
+        scope.$watch('config.data.columns', function(newValues){
           redraw();
           scope.config.data.colors = {}; // empty to prevent cruft from building. See #58.
-          scope.config.data.types = {};
+          if (typeof scope.config.data.types === 'object') {
+            angular.forEach(scope.config.data.types, function(v, key){
+              for (var i = 0; i < newValues.length; i++){
+                if (newValues[i][0] === key) {
+                  return;
+                }
+              }
+              // not here? delete.
+              delete(scope.config.data.types[key]);
+            });
+          } else {
+            scope.config.data.types = {};
+          }
+
           scope.config.data.axes = {};
 
           angular.forEach(scope.columns, function(column){
@@ -114,14 +127,16 @@ angular.module('axisJSApp')
 
             scope.config.data.colors[column] = chart.data.colors()[column];
 
-            // Set default types. Unfortunately, this loses existing types.
+            // configure datum types
             if (scope.config.chartGlobalType === 'series') {
-              scope.config.data.types[column] = 'line'; // default to line.
+              if (!scope.config.data.types[column]) {
+                scope.config.data.types[column] = 'line'; // default to line.
+              }
             } else { // else the global chart type
               scope.config.data.types[column] = scope.config.chartGlobalType;
             }
           });
-        });
+        }, true);
 
         // Change the colours
         scope.$watch('config.data.colors', function(){
@@ -129,7 +144,7 @@ angular.module('axisJSApp')
         }, true);
 
         // Change the chart types
-        scope.$watch('config.data.types', function(){
+        scope.$watch('config.data.types', function(newVal, oldVal){
           redraw();
         }, true);
 

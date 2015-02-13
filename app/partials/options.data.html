@@ -16,9 +16,9 @@
             <input minicolors type="hidden" ng-model="config.data.colors[col]" />
           </div>
         </span>
-        <select class="form-control" id="type-{{col}}" ng-model="config.data.types[col]" ng-disabled="config.chartGlobalType !== 'series'">
-          <option value="{{chart}}" ng-repeat="chart in chartTypes">{{chart}}</option>
-        </select>
+
+        <select ng-options="chart as chart for chart in chartTypes" class="form-control" id="type-{{col}}" ng-model="config.data.types[col]" ng-disabled="config.chartGlobalType !== 'series'"></select>
+
         <span class="input-group-addon" ng-show="config.data.types[col] === 'bar'">
           <select id="group-{{col}}" ng-model="config.groups[col]" ng-change="setGroups()" title="group">
             <option value="{{group}}" ng-repeat="group in [0,1,2]">{{group + 1}}</option>

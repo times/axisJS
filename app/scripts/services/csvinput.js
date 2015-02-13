@@ -63,6 +63,22 @@ angular.module('axisJSApp')
       return scope;
     };
 
+    var convertColsToCSV = function(columns) {
+      var data = [];
+      var headers = [];
+      for (var i = 0; i < columns.length; i++) {
+        headers.push(columns[i].shift());
+        for (var j = 0; j < columns[i].length; j++) {
+          if (!data[j]) {
+            data[j] = [];
+          }
+          data[j][i] = columns[i][j];
+        }
+      }
+
+      return Papa.unparse({fields: headers, data: data}, {delimiter: '\t'});
+    };
+
     // Public API here
     return {
       validate: function(value) {
@@ -75,6 +91,10 @@ angular.module('axisJSApp')
 
       input: function(scope) {
         return parseCSV(scope);
+      },
+
+      convert: function(data) {
+        return convertColsToCSV(data);
       }
     };
   });

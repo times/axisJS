@@ -7,7 +7,7 @@
  * Service in the axisJsApp.
  */
 angular.module('axisJSApp')
-  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http) {
+  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http, $timeout) {
     var wordpress = angular.copy(GenericOutput);
 
     wordpress.serviceConfig = {
@@ -56,11 +56,14 @@ angular.module('axisJSApp')
           return str.join('&');
         }
       })
-        .success(function(res){
-          res = angular.fromJson(res);
-          parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img src="' + res.attachmentURL + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
-          parent.tinymce.activeEditor.windowManager.close();
-        });
+      .success(function(res){
+        res = angular.fromJson(res);
+        parent.tinymce.activeEditor.insertContent('<div class="mceNonEditable"><img width="100%" src="' + res.attachmentURL + '?' + new Date().getTime() + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /></div><br />');
+        parent.tinymce.activeEditor.windowManager.close();
+      })
+      .error(function(data, status, headers, config){
+        console.dir([data, status, headers, config]);
+      });
     };
 
     wordpress.export = function(scope){
