@@ -50,14 +50,13 @@ View API docs online [here](http://times.github.io/axisJS/docs/).
 
 ### Roadmap/ToDos
 
-- [ ] Abstract chart configuration into a provider so that `app/scripts/directives/buildchart.js`
+- [x] Abstract chart configuration into a provider so that `app/scripts/directives/buildchart.js`
       and `app/scripts/directives/exportchart.js` aren't so tightly bound to C3
 - [x] **ALL** the unit tests
 - [ ] Documentation and cleanup of `buildchart.js` and `exportchart.js`
-- [ ] Abstract each output format into factories so more can be modularly added
+- [x] Abstract each output format into factories so more can be modularly added
 - [ ] Abstract out vendor functionality — i.e., make the colour picker replaceable
 - [x] Create an external config file with settings like colour scheme
 - [ ] Improve inline documentation
-- [ ] Fix "ui-grid" for tabular data import
 - [x] Make adding categorical axes more straight-forward
 - [ ] Create adapters for [nvd3](http://www.nvd3.org) and other SVG-based charting libraries.
