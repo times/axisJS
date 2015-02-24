@@ -5,6 +5,8 @@ axisJS is a light [Angular](http://angularjs.org)-based app for generating chart
 the [AxisWP](http://www.github.com/times/Axis) WordPress plugin to
 add rich charting capabilities to WordPress.
 
+**[Live demo of AxisJS here](http://times.github.io/axisJS/#/)**
+
 axisJS is built atop the [Yeoman](http://github.com/yeoman) [Angular](http://github.com/yeoman/generator-angular)
 generator and currently makes use of C3 to build charts.
 
