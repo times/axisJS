@@ -11,7 +11,7 @@
     </span>
 
     <span ng-if="config.length === 1">
-      <button class="btn btn-success" ng-class="'export' + config[0].toLowerCase()" export-chart="{{config[0].toLowerCase().replace(' ', '')}}">{{config[0].toLowerCase().replace(' ', '')}}</button>
+      <button class="btn btn-success" ng-class="'export' + config[0].toLowerCase()" export-chart="{{config[0].toLowerCase().replace(' ', '')}}">Export to {{config[0].toLowerCase().replace(' ', '')}}</button>
     </span>
   </span>
 
@@ -26,7 +26,7 @@
     </span>
 
     <span ng-if="config.length === 1">
-      <button class="btn btn-primary" ng-class="'save' + config[0].toLowerCase()" export-chart="{{config[0].toLowerCase().replace(' ', '')}}">{{config[0].toLowerCase().replace(' ', '')}}</button>
+      <button class="btn btn-primary" ng-class="'save' + config[0].toLowerCase()" export-chart="{{config[0].toLowerCase().replace(' ', '')}}">Save to {{config[0].toLowerCase().replace(' ', '')}}</button>
     </span>
   </span>
 
