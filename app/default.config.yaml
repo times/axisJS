@@ -5,7 +5,6 @@ framework: 'c3'
 input: 'csv'
 
 export:
-  - 'WordPress'
   - 'Embed code'
   - 'pdf'
 

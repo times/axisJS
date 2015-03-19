@@ -1,0 +1,12 @@
+# AxisMaker axisJS configuration
+---
+framework: 'c3'
+
+export:
+  - 'axismaker'
+  - 'Embed code'
+  - 'pdf'
+
+output:
+  - 'png'
+  - 'svg'
