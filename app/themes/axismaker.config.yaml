@@ -3,9 +3,7 @@
 framework: 'c3'
 
 export:
-  - 'axismaker'
-  - 'Embed code'
-  - 'pdf'
+  - 'github'
 
 output:
   - 'png'
