@@ -48,6 +48,7 @@ angular.module('axisJSApp')
 
 
       		var canvasContext = canvas.getContext('2d');
+          console.log(canvasContext.webkitBackingStorePixelRatio);
 
           var svg = document.getElementsByTagName('svg')[0];
           var serializer = new XMLSerializer();
