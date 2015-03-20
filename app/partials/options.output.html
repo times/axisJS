@@ -2,20 +2,10 @@
   <div class="panel-heading">Output</div>
   <div class="panel-body" style="text-align: center;">
     <div class="btn-group">
-      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-        Export to... <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li ng-repeat="output in appConfig.export"><a ng-class="'export' + output" href="#" export-chart="{{output.toLowerCase().replace(' ', '')}}">{{output}}</a></li>
-      </ul>
+      <save-button type="export" config="appConfig.export" />
     </div>
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" export-chart="save">
-        Save... <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li ng-repeat="output in appConfig.save"><a ng-class="'save' + output.toUpperCase()" href="#">Save as {{output.toUpperCase()}}</a></li>
-      </ul>
+      <save-button type="save" config="appConfig.save" />
     </div>
   </div> <!-- /.panel-body -->
 </div> <!-- /.panel -->
