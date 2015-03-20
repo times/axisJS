@@ -113,6 +113,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.directive:saveButton",
+      "shortName": "saveButton",
+      "type": "directive",
+      "moduleName": "axisJsApp",
+      "shortDescription": "saveButton",
+      "keywords": "api axisjsapp directive savebutton"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.embedOutput",
       "shortName": "axisJsApp.embedOutput",
       "type": "service",
@@ -128,6 +137,15 @@ NG_DOCS={
       "moduleName": "axisJsApp",
       "shortDescription": "GenericOutput",
       "keywords": "api axisjsapp extended genericoutput genericoutputservice meant service useless"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.githubOutput",
+      "shortName": "axisJsApp.githubOutput",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "axisMaker Output",
+      "keywords": "api axisjsapp axismaker githuboutput output outputting service"
     },
     {
       "section": "api",
@@ -191,5 +209,6 @@ NG_DOCS={
   "startPage": "/api",
   "scripts": [
     "angular.min.js"
-  ]
+  ],
+  "editExample": true
 };
