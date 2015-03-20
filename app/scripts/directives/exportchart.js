@@ -13,7 +13,6 @@ angular.module('axisJSApp')
   .directive('exportChart', ['outputService', function (outputService) {
     return {
       restrict: 'A',
-      scope: '@',
       link: function postLink(scope, element, attrs) {
         element.on('click', function(){
           createChartImages(scope.config.chartWidth);
@@ -54,7 +53,6 @@ angular.module('axisJSApp')
           svg = serializer.serializeToString(svg);
 
           canvasContext.drawSvg(svg,0,0);
-
       		var filename = [];
       		for (var i=0; i < scope.columns.length; i++) {
       			filename.push(scope.columns[i]);

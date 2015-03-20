@@ -5,7 +5,6 @@
  * # axisMaker Output
  * Service for outputting to AxisMaker.
  */
- /*global $*/
 
 'use strict';
 

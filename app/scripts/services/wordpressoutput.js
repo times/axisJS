@@ -7,7 +7,7 @@
  * Service in the axisJsApp.
  */
 angular.module('axisJSApp')
-  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http, $timeout) {
+  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http) {
     var wordpress = angular.copy(GenericOutput);
 
     wordpress.serviceConfig = {

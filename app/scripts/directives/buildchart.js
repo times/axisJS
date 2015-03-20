@@ -144,7 +144,7 @@ angular.module('axisJSApp')
         }, true);
 
         // Change the chart types
-        scope.$watch('config.data.types', function(newVal, oldVal){
+        scope.$watch('config.data.types', function(){
           redraw();
         }, true);
 
