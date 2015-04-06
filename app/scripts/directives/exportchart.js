@@ -47,7 +47,6 @@ angular.module('axisJSApp')
 
 
       		var canvasContext = canvas.getContext('2d');
-
           var svg = document.getElementsByTagName('svg')[0];
           var serializer = new XMLSerializer();
           svg = serializer.serializeToString(svg);

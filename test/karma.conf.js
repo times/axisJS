@@ -85,7 +85,7 @@ module.exports = function(config) {
       'karma-nyan-reporter'
     ],
 
-    reporters: ['nyan'],
+    reporters: ['nyan', 'coverage'],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
@@ -103,6 +103,16 @@ module.exports = function(config) {
     // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'test/spec/**/*.js': ['coverage']
+    },
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    }
   };
 
   if (typeof process.env.TRAVIS !== 'undefined') {
