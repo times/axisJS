@@ -1,6 +1,8 @@
 # axisJS [![Build Status](https://travis-ci.org/times/axisJS.svg?branch=master)](https://travis-ci.org/times/axisJS)
 ### 2014 [Ændrew Rininsland](http://www.github.com/aendrew) for [The Times and Sunday Times](http://www.github.com/times)
 
+[![Join the chat at https://gitter.im/times/axisJS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/times/axisJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 axisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
 the [AxisWP](http://www.github.com/times/Axis) WordPress plugin to
 add rich charting capabilities to WordPress.
