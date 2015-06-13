@@ -82,7 +82,8 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-jasmine',
-      'karma-nyan-reporter'
+      'karma-nyan-reporter',
+      'karma-coverage'
     ],
 
     reporters: ['nyan', 'coverage'],
@@ -107,7 +108,7 @@ module.exports = function(config) {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'test/spec/**/*.js': ['coverage']
+      'app/scripts/**/*.js': ['coverage']
     },
     coverageReporter: {
       type : 'html',
