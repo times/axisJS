@@ -9,7 +9,7 @@
 'use strict';
 
 angular.module('axisJSApp')
-  .factory('axismakerOutput', ['GenericOutput', function githubOutput(GenericOutput) {
+  .factory('axismakerOutput', ['GenericOutput', function(GenericOutput) {
     var maker = angular.copy(GenericOutput);
 
     maker.serviceConfig = {
@@ -17,7 +17,7 @@ angular.module('axisJSApp')
       label: 'Save' // Label to use on button.
     };
 
-    maker.preprocess = function(scope){
+    maker.preprocess = function(scope) {
       var chartConfig = scope.config;
       chartConfig.axis.x.tick.format = chartConfig.axis.x.tick.format.toString();
       chartConfig.axis.y.tick.format = chartConfig.axis.y.tick.format.toString();
@@ -35,7 +35,7 @@ angular.module('axisJSApp')
       };
     };
 
-    maker.process = function(payload){
+    maker.process = function(payload) {
       // Have use PostMessage to push outside the iframe
       window.parent.postMessage(
         JSON.stringify(payload),
@@ -43,11 +43,11 @@ angular.module('axisJSApp')
       );
     };
 
-    maker.complete = function(){
+    maker.complete = function() {
       console.log('Complete.');
     };
 
-    maker.export = function(scope){
+    maker.export = function(scope) {
       var payload = maker.preprocess(scope);
       maker.process(payload);
       maker.complete();
