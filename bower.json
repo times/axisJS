@@ -55,11 +55,14 @@
     "angular-minicolors": "~0.0.5",
     "angular-off-canvas": "~0.1.0",
     "jsonfn": "vkiryukhin/jsonfn",
-    "jspdf": "~1.0.272"
+    "jspdf": "~1.0.272",
+    "ngHandsontable": "~0.5.2"
   },
   "appPath": "app",
   "resolutions": {
-    "angular": "~1.3.8",
-    "d3": "<=3.5.0"
+    "angular": "~1.3",
+    "d3": "<=3.5.0",
+    "handsontable": "~0.12",
+    "ngHandsontable": "0.5.1"
   }
 }

@@ -3,8 +3,8 @@
     <div class="panel panel-default">
       <div class="panel-heading">Data Input</div>
       <div class="panel-body">
-        <textarea maintain-focus id="csvInput" class="form-control" rows="3" ng-model="inputs.csvData" ui-validate="'validateData($value)'" ng-change="updateData()"></textarea>
-        <div class="alert alert-danger" ng-show="!inputs.csvData"><strong>Whoops!</strong> Seems like you've entered some malformed CSV data...</div>
+        <hot-table ng-if="appConfig.input === 'spreadsheet'" rowHeaders="true" datarows="inputs.inputData" colHeaders="true" minSpareCols="27" minSpareRows="10" height="200" afterChange="updateData()"></hot-table>
+        <textarea ng-if="appConfig.input === 'csv'" ng-if="" maintain-focus id="csvInput" class="form-control" rows="3" ng-model="inputs.inputData" ui-validate="'validateData($value)'" ng-change="updateData()"></textarea>
       </div>
     </div>
   </div>

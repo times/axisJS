@@ -1,8 +1,8 @@
-# axisJS config
+# axisJS default config
 ---
 framework: 'c3'
 
-input: 'csv'
+input: 'spreadsheet'
 
 export:
   - 'WordPress'

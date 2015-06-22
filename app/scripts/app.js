@@ -17,7 +17,8 @@ angular
     'ui.router',
     'ui.bootstrap',
     'minicolors',
-    'cn.offCanvas'
+    'cn.offCanvas',
+    'ngHandsontable'
   ])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');

@@ -113,6 +113,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.directive:saveButton",
+      "shortName": "saveButton",
+      "type": "directive",
+      "moduleName": "axisJsApp",
+      "shortDescription": "saveButton",
+      "keywords": "api axisjsapp directive savebutton"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.embedOutput",
       "shortName": "axisJsApp.embedOutput",
       "type": "service",
@@ -164,6 +173,15 @@ NG_DOCS={
       "moduleName": "axisJsApp",
       "shortDescription": "pngService",
       "keywords": "api axisjsapp creation logic move png pngservice service todo"
+    },
+    {
+      "section": "api",
+      "id": "axisJsApp.spreadsheetInput",
+      "shortName": "axisJsApp.spreadsheetInput",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "spreadsheetInput",
+      "keywords": "api axisjsapp enables fancy input service spreadsheet spreadsheetinput user-friendly"
     },
     {
       "section": "api",

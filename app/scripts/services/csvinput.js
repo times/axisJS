@@ -29,7 +29,7 @@ angular.module('axisJSApp')
     var defaultCSV = 'data1\tdata2\n30\t50\n200\t20\n100\t10\n400\t40\n150\t15\n250\t25';
 
     var parseCSV = function (scope) {
-      if (scope.inputs.csvData) {
+      if (scope.inputs.inputData) {
         scope.chartData = []; // Empty, or else new column names will break ng-grid
         scope.columns = []; // Clear existing
         scope.config.data.columns = [];
@@ -38,11 +38,11 @@ angular.module('axisJSApp')
         };
 
         // Detect TSV; fallback to auto-detection. @see #39.
-        if (scope.inputs.csvData.match('\t')) {
+        if (scope.inputs.inputData.match('\t')) {
           parserConfig.delimiter = '\t';
         }
 
-        scope.chartData = Papa.parse(scope.inputs.csvData, parserConfig).data;
+        scope.chartData = Papa.parse(scope.inputs.inputData, parserConfig).data;
 
         // Convert objects into arrays. Might be better long-term to use C3's JSON input.
         // Lots of this stuff is C3-specific. TODO move to c3Service.
@@ -85,9 +85,7 @@ angular.module('axisJSApp')
         return validateCSV(value);
       },
 
-      defaultData: {
-        csvData: defaultCSV
-      },
+      defaultData: defaultCSV,
 
       input: function(scope) {
         return parseCSV(scope);
