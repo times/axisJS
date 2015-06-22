@@ -26,37 +26,51 @@ angular.module('axisJSApp')
     };
   };
 
-  embed.process = function(payload){
-    var output = [];
-    // var config = String(angular.toJson(payload.config));
-    var config = btoa(JSONfn.stringify(payload.config));
+  embed.process = function(payload) {
+    var output = {};
+    var deps = [];
+    var code = [];
+    var config = JSONfn.stringify(payload.config);
 
     // Needs to be above script declarations.
-    output.push('<div id="' + payload.config.bindto.replace('#', '') + '"></div>');
+    deps.push('<div id="' + payload.config.bindto.replace('#', '') + '"></div>');
 
-    angular.forEach(payload.dependencies.css, function(v){
-      output.push('<link rel="stylesheet" href="' + v + '" />');
+    angular.forEach(payload.dependencies.css, function(v) {
+      deps.push('<link rel="stylesheet" href="' + v + '" />');
     });
-    angular.forEach(payload.dependencies.js, function(v){
-      output.push('<script src="' + v + '"></script>');
+
+    angular.forEach(payload.dependencies.js, function(v) {
+      deps.push('<script src="' + v + '"></script>');
     });
-    output.push(
-      '<script type="text/javascript">(function(){' +
-        'var configJSON = JSON.parse(atob("' + config + '"));' +
-        'var fixJson = function(obj){for(var i in obj)obj.hasOwnProperty(i)&&("string"==typeof obj[i]&&obj[i].match(/^function/)?obj[i]=eval("("+obj[i]+")"):"object"==typeof obj[i]&&fixJson(obj[i]));return obj};' +
-        'var config = fixJson(configJSON);' +
-        'c3.generate(config);' +
+
+    code.push(
+      '<script type="text/javascript">(function(){',
+        'var configJSON = ' + config + ';',
+        'var fixJson = function(obj){for(var i in obj)obj.hasOwnProperty(i)&&("string"==typeof obj[i]&&obj[i].match(/^function/)?obj[i]=eval("("+obj[i]+")"):"object"==typeof obj[i]&&fixJson(obj[i]));return obj};',
+        'var config = fixJson(configJSON);',
+        'c3.generate(config);',
       '})();</script>'
     );
 
-    return output.join('\n');
+    output.complete = deps.concat(code).join("\n"); // TODO figure out how to pretty-print.
+    output.partial = [deps[0]].concat(code).join("\n");
+    
+    return output;
   };
 
-  embed.complete = function(output){
+  embed.complete = function(output) {
     $modal.open({
-      template: '<h1 style="text-align: center;">Embed code: <br /><small style="text-align: center;">Copy and paste this into a new HTML document</small></h1> <textarea width="100%" height="400" class="form-control">{{output}}</textarea>',
+      templateUrl: 'partials/outputModal.html',
       controller: function($scope) {
-        $scope.output = output;
+        $scope.includeDeps = true;
+        $scope.output = $scope.includeDeps ? output.complete : output.partial;
+        $scope.updateOutput = function(deps) {
+          if (deps) {
+            $scope.output = output.complete;
+          } else {
+            $scope.output = output.partial;
+          }
+        };
       }
     });
   };
