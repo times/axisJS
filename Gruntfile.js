@@ -173,8 +173,9 @@ module.exports = function (grunt) {
         exclude: [
           /angular-mocks/,
           /angular-scenario/,
-          /canvg\.bundle\.min\.js/
-        ],
+          /canvg\.bundle\.min\.js/,
+          'bootstrap-sass-official/assets/javascripts/'
+        ]
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -267,11 +268,11 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        mangle: false,
-        quoteStyle: 3
+        mangle: true,
+        quoteStyle: 3,
+        preserveComments: false
       }
     },
-
 
     imagemin: {
       dist: {
@@ -360,7 +361,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.',
-          src: ['bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*', 'bower_components/c3/c3.css' ],
+          src: ['bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*', 'bower_components/c3/c3.css'],
           dest: '<%= yeoman.dist %>'
         }]
       },
