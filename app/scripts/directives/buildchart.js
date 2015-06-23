@@ -8,7 +8,7 @@
  * Base directive for building the chart preview.
  */
 angular.module('axisJSApp')
-  .directive('buildChart', ['chartProvider', '$timeout', function (chartProvider, $timeout) {
+  .directive('buildChart', function(chartProvider, $timeout, $window) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
@@ -84,6 +84,13 @@ angular.module('axisJSApp')
         }
 
         function redraw() {
+          scope.config.size = {
+            width: angular.element('.rendering').width() - 20, // TODO make these more modifiable
+            height: angular.element(window).height() - 50,
+          };
+          scope.config.chartWidth = scope.config.size.width;
+          scope.config.chartHeight = scope.config.size.height;
+          
           chart = chartProvider(scope.appConfig).generate(element[0].id, scope.config);
 
           $timeout(function(){
@@ -233,6 +240,11 @@ angular.module('axisJSApp')
             d3.select('.chart-bg').remove();
           }
         });
+        
+        // Redraw on browser resize.
+        angular.element($window).bind('resize', function(){
+          redraw();
+        });
       }
     };
-  }]);
+  });

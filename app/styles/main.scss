@@ -1,5 +1,9 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
+/* @import '../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss'; */
+
+// Including the custom grid css.
+/* @import '_grid.scss'; */
 
 // Comment out for debugging PNG output
 // TODO CLEAN THIS FILE UP
@@ -72,6 +76,21 @@ html, body {
   margin-bottom: 25px;
 }
 
+.panel-heading {
+  cursor: pointer;
+  
+  &:after {
+    font-family:'Glyphicons Halflings';
+    content: '\e080';
+    float: right;
+    color: grey;
+  }
+  
+  &.collapsed:after {
+    content: '\e114';
+  }
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -122,25 +141,3 @@ html, body {
   display: none !important;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}

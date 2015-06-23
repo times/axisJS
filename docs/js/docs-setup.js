@@ -176,10 +176,10 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "axisJsApp.spreadsheetInput",
-      "shortName": "axisJsApp.spreadsheetInput",
+      "id": "axisJSApp.spreadsheetInput",
+      "shortName": "axisJSApp.spreadsheetInput",
       "type": "service",
-      "moduleName": "axisJsApp",
+      "moduleName": "axisJSApp",
       "shortDescription": "spreadsheetInput",
       "keywords": "api axisjsapp enables fancy input service spreadsheet spreadsheetinput user-friendly"
     },

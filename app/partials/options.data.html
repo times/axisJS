@@ -1,6 +1,11 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Data options</div>
-  <div class="panel-body">
+  <div class="panel-heading"
+    ng-click="dataOptionsAreCollapsed = !dataOptionsAreCollapsed"
+    ng-class="{collapsed: dataOptionsAreCollapsed}">
+      Data options
+  </div>
+  
+  <div class="panel-body" collapse="!dataOptionsAreCollapsed">
     <select ng-model="config.chartGlobalType" class="form-control" id="chartGlobalType" ng-change="setGlobalType(config.chartGlobalType)">
       <option value="series">series</option>
       <option value="pie">pie</option>

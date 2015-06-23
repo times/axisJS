@@ -1,6 +1,11 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Chart options</div>
-  <div class="panel-body">
+  <div class="panel-heading" 
+       ng-click="chartOptionsAreCollapsed = !chartOptionsAreCollapsed" 
+       ng-class="{collapsed: chartOptionsAreCollapsed}">
+    Chart options
+  </div>
+  
+  <div class="panel-body" collapse="!chartOptionsAreCollapsed">
     <form class="form-horizontal" role="form">
       <div class="form-group">
         <label for="legendPosition" class="col-sm-2 control-label">Legend</label>

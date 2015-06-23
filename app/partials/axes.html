@@ -1,9 +1,17 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Axes</div>
-  <div class="panel-body">
+  <div class="panel-heading"
+    ng-click="axesOptionsAreCollapsed = !axesOptionsAreCollapsed"
+    ng-class="{collapsed: axesOptionsAreCollapsed}">
+      Axes
+  </div>
+  
+  <div class="panel-body" collapse="!axesOptionsAreCollapsed">
     <form class="form-horizontal" role="form">
       <fieldset ng-disabled="config.chartGlobalType !== 'series'">
-        <h4 ng-repeat-start="axis in axesConfig">{{axis.label}} Axis <input type="checkbox" ng-model="config.axis[axis.value].show" /></h4>
+        <h4 ng-repeat-start="axis in axesConfig">
+          {{axis.label}} Axis 
+          <input type="checkbox" ng-model="config.axis[axis.value].show" />
+        </h4>
         <fieldset ng-hide="!config.axis[axis.value].show" ng-repeat-end>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisColumn">Column</label>
