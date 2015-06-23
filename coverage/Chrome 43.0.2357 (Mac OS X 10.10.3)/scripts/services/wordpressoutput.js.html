@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/services/wordpressoutput.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">scripts/services/wordpressoutput.js</span></h1>
+    <h2>
+        Statements: <span class="metric">85.71% <small>(30 / 35)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">50% <small>(1 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">85.71% <small>(30 / 35)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/services/</a> &#187; wordpressoutput.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+/**
+ * @ngdoc service
+ * @name axisJsApp.WordPressOutput
+ * @description
+ * # WordPressOutput
+ * Service in the axisJsApp.
+ */
+angular.module('axisJSApp')
+  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http, $timeout) {
+    var wordpress = angular.copy(GenericOutput);
+&nbsp;
+    wordpress.serviceConfig = {
+      type: 'export', // Options: 'save' and 'export'.
+      label: 'Save to WordPress' // Label to use on button.
+    };
+&nbsp;
+    wordpress.preprocess = function(scope){
+      var chartConfig = angular.copy(scope.config);
+      chartConfig.axis.x.tick.format = chartConfig.axis.x.tick.format.toString();
+      chartConfig.axis.y.tick.format = chartConfig.axis.y.tick.format.toString();
+      chartConfig.axis.y2.tick.format = chartConfig.axis.y2.tick.format.toString();
+      chartConfig.pie.label.format = chartConfig.pie.label.format.toString();
+      chartConfig.donut.label.format = chartConfig.donut.label.format.toString();
+      chartConfig.gauge.label.format = chartConfig.gauge.label.format.toString();
+      var axisConfig = String(angular.toJson(chartConfig));
+      var axisChart = String(angular.element('.savePNG').attr('href'));
+      var axisWP = parent.tinymce.activeEditor.windowManager.getParams().axisWP;
+      return {
+        action: 'insert_axis_attachment',
+        axisConfig: axisConfig,
+        axisChart: axisChart,
+        parentID: axisWP.parentID
+      };
+    };
+&nbsp;
+    wordpress.process = function(payload){
+      // Have WordPress process the data-URI PNG and return some config data
+      $http.post(parent.ajaxurl, payload, {
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}, // $http sends as JSON, WP expects form.
+        transformRequest: function(obj) { // Via http://stackoverflow.com/a/19270196/467760
+          var str = [];
+          for (var key in obj) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (obj[key] instanceof Array) {
+<span class="cstat-no" title="statement not covered" >              for(var idx in obj[key]){</span>
+<span class="cstat-no" title="statement not covered" >                var subObj = obj[key][idx];</span>
+<span class="cstat-no" title="statement not covered" >                for(var subKey in subObj){</span>
+<span class="cstat-no" title="statement not covered" >                  str.push(encodeURIComponent(key) + '[' + idx + '][' + encodeURIComponent(subKey) + ']=' + encodeURIComponent(subObj[subKey]));</span>
+                }
+              }
+            }
+            else {
+              str.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
+            }
+          }
+          return str.join('&amp;');
+        }
+      })
+      .success(function(res){
+        res = angular.fromJson(res);
+        parent.tinymce.activeEditor.insertContent('&lt;div class="mceNonEditable"&gt;&lt;img width="100%" src="' + res.attachmentURL + '?' + new Date().getTime() + '" data-axisjs=\'' + window.btoa(angular.toJson(res)) + '\' class="mceItem axisChart" /&gt;&lt;/div&gt;&lt;br /&gt;');
+        parent.tinymce.activeEditor.windowManager.close();
+      })
+      .error(<span class="fstat-no" title="function not covered" >function(data, status, headers, config){</span>
+<span class="cstat-no" title="statement not covered" >        console.dir([data, status, headers, config]);</span>
+      });
+    };
+&nbsp;
+    wordpress.export = function(scope){
+      var payload = wordpress.preprocess(scope);
+      wordpress.process(payload);
+      wordpress.complete();
+    };
+&nbsp;
+    return wordpress;
+  });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 23 2015 14:12:33 GMT+0100 (BST)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

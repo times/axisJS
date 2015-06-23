@@ -14,7 +14,8 @@
     ".travis.yml",
     ".gitignore",
     "bower_components/",
-    "docs/"
+    "docs/",
+    "coverage/"
   ],
   "keywords": [
     "charts",

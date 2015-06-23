@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: csvInput', function () {
+describe('Service: csvInput', function() {
 
   // load the service's module
   beforeEach(module('axisJSApp'));
@@ -13,7 +13,7 @@ describe('Service: csvInput', function () {
 
   var testScope = {
         inputs: {
-          csvData: sampleTSV
+          inputData: sampleTSV
         },
         config: {
           data: {
@@ -22,27 +22,27 @@ describe('Service: csvInput', function () {
         },
       };
 
-  beforeEach(inject(function (_csvInput_) {
+  beforeEach(inject(function(_csvInput_) {
     csvInput = _csvInput_;
   }));
 
-  it('should include default data', function () {
-    expect(csvInput.defaultData.csvData).toEqual(sampleTSV);
+  it('should include default data', function() {
+    expect(csvInput.defaultData).toEqual(sampleTSV);
   });
 
-  it('should validate compliant CSV', function () {
+  it('should validate compliant CSV', function() {
     expect(csvInput.validate(sampleTSV)).toBe(true);
   });
 
-  it('should not validate non-compliant CSV', function () {
+  it('should not validate non-compliant CSV', function() {
     expect(csvInput.validate(sampleBroken)).toBe(false);
   });
 
-  it('parse TSV and return a Papaparse Object', function () {
+  it('parse TSV and return a Papaparse Object', function() {
     expect(csvInput.input(testScope).config.data.columns.length).toBe(2);
   });
 
-  it('should recognise CSV and parse it properly', function () {
+  it('should recognise CSV and parse it properly', function() {
     testScope.inputs.csvData = sampleCSV;
     expect(csvInput.input(testScope).config.data.columns.length).toBe(2);
   });

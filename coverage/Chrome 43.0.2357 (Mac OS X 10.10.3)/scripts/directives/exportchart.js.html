@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/directives/exportchart.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">scripts/directives/exportchart.js</span></h1>
+    <h2>
+        Statements: <span class="metric">67.07% <small>(55 / 82)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">42.31% <small>(11 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">61.54% <small>(8 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">67.07% <small>(55 / 82)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/directives/</a> &#187; exportchart.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global $*/ //Disabling loopfunc linting options because it's dumb.
+/*jshint -W083 */
+'use strict';
+&nbsp;
+/**
+ * @ngdoc directive
+ * @name axisJSApp.directive:exportChart
+ * @description
+ * Most of this is shamelessly stolen from Quartz's ChartBuilder.
+ * @todo Refactor the hell out of this.
+ */
+angular.module('axisJSApp')
+  .directive('exportChart', ['outputService', function (outputService) {
+    return {
+      restrict: 'A',
+      scope: '@',
+      link: function postLink(scope, element, attrs) {
+        element.on('click', function(){
+          createChartImages(scope.config.chartWidth);
+          if (attrs.exportChart !== 'save') {
+            outputService(scope, attrs.exportChart);
+          }
+        });
+&nbsp;
+        var styles;
+&nbsp;
+        var createChartImages = function(width) {
+          // Remove all defs, which botch PNG output
+          angular.element('defs').remove();
+&nbsp;
+          // Copy CSS styles to Canvas
+          inlineAllStyles();
+&nbsp;
+      		// Create PNG image
+      		var canvas = angular.element('#canvas').empty()[0];
+&nbsp;
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (!width) {
+            // Zoom! Enhance!
+<span class="cstat-no" title="statement not covered" >            angular.element('#chart &gt; svg').attr('transform', 'scale(2)');</span>
+<span class="cstat-no" title="statement not covered" >            canvas.width = angular.element('#chart &gt; svg').width() * 2;</span>
+<span class="cstat-no" title="statement not covered" >            canvas.height = angular.element('#chart &gt; svg').height() *2;</span>
+          } else {
+            var scaleFactor = width / angular.element('#chart').width();
+            angular.element('#chart &gt; svg').attr('transform', 'scale(' + scaleFactor + ')');
+            canvas.width = angular.element('#chart &gt; svg').width() * scaleFactor;
+            canvas.height = angular.element('#chart &gt; svg').height() * scaleFactor;
+          }
+&nbsp;
+&nbsp;
+      		var canvasContext = canvas.getContext('2d');
+          var svg = document.getElementsByTagName('svg')[0];
+          var serializer = new XMLSerializer();
+          svg = serializer.serializeToString(svg);
+&nbsp;
+          canvasContext.drawSvg(svg,0,0);
+&nbsp;
+      		var filename = [];
+      		for (var i=0; i &lt; scope.columns.length; i++) {
+      			filename.push(scope.columns[i]);
+      		}
+&nbsp;
+      		<span class="missing-if-branch" title="if path not taken" >I</span>if(scope.chartTitle) {
+<span class="cstat-no" title="statement not covered" >      			filename.unshift(scope.chartTitle);</span>
+      		}
+&nbsp;
+      		filename = filename.join('-').replace(/[^\w\d]+/gi, '-');
+&nbsp;
+      		angular.element('.savePNG').attr('href', canvas.toDataURL('png'))
+      			.attr('download', function(){ return filename + '_axisJS.png';
+      			});
+&nbsp;
+      		var svgContent = createSVGContent(angular.element('#chart &gt; svg')[0]);
+&nbsp;
+      		$('.saveSVG').attr('href','data:text/svg,'+ svgContent.source[0])
+      			.attr('download', function(){ return filename + '_axisJS.svg';});
+        };
+&nbsp;
+        // This needs to be more abstracted. Currently it's built to handle C3's quirks.
+&nbsp;
+        /* Take styles from CSS and put as inline SVG attributes so that Canvg
+           can properly parse them. */
+        var inlineAllStyles = function() {
+      		var chartStyle, selector;
+&nbsp;
+      		// Get rules from c3.css
+      		for (var i = 0; i &lt;= document.styleSheets.length - 1; i++) {
+      			<span class="missing-if-branch" title="if path not taken" >I</span>if (document.styleSheets[i].href &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >document.styleSheets[i].href.indexOf('c3.css') !== -1)</span> {
+<span class="cstat-no" title="statement not covered" >      				if (document.styleSheets[i].rules !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      					chartStyle = document.styleSheets[i].rules;</span>
+      				} else {
+<span class="cstat-no" title="statement not covered" >      					chartStyle = document.styleSheets[i].cssRules;</span>
+      				}
+      			}
+      		}
+&nbsp;
+      		<span class="missing-if-branch" title="if path not taken" >I</span>if (chartStyle !== null &amp;&amp; chartStyle !== undefined) {
+            // SVG doesn't use CSS visibility and opacity is an attribute, not a style property. Change hidden stuff to "display: none"
+<span class="cstat-no" title="statement not covered" >            var changeToDisplay = <span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >              if (angular.element(this).css('visibility') === 'hidden' || angular.element(this).css('opacity') === '0') {</span>
+<span class="cstat-no" title="statement not covered" >                angular.element(this).css('display', 'none');</span>
+              }
+            };
+&nbsp;
+            // Inline apply all the CSS rules as inline
+<span class="cstat-no" title="statement not covered" >      			for (i = 0; i &lt; chartStyle.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      				if (chartStyle[i].type === 1) {</span>
+<span class="cstat-no" title="statement not covered" >      					selector = chartStyle[i].selectorText;</span>
+<span class="cstat-no" title="statement not covered" >      					styles = makeStyleObject(chartStyle[i]);</span>
+<span class="cstat-no" title="statement not covered" >                angular.element('svg *').each(changeToDisplay);</span>
+<span class="cstat-no" title="statement not covered" >      					angular.element(selector).not('.c3-chart path').css(styles);</span>
+      				}
+&nbsp;
+              /* C3 puts line colour as a style attribute, which gets overridden
+                 by the global ".c3 path, .c3 line" in c3.css. The .not() above
+                 prevents that, but now we need to set fill to "none" to prevent
+                 weird beziers.
+&nbsp;
+                 Which screws with pie charts and whatnot, ergo the is() callback.
+              */
+<span class="cstat-no" title="statement not covered" >              angular.element('.c3-chart path')</span>
+                .filter(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >                  return angular.element(this).css('fill') === 'none';</span>
+                })
+                .attr('fill', 'none');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              angular.element('.c3-chart path')</span>
+                .filter(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >                  return angular.element(this).css('fill') !== 'none';</span>
+                })
+                .attr('fill', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >                  return angular.element(this).css('fill');</span>
+                });
+      			}
+      		}
+      	};
+&nbsp;
+        // Create an object containing all the CSS styles.
+        // TODO move into inlineAllStyles
+      	var makeStyleObject = <span class="fstat-no" title="function not covered" >function (rule) {</span>
+<span class="cstat-no" title="statement not covered" >      		var styleDec = rule.style;</span>
+<span class="cstat-no" title="statement not covered" >      		var output = {};</span>
+<span class="cstat-no" title="statement not covered" >      		var s;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      		for (s = 0; s &lt; styleDec.length; s++) {</span>
+<span class="cstat-no" title="statement not covered" >      			output[styleDec[s]] = styleDec[styleDec[s]];</span>
+      		}
+<span class="cstat-no" title="statement not covered" >      		return output;</span>
+      	};
+&nbsp;
+        // Create a SVG.
+      	var createSVGContent = function(svg) {
+      		/*
+      			Copyright (c) 2013 The New York Times
+&nbsp;
+      			Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+      			The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+&nbsp;
+      			SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+      		*/
+&nbsp;
+      		//via https://github.com/NYTimes/svg-crowbar
+&nbsp;
+      		var prefix = {
+      			xmlns: 'http://www.w3.org/2000/xmlns/',
+      			xlink: 'http://www.w3.org/1999/xlink',
+      			svg: 'http://www.w3.org/2000/svg'
+      		};
+&nbsp;
+      		var doctype = '&lt;?xml version="1.0" standalone="no"?&gt;&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;';
+&nbsp;
+&nbsp;
+      		svg.setAttribute('version', '1.1');
+&nbsp;
+          // Disabled defs because it was screwing up SVG output
+      		//var defsEl = document.createElement("defs");
+      		//svg.insertBefore(defsEl, svg.firstChild); //TODO   .insert("defs", ":first-child")
+&nbsp;
+      		var styleEl = document.createElement('style');
+      		//defsEl.appendChild(styleEl);
+      		styleEl.setAttribute('type', 'text/css');
+&nbsp;
+&nbsp;
+      		// removing attributes so they aren't doubled up
+      		svg.removeAttribute('xmlns');
+      		svg.removeAttribute('xlink');
+&nbsp;
+      		// These are needed for the svg
+      		<span class="missing-if-branch" title="else path not taken" >E</span>if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns')) {
+      			svg.setAttributeNS(prefix.xmlns, 'xmlns', prefix.svg);
+      		}
+&nbsp;
+      		<span class="missing-if-branch" title="else path not taken" >E</span>if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns:xlink')) {
+      			svg.setAttributeNS(prefix.xmlns, 'xmlns:xlink', prefix.xlink);
+      		}
+&nbsp;
+      		var source = (new XMLSerializer()).serializeToString(svg).replace('&lt;/style&gt;', '&lt;![CDATA[' + styles + ']]&gt;&lt;/style&gt;');
+&nbsp;
+          // Quick 'n' shitty hacks to remove stuff that prevents AI from opening SVG
+          source = source.replace(/\sfont-.*?: .*?;/gi, '');
+          source = source.replace(/\sclip-.*?="url\(http:\/\/.*?\)"/gi, '');
+          source = source.replace(/\stransform="scale\(2\)"/gi, '');
+          // not needed but good so it validates
+          source = source.replace(/&lt;defs xmlns="http:\/\/www.w3.org\/1999\/xhtml"&gt;/gi, '&lt;defs&gt;');
+&nbsp;
+      		return {svg: svg, source: [doctype + source]};
+      	};
+      }
+    };
+  }]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 23 2015 14:12:33 GMT+0100 (BST)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

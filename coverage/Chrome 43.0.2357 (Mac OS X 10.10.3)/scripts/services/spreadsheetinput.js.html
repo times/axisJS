@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/services/spreadsheetinput.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">scripts/services/spreadsheetinput.js</span></h1>
+    <h2>
+        Statements: <span class="metric">2.78% <small>(1 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">2.78% <small>(1 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/services/</a> &#187; spreadsheetinput.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @ngdoc service
+ * @name axisJSApp.spreadsheetInput
+ * @description
+ * # spreadsheetInput
+ * Enables a fancy user-friendly spreadsheet input.
+ */
+&nbsp;
+'use strict';
+&nbsp;
+angular.module('axisJSApp')
+  .factory('spreadsheetInput', <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var defaultSheet = [</span>
+      ['data1', 'data2'],
+      [30, 50],
+      [200, 20],
+      [100, 10],
+      [400, 40],
+      [150, 15],
+      [250, 25]
+    ];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var parseSheet = <span class="fstat-no" title="function not covered" >function(scope) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (scope.inputs.inputData) {</span>
+<span class="cstat-no" title="statement not covered" >        scope.chartData = []; </span>// Empty, or else new column names will break ng-grid
+<span class="cstat-no" title="statement not covered" >        scope.columns = []; </span>// Clear existing
+<span class="cstat-no" title="statement not covered" >        scope.config.data.columns = [];</span>
+<span class="cstat-no" title="statement not covered" >        scope.chartData = angular.copy(scope.inputs.inputData);</span>
+<span class="cstat-no" title="statement not covered" >        var cols = [];</span>
+&nbsp;
+        // Convert objects into arrays. Might be better long-term to use C3's JSON input.
+        // Lots of this stuff is C3-specific. TODO move to c3Service.
+<span class="cstat-no" title="statement not covered" >        if (scope.chartData.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >          scope.columns = scope.chartData[0].filter(<span class="fstat-no" title="function not covered" >function(v) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return v != undefined; </span>/* jshint ignore:line */
+          });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          scope.chartData.shift();</span>
+<span class="cstat-no" title="statement not covered" >          angular.forEach(scope.columns, <span class="fstat-no" title="function not covered" >function(colName, index) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var column = [];</span>
+<span class="cstat-no" title="statement not covered" >            column.push(colName);</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(scope.chartData, <span class="fstat-no" title="function not covered" >function(datum) {</span></span>
+<span class="cstat-no" title="statement not covered" >              if (datum[index] !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                column.push(datum[index]);</span>
+              }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            cols.push(column);</span>
+          });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          scope.config.data.columns = cols;</span>
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return scope;</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var convertColsToSheet = <span class="fstat-no" title="function not covered" >function(columns) {</span> // This is untested. @TODO test.</span>
+<span class="cstat-no" title="statement not covered" >      var data = [];</span>
+<span class="cstat-no" title="statement not covered" >      var headers = [];</span>
+<span class="cstat-no" title="statement not covered" >      for (var i = 0; i &lt; columns.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        headers.push(columns[i].shift());</span>
+<span class="cstat-no" title="statement not covered" >        for (var j = 0; j &lt; columns[i].length; j++) {</span>
+<span class="cstat-no" title="statement not covered" >          if (!data[j]) {</span>
+<span class="cstat-no" title="statement not covered" >            data[j] = [];</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          data[j][i] = columns[i][j];</span>
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return headers.concat(data);</span>
+    };
+&nbsp;
+    // Public API here
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      /**
+       * Validate spreadsheet input
+       * @param  {array} value   The output from HOT.getData()
+       * @return {boolean}       True if validates, false if not.
+       */
+      validate: <span class="fstat-no" title="function not covered" >function(value) {</span>
+<span class="cstat-no" title="statement not covered" >        return value instanceof Array; </span>// TODO write a real validator.
+      },
+&nbsp;
+      /**
+       * The default sheet to populate AxisJS with.
+       * @type {array}
+       */
+      defaultData: defaultSheet,
+&nbsp;
+      /**
+       * Parses sheet into columns. Called whenever sheet updated.
+       * @param  {object} scope The AxisJS scope object.
+       * @return {object}       The updated scope object.
+       */
+      input: <span class="fstat-no" title="function not covered" >function(scope) {</span>
+<span class="cstat-no" title="statement not covered" >        return parseSheet(scope);</span>
+      },
+&nbsp;
+      /**
+       * Convert array columns to Handsontable-compatible array.
+       * @param  {array} data An array of array columns.
+       * @return {array}      Array with header column values as first element.
+       */
+      convert: <span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >        return convertColsToSheet(data);</span>
+      }
+    };
+  });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 23 2015 14:12:33 GMT+0100 (BST)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/services/c3service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">scripts/services/c3service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">75% <small>(36 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">40% <small>(12 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">45.45% <small>(5 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">75% <small>(36 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/services/</a> &#187; c3service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">126</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @ngdoc service
+ * @name axisJsApp.c3Service
+ * @description
+ * # c3Service
+ * Factory in the axisJsApp.
+ */
+&nbsp;
+'use strict';
+/*global c3*/
+&nbsp;
+angular.module('axisJSApp')
+  .factory('c3Service', function () {
+    return {
+      /**
+       * Generates a chart based on config data
+       * @param  {string} selectorID DOM ID to select
+       * @param  {object} config     Config object passed in from scope
+       * @return {object}            An instance of C3.js
+       */
+      generate: function(selectorID, config) {
+        var chartConfig = angular.extend({bindto: '#' + selectorID}, config);
+        return c3.generate(chartConfig);
+      },
+&nbsp;
+      /**
+       * Builds a config object
+       * @param {object} appConfig App config object via ConfigProvider.
+       */
+      getConfig: function (appConfig) {
+        var defaultColors = [];
+        angular.forEach(appConfig.colors, function(color){
+          defaultColors.push(color.value);
+        });
+&nbsp;
+        var config = {
+          data: {
+            x: '',
+            y: '',
+            y2: '',
+            columns: [
+              ['data1', 30, 200, 100, 400, 150, 250],
+              ['data2', 50, 20, 10, 40, 15, 25]
+            ],
+            axes: { // This is used in a similar fashion to config.axis.
+              data1: appConfig.defaults['y axis'],
+              data2: appConfig.defaults['y axis']
+            },
+            groups: { // Ditto.
+            },
+            type: '',
+            types: {
+              data1: 'line', // Currently must set explictly on initialisation to populate view.
+              data2: 'line'
+            },
+            colors: {
+              data1: appConfig.colors[0].value,
+              data2: appConfig.colors[1].value
+            }
+          },
+          grid: {
+            x: {
+              show: typeof appConfig.defaults['grid x'] !== 'undefined' ? appConfig.defaults['grid x'] : false
+            },
+            y: {
+              show: typeof appConfig.defaults['grid y'] !== 'undefined' ? appConfig.defaults['grid y'] : false
+            }
+          },
+          axis: {
+            x: {
+              show: typeof appConfig.defaults['axis x'] !== 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >appConfig.defaults['axis x'] </span>: true,
+              // tick: {
+              //   format: function(d){return d;}
+              // }
+            },
+            y: {
+              show: typeof appConfig.defaults['axis y'] !== 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >appConfig.defaults['axis y'] </span>: true,
+              // tick: {
+              //   format: function(d){return d;}
+              // }
+            },
+            y2: {
+              show: typeof appConfig.defaults['axis y2'] !== 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >appConfig.defaults['axis y2'] </span>: false,
+              // tick: {
+              //   format: function(d){return d;}
+              // }
+            }
+          },
+          point: {
+            show:  typeof appConfig.defaults.point !== 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >appConfig.defaults.point </span>: false
+          },
+          legend: {
+            position: typeof appConfig.defaults['legend position'] !== 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >appConfig.defaults['legend position'] </span>: 'bottom',
+            show:  typeof appConfig.defaults.legend !== 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >appConfig.defaults.legend </span>: true
+          },
+          color: {
+            pattern: defaultColors
+          }
+        };
+&nbsp;
+        var chartTypes = [
+          'line',
+          'step',
+          'area',
+          'area-step',
+          'scatter',
+          'bar',
+          'spline',
+          // 'donut', // These are handled via $scope.config.chartGlobalType
+          // 'gauge',
+          // 'pie'
+        ];
+&nbsp;
+        var axesConfig = [
+          {value: 'x', label: 'Bottom'},
+          {value: 'y', label: 'Left'},
+          {value: 'y2', label: 'Right'}
+        ];
+&nbsp;
+        config.groups = {};
+&nbsp;
+        // Populate Initial
+        config.axis.x.accuracy = 0;
+        config.axis.y.accuracy = 0;
+        config.axis.y2.accuracy = 0;
+        config.axis.x.prefix = '';
+        config.axis.y.prefix = '';
+        config.axis.y2.prefix = '';
+        config.axis.x.suffix = '';
+        config.axis.y.suffix = '';
+        config.axis.y2.suffix = '';
+        config.axis.x.tick = {
+          format: <span class="fstat-no" title="function not covered" >function (d) {</span>
+<span class="cstat-no" title="statement not covered" >            if (config.chartGlobalType === 'series' &amp;&amp; config.axis.x.type !== 'category') {</span>
+<span class="cstat-no" title="statement not covered" >              return config.axis.x.prefix + d.toFixed(config.axis.x.accuracy).toString() + config.axis.x.suffix;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              return d;</span>
+            }
+          }
+        };
+        config.axis.y.tick = {
+          format: <span class="fstat-no" title="function not covered" >function (d) {</span>
+<span class="cstat-no" title="statement not covered" >            if (config.chartGlobalType === 'series' &amp;&amp; config.axis.y.type !== 'category') {</span>
+<span class="cstat-no" title="statement not covered" >              return config.axis.y.prefix + d.toFixed(config.axis.y.accuracy).toString() + config.axis.y.suffix;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              return d;</span>
+            }
+          }
+        };
+        config.axis.y2.tick = {
+          format: <span class="fstat-no" title="function not covered" >function (d) {</span>
+<span class="cstat-no" title="statement not covered" >            if (config.chartGlobalType === 'series' &amp;&amp; config.axis.y2.type !== 'category') {</span>
+<span class="cstat-no" title="statement not covered" >              return config.axis.y2.prefix + d.toFixed(config.axis.y2.accuracy).toString() + config.axis.y2.suffix;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              return d;</span>
+            }
+          }
+        };
+&nbsp;
+        config.chartTitle = '';
+        config.chartCredit = '';
+        config.chartSource = '';
+        config.chartWidth = 1000;
+        config.chartHeight = 500;
+        config.chartGlobalType = 'series';
+        config.chartAccuracy = 1;
+        config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
+&nbsp;
+        config.pie = {
+          label: {
+            format: <span class="fstat-no" title="function not covered" >function(val, percentage) {</span>
+<span class="cstat-no" title="statement not covered" >              return (percentage * 100).toFixed(config.chartAccuracy) + '%';</span>
+            }
+          }
+        };
+&nbsp;
+        config.donut = {
+          label: {
+            format: <span class="fstat-no" title="function not covered" >function(val, percentage) {</span>
+<span class="cstat-no" title="statement not covered" >              return (percentage * 100).toFixed(config.chartAccuracy) + '%';</span>
+            }
+          }
+        };
+&nbsp;
+        config.gauge = {
+          label: {
+            format: <span class="fstat-no" title="function not covered" >function(val, percentage) {</span>
+<span class="cstat-no" title="statement not covered" >              return (percentage * 100).toFixed(config.chartAccuracy) + '%';</span>
+            }
+          }
+        };
+&nbsp;
+        return {
+          config: config,
+          chartTypes: chartTypes,
+          axesConfig: axesConfig,
+          dependencies: this.getExternalDependencies()
+        };
+      },
+&nbsp;
+      getExternalDependencies: function(){
+        return {
+          css: [
+            '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.css'
+          ],
+          js: [
+            '//cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js',
+            '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.js'
+          ]
+        };
+      }
+    };
+  });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 23 2015 14:12:33 GMT+0100 (BST)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

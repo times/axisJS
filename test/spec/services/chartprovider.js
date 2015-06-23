@@ -19,8 +19,6 @@ describe('Service: chartProvider', function () {
         }
       };
 
-
-
   beforeEach(inject(function (_chartProvider_) {
     chartProvider = _chartProvider_;
     chartService = chartProvider(appConfig);

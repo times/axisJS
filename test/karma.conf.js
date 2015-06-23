@@ -51,6 +51,8 @@ module.exports = function(config) {
       'bower_components/angular-off-canvas/off-canvas.js',
       'bower_components/jsonfn/jsonfn.js',
       'bower_components/jspdf/dist/jspdf.min.js',
+      'bower_components/handsontable/dist/handsontable.full.js',
+      'bower_components/ngHandsontable/dist/ngHandsontable.js',
       'app/scripts/**/*.js',
       //'test/mock/**/*.js',
       'test/spec/**/*.js',
@@ -71,7 +73,7 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      // 'PhantomJS',
+      //'PhantomJS',
       'Chrome',
       // 'Firefox'
     ],
@@ -111,8 +113,8 @@ module.exports = function(config) {
       'app/scripts/**/*.js': ['coverage']
     },
     coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
+      type: 'html',
+      dir: 'coverage/'
     }
   };
 

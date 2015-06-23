@@ -22,7 +22,7 @@ describe('Controller: MainCtrl -- WITHOUT external data', function () {
           {value: 'blue'},
           {value: 'red'}
         ],
-        defaults: {},
+        defaults: {}
       }
     });
   }));
