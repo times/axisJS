@@ -1,0 +1,12 @@
+# AxisMaker axisJS configuration
+---
+framework: 'c3'
+
+export:
+  - 'wordpress'
+  - 'Embed code'
+  - 'pdf'
+
+output:
+  - 'png'
+  - 'svg'

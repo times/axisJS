@@ -7,7 +7,7 @@
  * Service in the axisJsApp.
  */
 angular.module('axisJSApp')
-  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http, $timeout) {
+  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http, $window) {
     var wordpress = angular.copy(GenericOutput);
 
     wordpress.serviceConfig = {
@@ -70,6 +70,24 @@ angular.module('axisJSApp')
       var payload = wordpress.preprocess(scope);
       wordpress.process(payload);
       wordpress.complete();
+    };
+    
+    wordpress.import = function(inputService){
+      if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined') {
+        var importData = {};
+        importData.config = angular.fromJson($window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
+        importData.inputData = inputService.convert(importData.config.columns);
+        importData.config.axis.x.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.x.type?importData.config.axis.x.prefix+b.toFixed(importData.config.axis.x.accuracy).toString()+importData.config.axis.x.suffix:b;};
+        importData.config.axis.y.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.y.type?importData.config.axis.y.prefix+b.toFixed(importData.config.axis.y.accuracy).toString()+importData.config.axis.y.suffix:b;};
+        importData.config.axis.y2.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.y2.type?importData.config.axis.y2.prefix+b.toFixed(importData.config.axis.y2.accuracy).toString()+importData.config.axis.y2.suffix:b;};
+        importData.config.donut.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
+        importData.config.pie.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
+        importData.config.gauge.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
+        
+        if (importData.config && importData.inputData) {
+          return importData;
+        }
+      }
     };
 
     return wordpress;

@@ -1,8 +1,8 @@
 <!-- TODO simplify this template -->
 <span ng-switch on="buttonType">
   <span ng-switch-when="export">
-    <span ng-if="items.length > 1">
-      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+    <span ng-if="items.length > 1" dropdown>
+      <button type="button" class="btn btn-success dropdown-toggle" dropdown-toggle>
         Export to... <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
@@ -16,8 +16,8 @@
   </span>
 
   <span ng-switch-when="save">
-    <span ng-if="items.length > 1">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" export-chart="save">
+    <span ng-if="items.length > 1" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle export-chart="save">
         Save... <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">

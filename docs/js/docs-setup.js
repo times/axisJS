@@ -140,6 +140,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJsApp.githubOutput",
+      "shortName": "axisJsApp.githubOutput",
+      "type": "service",
+      "moduleName": "axisJsApp",
+      "shortDescription": "axisMaker Output",
+      "keywords": "api axisjsapp axismaker githuboutput output outputting service"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.inputService",
       "shortName": "axisJsApp.inputService",
       "type": "service",
@@ -209,5 +218,6 @@ NG_DOCS={
   "startPage": "/api",
   "scripts": [
     "angular.min.js"
-  ]
+  ],
+  "editExample": true
 };

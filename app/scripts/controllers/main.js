@@ -8,7 +8,7 @@
 'use strict';
 
 angular.module('axisJSApp')
-  .controller('MainCtrl', function(chartProvider, inputService, configChooser, appConfig, $scope) {
+  .controller('MainCtrl', function(chartProvider, inputService, configChooser, appConfig, $scope, $injector) {
     /**
      * Sets up the configuration object from YAML
      */
@@ -78,27 +78,22 @@ angular.module('axisJSApp')
       window.chartConfig = $scope.config;
     };
 
-    /**
-     * Sets up callback functions broken by JSON stringify.
-     * TODO make this less ridiculous.
-     */
-    if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined') {
-      var fromWP = angular.fromJson(window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
-      $scope.config = fromWP;
-      $scope.inputs.inputData = input.convert($scope.config.data.columns);
-      $scope.config.axis.x.tick.format = function (b){return'series'===$scope.config.chartGlobalType&&'category'!==$scope.config.axis.x.type?$scope.config.axis.x.prefix+b.toFixed($scope.config.axis.x.accuracy).toString()+$scope.config.axis.x.suffix:b;};
-      $scope.config.axis.y.tick.format = function (b){return'series'===$scope.config.chartGlobalType&&'category'!==$scope.config.axis.y.type?$scope.config.axis.y.prefix+b.toFixed($scope.config.axis.y.accuracy).toString()+$scope.config.axis.y.suffix:b;};
-      $scope.config.axis.y2.tick.format = function (b){return'series'===$scope.config.chartGlobalType&&'category'!==$scope.config.axis.y2.type?$scope.config.axis.y2.prefix+b.toFixed($scope.config.axis.y2.accuracy).toString()+$scope.config.axis.y2.suffix:b;};
-      $scope.config.donut.label.format = function (b,c){return(100*c).toFixed($scope.config.chartAccuracy)+'%';};
-      $scope.config.pie.label.format = function (b,c){return(100*c).toFixed($scope.config.chartAccuracy)+'%';};
-      $scope.config.gauge.label.format = function (b,c){return(100*c).toFixed($scope.config.chartAccuracy)+'%';};
-      $scope.updateData();
-    } else {
-      /**
-      * Push the initial data.
-      */
+    // Load data from external sources if present
+    angular.forEach(appConfig.export, function(type){
+      var output = $injector.get(type.toLowerCase().replace(' ', '') + 'Output');
+      var importData;
+      if (typeof output.import !== 'undefined') {
+        importData = output.import(input);
+        if (importData) {
+          $scope.inputs.inputData = importData.inputData;
+          $scope.config = importData.config;
+        }
+      }
+    });
+    
+    if (!$scope.inputs.inputData) {
       $scope.inputs.inputData = input.defaultData;
-      $scope.updateData();
     }
+    $scope.updateData();
 
   });
