@@ -1,8 +1,12 @@
 <div class="off-canvas__nav panel">
   <h1>Choose a config</h1>
   <ul class="nav nav-pills nav-stacked">
-    <!-- This is so bad. -->
-    <li role="presentation"><a href="#" onclick="window.location = '/'">Default/Red Box</a></li>
-    <li role="presentation"><a href="#" onclick="window.location = '/?config=sundaytimes'">Sunday Times</a></li>
+    <li role="presentation">
+      <a href="#" ng-click="setConfig(false)">Default/Red Box</a>
+    </li>
+    <li role="presentation" ng-repeat="theme in themes">
+      <a href="#" ng-click="setConfig(theme.file)">{{theme.name}}</a>
+    </li>
+    
   </ul>
 </div>

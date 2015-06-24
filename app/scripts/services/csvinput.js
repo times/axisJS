@@ -64,6 +64,7 @@ angular.module('axisJSApp')
     };
 
     var convertColsToCSV = function(columns) {
+      console.log(columns);
       var data = [];
       var headers = [];
       for (var i = 0; i < columns.length; i++) {
@@ -91,8 +92,8 @@ angular.module('axisJSApp')
         return parseCSV(scope);
       },
 
-      convert: function(data) {
-        return convertColsToCSV(data);
+      convert: function(columns) {
+        return convertColsToCSV(columns);
       }
     };
   });

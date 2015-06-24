@@ -76,7 +76,7 @@ angular.module('axisJSApp')
       if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined') {
         var importData = {};
         importData.config = angular.fromJson($window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
-        importData.inputData = inputService.convert(importData.config.columns);
+        importData.inputData = inputService.convert(importData.config.data.columns);
         importData.config.axis.x.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.x.type?importData.config.axis.x.prefix+b.toFixed(importData.config.axis.x.accuracy).toString()+importData.config.axis.x.suffix:b;};
         importData.config.axis.y.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.y.type?importData.config.axis.y.prefix+b.toFixed(importData.config.axis.y.accuracy).toString()+importData.config.axis.y.suffix:b;};
         importData.config.axis.y2.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.y2.type?importData.config.axis.y2.prefix+b.toFixed(importData.config.axis.y2.accuracy).toString()+importData.config.axis.y2.suffix:b;};

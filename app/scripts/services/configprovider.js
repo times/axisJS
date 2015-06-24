@@ -8,14 +8,11 @@
  * Provider in the axisJsApp.
  */
 angular.module('axisJSApp')
-  .provider('configProvider', function () {
-    var userConfigFile = 'config.yaml';
+  .provider('configProvider', function() {
     return {
-      setConfigFile: function(value) {
-        userConfigFile = value;
-      },
-      $get: function($http, $q) {
+      $get: function($http, $q, localStorageService) {
         var defaultConfig = $http.get('default.config.yaml');
+        var userConfigFile = localStorageService.get('config') ? 'themes/' + localStorageService.get('config') + '.config.yaml' : 'config.yaml';
         var userConfig = $http.get(userConfigFile).then(
           function(response){
             return response.data;
@@ -40,10 +37,4 @@ angular.module('axisJSApp')
         });
       }
     };
-  })
-  .config(['configProviderProvider', function(configProviderProvider){ // "Natascha! Launch the anti-anti-missile-missile missile!"
-    var config = window.location.href.match(/config=([a-z]+)/i);
-    if (config && config.length > 0) {
-      configProviderProvider.setConfigFile('themes/' + config[1] + '.config.yaml');
-    }
-  }]);
+  });

@@ -18,9 +18,10 @@ angular
     'ui.bootstrap',
     'minicolors',
     'cn.offCanvas',
-    'ngHandsontable'
+    'ngHandsontable',
+    'LocalStorageModule'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('index', {
@@ -28,10 +29,10 @@ angular
         templateUrl: 'partials/main.html',
         controller: 'MainCtrl',
         resolve: {
-          appConfig: ['configProvider', '$rootScope', function(configProvider, $rootScope) {
+          appConfig: function(configProvider, $rootScope) {
             $rootScope.version = '1.0.3';
             return configProvider;
-          }]
+          }
         }
       });
-  }]);
+  });

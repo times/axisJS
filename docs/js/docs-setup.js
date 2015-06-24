@@ -63,8 +63,8 @@ NG_DOCS={
       "shortName": "MainCtrl",
       "type": "function",
       "moduleName": "axisJSApp",
-      "shortDescription": "Main controller. Populates and links the input fields.",
-      "keywords": "api axisjsapp controller fields function input links main populates"
+      "shortDescription": "Main controller.",
+      "keywords": "api axisjsapp config controller data function initial loaded main providers pulls sets"
     },
     {
       "section": "api",

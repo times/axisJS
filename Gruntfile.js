@@ -444,7 +444,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
+    //'cdnify', // Doesn't currently work. See yeoman/generator-angular#955
     'cssmin',
     'uglify',
     'usemin',

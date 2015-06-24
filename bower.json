@@ -56,7 +56,8 @@
     "angular-off-canvas": "~0.1.0",
     "jsonfn": "vkiryukhin/jsonfn",
     "jspdf": "~1.0.272",
-    "ngHandsontable": "~0.5.2"
+    "ngHandsontable": "~0.5.2",
+    "angular-local-storage": "~0.2.2"
   },
   "appPath": "app",
   "resolutions": {
