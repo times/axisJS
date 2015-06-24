@@ -69,7 +69,7 @@ angular.module('axisJSApp')
         }
       }
 
-      return headers.concat(data);
+      return [headers].concat(data);
     };
 
     // Public API here

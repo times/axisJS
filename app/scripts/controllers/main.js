@@ -2,13 +2,14 @@
  * @ngdoc function
  * @name axisJSApp.controller:MainCtrl
  * @description
- * Main controller. Populates and links the input fields.
+ * Main controller.
+ * Pulls in config from the providers and sets up either the initial/default data or the loaded data.
  */
 
 'use strict';
 
 angular.module('axisJSApp')
-  .controller('MainCtrl', function(chartProvider, inputService, configChooser, appConfig, $scope, $injector) {
+  .controller('MainCtrl', function($scope, $injector, $window, appConfig, chartProvider, inputService, configChooser) {
     /**
      * Sets up the configuration object from YAML
      */
@@ -73,9 +74,9 @@ angular.module('axisJSApp')
     };
 
     // Debugging function — run getConfig() in the console to get current config object
-    window.getConfig = function() {
+    $window.getConfig = function() {
       console.dir($scope);
-      window.chartConfig = $scope.config;
+      $window.chartConfig = $scope.config;
     };
 
     // Load data from external sources if present
