@@ -13,17 +13,20 @@ angular.module('axisJSApp')
     /**
      * Sets up the configuration object from YAML
      */
-    $scope.appConfig = appConfig;
-    $scope.appConfig.toggleChooser = configChooser.toggle;
+    var input = inputService(appConfig);
+    var chart = chartProvider(appConfig);
+    
     $scope.inputs = {};
     $scope.columns = [];
     $scope.chartData = {};
-    $scope.config = chartProvider(appConfig).config;
-    $scope.chartTypes = chartProvider(appConfig).chartTypes;
-    $scope.axesConfig = chartProvider(appConfig).axesConfig;
+    $scope.appConfig = appConfig;
+    $scope.appConfig.toggleChooser = configChooser.toggle;
+    $scope.config = chart.config;
+    $scope.chartTypes = chart.chartTypes;
+    $scope.axesConfig = chart.axesConfig;
     $scope.config.background = appConfig.background ? appConfig.background : false;
     $scope.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
-    var input = inputService(appConfig);
+    
 
     /**
      * Updates the data. Runs whenever data is added, deleted or modified.
@@ -42,19 +45,9 @@ angular.module('axisJSApp')
 
     /**
      * Sets the global chart type.
-     * TODO move to c3Service
      */
     $scope.setGlobalType = function(type) {
-      for (var key in $scope.config.data.types) {
-        if ($scope.config.data.types.hasOwnProperty(key)) {
-          if (type !== 'series') {
-            $scope.config.data.types[key] = type;
-          } else {
-            $scope.config.data.types[key] = 'line';
-          }
-
-        }
-      }
+      chart.setGlobalType(type, $scope);
     };
 
     /**
@@ -62,24 +55,22 @@ angular.module('axisJSApp')
      * TODO move to c3Service
      */
     $scope.setGroups = function() {
-      $scope.config.data.groups = [];
-      for (var group in $scope.config.groups) {
-        if ($scope.config.groups.hasOwnProperty(group)) {
-          if (typeof $scope.config.data.groups[$scope.config.groups[group]] === 'undefined') {
-            $scope.config.data.groups[$scope.config.groups[group]] = [];
-          }
-          $scope.config.data.groups[$scope.config.groups[group]].push(group);
-        }
-      }
+      chart.setGroups($scope);
     };
 
-    // Debugging function — run getConfig() in the console to get current config object
+    /**
+     * Debugging function — run getConfig() in the console to log current config object.
+     * Also attaches $scope.config to window.chartConfig so it's visible in console.
+     */
     $window.getConfig = function() {
       console.dir($scope);
       $window.chartConfig = $scope.config;
     };
 
-    // Load data from external sources if present
+    /**
+     * Load data from external sources if present
+     * @param  {array} appConfig.export List of all exporters in config file.
+     */
     angular.forEach(appConfig.export, function(type){
       var output = $injector.get(type.toLowerCase().replace(' ', '') + 'Output');
       var importData;
@@ -92,9 +83,12 @@ angular.module('axisJSApp')
       }
     });
     
+    // If the above services don't populate inputData, populate it with default data.
     if (!$scope.inputs.inputData) {
       $scope.inputs.inputData = input.defaultData;
     }
+    
+    // Finally, update and render.
     $scope.updateData();
 
   });

@@ -194,7 +194,9 @@ angular.module('axisJSApp')
           config: config,
           chartTypes: chartTypes,
           axesConfig: axesConfig,
-          dependencies: this.getExternalDependencies()
+          dependencies: this.getExternalDependencies(),
+          setGlobalType: this.setGlobalType,
+          setGroups: this.setGroups
         };
       },
 
@@ -208,6 +210,39 @@ angular.module('axisJSApp')
             '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.js'
           ]
         };
+      },
+      
+      /**
+       * Sets the global chart type.
+       * @param  {string} type  A chart type
+       * @param  {object} scope Axis scope
+       */
+      setGlobalType: function(type, scope) {
+        for (var key in scope.config.data.types) {
+          if (scope.config.data.types.hasOwnProperty(key)) {
+            if (type !== 'series') {
+              scope.config.data.types[key] = type;
+            } else {
+              scope.config.data.types[key] = 'line';
+            }
+          }
+        }
+      },
+      
+      /**
+       * Put data into groups.
+       * @param  {object} scope Axis scope
+       */
+      setGroups: function(scope) {
+        scope.config.data.groups = [];
+        for (var group in scope.config.groups) {
+          if (scope.config.groups.hasOwnProperty(group)) {
+            if (typeof scope.config.data.groups[scope.config.groups[group]] === 'undefined') {
+              scope.config.data.groups[scope.config.groups[group]] = [];
+            }
+            scope.config.data.groups[scope.config.groups[group]].push(group);
+          }
+        }
       }
     };
   });

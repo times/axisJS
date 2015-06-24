@@ -52,8 +52,8 @@ angular.module('axisJSApp')
       '})();</script>'
     );
 
-    output.complete = deps.concat(code).join("\n"); // TODO figure out how to pretty-print.
-    output.partial = [deps[0]].concat(code).join("\n");
+    output.complete = deps.concat(code).join('\n'); // TODO figure out how to pretty-print.
+    output.partial = [deps[0]].concat(code).join('\n');
     
     return output;
   };
