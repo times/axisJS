@@ -269,6 +269,8 @@ module.exports = function (grunt) {
     uglify: {
       options: {
         mangle: false,
+        compress: false,
+        beautify: true,
         quoteStyle: 3,
         preserveComments: false
       }

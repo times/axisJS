@@ -98,3 +98,7 @@ titles:
 backgroundColor: 'white'
 
 colorPicker: 'simple'
+
+themes:
+  - name: 'Sunday Times'
+    file: 'sundaytimes'

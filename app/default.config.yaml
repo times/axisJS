@@ -100,5 +100,7 @@ backgroundColor: 'white'
 colorPicker: 'simple'
 
 themes:
+  - name: 'Default/Red Box'
+    file: 'config.yaml'
   - name: 'Sunday Times'
-    file: 'sundaytimes'
+    file: 'themes/sundaytimes.config.yaml'

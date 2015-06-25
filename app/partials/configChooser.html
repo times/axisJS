@@ -1,9 +1,6 @@
 <div class="off-canvas__nav panel">
   <h1>Choose a config</h1>
   <ul class="nav nav-pills nav-stacked">
-    <li role="presentation">
-      <a href="#" ng-click="setConfig(false)">Default/Red Box</a>
-    </li>
     <li role="presentation" ng-repeat="theme in themes">
       <a href="#" ng-click="setConfig(theme.file)">{{theme.name}}</a>
     </li>

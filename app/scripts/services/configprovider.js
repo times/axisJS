@@ -12,7 +12,7 @@ angular.module('axisJSApp')
     return {
       $get: function($http, $q, localStorageService) {
         var defaultConfig = $http.get('default.config.yaml');
-        var userConfigFile = localStorageService.get('config') ? 'themes/' + localStorageService.get('config') + '.config.yaml' : 'config.yaml';
+        var userConfigFile = localStorageService.get('config') ? localStorageService.get('config') : 'config.yaml';
         var userConfig = $http.get(userConfigFile).then(
           function(response){
             return response.data;
