@@ -26,8 +26,6 @@ describe('Service: wordpressOutput', function () {
     $httpBackend.whenGET('default.config.yaml').respond({});
     $httpBackend.expectGET('config.yaml');
     $httpBackend.whenGET('config.yaml').respond({});
-    $httpBackend.expectGET('partials/configChooser.html');
-    $httpBackend.whenGET('partials/configChooser.html').respond('');
 
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
