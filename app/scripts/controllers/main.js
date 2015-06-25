@@ -20,12 +20,14 @@ angular.module('axisJSApp')
     $scope.columns = [];
     $scope.chartData = {};
     $scope.appConfig = appConfig;
-    $scope.appConfig.toggleChooser = configChooser.toggle;
     $scope.config = chart.config;
     $scope.chartTypes = chart.chartTypes;
     $scope.axesConfig = chart.axesConfig;
     $scope.config.background = appConfig.background ? appConfig.background : false;
     $scope.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
+    $scope.toggleChooser = function() {
+      configChooser();
+    };
     
 
     /**

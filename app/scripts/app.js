@@ -16,7 +16,7 @@ angular
     'ui.router',
     'ui.bootstrap',
     'minicolors',
-    'cn.offCanvas',
+    'ngAside',
     'ngHandsontable',
     'LocalStorageModule'
   ])

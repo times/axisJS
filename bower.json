@@ -52,17 +52,18 @@
     "angular-mocks": "~1.3",
     "angular-scenario": "~1.3",
     "angular-minicolors": "~0.0.5",
-    "angular-off-canvas": "~0.1.0",
     "jsonfn": "vkiryukhin/jsonfn",
     "jspdf": "~1.0.272",
-    "ngHandsontable": "~0.5.2",
-    "angular-local-storage": "~0.2.2"
+    "ngHandsontable": "~0.5.1",
+    "angular-local-storage": "~0.2.2",
+    "angular-aside": "~1.1.3",
+    "handsontable": "0.12.6"
   },
   "appPath": "app",
   "resolutions": {
     "angular": "~1.3",
     "d3": "<=3.5.0",
-    "handsontable": "~0.12",
+    "handsontable": "0.12.6",
     "ngHandsontable": "0.5.1"
   }
 }
