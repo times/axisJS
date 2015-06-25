@@ -13,7 +13,6 @@ angular
     'ngAnimate',
     'ngResource',
     'ngSanitize',
-    'ui',
     'ui.router',
     'ui.bootstrap',
     'minicolors',

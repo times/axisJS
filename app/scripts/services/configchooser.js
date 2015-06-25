@@ -10,7 +10,7 @@
 angular.module('axisJSApp')
   .factory('configChooser', function (cnOffCanvas) {
     return cnOffCanvas({
-      controller: function ($scope, localStorageService, $window, configProvider) {
+      controller: /*@ngInject*/ function ($scope, localStorageService, $window, configProvider) {
         this.name = 'Choose Configuration';
         $scope.themes = [];
         configProvider.then(function(res){

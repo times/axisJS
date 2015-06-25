@@ -268,11 +268,14 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        mangle: false,
-        compress: false,
-        beautify: true,
         quoteStyle: 3,
-        preserveComments: false
+        preserveComments: false,
+        // mangle: {
+        //   except: ['ui-bootstrap-tpls.js']
+        // },
+        // Uncomment the following to make it easier to debug inside something like Axis Server. 
+        // compress: false,
+        // beautify: true
       }
     },
 

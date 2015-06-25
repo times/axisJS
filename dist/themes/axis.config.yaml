@@ -8,3 +8,9 @@ export:
 output:
   - 'png'
   - 'svg'
+
+themes:
+  - name: 'The Times'
+    file: 'axis'
+  - name: 'Sunday Times'
+    file: 'sundaytimes-axis'
