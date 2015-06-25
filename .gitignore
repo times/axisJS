@@ -6,3 +6,5 @@ node_modules
 app/bower_components
 app/styles/main.css
 test.html
+dist2/
+getFilesize.js

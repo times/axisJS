@@ -84,9 +84,10 @@ angular.module('axisJSApp')
         }
 
         function redraw() {
+          // Sets size. @TODO move to chartProvider somehow.
           scope.config.size = {
-            width: angular.element('.rendering').width() - 20, // TODO make these more modifiable
-            height: angular.element(window).height() - 50,
+            width: scope.config.chartWidth ? scope.config.chartWidth : angular.element('.rendering').width() - 20,
+            height: scope.config.chartHeight ? scope.config.chartHeight : angular.element(window).height() - 50,
           };
           scope.config.chartWidth = scope.config.size.width;
           scope.config.chartHeight = scope.config.size.height;
@@ -217,10 +218,22 @@ angular.module('axisJSApp')
           redraw();
         });
 
-        // Do titles
-        scope.$watchGroup(['config.chartTitle', 'config.chartCredit', 'config.chartSource', 'config.chartAccuracy', 'config.legend.position', 'config.legend.show'], function(){
-          redraw();
-        });
+        // Do titles and other aspects needing just a simple redraw.
+        scope.$watchGroup(
+          [
+            'config.chartHeight',
+            'config.chartWidth',
+            'config.chartTitle', 
+            'config.chartCredit', 
+            'config.chartSource', 
+            'config.chartAccuracy', 
+            'config.legend.position', 
+            'config.legend.show'
+          ], 
+          function(){
+            redraw();
+          }
+        );
 
         // Watch for groups
         scope.$watch('config.data.groups', function(){

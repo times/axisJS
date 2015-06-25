@@ -160,8 +160,6 @@ angular.module('axisJSApp')
         config.chartTitle = '';
         config.chartCredit = '';
         config.chartSource = '';
-        config.chartWidth = 1000;
-        config.chartHeight = 500;
         config.chartGlobalType = 'series';
         config.chartAccuracy = 1;
         config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
