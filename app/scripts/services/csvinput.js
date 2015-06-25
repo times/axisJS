@@ -10,10 +10,10 @@
 
 angular.module('axisJSApp')
   .factory('csvInput', function () {
-
     var validateCSV = function (value) {
       var parserConfig = {
-        header: true
+        header: true,
+        dynamicTyping: true
       };
 
       // Detect TSV; fallback to auto-detection. @see #39.
@@ -23,6 +23,7 @@ angular.module('axisJSApp')
 
       var csv = Papa.parse(value, parserConfig);
       var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
+      
       return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
     };
 
@@ -34,7 +35,8 @@ angular.module('axisJSApp')
         scope.columns = []; // Clear existing
         scope.config.data.columns = [];
         var parserConfig = {
-          header: true
+          header: true,
+          dynamicTyping: true
         };
 
         // Detect TSV; fallback to auto-detection. @see #39.
@@ -52,6 +54,11 @@ angular.module('axisJSApp')
             var column = [];
             column.push(colName);
             angular.forEach(scope.chartData, function(datum) {
+              // Remove commas from numbers
+              if (!/(\d)(?=(\d{3})+(?!\d))/g.test(datum[colName]) && typeof datum[colName] === 'string') {
+                datum[colName] = datum[colName].replace(/,/g, '')
+              }
+              
               column.push(datum[colName]);
             });
 

@@ -34,7 +34,6 @@ angular.module('axisJSApp')
      * Updates the data. Runs whenever data is added, deleted or modified.
      */
     $scope.updateData = function() {
-      // console.log($scope.inputs);
       return input.input($scope);
     };
 
