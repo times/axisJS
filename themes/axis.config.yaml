@@ -1,0 +1,16 @@
+# AxisMaker axisJS configuration
+---
+framework: 'c3'
+
+export:
+  - 'axis'
+
+output:
+  - 'png'
+  - 'svg'
+
+themes:
+  - name: 'The Times'
+    file: 'axis'
+  - name: 'Sunday Times'
+    file: 'sundaytimes-axis'

@@ -5,7 +5,6 @@ framework: 'c3'
 input: 'spreadsheet'
 
 export:
-  - 'WordPress'
   - 'Embed code'
   - 'pdf'
 
@@ -99,3 +98,9 @@ titles:
 backgroundColor: 'white'
 
 colorPicker: 'simple'
+
+themes:
+  - name: 'Default/Red Box'
+    file: 'config.yaml'
+  - name: 'Sunday Times'
+    file: 'themes/sundaytimes.config.yaml'
