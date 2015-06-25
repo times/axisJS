@@ -55,12 +55,19 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisAccuracy">Accuracy</label>
             <div class="col-sm-9">
-              <select id="{{axis.value}}AxisAccuracy" class="form-control" ng-model="config.axis[axis.value].accuracy" ng-disabled="config.data[axis.value]">
-                <option value="0">No decimal places</option>
-                <option value="1">1 decimal places</option>
-                <option value="2">2 decimal places</option>
-                <option value="3">3 decimal places</option>
-              </select>
+              <div class="input-group">
+                <select id="{{axis.value}}AxisAccuracy" class="form-control" ng-model="config.axis[axis.value].accuracy" ng-disabled="config.data[axis.value]">
+                  <option value="0">No decimal places</option>
+                  <option value="1">1 decimal places</option>
+                  <option value="2">2 decimal places</option>
+                  <option value="3">3 decimal places</option>
+                  <option value="4">4 decimal places</option>
+                  <option value="5">5 decimal places</option>
+                </select>
+                <span class="input-group-addon">
+                  <input id="{{axis.value}}AxisCommas" type="checkbox" ng-model="config.axis[axis.value].commas" ng-disabled="config.data[axis.value]">
+                </span>
+              </div>
             </div>
           </div>
           <div class="form-group">

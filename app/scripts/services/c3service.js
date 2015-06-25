@@ -123,6 +123,9 @@ angular.module('axisJSApp')
         config.axis.x.accuracy = 0;
         config.axis.y.accuracy = 0;
         config.axis.y2.accuracy = 0;
+        config.axis.x.commas = true;
+        config.axis.y.commas = true;
+        config.axis.y2.commas = true;
         config.axis.x.prefix = '';
         config.axis.y.prefix = '';
         config.axis.y2.prefix = '';
@@ -132,7 +135,8 @@ angular.module('axisJSApp')
         config.axis.x.tick = {
           format: function (d) {
             if (config.chartGlobalType === 'series' && config.axis.x.type !== 'category') {
-              return config.axis.x.prefix + d.toFixed(config.axis.x.accuracy).toString() + config.axis.x.suffix;
+              var f = d3.format(config.axis.x.commas ? ',' : '' + '.' + config.axis.x.accuracy ? config.axis.x.accuracy : 0 + 'f');
+              return config.axis.x.prefix + f(d).toString() + config.axis.x.suffix;
             } else {
               return d;
             }
@@ -141,7 +145,8 @@ angular.module('axisJSApp')
         config.axis.y.tick = {
           format: function (d) {
             if (config.chartGlobalType === 'series' && config.axis.y.type !== 'category') {
-              return config.axis.y.prefix + d.toFixed(config.axis.y.accuracy).toString() + config.axis.y.suffix;
+              var f = d3.format(config.axis.y.commas ? ',' : '' + '.' + config.axis.y.accuracy ? config.axis.y.accuracy : 0 + 'f');
+              return config.axis.y.prefix + f(d).toString() + config.axis.y.suffix;
             } else {
               return d;
             }
@@ -150,7 +155,8 @@ angular.module('axisJSApp')
         config.axis.y2.tick = {
           format: function (d) {
             if (config.chartGlobalType === 'series' && config.axis.y2.type !== 'category') {
-              return config.axis.y2.prefix + d.toFixed(config.axis.y2.accuracy).toString() + config.axis.y2.suffix;
+              var f = d3.format(config.axis.y2.commas ? ',' : '' + '.' + config.axis.y2.accuracy ? config.axis.y2.accuracy : 0 + 'f');
+              return config.axis.y2.prefix + f(d).toString() + config.axis.y2.suffix;
             } else {
               return d;
             }

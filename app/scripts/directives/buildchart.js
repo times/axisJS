@@ -174,7 +174,10 @@ angular.module('axisJSApp')
               }
 
               // Setup prefix/suffix
-              if (newValues[key].hasOwnProperty('prefix') || newValues[key].hasOwnProperty('suffix') || newValues[key].hasOwnProperty('accuracy')) { // redraw if axis visibility changed
+              if (newValues[key].hasOwnProperty('prefix') || 
+                  newValues[key].hasOwnProperty('suffix') || 
+                  newValues[key].hasOwnProperty('accuracy') ||
+                  newValues[key].hasOwnProperty('commas')) { // redraw if axis visibility changed
                 if (typeof newValues[key].prefix === 'undefined') {
                   scope.config.axis[key].prefix = '';
                 } else {

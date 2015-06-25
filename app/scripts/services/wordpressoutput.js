@@ -77,9 +77,9 @@ angular.module('axisJSApp')
         var importData = {};
         importData.config = angular.fromJson($window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
         importData.inputData = inputService.convert(importData.config.data.columns);
-        importData.config.axis.x.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.x.type?importData.config.axis.x.prefix+b.toFixed(importData.config.axis.x.accuracy).toString()+importData.config.axis.x.suffix:b;};
-        importData.config.axis.y.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.y.type?importData.config.axis.y.prefix+b.toFixed(importData.config.axis.y.accuracy).toString()+importData.config.axis.y.suffix:b;};
-        importData.config.axis.y2.tick.format = function(b) {return'series' === importData.config.chartGlobalType&&'category'!==importData.config.axis.y2.type?importData.config.axis.y2.prefix+b.toFixed(importData.config.axis.y2.accuracy).toString()+importData.config.axis.y2.suffix:b;};
+        importData.config.axis.x.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.x.type){var b=d3.format(config.axis.x.commas?',':config.axis.x.accuracy);return config.axis.x.prefix+b(a).toString()+config.axis.x.suffix}return a};
+        importData.config.axis.y.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y.type){var b=d3.format(config.axis.y.commas?',':config.axis.y.accuracy);return config.axis.y.prefix+b(a).toString()+config.axis.y.suffix}return a};
+        importData.config.axis.y2.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y2.type){var b=d3.format(config.axis.y2.commas?',':config.axis.y2.accuracy);return config.axis.y2.prefix+b(a).toString()+config.axis.y2.suffix}return a};
         importData.config.donut.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
         importData.config.pie.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
         importData.config.gauge.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
