@@ -1,9 +1,9 @@
 /**
  * @ngdoc service
- * @name axisJsApp.githubOutput
+ * @name axisJSApp.axisOutput
  * @description
  * # axisMaker Output
- * Service for outputting to AxisMaker.
+ * Service for outputting to Axis Server.
  */
 
 'use strict';

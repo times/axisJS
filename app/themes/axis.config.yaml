@@ -11,6 +11,6 @@ output:
 
 themes:
   - name: 'The Times'
-    file: 'axis'
+    file: 'themes/axis.config.yaml'
   - name: 'Sunday Times'
-    file: 'sundaytimes-axis'
+    file: 'themes/sundaytimes-axis.config.yaml'
