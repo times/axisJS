@@ -14,14 +14,14 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $injector, $window, appConfig, chartProvider, inputService, configChooser) {
-    var vm = this;
+  function MainController($scope, $injector, $window, appConfig, chartService, inputService, configChooser) {
+    // var vm = this;
 
     /**
      * Sets up the configuration object from YAML
      */
     var input = inputService(appConfig);
-    var chart = chartProvider(appConfig);
+    var chart = chartService(appConfig);
     
     $scope.inputs = {};
     $scope.columns = [];

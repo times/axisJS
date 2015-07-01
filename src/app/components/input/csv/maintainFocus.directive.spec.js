@@ -1,6 +1,5 @@
-'use strict';
-
 describe('Directive: maintainFocus', function () {
+  'use strict';
 
   // load the directive's module
   beforeEach(module('axisJSApp'));

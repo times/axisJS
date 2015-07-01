@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * N.b., the tests in this spec are a TOTAL mess.
  * Mainly because the buildChart directive itself is a total mess.
@@ -9,6 +7,7 @@
  */
 
 describe('Directive: BuildChart', function () {
+  'use strict';
 
   // load the directive's module
   beforeEach(module('axisJSApp'));

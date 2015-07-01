@@ -1,13 +1,20 @@
-'use strict';
-
 /**
  * @ngdoc directive
- * @name AxisJS.directive:maintainFocus
+ * @name axis.directive:maintainFocus
  * @description
  * # maintainFocus
+ * Prevents tab key from changing focus and instead inserts a tab into the
+ * focused element.
  */
-angular.module('axis')
-  .directive('maintainFocus', function () {
+(function(){
+  'use strict';
+
+  angular
+    .module('axis')
+    .directive('maintainFocus', maintainFocus);
+  
+  /** @ngInject */
+  function maintainFocus() {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
@@ -30,4 +37,5 @@ angular.module('axis')
         });
       }
     };
-  });
+  }
+})();

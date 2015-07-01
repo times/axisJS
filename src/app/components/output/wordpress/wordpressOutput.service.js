@@ -1,14 +1,21 @@
-'use strict';
 /**
  * @ngdoc service
- * @name AxisJS.WordPressOutput
+ * @name axis.wordpressOutput
  * @description
- * # WordPressOutput
- * Service in the AxisJS.
+ * # wordpressOutput
+ * Handles migrating data to and from AxisWP.
  */
-angular.module('axis')
-  .factory('wordpressOutput', function wordpressOutput(GenericOutput, $http, $window) {
-    var wordpress = angular.copy(GenericOutput);
+
+(function(){
+  'use strict';
+
+  angular
+    .module('axis')
+    .factory('wordpressOutput', wordpressOutput);
+    
+  /** @ngInject */
+  function wordpressOutput(genericOutput, $http, $window) {
+    var wordpress = angular.copy(genericOutput);
 
     wordpress.serviceConfig = {
       type: 'export', // Options: 'save' and 'export'.
@@ -76,13 +83,16 @@ angular.module('axis')
       if (typeof parent.tinymce !== 'undefined' && typeof parent.tinymce.activeEditor.windowManager.getParams().axisJS !== 'undefined') {
         var importData = {};
         importData.config = angular.fromJson($window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
-        importData.inputData = inputService.convert(importData.config.data.columns);
+        importData.inputData = inputService.convert(importData.config.data.columns); 
+        
+        /* jshint ignore:start */
         importData.config.axis.x.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.x.type){var b=d3.format(config.axis.x.commas?',':config.axis.x.accuracy);return config.axis.x.prefix+b(a).toString()+config.axis.x.suffix}return a};
         importData.config.axis.y.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y.type){var b=d3.format(config.axis.y.commas?',':config.axis.y.accuracy);return config.axis.y.prefix+b(a).toString()+config.axis.y.suffix}return a};
         importData.config.axis.y2.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y2.type){var b=d3.format(config.axis.y2.commas?',':config.axis.y2.accuracy);return config.axis.y2.prefix+b(a).toString()+config.axis.y2.suffix}return a};
         importData.config.donut.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
         importData.config.pie.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
-        importData.config.gauge.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
+        importData.config.gauge.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';}; 
+        /* jshint ignore:end */
         
         if (importData.config && importData.inputData) {
           return importData;
@@ -91,4 +101,5 @@ angular.module('axis')
     };
 
     return wordpress;
-  });
+  }
+})();

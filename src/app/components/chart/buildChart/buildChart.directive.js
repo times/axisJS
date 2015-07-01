@@ -1,15 +1,21 @@
 /**
  * @ngdoc directive
- * @name AxisJS.directive:BuildChart
+ * @name axis.directive:buildChart
  * @description
- * Base directive for building the chart preview.
+ * Builds the chart preview and sets titles. Watches for specific scope changes
+ * and redraws when appropriate.
+ *
+ * This file is admittedly a bit of a mess and needs a bit of a rewrite.
  */
 
-/*global d3*/
-'use strict';
-
-angular.module('axis')
-  .directive('buildChart', function(chartProvider, $timeout, $window) {
+(function(){
+  'use strict';
+  
+  angular.module('axis')
+    .directive('buildChart', buildChart);
+  
+  /** @ngInject */  
+  function buildChart(chartService, $timeout, $window) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
@@ -85,7 +91,7 @@ angular.module('axis')
         }
 
         function redraw() {
-          // Sets size. @TODO move to chartProvider somehow.
+          // Sets size. @TODO move to chartService somehow.
           scope.config.size = {
             width: scope.config.chartWidth ? scope.config.chartWidth : angular.element('.rendering').width() - 20,
             height: scope.config.chartHeight ? scope.config.chartHeight : angular.element(window).height() - 50,
@@ -93,7 +99,7 @@ angular.module('axis')
           scope.config.chartWidth = scope.config.size.width;
           scope.config.chartHeight = scope.config.size.height;
           
-          chart = chartProvider(scope.appConfig).generate(element[0].id, scope.config);
+          chart = chartService(scope.appConfig).generate(element[0].id, scope.config);
 
           $timeout(function(){
             doTitles();
@@ -104,7 +110,7 @@ angular.module('axis')
         redraw(); // initial draw.
 
         /**
-         * TODO refactor the following to make use of the ChartProvider service.
+         * TODO refactor the following to make use of the chartService service.
          */
 
         // Change the data structure (modified by PapaParse in main.js)
@@ -264,4 +270,5 @@ angular.module('axis')
         });
       }
     };
-  });
+  }
+})();

@@ -1,18 +1,25 @@
-'use strict';
-
 /**
  * @ngdoc service
- * @name AxisJS.chartProvider
+ * @name axis.chartService
  * @description
- * # chartProvider
- * Service in the AxisJS.
+ * # chartService
+ * Injects the correct chart framework based on YAML config.
  */
-angular.module('axis')
-  .service('chartProvider', ['$injector', function chartProvider($injector) {
+
+(function(){
+  'use strict';
+
+  angular
+    .module('axis')
+    .service('chartService', chartService);
+  
+  /** @ngInject */
+  function chartService($injector) {
     return function(appConfig) {
       var framework = $injector.get(appConfig.framework + 'Service');
       var config = framework.getConfig(appConfig);
       config.generate = framework.generate;
       return config;
     };
-  }]);
+  }
+})();

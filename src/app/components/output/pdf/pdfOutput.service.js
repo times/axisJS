@@ -1,15 +1,22 @@
-'use strict';
-
 /**
  * @ngdoc service
- * @name AxisJS.pdfOutputService
+ * @name axis.pdfOutput
  * @description
- * # pdfOutputService
- * Service in the AxisJS.
+ * # pdfOutput
+ * Produces PDFs of the chart.
  */
-angular.module('axis')
-  .service('pdfOutput', function pdfOutput(GenericOutput) {
-    var pdf = angular.copy(GenericOutput);
+/* global jsPDF*/
+
+(function(){
+  'use strict';
+
+  angular
+    .module('axis')
+    .service('pdfOutput', pdfOutput);
+    
+  /** @ngInject */
+  function pdfOutput(genericOutput) {
+    var pdf = angular.copy(genericOutput);
 
     pdf.preprocess = function(scope) {
       return {
@@ -29,4 +36,5 @@ angular.module('axis')
     };
 
     return pdf;
-  });
+  }
+})();

@@ -1,15 +1,20 @@
 /**
  * @ngdoc service
- * @name AxisJS.csvService
+ * @name axis.csvInput
  * @description
- * # csvService
- * Factory in the AxisJS.
+ * # csvInput
+ * Provides a text box to input and parse CSV data.
  */
 
-'use strict';
-
-angular.module('axis')
-  .factory('csvInput', function () {
+(function(){
+  'use strict';
+  
+  angular
+    .module('axis')
+    .factory('csvInput', csvInput);
+    
+  /** @ngInject */
+  function csvInput() {
     var validateCSV = function (value) {
       var parserConfig = {
         header: true,
@@ -56,7 +61,7 @@ angular.module('axis')
             angular.forEach(scope.chartData, function(datum) {
               // Remove commas from numbers
               if (!/(\d)(?=(\d{3})+(?!\d))/g.test(datum[colName]) && typeof datum[colName] === 'string') {
-                datum[colName] = datum[colName].replace(/,/g, '')
+                datum[colName] = datum[colName].replace(/,/g, '');
               }
               
               column.push(datum[colName]);
@@ -88,18 +93,38 @@ angular.module('axis')
 
     // Public API here
     return {
+      /** 
+       * Validates the CSV input.
+       * @param  {string} value The raw CSV input
+       * @return {boolean}       The validation result
+       */
       validate: function(value) {
         return validateCSV(value);
       },
 
+      /**
+       * Default CSV data to populate input with.
+       * @type {string}
+       */
       defaultData: defaultCSV,
 
+      /**
+       * Parses the raw CSV into an array of arrays.
+       * @param  {object} scope Axis scope object
+       * @return {object}       Updated scope object
+       */
       input: function(scope) {
         return parseCSV(scope);
       },
 
+      /**
+       * Converts an array into a CSV string.
+       * @param  {array} columns Parsed CSV data
+       * @return {string}         Converted CSV string
+       */
       convert: function(columns) {
         return convertColsToCSV(columns);
       }
     };
-  });
+  }
+})();

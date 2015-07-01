@@ -9,9 +9,17 @@
   "unused": true,
   "validthis": true,
   "jasmine": true,
+  "browser": true,
   "globals": {
     "angular": false,
     "inject": false,
-    "module": false
+    "module": false,
+    "console": true,
+    "d3": true,
+    "c3": true,
+    "Papa": true,
+    "$": true,
+    "jsyaml": true,
+    "JSONfn": true
   }
 }

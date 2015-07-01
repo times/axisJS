@@ -1,6 +1,5 @@
-'use strict';
-
 describe('Directive: exportChart', function () {
+  'use strict';
 
   // load the directive's module
   beforeEach(module('axisJSApp'));

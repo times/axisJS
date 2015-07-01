@@ -1,16 +1,24 @@
-/*global $*/ //Disabling loopfunc linting options because it's dumb.
-/*jshint -W083 */
-'use strict';
-
 /**
  * @ngdoc directive
- * @name AxisJS.directive:exportChart
+ * @name axis.directive:exportChart
  * @description
+ * Inlines styles and renders to canvas.
+ * Also does some PNG and SVG stuff. It's not very well-written...
+ * 
  * Most of this is shamelessly stolen from Quartz's ChartBuilder.
- * @todo Refactor the hell out of this.
+ * @TODO Refactor the hell out of this.
  */
-angular.module('axis')
-  .directive('exportChart', function (outputService) {
+/*jshint -W083 */
+
+(function(){
+  'use strict';
+  
+  angular
+    .module('axis')
+    .directive('exportChart', exportChart);
+    
+  /** @ngInject */
+  function exportChart (outputService) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -30,8 +38,8 @@ angular.module('axis')
           // Copy CSS styles to Canvas
           inlineAllStyles();
 
-      		// Create PNG image
-      		var canvas = angular.element('#canvas').empty()[0];
+          // Create PNG image
+          var canvas = angular.element('#canvas').empty()[0];
 
           if (!width) {
             // Zoom! Enhance!
@@ -46,31 +54,31 @@ angular.module('axis')
           }
 
 
-      		var canvasContext = canvas.getContext('2d');
+          var canvasContext = canvas.getContext('2d');
           var svg = document.getElementsByTagName('svg')[0];
           var serializer = new XMLSerializer();
           svg = serializer.serializeToString(svg);
 
           canvasContext.drawSvg(svg,0,0);
-      		var filename = [];
-      		for (var i=0; i < scope.columns.length; i++) {
-      			filename.push(scope.columns[i]);
-      		}
+          var filename = [];
+          for (var i=0; i < scope.columns.length; i++) {
+            filename.push(scope.columns[i]);
+          }
 
-      		if(scope.chartTitle) {
-      			filename.unshift(scope.chartTitle);
-      		}
+          if(scope.chartTitle) {
+            filename.unshift(scope.chartTitle);
+          }
 
-      		filename = filename.join('-').replace(/[^\w\d]+/gi, '-');
+          filename = filename.join('-').replace(/[^\w\d]+/gi, '-');
 
-      		angular.element('.savePNG').attr('href', canvas.toDataURL('png'))
-      			.attr('download', function(){ return filename + '_axisJS.png';
-      			});
+          angular.element('.savePNG').attr('href', canvas.toDataURL('png'))
+            .attr('download', function(){ return filename + '_axisJS.png';
+            });
 
-      		var svgContent = createSVGContent(angular.element('#chart > svg')[0]);
+          var svgContent = createSVGContent(angular.element('#chart > svg')[0]);
 
-      		$('.saveSVG').attr('href','data:text/svg,'+ svgContent.source[0])
-      			.attr('download', function(){ return filename + '_axisJS.svg';});
+          $('.saveSVG').attr('href','data:text/svg,'+ svgContent.source[0])
+            .attr('download', function(){ return filename + '_axisJS.svg';});
         };
 
         // This needs to be more abstracted. Currently it's built to handle C3's quirks.
@@ -78,20 +86,20 @@ angular.module('axis')
         /* Take styles from CSS and put as inline SVG attributes so that Canvg
            can properly parse them. */
         var inlineAllStyles = function() {
-      		var chartStyle, selector;
+          var chartStyle, selector;
 
-      		// Get rules from c3.css
-      		for (var i = 0; i <= document.styleSheets.length - 1; i++) {
-      			if (document.styleSheets[i].href && document.styleSheets[i].href.indexOf('c3.css') !== -1) {
-      				if (document.styleSheets[i].rules !== undefined) {
-      					chartStyle = document.styleSheets[i].rules;
-      				} else {
-      					chartStyle = document.styleSheets[i].cssRules;
-      				}
-      			}
-      		}
+          // Get rules from c3.css
+          for (var i = 0; i <= document.styleSheets.length - 1; i++) {
+            if (document.styleSheets[i].href && document.styleSheets[i].href.indexOf('c3.css') !== -1) {
+              if (document.styleSheets[i].rules !== undefined) {
+                chartStyle = document.styleSheets[i].rules;
+              } else {
+                chartStyle = document.styleSheets[i].cssRules;
+              }
+            }
+          }
 
-      		if (chartStyle !== null && chartStyle !== undefined) {
+          if (chartStyle !== null && chartStyle !== undefined) {
             // SVG doesn't use CSS visibility and opacity is an attribute, not a style property. Change hidden stuff to "display: none"
             var changeToDisplay = function(){
               if (angular.element(this).css('visibility') === 'hidden' || angular.element(this).css('opacity') === '0') {
@@ -100,13 +108,13 @@ angular.module('axis')
             };
 
             // Inline apply all the CSS rules as inline
-      			for (i = 0; i < chartStyle.length; i++) {
-      				if (chartStyle[i].type === 1) {
-      					selector = chartStyle[i].selectorText;
-      					styles = makeStyleObject(chartStyle[i]);
+            for (i = 0; i < chartStyle.length; i++) {
+              if (chartStyle[i].type === 1) {
+                selector = chartStyle[i].selectorText;
+                styles = makeStyleObject(chartStyle[i]);
                 angular.element('svg *').each(changeToDisplay);
-      					angular.element(selector).not('.c3-chart path').css(styles);
-      				}
+                angular.element(selector).not('.c3-chart path').css(styles);
+              }
 
               /* C3 puts line colour as a style attribute, which gets overridden
                  by the global ".c3 path, .c3 line" in c3.css. The .not() above
@@ -128,70 +136,70 @@ angular.module('axis')
                 .attr('fill', function(){
                   return angular.element(this).css('fill');
                 });
-      			}
-      		}
-      	};
+            }
+          }
+        };
 
         // Create an object containing all the CSS styles.
         // TODO move into inlineAllStyles
-      	var makeStyleObject = function (rule) {
-      		var styleDec = rule.style;
-      		var output = {};
-      		var s;
+        var makeStyleObject = function (rule) {
+          var styleDec = rule.style;
+          var output = {};
+          var s;
 
-      		for (s = 0; s < styleDec.length; s++) {
-      			output[styleDec[s]] = styleDec[styleDec[s]];
-      		}
-      		return output;
-      	};
+          for (s = 0; s < styleDec.length; s++) {
+            output[styleDec[s]] = styleDec[styleDec[s]];
+          }
+          return output;
+        };
 
         // Create a SVG.
-      	var createSVGContent = function(svg) {
-      		/*
-      			Copyright (c) 2013 The New York Times
+        var createSVGContent = function(svg) {
+          /*
+            Copyright (c) 2013 The New York Times
 
-      			Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-      			The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+            Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+            The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-      			SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-      		*/
+            SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+          */
 
-      		//via https://github.com/NYTimes/svg-crowbar
+          //via https://github.com/NYTimes/svg-crowbar
 
-      		var prefix = {
-      			xmlns: 'http://www.w3.org/2000/xmlns/',
-      			xlink: 'http://www.w3.org/1999/xlink',
-      			svg: 'http://www.w3.org/2000/svg'
-      		};
+          var prefix = {
+            xmlns: 'http://www.w3.org/2000/xmlns/',
+            xlink: 'http://www.w3.org/1999/xlink',
+            svg: 'http://www.w3.org/2000/svg'
+          };
 
-      		var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+          var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
 
-      		svg.setAttribute('version', '1.1');
+          svg.setAttribute('version', '1.1');
 
           // Disabled defs because it was screwing up SVG output
-      		//var defsEl = document.createElement("defs");
-      		//svg.insertBefore(defsEl, svg.firstChild); //TODO   .insert("defs", ":first-child")
+          //var defsEl = document.createElement("defs");
+          //svg.insertBefore(defsEl, svg.firstChild); //TODO   .insert("defs", ":first-child")
 
-      		var styleEl = document.createElement('style');
-      		//defsEl.appendChild(styleEl);
-      		styleEl.setAttribute('type', 'text/css');
+          var styleEl = document.createElement('style');
+          //defsEl.appendChild(styleEl);
+          styleEl.setAttribute('type', 'text/css');
 
 
-      		// removing attributes so they aren't doubled up
-      		svg.removeAttribute('xmlns');
-      		svg.removeAttribute('xlink');
+          // removing attributes so they aren't doubled up
+          svg.removeAttribute('xmlns');
+          svg.removeAttribute('xlink');
 
-      		// These are needed for the svg
-      		if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns')) {
-      			svg.setAttributeNS(prefix.xmlns, 'xmlns', prefix.svg);
-      		}
+          // These are needed for the svg
+          if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns')) {
+            svg.setAttributeNS(prefix.xmlns, 'xmlns', prefix.svg);
+          }
 
-      		if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns:xlink')) {
-      			svg.setAttributeNS(prefix.xmlns, 'xmlns:xlink', prefix.xlink);
-      		}
+          if (!svg.hasAttributeNS(prefix.xmlns, 'xmlns:xlink')) {
+            svg.setAttributeNS(prefix.xmlns, 'xmlns:xlink', prefix.xlink);
+          }
 
-      		var source = (new XMLSerializer()).serializeToString(svg).replace('</style>', '<![CDATA[' + styles + ']]></style>');
+          var source = (new XMLSerializer()).serializeToString(svg).replace('</style>', '<![CDATA[' + styles + ']]></style>');
 
           // Quick 'n' shitty hacks to remove stuff that prevents AI from opening SVG
           source = source.replace(/\sfont-.*?: .*?;/gi, '');
@@ -200,8 +208,9 @@ angular.module('axis')
           // not needed but good so it validates
           source = source.replace(/<defs xmlns="http:\/\/www.w3.org\/1999\/xhtml">/gi, '<defs>');
 
-      		return {svg: svg, source: [doctype + source]};
-      	};
+          return {svg: svg, source: [doctype + source]};
+        };
       }
     };
-  });
+  }
+})();

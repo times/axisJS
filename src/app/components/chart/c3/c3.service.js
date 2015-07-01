@@ -1,16 +1,27 @@
 /**
  * @ngdoc service
- * @name AxisJS.c3Service
+ * @name axis.c3Service
  * @description
  * # c3Service
- * Factory in the AxisJS.
+ * Factory to render C3-based charts.
+ * The following charts are currently supported:
+ *   * line/spline
+ *   * scatter
+ *   * bar
+ *   * pie
+ *   * donut
+ *   * gauge
  */
 
-'use strict';
-/*global c3*/
+(function(){
+'use strict';  
 
-angular.module('axis')
-  .factory('c3Service', function () {
+  angular
+    .module('axis')
+    .factory('c3Service', c3Service);
+  
+  /** @ngInject */
+  function c3Service() {
     return {
       /**
        * Generates a chart based on config data
@@ -249,4 +260,5 @@ angular.module('axis')
         }
       }
     };
-  });
+  }
+})();

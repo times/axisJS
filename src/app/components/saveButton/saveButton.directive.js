@@ -1,13 +1,17 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name AxisJS.directive:saveButton
  * @description
  * # saveButton
  */
-angular.module('axis')
-  .directive('saveButton', function () {
+
+(function(){
+  'use strict';
+  
+  angular.module('axis')
+    .directive('saveButton', saveButton);
+    
+  function saveButton() {
     return {
       templateUrl: 'app/components/saveButton/saveButton.html',
       scope: true,
@@ -16,4 +20,5 @@ angular.module('axis')
         scope.items = attrs.type === 'export' ? scope.appConfig.export : scope.appConfig.save;
       }
     };
-  });
+  }
+})();

@@ -1,15 +1,20 @@
 /**
  * @ngdoc service
- * @name AxisJS.spreadsheetInput
+ * @name axis.spreadsheetInput
  * @description
  * # spreadsheetInput
  * Enables a fancy user-friendly spreadsheet input.
  */
 
-'use strict';
-
-angular.module('axis')
-  .factory('spreadsheetInput', function() {
+(function(){
+  'use strict';
+  
+  angular
+    .module('axis')
+    .factory('spreadsheetInput', spreadsheetInput);
+  
+  /** @ngInject */
+  function spreadsheetInput() {
     var defaultSheet = [
       ['data1', 'data2'],
       [30, 50],
@@ -107,4 +112,5 @@ angular.module('axis')
         return convertColsToSheet(data);
       }
     };
-  });
+  }
+})();

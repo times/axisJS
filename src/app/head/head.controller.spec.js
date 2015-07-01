@@ -15,7 +15,8 @@
         return store[key];
       });
       spyOn(localStorage, 'setItem').andCallFake(function (key, value) {
-        return store[key] = value + '';
+        store[key] = value + '';
+        return store[key];
       });
       spyOn(localStorage, 'clear').andCallFake(function () {
           store = {};

@@ -1,14 +1,21 @@
-'use strict';
-
 /**
  * @ngdoc service
- * @name AxisJS.configChooser
+ * @name axis.configChooser
  * @description
  * # configChooser
- * Factory in the AxisJS.
+ * Opens an off-canvas configuration picker, using options defined in YAML.
+ * When a new config is chosen, it's saved to localStorage and the app is reloaded.
  */
-angular.module('axis')
-  .factory('configChooser', function ($aside) {
+
+(function(){
+  'use strict';
+
+  angular
+    .module('axis')
+    .factory('configChooser', configChooser);
+    
+  /** @ngInject */
+  function configChooser($aside) {
     return function() {
       $aside.open({
         placement: 'right',
@@ -31,7 +38,8 @@ angular.module('axis')
             $window.location.reload();
           };
         },
-        templateUrl: 'components/config/configChooser/configChooser.html' 
+        templateUrl: 'app/components/config/configChooser/configChooser.html' 
       });
     };
-  });
+  }
+})();

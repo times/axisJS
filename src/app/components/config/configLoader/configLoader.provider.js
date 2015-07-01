@@ -1,14 +1,22 @@
-'use strict';
-/*global jsyaml*/
 /**
  * @ngdoc service
- * @name AxisJS.configProvider
+ * @name axis.configProvider
  * @description
  * # configProvider
- * Provider in the AxisJS.
+ * Loads default.config.yaml and overrides values from that based on user config.
+ * The (empty) config.yaml is used if no config option is set in localStorage.
+ * Otherwise it attempts to load whatever value is stored as "config" in localStorage.
  */
-angular.module('axis')
-  .provider('configProvider', function() {
+
+(function(){
+  'use strict';
+  
+  angular
+    .module('axis')
+    .provider('configProvider', configProvider);
+  
+  /** @ngInject */
+  function configProvider() {
     return {
       $get: function($http, $q, localStorageService) {
         var defaultConfig = $http.get('default.config.yaml');
@@ -37,4 +45,5 @@ angular.module('axis')
         });
       }
     };
-  });
+  }
+})();
