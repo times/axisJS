@@ -9,7 +9,7 @@
 angular.module('axis')
   .directive('saveButton', function () {
     return {
-      templateUrl: 'app/partials/saveButton.html',
+      templateUrl: 'app/components/saveButton/saveButton.html',
       scope: true,
       link: function postLink(scope, element, attrs) {
         scope.buttonType = attrs.type;

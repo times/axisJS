@@ -31,7 +31,7 @@ angular.module('axis')
             $window.location.reload();
           };
         },
-        templateUrl: 'partials/configChooser.html' 
+        templateUrl: 'components/config/configChooser/configChooser.html' 
       });
     };
   });

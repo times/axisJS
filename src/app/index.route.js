@@ -20,7 +20,7 @@
     $stateProvider
       .state('index', {
         url: '/',
-        templateUrl: 'app/partials/main.html',
+        templateUrl: 'app/main/main.html',
         controller: 'MainController',
         resolve: {
           appConfig: function(configProvider, $rootScope) {

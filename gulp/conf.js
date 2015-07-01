@@ -25,7 +25,12 @@ exports.paths = {
  */
 exports.wiredep = {
   exclude: [/bootstrap.js$/, /bootstrap-sass-official\/.*\.js/, /bootstrap\.css/],
-  directory: 'bower_components'
+  directory: 'bower_components',
+  overrides: {
+    jspdf: {
+      main: 'dist/jspdf.debug.js'
+    }
+  }
 };
 
 /**
