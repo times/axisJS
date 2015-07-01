@@ -18,7 +18,10 @@
               <option value="right">{{ 'CHART_OPTIONS_LEGEND_SELECT_OPTION_RIGHT' | translate }}</option>
             </select>
             <span class="input-group-addon">
-              <input type="checkbox" ng-model="config.legend.show" />
+              <input
+                type="checkbox"
+                ng-model="config.legend.show" 
+                popover="{{ 'POPOVER_TEXT_LEGEND_CHECKBOX' | translate }}" />
             </span>
           </div>
         </div>
@@ -66,13 +69,13 @@
           </select>
         </div>
       </div>
-      <div class="checkbox">
+      <div class="checkbox" popover="{{ 'POPOVER_TEXT_ROTATED_CHECKBOX' | translate }}">
         <label>
           <input type="checkbox" id="chartRotated" ng-model="config.axis.rotated" />
           {{ 'CHART_OPTIONS_ROTATED_LABEL' | translate }}
         </label>
       </div>
-      <div class="checkbox">
+      <div class="checkbox" popover="{{ 'POPOVER_TEXT_BACKGROUND_CHECKBOX' | translate }}">
         <label>
           <input type="checkbox" id="chartRotated" ng-model="config.background" />
           {{ 'CHART_OPTIONS_BACKGROUND_LABEL' | translate }}

@@ -48,7 +48,18 @@
   
   "PANEL_HEADING_OUTPUT": "Output",
   "OUTPUT_EXPORT_BUTTON_LABEL": "Export to...",
-  "OUTPUT_SAVE_BUTTON_LABEL": "Save as...",
+  "OUTPUT_SAVE_BUTTON_LABEL": "Save image...",
   
-  "CREDIT_TEXT": "A project by <a href=\"http://www.github.com/aendrew/\">Ændrew Rininsland</a>, <a href=\"http://github.com/times/\">Times Digital Development</a>"
+  "CREDIT_TEXT": "A project by <a href=\"http://www.github.com/aendrew/\">Ændrew Rininsland</a>, <a href=\"http://github.com/times/\">Times Digital Development</a>",
+
+  "POPOVER_TEXT_CHART_GLOBAL_TYPE": "Choose the main chart style here",
+  "POPOVER_TEXT_DATUM_TYPE": "Select the style of this column from the following options",
+  "POPOVER_TEXT_LEGEND_CHECKBOX": "Turn the chart legend on or off with this checkbox",
+  "POPOVER_TEXT_ROTATED_CHECKBOX": "Rotate the chart 90º",
+  "POPOVER_TEXT_BACKGROUND_CHECKBOX": "Adds a white background to image outputs",
+  "POPOVER_TEXT_COLUMN_SELECT": "Choose a column here to make it a categorical axis",
+  "POPOVER_TEXT_ACCURACY_CHECKBOX": "Toggle grouping zeroes with commas",
+  "POPOVER_TEXT_CULLING_FIELD": "Set the number of axis labels",
+  "POPOVER_TEXT_COUNT_FIELD": "Set the number of axis ticks"
+  
 }
