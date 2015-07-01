@@ -2,15 +2,15 @@
   <div class="panel-heading"
     ng-click="dataOptionsAreCollapsed = !dataOptionsAreCollapsed"
     ng-class="{collapsed: dataOptionsAreCollapsed}">
-      Data options
+      {{ 'PANEL_HEADING_DATA_OPTIONS' | translate }}
   </div>
   
   <div class="panel-body" collapse="!dataOptionsAreCollapsed">
     <select ng-model="config.chartGlobalType" class="form-control" id="chartGlobalType" ng-change="setGlobalType(config.chartGlobalType)">
-      <option value="series">series</option>
-      <option value="pie">pie</option>
-      <option value="donut">donut</option>
-      <option value="gauge" ng-disabled="config.data.columns.length > 1">gauge</option>
+      <option value="series">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_SERIES' | translate }}</option>
+      <option value="pie">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_PIE' | translate }}</option>
+      <option value="donut">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_DONUT' | translate }}</option>
+      <option value="gauge" ng-disabled="config.data.columns.length > 1">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_GAUGE' | translate }}</option>
     </select>
     <div class="form-group" ng-repeat="col in columns">
       <label for="type-{{col}}">{{col}}</label>

@@ -12,7 +12,8 @@
       'minicolors',
       'ngAside',
       'ngHandsontable',
-      'LocalStorageModule'
+      'LocalStorageModule',
+      'pascalprecht.translate'
     ]);
 
 })();

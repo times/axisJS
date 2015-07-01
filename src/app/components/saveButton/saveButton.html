@@ -3,7 +3,7 @@
   <span ng-switch-when="export">
     <span ng-if="items.length > 1" dropdown>
       <button type="button" class="btn btn-success dropdown-toggle" dropdown-toggle>
-        Export to... <span class="caret"></span>
+        {{ 'OUTPUT_EXPORT_BUTTON_LABEL' | translate }} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
         <li ng-repeat="output in items"><a ng-class="'export' + output" href="#" export-chart="{{output.toLowerCase().replace(' ', '')}}">{{output}}</a></li>
@@ -18,7 +18,7 @@
   <span ng-switch-when="save">
     <span ng-if="items.length > 1" dropdown>
       <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle export-chart="save">
-        Save... <span class="caret"></span>
+        {{ 'OUTPUT_SAVE_BUTTON_LABEL' | translate }} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
         <li ng-repeat="output in items"><a ng-class="'save' + output.toUpperCase()" href="#">Save as {{output.toUpperCase()}}</a></li>

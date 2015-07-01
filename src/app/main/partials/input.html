@@ -2,7 +2,7 @@
   <div class="panel-heading" 
        ng-click="inputIsCollapsed = !inputIsCollapsed"
        ng-class="{collapsed: !inputIsCollapsed}">
-    Data Input
+    {{ 'PANEL_HEADING_DATA_INPUT' | translate }}
   </div>
   
   <div class="panel-body" collapse="inputIsCollapsed">
@@ -32,7 +32,7 @@
     <div 
       class="alert alert-danger"
       ng-show="appConfig.input === 'csv' && !inputs.inputData">
-        <strong>Whoops!</strong> Seems like you've entered some malformed CSV data...
+        <strong>Whoops!</strong> {{ 'INPUT_MALFORMED_CSV_ERROR' | translate }}
     </div>
   </div>
 </div>
