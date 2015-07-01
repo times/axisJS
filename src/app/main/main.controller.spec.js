@@ -8,13 +8,13 @@
       module('axis')
     );
 
-    var MainCtrl,
+    var MainController,
         scope;
 
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope) {
       scope = $rootScope.$new();
-      MainCtrl = $controller('MainController', {
+      MainController = $controller('MainController', {
         $scope: scope,
         appConfig: {
           framework: 'c3',
@@ -53,7 +53,7 @@
     // load the controller's module
     beforeEach(module('axis'));
 
-    var MainCtrl,
+    var MainController,
       scope;
 
     // Initialize the controller and a mock scope
@@ -74,7 +74,7 @@
       };
 
       scope = $rootScope.$new();
-      MainCtrl = $controller('MainController', {
+      MainController = $controller('MainController', {
         $scope: scope,
         appConfig: {
           framework: 'c3',

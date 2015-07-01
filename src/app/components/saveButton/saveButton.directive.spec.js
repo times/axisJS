@@ -4,7 +4,7 @@ describe('Directive: saveButton', function () {
   'use strict';
 
   // load the directive's module
-  beforeEach(module('axisJSApp'));
+  beforeEach(module('axis'));
 
   // var element,
   //     scope;

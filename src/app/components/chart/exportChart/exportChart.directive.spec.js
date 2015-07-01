@@ -2,14 +2,14 @@ describe('Directive: exportChart', function () {
   'use strict';
 
   // load the directive's module
-  beforeEach(module('axisJSApp'));
+  beforeEach(module('axis'));
 
-  var MainCtrl,
+  var MainController,
       element,
       scope,
       body;
 
-  // Initialize the controller and a mock MainCtrl scope
+  // Initialize the controller and a mock MainController scope
   beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     body = angular.element('body');
     body.empty(); // clean up previous tests
@@ -28,7 +28,7 @@ describe('Directive: exportChart', function () {
     $httpBackend.whenGET('partials/configChooser.html').respond('');
 
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    MainController = $controller('MainController', {
       $scope: scope,
       appConfig: {
         framework: 'c3',

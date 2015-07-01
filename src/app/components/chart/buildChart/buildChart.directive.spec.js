@@ -10,9 +10,9 @@ describe('Directive: BuildChart', function () {
   'use strict';
 
   // load the directive's module
-  beforeEach(module('axisJSApp'));
+  beforeEach(module('axis'));
 
-  var MainCtrl,
+  var MainController,
       scope;
 
   // Initialize the controller and a mock scope
@@ -24,7 +24,7 @@ describe('Directive: BuildChart', function () {
     $httpBackend.whenGET('config.yaml').respond('');
     $httpBackend.expectGET('partials/configChooser.html');
     $httpBackend.whenGET('partials/configChooser.html').respond(''); // due to angular-off-canvas
-    MainCtrl = $controller('MainCtrl', {
+    MainController = $controller('MainController', {
       $scope: scope,
       appConfig: {
         framework: 'c3',

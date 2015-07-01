@@ -11,14 +11,14 @@
         'theme': 'test'
       };
 
-      spyOn(localStorage, 'getItem').andCallFake(function (key) {
+      spyOn(localStorage, 'getItem').and.callFake(function (key) {
         return store[key];
       });
-      spyOn(localStorage, 'setItem').andCallFake(function (key, value) {
+      spyOn(localStorage, 'setItem').and.callFake(function (key, value) {
         store[key] = value + '';
         return store[key];
       });
-      spyOn(localStorage, 'clear').andCallFake(function () {
+      spyOn(localStorage, 'clear').and.callFake(function () {
           store = {};
       });
       
