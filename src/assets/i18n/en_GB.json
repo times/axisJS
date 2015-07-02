@@ -1,4 +1,6 @@
 {
+  "HEAD_APP_TITLE": "Axis » streamlined chart creation tool",
+  "HEAD_META_DESCRIPTION": "Axis » streamlined chart creation tool by The Times",
   "PANEL_HEADING_DATA_INPUT": "Data input",
   "INPUT_MALFORMED_CSV_ERROR": "Seems like you've entered some malformed CSV data...",
   
@@ -50,7 +52,7 @@
   "OUTPUT_EXPORT_BUTTON_LABEL": "Export to...",
   "OUTPUT_SAVE_BUTTON_LABEL": "Save image...",
   
-  "CREDIT_TEXT": "A project by <a href=\"http://www.github.com/aendrew/\">Ændrew Rininsland</a>, <a href=\"http://github.com/times/\">Times Digital Development</a>",
+  "CREDIT_TEXT": "A project by <a href=\"http://www.github.com/aendrew/\">Ændrew Rininsland</a>, <a href=\"http://github.com/times/\">Times Digital Development</a> | <a href=\"http://www.github.com/times/axisJS/issues\">issues</a> | <a href=\"http://www.github.com/times/axisJS\">GitHub</a>",
 
   "POPOVER_TEXT_CHART_GLOBAL_TYPE": "Choose the main chart style here",
   "POPOVER_TEXT_DATUM_TYPE": "Select the style of this column from the following options",
