@@ -3,7 +3,8 @@
 framework: 'c3'
 
 export:
-  - 'WordPress'
+  - 'Embed code'
+  - 'pdf'
 
 output:
   - 'png'

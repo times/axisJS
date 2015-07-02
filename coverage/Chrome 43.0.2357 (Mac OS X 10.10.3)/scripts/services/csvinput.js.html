@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">scripts/services/csvinput.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(41 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">78.57% <small>(11 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">97.67% <small>(42 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">77.78% <small>(14 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">100% <small>(9 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(41 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">97.67% <small>(42 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/services/</a> &#187; csvinput.js</div>
@@ -123,7 +123,14 @@
 96
 97
 98
-99</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+99
+100
+101
+102
+103
+104
+105
+106</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -135,9 +142,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19</span>
 <span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,6 +155,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,6 +171,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16</span>
 <span class="cline-any cline-yes">16</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,6 +186,11 @@
 <span class="cline-any cline-yes">32</span>
 <span class="cline-any cline-yes">32</span>
 <span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">192</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">192</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,10 +247,10 @@
 &nbsp;
 angular.module('axisJSApp')
   .factory('csvInput', function () {
-&nbsp;
     var validateCSV = function (value) {
       var parserConfig = {
-        header: true
+        header: true,
+        dynamicTyping: true
       };
 &nbsp;
       // Detect TSV; fallback to auto-detection. @see #39.
@@ -246,6 +260,7 @@ angular.module('axisJSApp')
 &nbsp;
       var csv = Papa.parse(value, parserConfig);
       var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
+      
       return (csv.errors.length &gt; 0 &amp;&amp; !value.match(noDelimiter) ? false : true);
     };
 &nbsp;
@@ -257,7 +272,8 @@ angular.module('axisJSApp')
         scope.columns = []; // Clear existing
         scope.config.data.columns = [];
         var parserConfig = {
-          header: true
+          header: true,
+          dynamicTyping: true
         };
 &nbsp;
         // Detect TSV; fallback to auto-detection. @see #39.
@@ -275,6 +291,11 @@ angular.module('axisJSApp')
             var column = [];
             column.push(colName);
             angular.forEach(scope.chartData, function(datum) {
+              // Remove commas from numbers
+              <span class="missing-if-branch" title="if path not taken" >I</span>if (!/(\d)(?=(\d{3})+(?!\d))/g.test(datum[colName]) &amp;&amp; typeof datum[colName] === 'string') {
+<span class="cstat-no" title="statement not covered" >                datum[colName] = datum[colName].replace(/,/g, '')</span>
+              }
+              
               column.push(datum[colName]);
             });
 &nbsp;
@@ -324,7 +345,7 @@ angular.module('axisJSApp')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 25 2015 16:44:25 GMT+0100 (BST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 02 2015 12:26:48 GMT+0100 (BST)</div>
 </div>
 <script src="../../prettify.js"></script>
 <script>

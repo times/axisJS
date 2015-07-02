@@ -15,10 +15,10 @@
 <div class="header medium">
     <h1>Code coverage report for <span class="entity">scripts/services/c3service.js</span></h1>
     <h2>
-        Statements: <span class="metric">70.18% <small>(40 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">55.26% <small>(21 / 38)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">73.02% <small>(46 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">48% <small>(24 / 50)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">61.54% <small>(8 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">70.18% <small>(40 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">73.02% <small>(46 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/services/</a> &#187; c3service.js</div>
@@ -271,7 +271,13 @@
 244
 245
 246
-247</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+247
+248
+249
+250
+251
+252
+253</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -403,7 +409,11 @@
 <span class="cline-any cline-yes">35</span>
 <span class="cline-any cline-yes">35</span>
 <span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
 <span class="cline-any cline-yes">18</span>
 <span class="cline-any cline-yes">18</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -415,6 +425,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">649</span>
 <span class="cline-any cline-yes">649</span>
+<span class="cline-any cline-yes">649</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -422,6 +433,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">35</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">187</span>
 <span class="cline-any cline-yes">187</span>
 <span class="cline-any cline-yes">187</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -642,6 +654,9 @@ angular.module('axisJSApp')
         config.axis.x.accuracy = 0;
         config.axis.y.accuracy = 0;
         config.axis.y2.accuracy = 0;
+        config.axis.x.commas = true;
+        config.axis.y.commas = true;
+        config.axis.y2.commas = true;
         config.axis.x.prefix = '';
         config.axis.y.prefix = '';
         config.axis.y2.prefix = '';
@@ -651,7 +666,8 @@ angular.module('axisJSApp')
         config.axis.x.tick = {
           format: function (d) {
             <span class="missing-if-branch" title="else path not taken" >E</span>if (config.chartGlobalType === 'series' &amp;&amp; config.axis.x.type !== 'category') {
-              return config.axis.x.prefix + d.toFixed(config.axis.x.accuracy).toString() + config.axis.x.suffix;
+              var f = d3.format(config.axis.x.commas ? ',' : <span class="branch-1 cbranch-no" title="branch not covered" >'' + '.' + config.axis.x.accuracy ? config.axis.x.accuracy : 0 + 'f')</span>;
+              return config.axis.x.prefix + f(d).toString() + config.axis.x.suffix;
             } else {
 <span class="cstat-no" title="statement not covered" >              return d;</span>
             }
@@ -660,7 +676,8 @@ angular.module('axisJSApp')
         config.axis.y.tick = {
           format: function (d) {
             <span class="missing-if-branch" title="else path not taken" >E</span>if (config.chartGlobalType === 'series' &amp;&amp; config.axis.y.type !== 'category') {
-              return config.axis.y.prefix + d.toFixed(config.axis.y.accuracy).toString() + config.axis.y.suffix;
+              var f = d3.format(config.axis.y.commas ? ',' : <span class="branch-1 cbranch-no" title="branch not covered" >'' + '.' + config.axis.y.accuracy ? config.axis.y.accuracy : 0 + 'f')</span>;
+              return config.axis.y.prefix + f(d).toString() + config.axis.y.suffix;
             } else {
 <span class="cstat-no" title="statement not covered" >              return d;</span>
             }
@@ -669,7 +686,8 @@ angular.module('axisJSApp')
         config.axis.y2.tick = {
           format: function (d) {
             <span class="missing-if-branch" title="else path not taken" >E</span>if (config.chartGlobalType === 'series' &amp;&amp; config.axis.y2.type !== 'category') {
-              return config.axis.y2.prefix + d.toFixed(config.axis.y2.accuracy).toString() + config.axis.y2.suffix;
+              var f = d3.format(config.axis.y2.commas ? ',' : <span class="branch-1 cbranch-no" title="branch not covered" >'' + '.' + config.axis.y2.accuracy ? config.axis.y2.accuracy : 0 + 'f')</span>;
+              return config.axis.y2.prefix + f(d).toString() + config.axis.y2.suffix;
             } else {
 <span class="cstat-no" title="statement not covered" >              return d;</span>
             }
@@ -768,7 +786,7 @@ angular.module('axisJSApp')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 25 2015 16:44:25 GMT+0100 (BST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 02 2015 12:26:48 GMT+0100 (BST)</div>
 </div>
 <script src="../../prettify.js"></script>
 <script>

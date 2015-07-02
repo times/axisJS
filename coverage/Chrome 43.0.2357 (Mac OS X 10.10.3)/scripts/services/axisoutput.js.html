@@ -15,8 +15,8 @@
 <div class="header low">
     <h1>Code coverage report for <span class="entity">scripts/services/axisoutput.js</span></h1>
     <h2>
-        Statements: <span class="metric">2.33% <small>(1 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">0% <small>(0 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">1.92% <small>(1 / 52)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">0% <small>(0 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Lines: <span class="metric">2.7% <small>(1 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -177,10 +177,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * @ngdoc service
- * @name axisJsApp.githubOutput
+ * @name axisJSApp.axisOutput
  * @description
  * # axisMaker Output
- * Service for outputting to AxisMaker.
+ * Service for outputting to Axis Server.
  */
 &nbsp;
 'use strict';
@@ -235,12 +235,12 @@ angular.module('axisJSApp')
 <span class="cstat-no" title="statement not covered" >        var importData = {};</span>
 <span class="cstat-no" title="statement not covered" >        importData.config = angular.fromJson(parent.axisConfig);</span>
 <span class="cstat-no" title="statement not covered" >        importData.inputData = inputService.convert(importData.config.data.columns);</span>
-<span class="cstat-no" title="statement not covered" >        importData.config.axis.x.tick.format = <span class="fstat-no" title="function not covered" >function (b){<span class="cstat-no" title="statement not covered" ></span>return'series'===importData.config.chartGlobalType&amp;&amp;'category'!==importData.config.axis.x.type?importData.config.axis.x.prefix+b.toFixed(importData.config.axis.x.accuracy).toString()+importData.config.axis.x.suffix:b;}</span>;</span>
-<span class="cstat-no" title="statement not covered" >        importData.config.axis.y.tick.format = <span class="fstat-no" title="function not covered" >function (b){<span class="cstat-no" title="statement not covered" ></span>return'series'===importData.config.chartGlobalType&amp;&amp;'category'!==importData.config.axis.y.type?importData.config.axis.y.prefix+b.toFixed(importData.config.axis.y.accuracy).toString()+importData.config.axis.y.suffix:b;}</span>;</span>
-<span class="cstat-no" title="statement not covered" >        importData.config.axis.y2.tick.format = <span class="fstat-no" title="function not covered" >function (b){<span class="cstat-no" title="statement not covered" ></span>return'series'===importData.config.chartGlobalType&amp;&amp;'category'!==importData.config.axis.y2.type?importData.config.axis.y2.prefix+b.toFixed(importData.config.axis.y2.accuracy).toString()+importData.config.axis.y2.suffix:b;}</span>;</span>
-<span class="cstat-no" title="statement not covered" >        importData.config.donut.label.format = <span class="fstat-no" title="function not covered" >function (b,c){<span class="cstat-no" title="statement not covered" ></span>return(100*c).toFixed(importData.config.chartAccuracy)+'%';}</span>;</span>
-<span class="cstat-no" title="statement not covered" >        importData.config.pie.label.format = <span class="fstat-no" title="function not covered" >function (b,c){<span class="cstat-no" title="statement not covered" ></span>return(100*c).toFixed(importData.config.chartAccuracy)+'%';}</span>;</span>
-<span class="cstat-no" title="statement not covered" >        importData.config.gauge.label.format = <span class="fstat-no" title="function not covered" >function (b,c){<span class="cstat-no" title="statement not covered" ></span>return(100*c).toFixed(importData.config.chartAccuracy)+'%';}</span>;</span>
+<span class="cstat-no" title="statement not covered" >        importData.config.axis.x.tick.format = <span class="fstat-no" title="function not covered" >function(b) {<span class="cstat-no" title="statement not covered" ></span>if('series'===config.chartGlobalType&amp;&amp;'category'!==config.axis.x.type){<span class="cstat-no" title="statement not covered" >var b=d3.format(config.axis.x.commas?',':config.axis.x.accuracy);<span class="cstat-no" title="statement not covered" >r</span>eturn config.axis.x.prefix+b(a).toString()+config.axis.x.suffix}<span class="cstat-no" title="statement not covered" ></span>r</span>eturn a}</span>;</span>
+<span class="cstat-no" title="statement not covered" >        importData.config.axis.y.tick.format = <span class="fstat-no" title="function not covered" >function(b) {<span class="cstat-no" title="statement not covered" ></span>if('series'===config.chartGlobalType&amp;&amp;'category'!==config.axis.y.type){<span class="cstat-no" title="statement not covered" >var b=d3.format(config.axis.y.commas?',':config.axis.y.accuracy);<span class="cstat-no" title="statement not covered" >r</span>eturn config.axis.y.prefix+b(a).toString()+config.axis.y.suffix}<span class="cstat-no" title="statement not covered" ></span>r</span>eturn a}</span>;</span>
+<span class="cstat-no" title="statement not covered" >        importData.config.axis.y2.tick.format = <span class="fstat-no" title="function not covered" >function(b) {<span class="cstat-no" title="statement not covered" ></span>if('series'===config.chartGlobalType&amp;&amp;'category'!==config.axis.y2.type){<span class="cstat-no" title="statement not covered" >var b=d3.format(config.axis.y2.commas?',':config.axis.y2.accuracy);<span class="cstat-no" title="statement not covered" >r</span>eturn config.axis.y2.prefix+b(a).toString()+config.axis.y2.suffix}<span class="cstat-no" title="statement not covered" ></span>r</span>eturn a}</span>;</span>
+<span class="cstat-no" title="statement not covered" >        importData.config.donut.label.format = <span class="fstat-no" title="function not covered" >function(b,c) {<span class="cstat-no" title="statement not covered" ></span>return(100*c).toFixed(importData.config.chartAccuracy)+'%';}</span>;</span>
+<span class="cstat-no" title="statement not covered" >        importData.config.pie.label.format = <span class="fstat-no" title="function not covered" >function(b,c) {<span class="cstat-no" title="statement not covered" ></span>return(100*c).toFixed(importData.config.chartAccuracy)+'%';}</span>;</span>
+<span class="cstat-no" title="statement not covered" >        importData.config.gauge.label.format = <span class="fstat-no" title="function not covered" >function(b,c) {<span class="cstat-no" title="statement not covered" ></span>return(100*c).toFixed(importData.config.chartAccuracy)+'%';}</span>;</span>
         
 <span class="cstat-no" title="statement not covered" >        if (importData.config &amp;&amp; importData.inputData) {</span>
 <span class="cstat-no" title="statement not covered" >          return importData;</span>
@@ -255,7 +255,7 @@ angular.module('axisJSApp')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 25 2015 16:44:25 GMT+0100 (BST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 02 2015 12:26:48 GMT+0100 (BST)</div>
 </div>
 <script src="../../prettify.js"></script>
 <script>

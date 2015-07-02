@@ -29,7 +29,7 @@ angular
         controller: 'MainCtrl',
         resolve: {
           appConfig: function(configProvider, $rootScope) {
-            $rootScope.version = '1.0.3';
+            $rootScope.version = '1.0.4';
             return configProvider;
           }
         }

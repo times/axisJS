@@ -14,6 +14,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "axisJSApp.axisOutput",
+      "shortName": "axisJSApp.axisOutput",
+      "type": "service",
+      "moduleName": "axisJSApp",
+      "shortDescription": "axisMaker Output",
+      "keywords": "api axis axisjsapp axismaker axisoutput output outputting server service"
+    },
+    {
+      "section": "api",
       "id": "axisJsApp.c3Service",
       "shortName": "axisJsApp.c3Service",
       "type": "service",
@@ -140,15 +149,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "axisJsApp.githubOutput",
-      "shortName": "axisJsApp.githubOutput",
-      "type": "service",
-      "moduleName": "axisJsApp",
-      "shortDescription": "axisMaker Output",
-      "keywords": "api axisjsapp axismaker githuboutput output outputting service"
-    },
-    {
-      "section": "api",
       "id": "axisJsApp.inputService",
       "shortName": "axisJsApp.inputService",
       "type": "service",
@@ -214,7 +214,7 @@ NG_DOCS={
   "apis": {
     "api": true
   },
-  "html5Mode": true,
+  "html5Mode": false,
   "startPage": "/api",
   "scripts": [
     "angular.min.js"
