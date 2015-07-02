@@ -39,7 +39,7 @@ angular.module('axisJSApp')
             canvas.width = angular.element('#chart > svg').width() * 2;
             canvas.height = angular.element('#chart > svg').height() *2;
           } else {
-            var scaleFactor = width / angular.element('#chart').width();
+            var scaleFactor = (width / angular.element('#chart').width()) * 2;
             angular.element('#chart > svg').attr('transform', 'scale(' + scaleFactor + ')');
             canvas.width = angular.element('#chart > svg').width() * scaleFactor;
             canvas.height = angular.element('#chart > svg').height() * scaleFactor;
