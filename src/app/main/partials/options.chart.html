@@ -8,8 +8,8 @@
   <div class="panel-body" collapse="!chartOptionsAreCollapsed">
     <form class="form-horizontal" role="form">
       <div class="form-group">
-        <label for="legendPosition" class="col-sm-2 control-label">{{ 'CHART_OPTIONS_LEGEND_SELECT_LABEL' | translate }}</label>
-        <div class="col-sm-10">
+        <label for="legendPosition" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_LEGEND_SELECT_LABEL' | translate }}</label>
+        <div class="col-sm-8">
           <div class="input-group">
             <select class="form-control" id="legendPosition" ng-model="config.legend.position">
               <option value="bottom">{{ 'CHART_OPTIONS_LEGEND_SELECT_OPTION_BOTTOM' | translate }}</option>
@@ -27,40 +27,47 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="chartTitle" class="col-sm-2 control-label">{{ 'CHART_OPTIONS_TITLE_LABEL' | translate }}</label>
-        <div class="col-sm-10">
+        <label for="chartTitle" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_TITLE_LABEL' | translate }}</label>
+        <div class="col-sm-8">
           <input type="text" class="form-control" id="chartTitle" ng-model="config.chartTitle" placeholder="">
         </div>
       </div>
       <div class="form-group">
-        <label for="chartTitle" class="col-sm-2 control-label">{{ 'CHART_OPTIONS_CREDIT_LABEL' | translate }}</label>
-        <div class="col-sm-10">
+        <label for="chartTitle" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_CREDIT_LABEL' | translate }}</label>
+        <div class="col-sm-8">
           <input type="text" class="form-control" id="chartCredit" ng-model="config.chartCredit" placeholder="{{ 'CHART_OPTIONS_CREDIT_FIELD_PLACEHOLDER' | translate }}" ng-model="chartCredit">
         </div>
       </div>
       <div class="form-group">
-        <label for="chartTitle" class="col-sm-2 control-label">{{ 'CHART_OPTIONS_SOURCE_LABEL' | translate }}</label>
-        <div class="col-sm-10">
+        <label for="chartTitle" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_SOURCE_LABEL' | translate }}</label>
+        <div class="col-sm-8">
           <input type="text" class="form-control" id="chartSource" ng-model="config.chartSource" placeholder="{{ 'CHART_OPTIONS_SOURCE_FIELD_PLACEHOLDER' | translate }}" ng-model="chartSource">
         </div>
       </div>
       <div class="form-group">
-        <label for="chartWidth" class="col-sm-2 control-label">{{ 'CHART_OPTIONS_WIDTH_LABEL' | translate }}</label>
-        <div class="col-sm-10 input-group chartWidth-group">
+        <label for="chartWidth" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_WIDTH_LABEL' | translate }}</label>
+        <div class="col-sm-8 input-group chartWidth-group">
           <input type="number" class="form-control" id="chartWidth" ng-model="config.chartWidth">
           <span class="input-group-addon">px</span>
         </div>
       </div>
       <div class="form-group">
-        <label for="chartHeight" class="col-sm-2 control-label">{{ 'CHART_OPTIONS_HEIGHT_LABEL' | translate }}</label>
-        <div class="col-sm-10 input-group chartHeight-group">
+        <label for="chartHeight" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_HEIGHT_LABEL' | translate }}</label>
+        <div class="col-sm-8 input-group chartHeight-group">
           <input type="number" class="form-control" id="chartHeight" ng-model="config.chartHeight">
           <span class="input-group-addon">px</span>
         </div>
       </div>
+      <div class="form-group">
+        <label for="chartTransition" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_TRANSITION_LABEL' | translate }}</label>
+        <div class="col-sm-8 input-group chartHeight-group">
+          <input type="number" class="form-control" id="chartHeight" ng-model="config.transition.duration">
+          <span class="input-group-addon">ms</span>
+        </div>
+      </div>
       <div class="form-group" ng-if="config.chartGlobalType !== 'series'">
-        <label class="col-sm-3 control-label" for="chartAccuracy">{{ 'CHART_OPTIONS_SELECT_LABEL' | translate }}</label>
-        <div class="col-sm-9">
+        <label class="col-sm-4 control-label" for="chartAccuracy">{{ 'CHART_OPTIONS_SELECT_LABEL' | translate }}</label>
+        <div class="col-sm-8">
           <select id="chartAccuracy" class="form-control" ng-model="config.chartAccuracy">
             <option value="0">{{ 'CHART_OPTIONS_SELECT_OPTION_TEXT' | translate:'{accuracy: 0}' }}</option>
             <option value="1">{{ 'CHART_OPTIONS_SELECT_OPTION_TEXT' | translate:'{accuracy: 1}' }}</option>
@@ -69,16 +76,43 @@
           </select>
         </div>
       </div>
-      <div class="checkbox" popover="{{ 'POPOVER_TEXT_ROTATED_CHECKBOX' | translate }}">
+      <div
+        class="checkbox"
+        popover="{{ 'POPOVER_TEXT_ROTATED_CHECKBOX' | translate }}"
+        ng-if="config.chartGlobalType === 'series'">
         <label>
           <input type="checkbox" id="chartRotated" ng-model="config.axis.rotated" />
           {{ 'CHART_OPTIONS_ROTATED_LABEL' | translate }}
+        </label>
+      </div>
+      <div
+        class="checkbox"
+        popover="{{ 'POPOVER_TEXT_ZOOMABLE_CHECKBOX' | translate }}"
+        ng-if="config.chartGlobalType === 'series'">
+        <label>
+          <input type="checkbox" id="chartZoomable" ng-model="config.zoom.enabled" />
+          {{ 'CHART_OPTIONS_ZOOMABLE_LABEL' | translate }}
+        </label>
+      </div>
+      <div
+        class="checkbox"
+        popover="{{ 'POPOVER_TEXT_SUBCHART_CHECKBOX' | translate }}"
+        ng-if="config.chartGlobalType === 'series'">
+        <label>
+          <input type="checkbox" id="chartSubchart" ng-model="config.subchart.show" />
+          {{ 'CHART_OPTIONS_SUBCHART_LABEL' | translate }}
         </label>
       </div>
       <div class="checkbox" popover="{{ 'POPOVER_TEXT_BACKGROUND_CHECKBOX' | translate }}">
         <label>
           <input type="checkbox" id="chartRotated" ng-model="config.background" />
           {{ 'CHART_OPTIONS_BACKGROUND_LABEL' | translate }}
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="chartInteraction" ng-model="config.interaction.enabled" />
+          {{ 'CHART_OPTIONS_INTERACTION_LABEL' | translate }}
         </label>
       </div>
     </form>

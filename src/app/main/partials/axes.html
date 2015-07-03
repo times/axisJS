@@ -98,6 +98,16 @@
               <input type="text" id="{{axis.value}}TimeseriesFormat" class="form-control" value="timeseries" ng-model="config.axis[axis.value].tick.format" />
             </div>
           </div>
+          <div class="form-group" ng-if="['y', 'y2'].indexOf(axis.value) > -1">
+            <label class="col-sm-3 control-label" for="{{axis.value}}Inverted">{{ 'AXES_INVERT' | translate }}</label>
+            <div class="col-sm-9">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="{{axis.value}}Inverted" ng-model="config.axis[axis.value].inverted" />
+                </label>
+              </div>
+            </div>
+          </div>
         </fieldset>
       </fieldset>
     </form>

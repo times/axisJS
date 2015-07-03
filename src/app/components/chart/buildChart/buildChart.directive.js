@@ -19,6 +19,8 @@
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
+        var chart;
+        
         element.children('svg').attr('transform', 'scale(2)'); // Needed to prevent pixely canvas
 
         function doTitles() {
@@ -99,14 +101,16 @@
           scope.config.chartWidth = scope.config.size.width;
           scope.config.chartHeight = scope.config.size.height;
           
+          if (chart && chart.hasOwnProperty('destroy')) { // Needed to prevent memory holes.
+            chart.destroy();
+          }
           chart = chartService(scope.appConfig).generate(element[0].id, scope.config);
 
           $timeout(function(){
             doTitles();
           });
         }
-
-        var chart;
+        
         redraw(); // initial draw.
 
         /**
@@ -238,7 +242,11 @@
             'config.chartSource', 
             'config.chartAccuracy', 
             'config.legend.position', 
-            'config.legend.show'
+            'config.legend.show',
+            'config.subchart.show',
+            'config.zoom.enabled',
+            'config.interaction.enabled',
+            'config.transition.duration'
           ], 
           function(){
             redraw();

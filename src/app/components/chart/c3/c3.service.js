@@ -86,15 +86,11 @@
             },
             y: {
               show: typeof appConfig.defaults['axis y'] !== 'undefined' ? appConfig.defaults['axis y'] : true,
-              // tick: {
-              //   format: function(d){return d;}
-              // }
+              invert: false
             },
             y2: {
               show: typeof appConfig.defaults['axis y2'] !== 'undefined' ? appConfig.defaults['axis y2'] : false,
-              // tick: {
-              //   format: function(d){return d;}
-              // }
+              invert: false
             }
           },
           point: {
@@ -106,6 +102,18 @@
           },
           color: {
             pattern: defaultColors
+          },
+          subchart: {
+            show: false
+          },
+          zoom: {
+            enabled: false
+          },
+          interaction: {
+            enabled: true
+          },
+          transition: {
+            duration: undefined
           }
         };
 

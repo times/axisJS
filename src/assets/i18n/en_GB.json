@@ -31,6 +31,7 @@
   "AXES_COUNT_FIELD_LABEL": "Count",
   "AXES_TIMESERIES_FIELD_LABEL": "Timeseries?",
   "AXES_DATETIME_FORMAT_FIELD_LABEL": "Datetime format",
+  "AXES_INVERT": "Invert",
   
   "PANEL_HEADING_CHART_OPTIONS": "Chart options",
   "CHART_OPTIONS_LEGEND_SELECT_LABEL": "Legend",
@@ -43,10 +44,14 @@
   "CHART_OPTIONS_SOURCE_FIELD_PLACEHOLDER": "YouGov",
   "CHART_OPTIONS_WIDTH_LABEL": "Width",
   "CHART_OPTIONS_HEIGHT_LABEL": "Height",
+  "CHART_OPTIONS_TRANSITION_LABEL": "Transition",
   "CHART_OPTIONS_SELECT_LABEL": "Accuracy",
   "CHART_OPTIONS_SELECT_OPTION_TEXT": "{{accuracy}} decimal places",
   "CHART_OPTIONS_ROTATED_LABEL": "Rotated",
   "CHART_OPTIONS_BACKGROUND_LABEL": "Background",
+  "CHART_OPTIONS_ZOOMABLE_LABEL": "Zoomable",
+  "CHART_OPTIONS_SUBCHART_LABEL": "Subchart",
+  "CHART_OPTIONS_INTERACTION_LABEL": "Interaction",
   
   "PANEL_HEADING_OUTPUT": "Output",
   "OUTPUT_EXPORT_BUTTON_LABEL": "Export to...",
@@ -57,11 +62,14 @@
   "POPOVER_TEXT_CHART_GLOBAL_TYPE": "Choose the main chart style here",
   "POPOVER_TEXT_DATUM_TYPE": "Select the style of this column from the following options",
   "POPOVER_TEXT_LEGEND_CHECKBOX": "Turn the chart legend on or off with this checkbox",
-  "POPOVER_TEXT_ROTATED_CHECKBOX": "Rotate the chart 90º",
+  "POPOVER_TEXT_ROTATED_CHECKBOX": "Rotate the chart 90 degrees",
   "POPOVER_TEXT_BACKGROUND_CHECKBOX": "Adds a white background to image outputs",
   "POPOVER_TEXT_COLUMN_SELECT": "Choose a column here to make it a categorical axis",
   "POPOVER_TEXT_ACCURACY_CHECKBOX": "Toggle grouping zeroes with commas",
   "POPOVER_TEXT_CULLING_FIELD": "Set the number of axis labels",
-  "POPOVER_TEXT_COUNT_FIELD": "Set the number of axis ticks"
+  "POPOVER_TEXT_COUNT_FIELD": "Set the number of axis ticks",
+  "POPOVER_TEXT_ZOOMABLE_CHECKBOX": "Check to make chart zoomable",
+  "POPOVER_TEXT_SUBCHART_CHECKBOX": "Check to add a subchart"
+  
   
 }
