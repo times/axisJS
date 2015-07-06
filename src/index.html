@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="axis">
+  <head ng-controller="HeadController">
+    <meta charset="utf-8">
+    <title translate="HEAD_APP_TITLE">Axis » streamlined chart creation tool</title>
+    <meta name="description" content="{{ 'HEAD_META_DESCRIPTION' | translate }}">
+    <meta name="application-name" content="Axis">
+    <meta name="author" content="Ændrew Rininsland, The Times and Sunday Times">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/bootstrap-colorselector/lib/bootstrap-colorselector-0.2.0/css/bootstrap-colorselector.css" />
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/lumen/bootstrap.min.css" />
+    
+    <!-- separate because of exportchart.inlineAllStyles() -->
+    <link rel="stylesheet" href="../bower_components/c3/c3.css" />
+    
+    <!-- Remaining font and theme imports from configLoader -->
+    <link rel="stylesheet" ng-href="{{stylesheet}}" />
+    <link rel="stylesheet" ng-href="{{font}}" ng-repeat="font in fonts" />
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view></div>
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+  </body>
+</html>
