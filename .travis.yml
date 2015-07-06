@@ -6,5 +6,5 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - gem install sass
   - gem install compass
-  - 'npm install -g bower grunt-cli karma'
+  - 'npm install -g bower gulp-cli karma'
   - 'bower install'
