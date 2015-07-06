@@ -68,7 +68,8 @@
     "angular": "~1.4.0",
     "handsontable": "0.12.6",
     "c3": "title_options",
-    "angular-bootstrap": "0.12.1"
+    "angular-bootstrap": "0.12.1",
+    "moment": "~2.10.3"
   },
   "appPath": "src"
 }
