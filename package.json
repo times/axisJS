@@ -1,6 +1,6 @@
 {
-  "name": "axisJs",
-  "version": "0.0.0",
+  "name": "AxisJS",
+  "version": "1.1.0",
   "dependencies": {},
   "scripts": {
     "test": "gulp test"
@@ -41,7 +41,7 @@
     "karma-jasmine": "~0.3.5",
     "karma-ng-html2js-preprocessor": "~0.1.2",
     "karma-nyan-reporter": "^0.1.0",
-    "karma-phantomjs-launcher": "just-boris/phantomjs",
+    "karma-phantomjs-launcher": "~0.2.0",
     "lodash": "~3.9.3",
     "main-bower-files": "~2.8.0",
     "merge-stream": "~0.1.7",
@@ -52,6 +52,6 @@
     "wrench": "~1.5.8"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0"
   }
 }
