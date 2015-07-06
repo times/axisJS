@@ -1,0 +1,20 @@
+<div ng-if="!config.inputType">
+  <div ng-if="!isArray(appConfig.input)">
+    <ng-include
+      src="'app/components/input/' + appConfig.input + '/' + appConfig.input + 'Input.html'">
+    </ng-include>
+  </div>
+  <div ng-if="isArray(appConfig.input)" class="input-buttons">
+    <button
+      class="btn btn-lg btn-warning"
+      ng-repeat="input in appConfig.input"
+      ng-hide="$parent.template"
+      ng-click="setTemplate(input)">
+        {{input}}
+    </button>
+    <div ng-if="template" ng-include src="'app/components/input/' + template + '/' + template + 'Input.html'"></div>
+  </div>
+</div>
+<div ng-if="config.inputType">
+  <div ng-include src="'app/components/input/' + config.inputType + '/' + config.inputType + 'Input.html'"></div>
+</div>

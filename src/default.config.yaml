@@ -2,7 +2,9 @@
 ---
 framework: 'c3'
 
-input: 'spreadsheet'
+input: 
+  - 'spreadsheet'
+  - 'csv'
 
 export:
   - 'Embed code'
