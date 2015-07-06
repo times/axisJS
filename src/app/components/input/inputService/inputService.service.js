@@ -16,7 +16,11 @@
   /** @ngInject */
   function inputService(configProvider, $injector) {
     return function(appConfig){
-      return $injector.get(appConfig.input + 'Input');
+      if (appConfig.input.constructor === Array) {
+        return $injector.get(appConfig.input[0] + 'Input'); // If multiple, use the first to populate data.
+      } else {
+        return $injector.get(appConfig.input + 'Input');
+      }
     };
   }
 })();

@@ -65,6 +65,13 @@
     $scope.setGroups = function() {
       chart.setGroups($scope);
     };
+    
+    /**
+     * Sets the input service. Used by inputChooser.
+     */
+    $scope.setInput = function() {
+      input = inputService(appConfig);
+    };
 
     /**
      * Debugging function — run getConfig() in the console to log current config object.
