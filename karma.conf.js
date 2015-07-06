@@ -12,7 +12,7 @@ function listFiles() {
     devDependencies: true
   });
 
-  var a = wiredep(wiredepOptions).js
+  return wiredep(wiredepOptions).js
     .concat([
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
@@ -22,8 +22,6 @@ function listFiles() {
       path.join('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js'),
       path.join('bower_components/bootstrap-colorselector/lib/bootstrap-colorselector-0.2.0/js/bootstrap-colorselector.js')
     ]);
-  console.log(a);
-  return a;
 }
 
 module.exports = function(config) {
