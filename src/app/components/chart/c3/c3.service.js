@@ -114,6 +114,12 @@
           },
           transition: {
             duration: undefined
+          },
+          title: {
+            text: undefined,
+            author: undefined,
+            source: undefined,
+            position: 'top-right'
           }
         };
 

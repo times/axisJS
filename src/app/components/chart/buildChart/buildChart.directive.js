@@ -15,83 +15,14 @@
     .directive('buildChart', buildChart);
   
   /** @ngInject */  
-  function buildChart(chartService, $timeout, $window) {
+  function buildChart(chartService, $window) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
         var chart;
         
         element.children('svg').attr('transform', 'scale(2)'); // Needed to prevent pixely canvas
-
-        function doTitles() {
-          var svg = d3.select('svg');
-          var titlesGroup, chartTitle, chartCredit, chartSource;
-          var svgWidth = svg.attr('width');
-
-          // Insert titles if non-existent; otherwise select them.
-          if (svg.select('text.titles')[0][0] !== null) { // d3.select is weird.
-            titlesGroup = svg.select('text.titles');
-            chartTitle = titlesGroup.select('tspan.chartTitle');
-            chartCredit = titlesGroup.select('tspan.chartCredit');
-            chartSource = titlesGroup.select('tspan.chartSource');
-          } else {
-            titlesGroup = svg.insert('text').attr('class', 'titles').attr('text-anchor', scope.appConfig.titles.align);
-            chartTitle = titlesGroup.insert('tspan').attr('class', 'chartTitle');
-            chartCredit = titlesGroup.insert('tspan').attr('class', 'chartCredit');
-            chartSource = titlesGroup.insert('tspan').attr('class', 'chartSource');
-          }
-
-          // Set text
-          chartTitle.text(scope.config.chartTitle).attr('font-size', scope.appConfig.titles['title size']);
-          chartCredit.text(scope.config.chartCredit).attr('font-size', scope.appConfig.titles['credit size']);
-
-          var sourceText = (scope.appConfig.titles['append source'] && scope.config.chartSource ? 'Source: ' : '') + scope.config.chartSource;
-          chartSource.text(sourceText).attr({'font-size': scope.appConfig.titles['source size'], 'font-style': scope.appConfig.titles['source style']});
-
-          // Position text relative to each line
-          var chartTitleTranslateY = typeof scope.appConfig.titles['title translateY'] !== 'undefined' ? scope.appConfig.titles['title translateY'] : 0;
-          chartTitle.attr({'dy': chartTitleTranslateY, 'x': 0});
-
-          var chartCreditTranslateY = typeof scope.appConfig.titles['credit translateY'] !== 'undefined' ? scope.appConfig.titles['credit translateY'] : 32;
-          chartCredit.attr({'dy': chartCreditTranslateY, 'x': 0});
-
-          var chartSourceTranslateY = typeof scope.appConfig.titles['source translateY'] !== 'undefined' ? scope.appConfig.titles['source translateY'] : 30;
-          chartSource.attr({'dy': chartSourceTranslateY, 'x': 0});
-
-          while (chartTitle.node().getComputedTextLength() > svgWidth || chartCredit.node().getComputedTextLength() > svgWidth || chartSource.node().getComputedTextLength() > svgWidth) {
-            var newTitleSize = parseInt(chartTitle.attr('font-size').replace('px', '')) - 1;
-            var newCreditSize = parseInt(chartCredit.attr('font-size').replace('px', '')) - 1;
-            var newSourceSize = parseInt(chartSource.attr('font-size').replace('px', '')) - 1;
-            chartTitle.attr('font-size', newTitleSize + 'px');
-            chartCredit.attr('font-size', newCreditSize + 'px');
-            chartSource.attr('font-size', newSourceSize + 'px');
-            chartCredit.attr({'dy': newTitleSize, 'x': 0});
-            chartSource.attr({'dy': newCreditSize, 'x': 0});
-          }
-
-          if (scope.appConfig.titles['title background'] && chartTitle.text().length > 0) {
-            chartTitle.attr('fill', 'white');
-            var bbox = chartTitle.node().getBBox();
-            var padding = scope.appConfig.titles['background padding'];
-            var rect = d3.select(chartTitle.node().parentNode.parentNode).insert('rect', 'text.titles');
-
-            rect.attr('x', 0)
-                .attr('y', 0)
-                .attr('class', 'title-background')
-                .attr('width', bbox.width + (padding*2))
-                .attr('height', 18 + (padding*2)) //TODO get rid of magic number. bbox.height includes source.
-                .style('fill', scope.config.data.colors[scope.config.data.columns[0][0]]);
-            chartTitle.attr({'x': 0 + padding, 'dy': chartTitleTranslateY + padding});
-          }
-
-          // Position text group
-          var translateGroupX = typeof scope.appConfig.titles.translateX !== 'undefined' ? scope.appConfig.titles.translateX : svgWidth / 2;
-          var translateGroupY = typeof scope.appConfig.titles.translateY !== 'undefined' ? scope.appConfig.titles.translateY : 350;
-          titlesGroup.attr('width', svgWidth).attr('transform', 'translate(' + translateGroupX + ',' + translateGroupY + ')');
-          // Resize SVG
-          svg.attr('height', svg.node().getBBox().height + 'px');
-        }
-
+        
         function redraw() {
           // Sets size. @TODO move to chartService somehow.
           scope.config.size = {
@@ -105,10 +36,6 @@
             chart.destroy();
           }
           chart = chartService(scope.appConfig).generate(element[0].id, scope.config);
-
-          $timeout(function(){
-            doTitles();
-          });
         }
         
         redraw(); // initial draw.
@@ -246,7 +173,11 @@
             'config.subchart.show',
             'config.zoom.enabled',
             'config.interaction.enabled',
-            'config.transition.duration'
+            'config.transition.duration',
+            'config.title.text',
+            'config.title.author',
+            'config.title.source',
+            'config.title.position',
           ], 
           function(){
             redraw();

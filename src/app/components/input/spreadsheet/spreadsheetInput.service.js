@@ -37,7 +37,7 @@
         // Lots of this stuff is C3-specific. TODO move to c3Service.
         if (scope.chartData.length > 0) {
           scope.columns = scope.chartData[0].filter(function(v) {
-            return v != undefined; /* jshint ignore:line */
+            return v != undefined && v !== ''; /* jshint ignore:line */
           });
 
           scope.chartData.shift();
@@ -45,7 +45,7 @@
             var column = [];
             column.push(colName);
             angular.forEach(scope.chartData, function(datum) {
-              if (datum[index] !== null) {
+              if (datum[index]) {
                 column.push(datum[index]);
               }
             });
