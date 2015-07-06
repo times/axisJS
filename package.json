@@ -40,6 +40,7 @@
     "karma-angular-filesort": "~0.1.0",
     "karma-jasmine": "~0.3.5",
     "karma-ng-html2js-preprocessor": "~0.1.2",
+    "karma-nyan-reporter": "^0.1.0",
     "karma-phantomjs-launcher": "just-boris/phantomjs",
     "lodash": "~3.9.3",
     "main-bower-files": "~2.8.0",

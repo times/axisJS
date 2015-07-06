@@ -24,12 +24,26 @@ exports.paths = {
  *  to inject css preprocessor deps and js files in karma
  */
 exports.wiredep = {
-  exclude: [/bootstrap.js$/, /bootstrap-sass-official\/.*\.js/, /bootstrap\.css/],
+  exclude: [
+    /bootstrap\.js$/, 
+    /bootstrap\.css/
+  ],
   directory: 'bower_components',
   overrides: {
     jspdf: {
       main: 'dist/jspdf.debug.js'
-    }
+    },
+    'bootstrap-colorselector': {
+      main: [
+        'lib/bootstrap-colorselector-0.2.0/css/bootstrap-colorselector.css',
+        'lib/bootstrap-colorselector-0.2.0/js/bootstrap-colorselector.js'
+      ]
+    },
+    'bootstrap-sass-official': {
+      main: [
+        'assets/javascripts/bootstrap/dropdown.js', //override needed for bootstrap-colorselector.
+      ]
+    },
   }
 };
 

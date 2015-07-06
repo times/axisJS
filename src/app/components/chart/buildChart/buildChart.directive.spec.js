@@ -18,6 +18,8 @@ describe('Directive: BuildChart', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     scope = $rootScope.$new();
+    $httpBackend.expectGET('assets/i18n/en_GB.json');
+    $httpBackend.whenGET('assets/i18n/en_GB.json').respond('{}');
     $httpBackend.expectGET('default.config.yaml');
     $httpBackend.whenGET('default.config.yaml').respond('');
     $httpBackend.expectGET('config.yaml');

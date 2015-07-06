@@ -18,8 +18,11 @@ describe('Directive: exportChart', function () {
     body.append(angular.element('<a href="#" class="saveSVG">svg</a>'));
     body.append(angular.element('<canvas id="canvas"></canvas>'));
     body.append(angular.element('<div id="chart"></div>'));
+    
     c3.generate({data: {columns: [['data1', 1, 2, 3], ['data2', 4, 5, 6]]}});
 
+    $httpBackend.expectGET('assets/i18n/en_GB.json');
+    $httpBackend.whenGET('assets/i18n/en_GB.json').respond('{}');
     $httpBackend.expectGET('default.config.yaml');
     $httpBackend.whenGET('default.config.yaml').respond('');
     $httpBackend.expectGET('config.yaml');

@@ -12,14 +12,18 @@ function listFiles() {
     devDependencies: true
   });
 
-  return wiredep(wiredepOptions).js
+  var a = wiredep(wiredepOptions).js
     .concat([
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
       path.join(conf.paths.src, '/**/*.mock.js'),
-      path.join(conf.paths.src, '/**/*.html')
+      path.join(conf.paths.src, '/**/*.html'),
+      path.join('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js'),
+      path.join('bower_components/bootstrap-colorselector/lib/bootstrap-colorselector-0.2.0/js/bootstrap-colorselector.js')
     ]);
+  console.log(a);
+  return a;
 }
 
 module.exports = function(config) {
@@ -48,12 +52,15 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-angular-filesort',
       'karma-jasmine',
-      'karma-ng-html2js-preprocessor'
+      'karma-ng-html2js-preprocessor',
+      'karma-nyan-reporter'
     ],
 
     preprocessors: {
       'src/**/*.html': ['ng-html2js']
-    }
+    },
+    
+    reporters: ['nyan']
   };
 
   // This block is needed to execute Chrome on Travis

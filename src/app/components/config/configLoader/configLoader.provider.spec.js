@@ -1,4 +1,4 @@
-describe('Service: configProvider', function () {
+describe('Service: configLoader', function () {
   'use strict';
   
   // load the service's module
@@ -11,6 +11,8 @@ describe('Service: configProvider', function () {
   }));
 
   it('should load the default config', inject(function ($httpBackend) {
+    $httpBackend.expectGET('assets/i18n/en_GB.json');
+    $httpBackend.whenGET('assets/i18n/en_GB.json').respond('{}');
     $httpBackend.whenGET('default.config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
     $httpBackend.whenGET('config.yaml').respond('colors:\n  - label: "neutral 1"\n    value: "#78B8DF"\n  - label: "neutral 2"\n    value: "#AFCBCE"');
     $httpBackend.expectGET('default.config.yaml');
