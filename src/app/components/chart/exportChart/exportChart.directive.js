@@ -47,7 +47,7 @@
             canvas.width = angular.element('#chart > svg').width() * 2;
             canvas.height = angular.element('#chart > svg').height() *2;
           } else {
-            var scaleFactor = width / angular.element('#chart').width();
+            var scaleFactor = (width / angular.element('#chart').width()) * 2;
             angular.element('#chart > svg').attr('transform', 'scale(' + scaleFactor + ')');
             canvas.width = angular.element('#chart > svg').width() * scaleFactor;
             canvas.height = angular.element('#chart > svg').height() * scaleFactor;
@@ -86,19 +86,20 @@
         /* Take styles from CSS and put as inline SVG attributes so that Canvg
            can properly parse them. */
         var inlineAllStyles = function() {
-          var chartStyle, selector;
+          var chartStyle = {}, 
+              selector;
 
           // Get rules from c3.css
           for (var i = 0; i <= document.styleSheets.length - 1; i++) {
             if (document.styleSheets[i].href && document.styleSheets[i].href.indexOf('c3.css') !== -1) {
               if (document.styleSheets[i].rules !== undefined) {
-                chartStyle = document.styleSheets[i].rules;
+                chartStyle = angular.extend(chartStyle, document.styleSheets[i].rules);
               } else {
-                chartStyle = document.styleSheets[i].cssRules;
+                chartStyle = angular.extend(chartStyle, document.styleSheets[i].cssRules);
               }
             }
           }
-
+          
           if (chartStyle !== null && chartStyle !== undefined) {
             // SVG doesn't use CSS visibility and opacity is an attribute, not a style property. Change hidden stuff to "display: none"
             var changeToDisplay = function(){
@@ -113,7 +114,7 @@
                 selector = chartStyle[i].selectorText;
                 styles = makeStyleObject(chartStyle[i]);
                 angular.element('svg *').each(changeToDisplay);
-                angular.element(selector).not('.c3-chart path').css(styles);
+                angular.element(selector).not('.c3-chart path').not('.c3-legend-item-tile').css(styles);
               }
 
               /* C3 puts line colour as a style attribute, which gets overridden

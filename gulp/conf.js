@@ -24,6 +24,7 @@ exports.paths = {
  *  to inject css preprocessor deps and js files in karma
  */
 exports.wiredep = {
+  devDependencies: true,
   exclude: [
     /bootstrap\.js$/, 
     /bootstrap\.css/
