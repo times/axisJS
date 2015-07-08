@@ -50,8 +50,6 @@
             y: '',
             y2: '',
             columns: [
-              ['data1', 30, 200, 100, 400, 150, 250],
-              ['data2', 50, 20, 10, 40, 15, 25]
             ],
             axes: { // This is used in a similar fashion to config.axis.
               data1: appConfig.defaults['y axis'],

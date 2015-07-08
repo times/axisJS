@@ -44,44 +44,47 @@
          * TODO refactor the following to make use of the chartService service.
          */
 
-        // Change the data structure (modified by PapaParse in main.js)
+        // Change the data structure
         scope.$watch('config.data.columns', function(newValues){
-          redraw();
-          scope.config.data.colors = {}; // empty to prevent cruft from building. See #58.
-          if (typeof scope.config.data.types === 'object') {
-            angular.forEach(scope.config.data.types, function(v, key){
-              for (var i = 0; i < newValues.length; i++){
-                if (newValues[i][0] === key) {
-                  return;
+          if (scope.config.data.columns.length > 0) {
+            // redraw(); // Why is this here?
+            
+            scope.config.data.colors = {}; // empty to prevent cruft from building. See #58.
+            if (typeof scope.config.data.types === 'object') {
+              angular.forEach(scope.config.data.types, function(v, key){
+                for (var i = 0; i < newValues.length; i++){
+                  if (newValues[i][0] === key) {
+                    return;
+                  }
                 }
+                // not here? delete.
+                delete(scope.config.data.types[key]);
+              });
+            } else {
+              scope.config.data.types = {};
+            }
+
+            scope.config.data.axes = {};
+
+            angular.forEach(scope.columns, function(column){
+              // Set default y-axis. Should maybe be in csvInput or main?
+              if (!scope.config.data.axes[column]) {
+                scope.config.data.axes[column] = scope.appConfig.defaults['y axis'] ? scope.appConfig.defaults['y axis'] : 'y';
               }
-              // not here? delete.
-              delete(scope.config.data.types[key]);
+              // Configure colours.
+
+              scope.config.data.colors[column] = chart.data.colors()[column];
+
+              // configure datum types
+              if (scope.config.chartGlobalType === 'series') {
+                if (!scope.config.data.types[column]) {
+                  scope.config.data.types[column] = 'line'; // default to line.
+                }
+              } else { // else the global chart type
+                scope.config.data.types[column] = scope.config.chartGlobalType;
+              }
             });
-          } else {
-            scope.config.data.types = {};
           }
-
-          scope.config.data.axes = {};
-
-          angular.forEach(scope.columns, function(column){
-            // Set default y-axis. Should maybe be in csvInput or main?
-            if (!scope.config.data.axes[column]) {
-              scope.config.data.axes[column] = scope.appConfig.defaults['y axis'] ? scope.appConfig.defaults['y axis'] : 'y';
-            }
-            // Configure colours.
-
-            scope.config.data.colors[column] = chart.data.colors()[column];
-
-            // configure datum types
-            if (scope.config.chartGlobalType === 'series') {
-              if (!scope.config.data.types[column]) {
-                scope.config.data.types[column] = 'line'; // default to line.
-              }
-            } else { // else the global chart type
-              scope.config.data.types[column] = scope.config.chartGlobalType;
-            }
-          });
         }, true);
 
         // Change the colours

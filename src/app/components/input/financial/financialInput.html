@@ -1,0 +1,60 @@
+<!-- input: spreadsheet -->
+<div class="row">
+  <div class="col-xs-6">
+    <label for="financial-data-start-date">{{ 'FINANCIAL_INPUT_START_DATE_LABEL' | translate }}</label>
+    <p class="input-group">
+      <input type="text" 
+        datepicker-popup="yyyy-MM-dd"
+        id="financial-data-start-date"
+        class="form-control" 
+        ng-model="inputs.inputData.dateStart" 
+        ng-model-options="{ updateOn: 'blur'}"
+        is-open="datepicker.isOpen"
+        ng-change="updateData()"
+        close-text="Close" />
+      <span class="input-group-btn">
+        <button type="button" 
+          class="btn btn-default" 
+          ng-click="datepicker.toggle($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+    </p>
+  </div>
+  <div class="col-xs-6">
+    <label for="financial-data-end-date">{{ 'FINANCIAL_INPUT_END_DATE_LABEL' | translate }}</label>
+    <p class="input-group">
+      <input
+        type="text" 
+        id="financial-data-end-date"
+        class="form-control" 
+        datepicker-popup="yyyy-MM-dd" 
+        ng-model="inputs.inputData.dateEnd"
+        ng-model-options="{ updateOn: 'blur'}" 
+        is-open="datepicker.isOpen"
+        ng-change="updateData()"
+        close-text="Close" />
+      <span class="input-group-btn">
+        <button 
+          type="button" 
+          class="btn btn-default" 
+          ng-click="datepicker.toggle($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <label for="symbolInput">{{ 'FINANCIAL_INPUT_SYMBOL_LABEL' | translate }}</label>
+    <input 
+      type="text"
+      id="financial-data-symbol-input"
+      class="form-control" 
+      ng-model="inputs.inputData.symbol"
+      ng-model-options="{ updateOn: 'blur'}"
+      ng-change="updateData()" />
+  </div>
+</div>

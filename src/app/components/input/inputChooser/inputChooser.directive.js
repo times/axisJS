@@ -24,6 +24,7 @@
           scope.template = type;
           scope.appConfig.input = type; // Replace array with string form.
           scope.setInput(type); // Set input in MainController to this input provider.
+          scope.resetConfig(); // Reset chart config to default
           scope.inputs.inputData = inputService(scope.appConfig).defaultData; // Replace default data
           scope.config.inputType = type; // Set type in config object to restore on load.
           scope.updateData();

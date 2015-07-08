@@ -3,6 +3,9 @@
   "HEAD_META_DESCRIPTION": "Axis » streamlined chart creation tool by The Times",
   "PANEL_HEADING_DATA_INPUT": "Data input",
   "INPUT_MALFORMED_CSV_ERROR": "Seems like you've entered some malformed CSV data...",
+  "FINANCIAL_INPUT_START_DATE_LABEL": "Start date",
+  "FINANCIAL_INPUT_END_DATE_LABEL": "End date",
+  "FINANCIAL_INPUT_SYMBOL_LABEL": "Symbol(s)",
   
   "PANEL_HEADING_DATA_OPTIONS": "Data options",
   "DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_SERIES": "series",

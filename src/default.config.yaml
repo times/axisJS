@@ -5,6 +5,7 @@ framework: 'c3'
 input: 
   - 'spreadsheet'
   - 'csv'
+  # - 'financial' # Disabling until financial data becomes more open. :(
 
 export:
   - 'Embed code'
@@ -100,6 +101,8 @@ titles:
 backgroundColor: 'white'
 
 colorPicker: 'simple'
+
+financialService: 'yahoo'
 
 themes:
   - name: 'Default/Red Box'

@@ -18,6 +18,11 @@
     return function(appConfig) {
       var framework = $injector.get(appConfig.framework + 'Service');
       var config = framework.getConfig(appConfig);
+      
+      config.getConfig = function() {
+        return framework.getConfig(appConfig).config;
+      };
+      
       config.generate = framework.generate;
       return config;
     };

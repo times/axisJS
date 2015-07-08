@@ -32,11 +32,21 @@
     $scope.axesConfig = chart.axesConfig;
     $scope.config.background = appConfig.background ? appConfig.background : false;
     $scope.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
+    
     $scope.toggleChooser = function() {
       configChooser();
     };
     
-
+    $scope.datepicker = {
+      isOpen: false
+    };
+    $scope.datepicker.toggle = function($event){
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.datepicker.isOpen = true;
+    };
+    
+    
     /**
      * Updates the data. Runs whenever data is added, deleted or modified.
      */
@@ -49,6 +59,13 @@
      */
     $scope.validateData = function(value) {
       return input.validate(value);
+    };
+    
+    /**
+     * Resets the config to factory default from chartService
+     */
+    $scope.resetConfig = function() {
+      $scope.config = chart.getConfig();
     };
 
     /**
