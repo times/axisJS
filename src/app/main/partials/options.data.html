@@ -43,7 +43,7 @@
 
         <span class="input-group-addon" ng-show="config.data.types[col] === 'bar'">
           <select id="group-{{col}}" ng-model="config.groups[col]" ng-change="setGroups()" title="group">
-            <option value="{{group}}" ng-repeat="group in [0,1,2]">{{group + 1}}</option>
+            <option value="{{index}}" ng-repeat="(index, group) in columns">{{index + 1}}</option>
           </select>
         </span>
       </div>

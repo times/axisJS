@@ -258,15 +258,20 @@
        * @param  {object} scope Axis scope
        */
       setGroups: function(scope) {
-        scope.config.data.groups = [];
+        var groups = [];
         for (var group in scope.config.groups) {
           if (scope.config.groups.hasOwnProperty(group)) {
-            if (typeof scope.config.data.groups[scope.config.groups[group]] === 'undefined') {
-              scope.config.data.groups[scope.config.groups[group]] = [];
+            if (typeof groups[scope.config.groups[group]] === 'undefined') {
+              groups[scope.config.groups[group]] = [];
             }
-            scope.config.data.groups[scope.config.groups[group]].push(group);
+            groups[scope.config.groups[group]].push(group);
           }
         }
+        // Reindex array to prevent #98.
+        groups = groups.filter(function(item){
+          return item;
+        });
+        scope.config.data.groups = groups;
       }
     };
   }
