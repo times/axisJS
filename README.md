@@ -1,18 +1,16 @@
-# axisJS [![Build Status](https://travis-ci.org/times/axisJS.svg?branch=master)](https://travis-ci.org/times/axisJS)
+# AxisJS [![Build Status](https://travis-ci.org/times/axisJS.svg?branch=master)](https://travis-ci.org/times/axisJS)  [![Documentation status](http://inch-ci.org/github/times/axisJS.svg?branch=master)](http://inch-ci.org/github/times/axisJS)  [![Join the chat at https://gitter.im/times/axisJS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/times/axisJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ### 2014 [Ændrew Rininsland](http://www.github.com/aendrew) for [The Times and Sunday Times](http://www.github.com/times)
 
-[![Join the chat at https://gitter.im/times/axisJS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/times/axisJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-axisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
+AxisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
 the [AxisWP](http://www.github.com/times/Axis) WordPress plugin to
 add rich charting capabilities to WordPress.
 
 **[Live demo of AxisJS here](http://times.github.io/axisJS/#/)**
 
-axisJS is built atop the [Yeoman](http://github.com/yeoman) [Angular](http://github.com/yeoman/generator-angular)
+AxisJS is built atop the [Yeoman](http://github.com/yeoman) [Angular](http://github.com/yeoman/generator-angular)
 generator and currently makes use of C3 to build charts.
 
-axisJS owes a huge debt of gratitude to [Quartz](http://www.qz.com)'s [ChartBuilder](http://quartz.github.io/ChartBuilder),
+AxisJS owes a huge debt of gratitude to [Quartz](http://www.qz.com)'s [ChartBuilder](http://quartz.github.io/ChartBuilder),
 from where much of the PNG/SVG output code is taken (in addition to some of the interface design).
 
 ### Bower
@@ -57,10 +55,11 @@ View API docs online [here](http://times.github.io/axisJS/docs/).
 - [x] Abstract chart configuration into a provider so that `app/scripts/directives/buildchart.js`
       and `app/scripts/directives/exportchart.js` aren't so tightly bound to C3
 - [x] **ALL** the unit tests
-- [ ] Documentation and cleanup of `buildchart.js` and `exportchart.js`
+- [x] Documentation and cleanup of `buildchart.js` and `exportchart.js`
 - [x] Abstract each output format into factories so more can be modularly added
 - [ ] Abstract out vendor functionality — i.e., make the colour picker replaceable
 - [x] Create an external config file with settings like colour scheme
-- [ ] Improve inline documentation
+- [x] Improve inline documentation
 - [x] Make adding categorical axes more straight-forward
 - [ ] Create adapters for [nvd3](http://www.nvd3.org) and other SVG-based charting libraries.
+- [ ] Componentise so it can be easily dropped into any CMS or app
