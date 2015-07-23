@@ -88,6 +88,14 @@
       </div>
       <div
         class="checkbox"
+        ng-if="config.chartGlobalType === 'series' && hasAreas()">
+        <label>
+            <input type="checkbox" id="chartZerobased" ng-model="config.area.zerobased" />
+          {{ 'CHART_OPTIONS_ZERO_BASED' | translate }}
+        </label>
+      </div>
+      <div
+        class="checkbox"
         popover="{{ 'POPOVER_TEXT_ROTATED_CHECKBOX' | translate }}"
         ng-if="config.chartGlobalType === 'series'">
         <label>

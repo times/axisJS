@@ -41,7 +41,7 @@
           popover="{{ 'POPOVER_TEXT_DATUM_TYPE' | translate }}">
         </select>
 
-        <span class="input-group-addon" ng-show="config.data.types[col] === 'bar'">
+        <span class="input-group-addon" ng-show="['bar', 'area', 'area-step', 'area-spline'].indexOf(config.data.types[col]) >= 0"> <!-- TODO move this logic to chart config -->
           <select id="group-{{col}}" ng-model="config.groups[col]" ng-change="setGroups()" title="group">
             <option value="{{index}}" ng-repeat="(index, group) in columns">{{index + 1}}</option>
           </select>

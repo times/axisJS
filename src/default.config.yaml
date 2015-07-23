@@ -105,7 +105,9 @@ colorPicker: 'simple'
 financialService: 'yahoo'
 
 themes:
-  - name: 'Default/Red Box'
+  - name: 'Red Box'
     file: 'config.yaml'
+  - name: 'The Times'
+    file: 'themes/thetimes.config.yaml'
   - name: 'Sunday Times'
     file: 'themes/sundaytimes.config.yaml'

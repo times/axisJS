@@ -54,6 +54,7 @@
   "CHART_OPTIONS_TRANSITION_LABEL": "Transition",
   "CHART_OPTIONS_SELECT_LABEL": "Accuracy",
   "CHART_OPTIONS_SELECT_OPTION_TEXT": "{{accuracy}} decimal places",
+  "CHART_OPTIONS_ZERO_BASED": "Zero-based areas",
   "CHART_OPTIONS_ROTATED_LABEL": "Rotated",
   "CHART_OPTIONS_BACKGROUND_LABEL": "Background",
   "CHART_OPTIONS_ZOOMABLE_LABEL": "Zoomable",

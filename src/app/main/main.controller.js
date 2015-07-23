@@ -89,6 +89,20 @@
     $scope.setInput = function() {
       input = inputService(appConfig);
     };
+    
+    /**
+     * Checks whether any of the data are being displayed as areas.
+     * TODO move to chartProvider.
+     */
+    $scope.hasAreas = function(){
+      for (var i in $scope.config.data.types) {
+        if ($scope.config.data.types[i].match('area')) {
+          return true;
+        }
+      }
+      
+      return false; // return false if no areas.
+    };
 
     /**
      * Debugging function — run getConfig() in the console to log current config object.

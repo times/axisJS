@@ -59,8 +59,8 @@
             },
             type: '',
             types: {
-              data1: 'line', // Currently must set explictly on initialisation to populate view.
-              data2: 'line'
+              data1: appConfig.defaults['series type'] || 'line', // Currently must set explictly on initialisation to populate view.
+              data2: appConfig.defaults['series type'] || 'line'
             },
             colors: {
               data1: appConfig.colors[0].value,
@@ -126,6 +126,7 @@
           'step',
           'area',
           'area-step',
+          'area-spline',
           'scatter',
           'bar',
           'spline',
@@ -213,6 +214,10 @@
             }
           }
         };
+        
+        config.area = {
+          zerobased: false
+        };
 
         return {
           config: config,
@@ -247,7 +252,7 @@
             if (type !== 'series') {
               scope.config.data.types[key] = type;
             } else {
-              scope.config.data.types[key] = 'line';
+              scope.config.data.types[key] = scope.appConfig.defaults['series type'] || 'line';
             }
           }
         }
@@ -259,6 +264,7 @@
        */
       setGroups: function(scope) {
         var groups = [];
+        
         for (var group in scope.config.groups) {
           if (scope.config.groups.hasOwnProperty(group)) {
             if (typeof groups[scope.config.groups[group]] === 'undefined') {
@@ -267,8 +273,8 @@
             groups[scope.config.groups[group]].push(group);
           }
         }
-        // Reindex array to prevent #98.
-        groups = groups.filter(function(item){
+        
+        groups = groups.filter(function(item){ // Reindex array to prevent #98.
           return item;
         });
         scope.config.data.groups = groups;

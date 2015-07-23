@@ -47,8 +47,6 @@
         // Change the data structure
         scope.$watch('config.data.columns', function(newValues){
           if (scope.config.data.columns.length > 0) {
-            // redraw(); // Why is this here?
-            
             scope.config.data.colors = {}; // empty to prevent cruft from building. See #58.
             if (typeof scope.config.data.types === 'object') {
               angular.forEach(scope.config.data.types, function(v, key){
@@ -78,12 +76,14 @@
               // configure datum types
               if (scope.config.chartGlobalType === 'series') {
                 if (!scope.config.data.types[column]) {
-                  scope.config.data.types[column] = 'line'; // default to line.
+                  scope.config.data.types[column] = scope.appConfig.defaults['series type'] || 'line'; // default to line.
                 }
               } else { // else the global chart type
                 scope.config.data.types[column] = scope.config.chartGlobalType;
               }
             });
+            
+            redraw(); // Data's all updated — now trigger redraw.
           }
         }, true);
 
@@ -181,6 +181,7 @@
             'config.title.author',
             'config.title.source',
             'config.title.position',
+            'config.area.zerobased'
           ], 
           function(){
             redraw();
