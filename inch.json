@@ -1,0 +1,9 @@
+{
+  "files": {
+    "included": [
+      "src/**/*.js"
+    ],
+    "excluded": [
+    ]
+  }
+}
