@@ -4,6 +4,7 @@
       "src/**/*.js"
     ],
     "excluded": [
+      "src/**/*.spec.js"
     ]
   }
 }
