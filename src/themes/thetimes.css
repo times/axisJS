@@ -1,0 +1,16 @@
+/** The Times styles **/
+
+/** C3 **/
+.c3-grid line {
+  stroke: #ddd !important;
+  stroke-dasharray: 1, 1;
+}
+
+path.c3-line {
+  stroke: #bf1f10 !important;
+  stroke-width: 3;
+}
+
+path.c3-area {
+  fill: #cfdfef
+}

@@ -4,7 +4,7 @@
     ng-class="{collapsed: axesOptionsAreCollapsed}">
       {{ 'PANEL_HEADING_AXES' | translate }}
   </div>
-  
+
   <div class="panel-body" collapse="!axesOptionsAreCollapsed">
     <form class="form-horizontal" role="form">
       <fieldset ng-disabled="config.chartGlobalType !== 'series'">
@@ -16,7 +16,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisColumn">{{ 'AXES_COLUMN_SELECT_LABEL' | translate }}</label>
             <div class="col-sm-9">
-              <select 
+              <select
                 class="form-control"
                 id="{{axis.value}}AxisColumn"
                 popover=" {{ 'POPOVER_TEXT_COLUMN_SELECT' | translate }}"
@@ -56,11 +56,11 @@
               <input type="number" id="{{axis.value}}AxisMax" class="form-control" ng-model="config.axis[axis.value].max" />
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" ng-hide="config.data[axis.value]">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisAccuracy">{{ 'AXES_ACCURACY_SELECT_LABEL' | translate }}</label>
             <div class="col-sm-9">
               <div class="input-group">
-                <select id="{{axis.value}}AxisAccuracy" class="form-control" ng-model="config.axis[axis.value].accuracy" ng-disabled="config.data[axis.value]">
+                <select id="{{axis.value}}AxisAccuracy" class="form-control" ng-model="config.axis[axis.value].accuracy">
                   <option value="0">{{ 'AXES_ACCURACY_SELECT_OPTION_TEXT' | translate:'{accuracy: 0}' }}</option>
                   <option value="1">{{ 'AXES_ACCURACY_SELECT_OPTION_TEXT' | translate:'{accuracy: 1}' }}</option>
                   <option value="2">{{ 'AXES_ACCURACY_SELECT_OPTION_TEXT' | translate:'{accuracy: 2}' }}</option>

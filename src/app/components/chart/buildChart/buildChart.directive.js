@@ -10,19 +10,19 @@
 
 (function(){
   'use strict';
-  
+
   angular.module('axis')
     .directive('buildChart', buildChart);
-  
-  /** @ngInject */  
+
+  /** @ngInject */
   function buildChart(chartService, $window) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
         var chart;
-        
+
         element.children('svg').attr('transform', 'scale(2)'); // Needed to prevent pixely canvas
-        
+
         function redraw() {
           // Sets size. @TODO move to chartService somehow.
           scope.config.size = {
@@ -31,13 +31,13 @@
           };
           scope.config.chartWidth = scope.config.size.width;
           scope.config.chartHeight = scope.config.size.height;
-          
+
           if (chart && chart.hasOwnProperty('destroy')) { // Needed to prevent memory holes.
             chart.destroy();
           }
           chart = chartService(scope.appConfig).generate(element[0].id, scope.config);
         }
-        
+
         redraw(); // initial draw.
 
         /**
@@ -82,7 +82,7 @@
                 scope.config.data.types[column] = scope.config.chartGlobalType;
               }
             });
-            
+
             redraw(); // Data's all updated — now trigger redraw.
           }
         }, true);
@@ -115,8 +115,8 @@
               }
 
               // Setup prefix/suffix
-              if (newValues[key].hasOwnProperty('prefix') || 
-                  newValues[key].hasOwnProperty('suffix') || 
+              if (newValues[key].hasOwnProperty('prefix') ||
+                  newValues[key].hasOwnProperty('suffix') ||
                   newValues[key].hasOwnProperty('accuracy') ||
                   newValues[key].hasOwnProperty('commas')) { // redraw if axis visibility changed
                 if (typeof newValues[key].prefix === 'undefined') {
@@ -151,6 +151,7 @@
                 if (isNaN(column[i]) && column[0] === v) { // Column is NaN
                   scope.config.axis[axis].type = 'category';
                   scope.config.axis[axis].tick = undefined;
+                  scope.config.axis[axis].accuracy = undefined;
                   break;
                 } else if (column[0] === v) {
                   scope.config.data.axes[v] = axis;
@@ -167,11 +168,11 @@
           [
             'config.chartHeight',
             'config.chartWidth',
-            'config.chartTitle', 
-            'config.chartCredit', 
-            'config.chartSource', 
-            'config.chartAccuracy', 
-            'config.legend.position', 
+            'config.chartTitle',
+            'config.chartCredit',
+            'config.chartSource',
+            'config.chartAccuracy',
+            'config.legend.position',
             'config.legend.show',
             'config.subchart.show',
             'config.zoom.enabled',
@@ -182,7 +183,7 @@
             'config.title.source',
             'config.title.position',
             'config.area.zerobased'
-          ], 
+          ],
           function(){
             redraw();
           }
@@ -206,7 +207,7 @@
             d3.select('.chart-bg').remove();
           }
         });
-        
+
         // Redraw on browser resize.
         angular.element($window).bind('resize', function(){
           redraw();
