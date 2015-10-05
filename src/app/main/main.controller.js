@@ -14,93 +14,94 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $injector, $window, appConfig, chartService, inputService, configChooser) {
-    // var vm = this;
+  function MainController($injector, $window, appConfig, chartService, inputService, configChooser) {
+    var vm = this;
 
     /**
      * Sets up the configuration object from YAML
      */
     var input = inputService(appConfig);
     var chart = chartService(appConfig);
-    
-    $scope.inputs = {};
-    $scope.columns = [];
-    $scope.chartData = {};
-    $scope.appConfig = appConfig;
-    $scope.config = chart.config;
-    $scope.chartTypes = chart.chartTypes;
-    $scope.axesConfig = chart.axesConfig;
-    $scope.config.background = appConfig.background ? appConfig.background : false;
-    $scope.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
-    
-    $scope.toggleChooser = function() {
+
+    vm.inputs = {};
+    vm.columns = [];
+    vm.chartData = {};
+    vm.appConfig = appConfig;
+    vm.config = chart.config;
+    vm.chartTypes = chart.chartTypes;
+    vm.axesConfig = chart.axesConfig;
+    vm.config.background = appConfig.background ? appConfig.background : false;
+    vm.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
+
+    vm.toggleChooser = function() {
       configChooser();
     };
-    
-    $scope.datepicker = {
+
+    vm.datepicker = {
       isOpen: false
     };
-    $scope.datepicker.toggle = function($event){
+    vm.datepicker.toggle = function($event){
       $event.preventDefault();
       $event.stopPropagation();
-      $scope.datepicker.isOpen = true;
+      vm.datepicker.isOpen = true;
     };
-    
-    
+
+
     /**
      * Updates the data. Runs whenever data is added, deleted or modified.
      */
-    $scope.updateData = function() {
-      return input.input($scope);
+    vm.updateData = function() {
+      vm = input.input(vm);
+      return vm;
     };
 
     /**
      * Validates the data. Runs on data change.
      */
-    $scope.validateData = function(value) {
+    vm.validateData = function(value) {
       return input.validate(value);
     };
-    
+
     /**
      * Resets the config to factory default from chartService
      */
-    $scope.resetConfig = function() {
-      $scope.config = chart.getConfig();
+    vm.resetConfig = function() {
+      vm.config = chart.getConfig();
     };
 
     /**
      * Sets the global chart type.
      */
-    $scope.setGlobalType = function(type) {
-      chart.setGlobalType(type, $scope);
+    vm.setGlobalType = function(type) {
+      chart.setGlobalType(type, vm);
     };
 
     /**
      * Sets data groups. Used with stacked bar charts.
      * TODO move to c3Service
      */
-    $scope.setGroups = function() {
-      chart.setGroups($scope);
+    vm.setGroups = function() {
+      chart.setGroups(vm);
     };
-    
+
     /**
      * Sets the input service. Used by inputChooser.
      */
-    $scope.setInput = function() {
+    vm.setInput = function() {
       input = inputService(appConfig);
     };
-    
+
     /**
      * Checks whether any of the data are being displayed as areas.
      * TODO move to chartProvider.
      */
-    $scope.hasAreas = function(){
-      for (var i in $scope.config.data.types) {
-        if ($scope.config.data.types[i].match('area')) {
+    vm.hasAreas = function(){
+      for (var i in vm.config.data.types) {
+        if (vm.config.data.types[i].match('area')) {
           return true;
         }
       }
-      
+
       return false; // return false if no areas.
     };
 
@@ -109,8 +110,8 @@
      * Also attaches $scope.config to window.chartConfig so it's visible in console.
      */
     $window.getConfig = function() {
-      console.dir($scope);
-      $window.chartConfig = $scope.config;
+      console.dir(vm);
+      $window.chartConfig = vm.config;
     };
 
     /**
@@ -123,18 +124,18 @@
       if (typeof output.import !== 'undefined') {
         importData = output.import(input);
         if (importData) {
-          $scope.inputs.inputData = importData.inputData;
-          $scope.config = importData.config;
+          vm.inputs.inputData = importData.inputData;
+          vm.config = importData.config;
         }
       }
     });
-    
+
     // If the above services don't populate inputData, populate it with default data.
-    if (!$scope.inputs.inputData) {
-      $scope.inputs.inputData = input.defaultData;
+    if (!vm.inputs.inputData) {
+      vm.inputs.inputData = input.defaultData;
     }
-    
+
     // Finally, update and render.
-    $scope.updateData();
+    vm.updateData();
   }
 })();

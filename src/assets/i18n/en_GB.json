@@ -6,7 +6,7 @@
   "FINANCIAL_INPUT_START_DATE_LABEL": "Start date",
   "FINANCIAL_INPUT_END_DATE_LABEL": "End date",
   "FINANCIAL_INPUT_SYMBOL_LABEL": "Symbol(s)",
-  
+
   "PANEL_HEADING_DATA_OPTIONS": "Data options",
   "DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_SERIES": "series",
   "DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_PIE": "pie",
@@ -19,10 +19,10 @@
   "DATA_OPTIONS_DATUM_TYPE_SELECT_SCATTER": "scatter",
   "DATA_OPTIONS_DATUM_TYPE_SELECT_BAR": "bar",
   "DATA_OPTIONS_DATUM_TYPE_SELECT_SPLINE": "spline",
-  
+
   "PANEL_HEADING_AXES": "Axes",
   "AXES_SECTION_HEADING": "{{axisPosition}} Axis",
-  "AXES_COLUMN_SELECT_LABEL": "Column",
+  "AXES_COLUMN_SELECT_LABEL": "Categorical?",
   "AXES_LABEL_FIELD_LABEL": "Label",
   "AXES_PREFIX_FIELD_LABEL": "Prefix",
   "AXES_SUFFIX_FIELD_LABEL": "Suffix",
@@ -35,7 +35,7 @@
   "AXES_TIMESERIES_FIELD_LABEL": "Timeseries?",
   "AXES_DATETIME_FORMAT_FIELD_LABEL": "Datetime format",
   "AXES_INVERT": "Invert",
-  
+
   "PANEL_HEADING_CHART_OPTIONS": "Chart options",
   "CHART_OPTIONS_LEGEND_SELECT_LABEL": "Legend",
   "CHART_OPTIONS_LEGEND_SELECT_OPTION_BOTTOM": "bottom",
@@ -60,11 +60,11 @@
   "CHART_OPTIONS_ZOOMABLE_LABEL": "Zoomable",
   "CHART_OPTIONS_SUBCHART_LABEL": "Subchart",
   "CHART_OPTIONS_INTERACTION_LABEL": "Interaction",
-  
+
   "PANEL_HEADING_OUTPUT": "Output",
   "OUTPUT_EXPORT_BUTTON_LABEL": "Export to...",
   "OUTPUT_SAVE_BUTTON_LABEL": "Save image...",
-  
+
   "CREDIT_TEXT": "A project by <a href=\"http://www.github.com/aendrew/\">Ændrew Rininsland</a>, <a href=\"http://github.com/times/\">Times Digital Development</a> | <a href=\"http://www.github.com/times/axisJS/issues\">issues</a> | <a href=\"http://www.github.com/times/axisJS\">GitHub</a>",
 
   "POPOVER_TEXT_CHART_GLOBAL_TYPE": "Choose the main chart style here",
@@ -78,6 +78,6 @@
   "POPOVER_TEXT_COUNT_FIELD": "Set the number of axis ticks",
   "POPOVER_TEXT_ZOOMABLE_CHECKBOX": "Check to make chart zoomable",
   "POPOVER_TEXT_SUBCHART_CHECKBOX": "Check to add a subchart"
-  
-  
+
+
 }

@@ -21,7 +21,7 @@
       .state('index', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainController',
+        controller: 'MainController as main',
         resolve: {
           appConfig: function(configProvider, $rootScope) {
             $rootScope.version = '1.1.0';

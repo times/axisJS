@@ -1,18 +1,17 @@
 <div class="panel panel-default">
   <div class="panel-heading"
-    ng-click="axesOptionsAreCollapsed = !axesOptionsAreCollapsed"
-    ng-class="{collapsed: axesOptionsAreCollapsed}">
+    ng-click="main.axesOptionsAreCollapsed = !main.axesOptionsAreCollapsed"
+    ng-class="{collapsed: main.axesOptionsAreCollapsed}">
       {{ 'PANEL_HEADING_AXES' | translate }}
   </div>
-
   <div class="panel-body" collapse="!axesOptionsAreCollapsed">
     <form class="form-horizontal" role="form">
-      <fieldset ng-disabled="config.chartGlobalType !== 'series'">
-        <h4 ng-repeat-start="axis in axesConfig">
+      <fieldset ng-disabled="main.config.chartGlobalType !== 'series'">
+        <h4 ng-repeat-start="axis in main.axesConfig">
           <span translate="AXES_SECTION_HEADING" translate-values="{axisPosition: axis.label}"></span>
-          <input type="checkbox" ng-model="config.axis[axis.value].show" />
+          <input type="checkbox" ng-model="main.config.axis[axis.value].show" />
         </h4>
-        <fieldset ng-hide="!config.axis[axis.value].show" ng-repeat-end>
+        <fieldset ng-hide="!main.config.axis[axis.value].show" ng-repeat-end>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisColumn">{{ 'AXES_COLUMN_SELECT_LABEL' | translate }}</label>
             <div class="col-sm-9">
@@ -20,47 +19,47 @@
                 class="form-control"
                 id="{{axis.value}}AxisColumn"
                 popover=" {{ 'POPOVER_TEXT_COLUMN_SELECT' | translate }}"
-                ng-model="config.data[axis.value]">
+                ng-model="main.config.data[axis.value]">
                 <option value=""></option>
-                <option value="{{col}}" ng-repeat="col in columns">{{col}}</option>
+                <option value="{{col}}" ng-repeat="col in main.columns">{{col}}</option>
               </select>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisLabel">{{ 'AXES_LABEL_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9">
-              <input type="text" id="{{axis.value}}AxisLabel" class="form-control" ng-model="config.axis[axis.value].label" />
+              <input type="text" id="{{axis.value}}AxisLabel" class="form-control" ng-model="main.config.axis[axis.value].label" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisPrefix">{{ 'AXES_PREFIX_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9">
-              <input type="text" id="{{axis.value}}AxisPrefix" class="form-control" ng-model="config.axis[axis.value].prefix"/>
+              <input type="text" id="{{axis.value}}AxisPrefix" class="form-control" ng-model="main.config.axis[axis.value].prefix"/>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisSuffix">{{ 'AXES_SUFFIX_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9">
-              <input type="text" id="{{axis.value}}AxisSuffix" class="form-control" ng-model="config.axis[axis.value].suffix" />
+              <input type="text" id="{{axis.value}}AxisSuffix" class="form-control" ng-model="main.config.axis[axis.value].suffix" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisMin">{{ 'AXES_MIN_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9">
-              <input type="number" id="{{axis.value}}AxisMin" class="form-control" ng-model="config.axis[axis.value].min" />
+              <input type="number" id="{{axis.value}}AxisMin" class="form-control" ng-model="main.config.axis[axis.value].min" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="yAxisMax">{{ 'AXES_MAX_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9">
-              <input type="number" id="{{axis.value}}AxisMax" class="form-control" ng-model="config.axis[axis.value].max" />
+              <input type="number" id="{{axis.value}}AxisMax" class="form-control" ng-model="main.config.axis[axis.value].max" />
             </div>
           </div>
-          <div class="form-group" ng-hide="config.data[axis.value]">
+          <div class="form-group" ng-hide="main.config.data[axis.value]">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisAccuracy">{{ 'AXES_ACCURACY_SELECT_LABEL' | translate }}</label>
             <div class="col-sm-9">
               <div class="input-group">
-                <select id="{{axis.value}}AxisAccuracy" class="form-control" ng-model="config.axis[axis.value].accuracy">
+                <select id="{{axis.value}}AxisAccuracy" class="form-control" ng-model="main.config.axis[axis.value].accuracy">
                   <option value="0">{{ 'AXES_ACCURACY_SELECT_OPTION_TEXT' | translate:'{accuracy: 0}' }}</option>
                   <option value="1">{{ 'AXES_ACCURACY_SELECT_OPTION_TEXT' | translate:'{accuracy: 1}' }}</option>
                   <option value="2">{{ 'AXES_ACCURACY_SELECT_OPTION_TEXT' | translate:'{accuracy: 2}' }}</option>
@@ -69,7 +68,7 @@
                   <option value="5">{{ 'AXES_ACCURACY_SELECT_OPTION_TEXT' | translate:'{accuracy: 5}' }}</option>
                 </select>
                 <span class="input-group-addon" popover="{{ 'POPOVER_TEXT_ACCURACY_CHECKBOX' | translate }}">
-                  <input id="{{axis.value}}AxisCommas" type="checkbox" ng-model="config.axis[axis.value].commas" ng-disabled="config.data[axis.value]">
+                  <input id="{{axis.value}}AxisCommas" type="checkbox" ng-model="main.config.axis[axis.value].commas" ng-disabled="main.config.data[axis.value]">
                 </span>
               </div>
             </div>
@@ -77,25 +76,25 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisTickCulling">{{ 'AXES_CULLING_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9" popover="{{ 'POPOVER_TEXT_CULLING_FIELD' | translate }}">
-              <input type="number" id="{{axis.value}}AxisTickCulling" class="form-control" ng-model="config.axis[axis.value].tick.culling.max" />
+              <input type="number" id="{{axis.value}}AxisTickCulling" class="form-control" ng-model="main.config.axis[axis.value].tick.culling.max" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="{{axis.value}}AxisTickCount">{{ 'AXES_COUNT_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9" popover="{{ 'POPOVER_TEXT_COUNT_FIELD' | translate }}">
-              <input type="number" id="{{axis.value}}AxisTickCount" class="form-control" ng-model="config.axis[axis.value].tick.count" />
+              <input type="number" id="{{axis.value}}AxisTickCount" class="form-control" ng-model="main.config.axis[axis.value].tick.count" />
             </div>
           </div>
-          <div class="form-group" ng-if="config.data[axis.value]">
+          <div class="form-group" ng-if="main.config.data[axis.value]">
             <label class="col-sm-3 control-label" for="{{axis.value}}TimeseriesBoolean">{{ 'AXES_TIMESERIES_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9 checkbox">
-              <input type="checkbox" id="{{axis.value}}TimeseriesBoolean" ng-true-value="'timeseries'" ng-model="config.axis[axis.value].type" />
+              <input type="checkbox" id="{{axis.value}}TimeseriesBoolean" ng-true-value="'timeseries'" ng-model="main.config.axis[axis.value].type" />
             </div>
           </div>
-          <div class="form-group" ng-if="config.axis[axis.value].type === 'timeseries'">
+          <div class="form-group" ng-if="main.config.axis[axis.value].type === 'timeseries'">
             <label class="col-sm-3 control-label" for="{{axis.value}}TimeseriesFormat"><a href="https://github.com/mbostock/d3/wiki/Time-Formatting" target="_blank">{{ 'AXES_DATETIME_FORMAT_FIELD_LABEL' | translate }}</a></label>
             <div class="col-sm-9">
-              <input type="text" id="{{axis.value}}TimeseriesFormat" class="form-control" value="timeseries" ng-model="config.axis[axis.value].tick.format" />
+              <input type="text" id="{{axis.value}}TimeseriesFormat" class="form-control" value="timeseries" ng-model="main.config.axis[axis.value].tick.format" />
             </div>
           </div>
           <div class="form-group" ng-if="['y', 'y2'].indexOf(axis.value) > -1">
@@ -103,7 +102,7 @@
             <div class="col-sm-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="{{axis.value}}Inverted" ng-model="config.axis[axis.value].inverted" />
+                  <input type="checkbox" id="{{axis.value}}Inverted" ng-model="main.config.axis[axis.value].inverted" />
                 </label>
               </div>
             </div>

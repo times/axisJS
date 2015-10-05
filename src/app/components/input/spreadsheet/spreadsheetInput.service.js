@@ -8,11 +8,11 @@
 
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .factory('spreadsheetInput', spreadsheetInput);
-  
+
   /** @ngInject */
   function spreadsheetInput() {
     var defaultSheet = [

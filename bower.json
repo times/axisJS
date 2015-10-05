@@ -59,14 +59,16 @@
     "angular-translate-loader-static-files": "~2.7.2",
     "angular-bootstrap": "~0.12.0",
     "angular-mocks": "~1.4.0",
-    "ngHandsontable": "~0.6.0"
+    "ngHandsontable": "0.7.0-beta2"
   },
   "resolutions": {
     "jquery": "~2.1.4",
     "angular": "~1.4.0",
     "c3": "title_options",
     "angular-bootstrap": "0.12.1",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "handsontable": "~0.18.0",
+    "ngHandsontable": "0.7.0-beta2"
   },
   "appPath": "src"
 }

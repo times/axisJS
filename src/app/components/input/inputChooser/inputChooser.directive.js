@@ -6,28 +6,34 @@
  */
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .directive('inputChooser', inputChooser);
-  
-  /** @ngInject */  
+
+  /** @ngInject */
   function inputChooser(inputService) {
     return {
       templateUrl: 'app/components/input/inputChooser/inputChooser.html',
       restrict: 'E',
-      scope: true,
-      link: function postLink(scope) {
-        scope.isArray = angular.isArray;
-        scope.template = false;
-        scope.setTemplate = function(type) {
-          scope.template = type;
-          scope.appConfig.input = type; // Replace array with string form.
-          scope.setInput(type); // Set input in MainController to this input provider.
-          scope.resetConfig(); // Reset chart config to default
-          scope.inputs.inputData = inputService(scope.appConfig).defaultData; // Replace default data
-          scope.config.inputType = type; // Set type in config object to restore on load.
-          scope.updateData();
+      scope: {
+        'main': '=config'
+      },
+      controllerAs: 'inputCtrl',
+      controller: function postLink($scope) {
+        var main = $scope.main;
+        var vm = this;
+
+        vm.isArray = angular.isArray;
+        vm.template = false;
+        vm.setTemplate = function(type) {
+          vm.template = type;
+          main.appConfig.input = type; // Replace array with string form.
+          main.setInput(type); // Set input in MainController to this input provider.
+          main.resetConfig(); // Reset chart config to default
+          main.inputs.inputData = inputService(main.appConfig).defaultData; // Replace default data
+          main.config.inputType = type; // Set type in config object to restore on load.
+          main.updateData(main.appConfig);
         };
       }
     };

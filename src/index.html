@@ -1,6 +1,6 @@
 <!doctype html>
 <html ng-app="axis">
-  <head ng-controller="HeadController">
+  <head ng-controller="HeadController as head">
     <meta charset="utf-8">
     <title translate="HEAD_APP_TITLE">Axis » streamlined chart creation tool</title>
     <meta name="description" content="{{ 'HEAD_META_DESCRIPTION' | translate }}">
@@ -21,16 +21,16 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
-    
+
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/lumen/bootstrap.min.css" />
-    
+
     <!-- separate because of exportchart.inlineAllStyles() -->
     <link rel="stylesheet" href="bower_components/c3/c3.css" />
-    
+
     <!-- Remaining font and theme imports from configLoader -->
-    <link rel="stylesheet" ng-href="{{stylesheet}}" />
-    <link rel="stylesheet" ng-href="{{font}}" ng-repeat="font in fonts" />
+    <link rel="stylesheet" ng-href="{{head.stylesheet}}" />
+    <link rel="stylesheet" ng-href="{{font}}" ng-repeat="font in head.fonts" />
   </head>
   <body>
     <!--[if lt IE 10]>

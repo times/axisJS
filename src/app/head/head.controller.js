@@ -15,10 +15,12 @@
 
   /** @ngInject */
   function HeadController($scope, configProvider) {
+    var head = this;
+    
     configProvider.then(function(appConfig){
-      $scope.conf = appConfig;
-      $scope.stylesheet = typeof appConfig.stylesheet !== 'undefined' ? appConfig.stylesheet : '';
-      $scope.fonts = typeof appConfig.fonts !== 'undefined' ? appConfig.fonts : [];
+      head.conf = appConfig;
+      head.stylesheet = typeof appConfig.stylesheet !== 'undefined' ? appConfig.stylesheet : '';
+      head.fonts = typeof appConfig.fonts !== 'undefined' ? appConfig.fonts : [];
     });
   }
 })();

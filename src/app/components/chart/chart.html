@@ -1,4 +1,3 @@
 <!-- this is where the chart actually renders -->
-<div id="chart" build-chart ng-style="{'background-color': config.chartBackground}"></div> <!-- everything gets rendered inside of this -->
+<div id="chart" build-chart config="main" ng-style="{'background-color': main.config.chartBackground}"></div> <!-- everything gets rendered inside of this -->
 <canvas id="canvas" width="1072px" height="676px" /> <!-- needed for PNG output -->
-
