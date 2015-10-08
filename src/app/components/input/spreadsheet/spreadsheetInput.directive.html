@@ -1,4 +1,3 @@
-{{sheet.updateData()}}
 <hot-table
   name="hot-table-instance"
   hot-id="spreadsheet-input"
@@ -8,5 +7,6 @@
   min-spare-rows="27"
   min-spare-cols="10"
   height="200"
-  after-change="sheet.updateData">
+  on-before-change="sheet.clearOnPaste"
+  on-after-change="main.updateData">
 </hot-table>

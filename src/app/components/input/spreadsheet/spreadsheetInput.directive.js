@@ -25,8 +25,17 @@
         var vm = this;
 
         vm.inputs = main.inputs;
-        vm.updateData = function(){
-          main.updateData();
+
+        /**
+         * Clears HOT if data is from pasting.
+         * @param  {array} changes From HOT, the changes being made to table.
+         * @param  {string} source  From HOT, the source of the changes.
+         * @return {void}
+         */
+        vm.clearOnPaste = function(changes, source){
+          if (source === 'paste') {
+            this.clear();
+          }
         };
       }
     };
