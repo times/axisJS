@@ -1,6 +1,6 @@
 # The Times axisJS configuration
 ---
-framework: 'c3'
+renderer: 'c3'
 
 export:
   - 'Embed code'
@@ -72,6 +72,6 @@ fonts:
   - 'http://www.thetimes.co.uk/fonts/StagSans-SemiBold.css'
   - 'http://www.thetimes.co.uk/fonts/StagSans-Medium.css'
   - 'http://www.thetimes.co.uk/fonts/StagSans-Book.css'
-  
+
 
 colorPicker: 'simple'

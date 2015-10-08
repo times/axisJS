@@ -9,7 +9,7 @@ describe('Service: c3Service', function () {
       scope,
       element,
       appConfig = {
-        framework: 'c3',
+        renderer: 'c3',
         colors: [
         'red',
         'blue'

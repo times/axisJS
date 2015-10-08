@@ -1,6 +1,6 @@
 # Sunday Times axisJS configuration
 ---
-framework: 'c3'
+renderer: 'c3'
 
 export:
   - 'Embed code'

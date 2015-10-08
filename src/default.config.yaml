@@ -1,11 +1,11 @@
 # axisJS default config
 ---
-framework: 'c3'
+renderer: 'c3'
 
-input: 
+input:
   - 'spreadsheet'
   - 'csv'
-  - 'financial' # Disabling until financial data becomes more open. :(
+#  - 'financial' # Disabled until financial data becomes more open. :(
 
 export:
   - 'Embed code'
@@ -105,7 +105,7 @@ colorPicker: 'simple'
 financialService: 'yahoo'
 
 themes:
-  - name: 'Red Box'
+  - name: 'Default (Red Box)'
     file: 'config.yaml'
   - name: 'The Times'
     file: 'themes/thetimes.config.yaml'

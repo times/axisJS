@@ -34,7 +34,7 @@ xdescribe('Service: axisOutput', function () {
     MainCtrl = $controller('MainController', {
       $scope: scope,
       appConfig: {
-        framework: 'c3',
+        renderer: 'c3',
         input: 'csv',
         save: [
           'png',

@@ -1,0 +1,11 @@
+/**
+ * Default Axis styles, based on Times Red Box.
+ *
+ * Working renderers: C3
+ */
+
+
+/** C3 **/
+path.c3-line {
+  stroke-width: 2;
+}

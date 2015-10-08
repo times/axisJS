@@ -17,7 +17,7 @@
       MainController = $controller('MainController', {
         $scope: scope,
         appConfig: {
-          framework: 'c3',
+          renderer: 'c3',
           input: 'csv',
           colors: [
             {value: 'blue'},
@@ -77,7 +77,7 @@
       MainController = $controller('MainController', {
         $scope: scope,
         appConfig: {
-          framework: 'c3',
+          renderer: 'c3',
           input: 'csv',
           export: [
             'wordpress'

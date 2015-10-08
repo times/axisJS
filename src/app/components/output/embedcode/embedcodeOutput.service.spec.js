@@ -24,7 +24,7 @@ describe('Service: embedcodeOutput', function() {
     MainCtrl = $controller('MainController', {
       $scope: scope,
       appConfig: {
-        framework: 'c3',
+        renderer: 'c3',
         input: 'csv',
         export: 'Embed code',
         colors: [

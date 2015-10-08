@@ -10,11 +10,11 @@
 
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .provider('configProvider', configProvider);
-  
+
   /** @ngInject */
   function configProvider() {
     return {
@@ -39,9 +39,14 @@
         return $q.all([defaultConfig, userConfig]).then(function(values){
           var defaultConfigYaml = jsyaml.safeLoad(values[0].data);
           var userConfigYaml = jsyaml.safeLoad(values[1]);
+          var axisConfig;
+          
           // Oddly, js-yaml returns string 'undefined' on fail and not type undefined
           userConfigYaml = userConfigYaml !== 'undefined' ? userConfigYaml : {};
-          return angular.extend(defaultConfigYaml, userConfigYaml);
+          axisConfig = angular.extend(defaultConfigYaml, userConfigYaml);
+
+          axisConfig.framework = axisConfig.renderer; // Needed for backwards compat.
+          return axisConfig;
         });
       }
     };

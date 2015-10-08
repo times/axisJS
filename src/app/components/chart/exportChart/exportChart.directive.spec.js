@@ -18,7 +18,7 @@ describe('Directive: exportChart', function () {
     body.append(angular.element('<a href="#" class="saveSVG">svg</a>'));
     body.append(angular.element('<canvas id="canvas"></canvas>'));
     body.append(angular.element('<div id="chart"></div>'));
-    
+
     c3.generate({data: {columns: [['data1', 1, 2, 3], ['data2', 4, 5, 6]]}});
 
     $httpBackend.expectGET('assets/i18n/en_GB.json');
@@ -34,7 +34,7 @@ describe('Directive: exportChart', function () {
     MainController = $controller('MainController', {
       $scope: scope,
       appConfig: {
-        framework: 'c3',
+        renderer: 'c3',
         input: 'csv',
         save: [
           'png',
