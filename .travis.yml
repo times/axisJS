@@ -8,5 +8,5 @@ before_script:
   - gem install compass
   - 'npm install -g bower gulp-cli karma'
   - 'bower install'
-after_script:
-  - cat ./coverage/coverage.json | node_modules/codecov.io/bin/codecov.io.js
+after_success:
+  - npm run codecov

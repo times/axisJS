@@ -68,7 +68,11 @@ module.exports = function(config) {
       'src/*.js': ['coverage']
     },
 
-    reporters: ['progress', 'coverage']
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      reporters: [{type: 'lcov'}]
+    }
   };
 
   // This block is needed to execute Chrome on Travis

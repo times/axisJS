@@ -3,7 +3,8 @@
   "version": "1.1.0",
   "dependencies": {},
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "devDependencies": {
     "browser-sync": "~2.7.12",
