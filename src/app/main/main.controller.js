@@ -33,22 +33,34 @@
     vm.config.background = appConfig.background ? appConfig.background : false;
     vm.config.backgroundColor = appConfig.backgroundColor ? appConfig.backgroundColor : 'white';
 
+    /**
+     * Toggle the configuration chooser panel.
+     * @return {void}
+     */
+    /* istanbul ignore next */
     vm.toggleChooser = function() {
       configChooser();
     };
 
+    /**
+     * Opens and closes datepicker in the stock symbol picker.
+     * I have no idea why it is here and not there.
+     * @type {Object}
+     */
+    /* istanbul ignore next */
     vm.datepicker = {
-      isOpen: false
-    };
-    vm.datepicker.toggle = function($event){
-      $event.preventDefault();
-      $event.stopPropagation();
-      vm.datepicker.isOpen = true;
+      isOpen: false,
+      toggle: function($event){
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.isOpen = true;
+      }
     };
 
 
     /**
      * Updates the data. Runs whenever data is added, deleted or modified.
+     * @return {Object} MainController scope.
      */
     vm.updateData = function() {
       vm = input.input(vm);
@@ -56,7 +68,9 @@
     };
 
     /**
-     * Validates the data. Runs on data change.
+     * Validates data against chosen input picker.
+     * @param  {string} value Value to validate
+     * @return {boolean}       Whether string validates.
      */
     vm.validateData = function(value) {
       return input.validate(value);
@@ -64,6 +78,7 @@
 
     /**
      * Resets the config to factory default from chartService
+     * @return {void}
      */
     vm.resetConfig = function() {
       try {
@@ -71,11 +86,12 @@
       } catch(e) {
         console.dir(e);
       }
-
     };
 
     /**
      * Sets the global chart type.
+     * @param  {string} type Type of chart
+     * @return {void}
      */
     vm.setGlobalType = function(type) {
       try {
@@ -89,6 +105,7 @@
     /**
      * Sets data groups. Used with stacked bar charts.
      * TODO move to c3Service
+     * @return {void}
      */
     vm.setGroups = function() {
       try {
@@ -101,6 +118,7 @@
 
     /**
      * Sets the input service. Used by inputChooser.
+     * @return {void}
      */
     vm.setInput = function() {
       input = inputService(appConfig);
@@ -109,6 +127,7 @@
     /**
      * Checks whether any of the data are being displayed as areas.
      * TODO move to chartProvider.
+     * @return {void}
      */
     vm.hasAreas = function(){
       for (var i in vm.config.data.types) {
@@ -123,7 +142,9 @@
     /**
      * Debugging function — run getConfig() in the console to log current config object.
      * Also attaches $scope.config to window.chartConfig so it's visible in console.
+     * @return {void}
      */
+    /* istanbul ignore next */
     $window.getConfig = function() {
       console.dir(vm);
       $window.chartConfig = vm.config;
@@ -132,6 +153,7 @@
     /**
      * Load data from external sources if present
      * @param  {array} appConfig.export List of all exporters in config file.
+     * @return {void}
      */
     angular.forEach(appConfig.export, function(type){
       var output = $injector.get(type.toLowerCase().replace(' ', '') + 'Output');

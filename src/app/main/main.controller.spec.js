@@ -9,10 +9,11 @@
     );
 
     var MainController,
-        scope;
+        scope,
+        configChooser;
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function ($controller, $rootScope) {
+    beforeEach(inject(function ($controller, $rootScope, $injector) {
       scope = $rootScope.$new();
       MainController = $controller('MainController as main', {
         $scope: scope,
@@ -26,6 +27,8 @@
           defaults: {}
         }
       });
+
+      configChooser = $injector.get('configChooser');
     }));
 
     it('should attach a list of config options to the scope', function() {
