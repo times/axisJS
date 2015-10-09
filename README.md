@@ -1,4 +1,4 @@
-# AxisJS [![Build Status](https://travis-ci.org/times/axisJS.svg?branch=master)](https://travis-ci.org/times/axisJS)  [![Documentation status](http://inch-ci.org/github/times/axisJS.svg?branch=master)](http://inch-ci.org/github/times/axisJS)  [![Join the chat at https://gitter.im/times/axisJS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/times/axisJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# AxisJS [![Build Status](https://travis-ci.org/times/axisJS.svg?branch=master)](https://travis-ci.org/times/axisJS) [![codecov.io](http://codecov.io/github/times/axisJS/coverage.svg?branch=master)](http://codecov.io/github/times/axisJS?branch=master) [![Documentation status](http://inch-ci.org/github/times/axisJS.svg?branch=master)](http://inch-ci.org/github/times/axisJS)  [![Join the chat at https://gitter.im/times/axisJS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/times/axisJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ### 2014 [Ændrew Rininsland](http://www.github.com/aendrew) for [The Times and Sunday Times](http://www.github.com/times)
 
 AxisJS is a light [Angular](http://angularjs.org)-based app for generating charts. It combines with
@@ -7,11 +7,11 @@ add rich charting capabilities to WordPress.
 
 **[Live demo of AxisJS here](http://times.github.io/axisJS/#/)**
 
-AxisJS is built atop the [Yeoman](http://github.com/yeoman) [Angular](http://github.com/yeoman/generator-angular)
+AxisJS is built atop the [Yeoman](http://github.com/yeoman) [Gulp-Angular](http://github.com/Swiip/generator-gulp-angular)
 generator and currently makes use of C3 to build charts.
 
 AxisJS owes a huge debt of gratitude to [Quartz](http://www.qz.com)'s [ChartBuilder](http://quartz.github.io/ChartBuilder),
-from where much of the PNG/SVG output code is taken (in addition to some of the interface design).
+from where much of the PNG/SVG output code is taken (in addition to some of the interface design). However, Axis is more extensible and intended to be used for online interactive graphics.
 
 ### Bower
 
@@ -35,9 +35,9 @@ from where much of the PNG/SVG output code is taken (in addition to some of the 
 
 ### Modifying
 
-The source is in the `app` folder, which gets built to `dist` when you do `grunt build`.
-When working on it, run `grunt serve` to invoke a light HTTP server that auto-reloads the page
-when you save a file. Styles are in Sass at `app/styles`.
+The source is in the `src/` folder, which gets built to `dist/` when you do `gulp build`.
+When working on it, run `gulp serve` to invoke a light HTTP server that auto-reloads the page
+when you save a file. Styles are in Sass at `src/app/index.scss`.
 
 ### Contributing
 
