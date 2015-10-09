@@ -1,0 +1,47 @@
+<!-- input: feed -->
+<div class="row">
+  <div class="col-xs-6">
+    <label for="feed-data-start-date">{{ 'FEED_INPUT_START_DATE_LABEL' | translate }}</label>
+    <p class="input-group">
+      <input type="text"
+        datepicker-popup="yyyy-MM-dd"
+        id="feed-data-start-date"
+        class="form-control"
+        ng-model="inputs.inputData.dateStart"
+        ng-model-options="{ updateOn: 'blur'}"
+        is-open="datepicker.isOpen"
+        ng-change="main.updateData()"
+        close-text="Close" />
+      <span class="input-group-btn">
+        <button type="button"
+          class="btn btn-default"
+          ng-click="datepicker.toggle($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+    </p>
+  </div>
+  <div class="col-xs-6">
+    <label for="feed-data-end-date">{{ 'FEED_INPUT_END_DATE_LABEL' | translate }}</label>
+    <p class="input-group">
+      <input
+        type="text"
+        id="feed-data-end-date"
+        class="form-control"
+        datepicker-popup="yyyy-MM-dd"
+        ng-model="inputs.inputData.dateEnd"
+        ng-model-options="{ updateOn: 'blur'}"
+        is-open="datepicker.isOpen"
+        ng-change="main.updateData()"
+        close-text="Close" />
+      <span class="input-group-btn">
+        <button
+          type="button"
+          class="btn btn-default"
+          ng-click="datepicker.toggle($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+    </p>
+  </div>
+</div>
