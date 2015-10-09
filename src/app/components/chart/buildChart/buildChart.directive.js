@@ -16,6 +16,8 @@
 
   /** @ngInject */
   function buildChart(chartService, $window) {
+    var d3 = $window.d3;
+    
     return {
       restrict: 'A',
       scope: {
@@ -39,7 +41,12 @@
           if (chart && chart.hasOwnProperty('destroy')) { // Needed to prevent memory holes.
             chart.destroy();
           }
-          chart = chartService(main.appConfig).generate(element[0].id, main.config);
+          try {
+            chart = chartService(main.appConfig).generate(element[0].id, main.config);
+          } catch(e) {
+            console.dir(e);
+          }
+
         }
 
         redraw(); // initial draw.

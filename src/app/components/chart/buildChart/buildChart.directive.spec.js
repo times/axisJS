@@ -26,7 +26,7 @@ describe('Directive: BuildChart', function () {
     $httpBackend.whenGET('config.yaml').respond('');
     $httpBackend.expectGET('partials/configChooser.html');
     $httpBackend.whenGET('partials/configChooser.html').respond(''); // due to angular-off-canvas
-    MainController = $controller('MainController', {
+    MainController = $controller('MainController as main', {
       $scope: scope,
       appConfig: {
         renderer: 'c3',
@@ -43,7 +43,7 @@ describe('Directive: BuildChart', function () {
 
   it('should instantiate C3 on the #chart element', inject(function ($compile) {
     // Arrange
-    var element = angular.element('<div id="chart" build-chart></div>');
+    var element = angular.element('<div id="chart" build-chart config="main"></div>');
 
     // Act
     element = $compile(element)(scope);
@@ -60,7 +60,7 @@ describe('Directive: BuildChart', function () {
     beforeEach(inject(function ($compile) {
 
       // Arrange
-      element = angular.element('<div id="chart" build-chart></div>');
+      element = angular.element('<div id="chart" build-chart config="main"></div>');
       var configJSON = '{"data":{"x":"","y":"","y2":"","columns":[["dogs","10","20","40","60"],["bears","10","15","20","25"],["llamas","15","40","70","80"],["ducks","20","10","30","70"],["cows","30","20","10","60"],["sheep","40","25","35","50"],["orangutans","20","30","10","40"]],"axes":{},"groups":{},"type":"","types":{"data1":"line","data2":"line","dogs":"line","bears":"step","llamas":"area","ducks":"area-step","cows":"scatter","sheep":"bar","orangutans":"spline"},"colors":{"data1":"#78B8DF","data2":"#AFCBCE","dogs":"#1f77b4","bears":"#ff7f0e","llamas":"#2ca02c","ducks":"#d62728","cows":"#9467bd","sheep":"#8c564b","orangutans":"#e377c2"}},"axis":{"x":{"show":true,"accuracy":0,"prefix":"","suffix":"","tick":{}},"y":{"show":true,"accuracy":0,"prefix":"","suffix":"","tick":{}},"y2":{"show":false,"accuracy":0,"prefix":"","suffix":"","tick":{}}},"point":{"show":false},"groups":{},"defaultColors":["#1f77b4","#aec7e8","#ff7f0e","#ffbb78","#2ca02c","#98df8a","#d62728","#ff9896","#9467bd","#c5b0d5","#8c564b","#c49c94","#e377c2","#f7b6d2","#7f7f7f","#c7c7c7","#bcbd22","#dbdb8d","#17becf","#9edae5"],"chartTitle":"","chartCredit":"","chartSource":"","chartWidth":1000,"chartGlobalType":"series","chartAccuracy":1,"cms":false,"pie":{"label":{}},"donut":{"label":{}},"gauge":{"label":{}}}';
       scope.config = angular.fromJson(configJSON);
 
@@ -75,7 +75,7 @@ describe('Directive: BuildChart', function () {
 
     it('should hide the legend when config.legend.show is false', function () {
       // Arrange
-      scope.config.legend = {show: false};
+      scope.main.config.legend = {show: false};
 
       // Act
       scope.$digest();

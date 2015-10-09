@@ -29,6 +29,10 @@ module.exports = function(config) {
   var configuration = {
     files: listFiles(),
 
+    client: {
+      captureConsole: true
+    },
+
     singleRun: true,
 
     autoWatch: false,
@@ -51,14 +55,20 @@ module.exports = function(config) {
       'karma-angular-filesort',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor',
-      'karma-nyan-reporter'
+      'karma-nyan-reporter',
+      'karma-coverage'
     ],
 
     preprocessors: {
-      'src/**/*.html': ['ng-html2js']
+      'src/**/*.html': ['ng-html2js'],
+      'src/**/*.directive.js': ['coverage'],
+      'src/**/*.service.js': ['coverage'],
+      'src/**/*.controller.js': ['coverage'],
+      'src/**/*.provider.js': ['coverage'],
+      'src/*.js': ['coverage']
     },
-    
-    reporters: ['nyan']
+
+    reporters: ['progress', 'coverage']
   };
 
   // This block is needed to execute Chrome on Travis

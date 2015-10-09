@@ -66,14 +66,24 @@
      * Resets the config to factory default from chartService
      */
     vm.resetConfig = function() {
-      vm.config = chart.getConfig();
+      try {
+        vm.config = chart.getConfig();
+      } catch(e) {
+        console.dir(e);
+      }
+
     };
 
     /**
      * Sets the global chart type.
      */
     vm.setGlobalType = function(type) {
-      chart.setGlobalType(type, vm);
+      try {
+        chart.setGlobalType(type, vm);
+      } catch(e) {
+        console.dir(e);
+      }
+
     };
 
     /**
@@ -81,7 +91,12 @@
      * TODO move to c3Service
      */
     vm.setGroups = function() {
-      chart.setGroups(vm);
+      try {
+        chart.setGroups(vm);
+      } catch(e) {
+        console.dir(e);
+      }
+
     };
 
     /**

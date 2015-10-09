@@ -1,15 +1,15 @@
 <!-- input: csv -->
-<textarea 
+<textarea
   maintain-focus
   id="csvInput"
-  class="form-control" 
+  class="form-control"
   rows="3"
-  ng-model="inputs.inputData" 
-  ui-validate="'validateData($value)'" 
-  ng-change="updateData()">
+  ng-model="main.inputs.inputData"
+  ui-validate="'main.validateData($value)'"
+  ng-change="main.updateData()">
 </textarea>
-<div 
+<div
   class="alert alert-danger"
-  ng-show="appConfig.input === 'csv' && !inputs.inputData">
+  ng-show="main.appConfig.input === 'csv' && !main.inputs.inputData">
     <strong>Whoops!</strong> {{ 'INPUT_MALFORMED_CSV_ERROR' | translate }}
 </div>

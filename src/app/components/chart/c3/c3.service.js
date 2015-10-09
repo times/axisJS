@@ -14,14 +14,24 @@
  */
 
 (function(){
-'use strict';  
+'use strict';
 
   angular
     .module('axis')
     .factory('c3Service', c3Service);
-  
+
   /** @ngInject */
-  function c3Service() {
+  function c3Service($window) {
+    var c3 = $window.c3;
+    var d3 = $window.d3;
+    
+    function C3ServiceException(message) {
+      this.name = 'C3ServiceException';
+      this.message = 'Chart rendering has failed: ' + message;
+    }
+    C3ServiceException.prototype = new Error();
+    C3ServiceException.prototype.constructor = C3ServiceException;
+
     return {
       /**
        * Generates a chart based on config data
@@ -31,7 +41,15 @@
        */
       generate: function(selectorID, config) {
         var chartConfig = angular.extend({bindto: '#' + selectorID}, config);
-        return c3.generate(chartConfig);
+        var result;
+        try {
+          result = c3.generate(chartConfig);
+        } catch (e) {
+          console.dir(e);
+        }
+
+        return result;
+
       },
 
       /**
@@ -186,7 +204,7 @@
             }
           }
         };
-        
+
         config.chartGlobalType = 'series';
         config.chartAccuracy = 1;
         config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
@@ -214,7 +232,7 @@
             }
           }
         };
-        
+
         config.area = {
           zerobased: false
         };
@@ -240,7 +258,7 @@
           ]
         };
       },
-      
+
       /**
        * Sets the global chart type.
        * @param  {string} type  A chart type
@@ -257,14 +275,14 @@
           }
         }
       },
-      
+
       /**
        * Put data into groups.
        * @param  {object} scope Axis scope
        */
       setGroups: function(scope) {
         var groups = [];
-        
+
         for (var group in scope.config.groups) {
           if (scope.config.groups.hasOwnProperty(group)) {
             if (typeof groups[scope.config.groups[group]] === 'undefined') {
@@ -273,7 +291,7 @@
             groups[scope.config.groups[group]].push(group);
           }
         }
-        
+
         groups = groups.filter(function(item){ // Reindex array to prevent #98.
           return item;
         });

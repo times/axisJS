@@ -7,10 +7,12 @@ describe('Directive: exportChart', function () {
   var MainController,
       element,
       scope,
-      body;
+      body,
+      c3;
 
   // Initialize the controller and a mock MainController scope
-  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend, $window) {
+    c3 = $window.c3;
     body = angular.element('body');
     body.empty(); // clean up previous tests
 
@@ -31,7 +33,7 @@ describe('Directive: exportChart', function () {
     $httpBackend.whenGET('partials/configChooser.html').respond('');
 
     scope = $rootScope.$new();
-    MainController = $controller('MainController', {
+    MainController = $controller('MainController as main', {
       $scope: scope,
       appConfig: {
         renderer: 'c3',

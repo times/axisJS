@@ -15,7 +15,8 @@ xdescribe('Service: axisOutput', function () {
   body;
 
   // Initialize the controller and a mock MainCtrl scope
-  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend, $window) {
+    var c3 = $window.c3;
     body = angular.element('body');
     body.empty(); // clean up previous tests
     body.append(angular.element('<a href="#" class="savePNG">png</a>'));

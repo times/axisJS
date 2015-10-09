@@ -10,14 +10,14 @@
       ng-model="main.config.chartGlobalType"
       class="form-control"
       id="chartGlobalType"
-      ng-change="setGlobalType(main.config.chartGlobalType)"
+      ng-change="main.setGlobalType(main.config.chartGlobalType)"
       popover="{{ 'POPOVER_TEXT_CHART_GLOBAL_TYPE' | translate }}">
         <option value="series">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_SERIES' | translate }}</option>
         <option value="pie">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_PIE' | translate }}</option>
         <option value="donut">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_DONUT' | translate }}</option>
         <option value="gauge" ng-disabled="main.config.data.columns.length > 1">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_GAUGE' | translate }}</option>
     </select>
-    <div class="form-group" ng-repeat="col in columns" ng-hide="[main.config.data.x, main.config.data.y, main.config.data.y2].indexOf(col) > -1">
+    <div class="form-group" ng-repeat="col in main.columns" ng-hide="[main.config.data.x, main.config.data.y, main.config.data.y2].indexOf(col) > -1">
       <label for="type-{{col}}">{{col}}</label>
       <div class="input-group">
         <span class="input-group-addon">
@@ -33,7 +33,7 @@
         </span>
 
         <select
-          ng-options="chart as chart for chart in chartTypes"
+          ng-options="chart as chart for chart in main.chartTypes"
           class="form-control"
           id="type-{{col}}"
           ng-model="main.config.data.types[col]"
@@ -42,8 +42,8 @@
         </select>
 
         <span class="input-group-addon" ng-show="['bar', 'area', 'area-step', 'area-spline'].indexOf(main.config.data.types[col]) >= 0"> <!-- TODO move this logic to chart config -->
-          <select id="group-{{col}}" ng-model="main.config.groups[col]" ng-change="setGroups()" title="group">
-            <option value="{{index}}" ng-repeat="(index, group) in columns">{{index + 1}}</option>
+          <select id="group-{{col}}" ng-model="main.config.groups[col]" ng-change="main.setGroups()" title="group">
+            <option value="{{index}}" ng-repeat="(index, group) in main.columns">{{index + 1}}</option>
           </select>
         </span>
       </div>

@@ -8,13 +8,15 @@
 
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .factory('csvInput', csvInput);
-    
+
   /** @ngInject */
-  function csvInput() {
+  function csvInput($window) {
+    var Papa = $window.Papa;
+    
     var validateCSV = function (value) {
       var parserConfig = {
         header: true,
@@ -28,7 +30,7 @@
 
       var csv = Papa.parse(value, parserConfig);
       var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
-      
+
       return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
     };
 
@@ -63,7 +65,7 @@
               if (!/(\d)(?=(\d{3})+(?!\d))/g.test(datum[colName]) && typeof datum[colName] === 'string') {
                 datum[colName] = datum[colName].replace(/,/g, '');
               }
-              
+
               column.push(datum[colName]);
             });
 
@@ -93,7 +95,7 @@
 
     // Public API here
     return {
-      /** 
+      /**
        * Validates the CSV input.
        * @param  {string} value The raw CSV input
        * @return {boolean}       The validation result

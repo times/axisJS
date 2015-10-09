@@ -14,7 +14,7 @@
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope) {
       scope = $rootScope.$new();
-      MainController = $controller('MainController', {
+      MainController = $controller('MainController as main', {
         $scope: scope,
         appConfig: {
           renderer: 'c3',
@@ -29,22 +29,22 @@
     }));
 
     it('should attach a list of config options to the scope', function() {
-      expect(typeof scope.config).not.toBe('undefined');
+      expect(typeof scope.main.config).not.toBe('undefined');
     });
 
     it('should validate if the data is only one column', function() {
       var gaugeCSV = 'llamas\n70';
-      expect(scope.validateData(gaugeCSV)).toBeTruthy();
+      expect(scope.main.validateData(gaugeCSV)).toBeTruthy();
     });
 
     it('should validate non-string-delimited TSV input with commas (#39)', function() {
       var wordyTSV = 'The PM should pay up	The PM should try to reduce the bill, but if unsuccessful, should still pay	The PM should try to reduce the bill, and refuse to pay if unsuccessful	Don\'t know\n9	25	54	12';
-      expect(scope.validateData(wordyTSV)).toBeTruthy();
+      expect(scope.main.validateData(wordyTSV)).toBeTruthy();
     });
 
     it('should also still validate CSV (#39)', function() {
       var wordyCSV = '"The PM should pay up","The PM should try to reduce the bill, but if unsuccessful, should still pay","The PM should try to reduce the bill, and refuse to pay if unsuccessful","Don\'t know"\n9,25,54,12';
-      expect(scope.validateData(wordyCSV)).toBeTruthy();
+      expect(scope.main.validateData(wordyCSV)).toBeTruthy();
     });
   });
 
@@ -74,7 +74,7 @@
       };
 
       scope = $rootScope.$new();
-      MainController = $controller('MainController', {
+      MainController = $controller('MainController as main', {
         $scope: scope,
         appConfig: {
           renderer: 'c3',
@@ -92,15 +92,15 @@
     }));
 
     it('should populate the chart title if given config from WordPress', function() {
-      expect(scope.config.chartTitle).toBe('testing', 'Config title not populating properly...');
+      expect(scope.main.config.chartTitle).toBe('testing', 'Config title not populating properly...');
     });
 
     it('should populate chartData if given config from WordPress', function(){
-      expect(scope.chartData.length).toBe(6, 'Config data not populating properly...');
+      expect(scope.main.chartData.length).toBe(6, 'Config data not populating properly...');
     });
 
     it('should populate columns if given config from WordPress', function(){
-      expect(scope.columns.length).toBe(2, 'Config columns not populating properly...');
+      expect(scope.main.columns.length).toBe(2, 'Config columns not populating properly...');
     });
 
   });

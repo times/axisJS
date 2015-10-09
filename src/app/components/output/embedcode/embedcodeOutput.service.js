@@ -3,7 +3,7 @@
  * @name axis.embedcodeOutput
  * @description
  * # embedcodeOutput
- * Factory to generate embed codes via a modal window. 
+ * Factory to generate embed codes via a modal window.
  */
 
 (function(){
@@ -12,10 +12,11 @@
   angular
     .module('axis')
     .factory('embedcodeOutput', embedcodeOutput);
-  
+
   /** @ngInject */
-  function embedcodeOutput(genericOutput, chartService, $modal) {
+  function embedcodeOutput(genericOutput, chartService, $modal, $window) {
     var embed = angular.copy(genericOutput);
+    var JSONfn = $window.JSONfn;
 
     embed.serviceConfig = {
       type: 'export', // Options: 'save' and 'export'.
@@ -59,7 +60,7 @@
 
       output.complete = deps.concat(code).join('\n'); // TODO figure out how to pretty-print.
       output.partial = [deps[0]].concat(code).join('\n');
-      
+
       return output;
     };
 

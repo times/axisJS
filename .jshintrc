@@ -16,11 +16,7 @@
     "inject": false,
     "module": false,
     "console": true,
-    "d3": true,
-    "c3": true,
-    "Papa": true,
     "$": true,
-    "jsyaml": true,
-    "JSONfn": true
+    "dump": false
   }
 }

@@ -18,7 +18,9 @@
   /** @ngInject */
   function configProvider() {
     return {
-      $get: function($http, $q, localStorageService) {
+      $get: function($http, $q, localStorageService, $window) {
+        var jsyaml = $window.jsyaml;
+        
         var defaultConfig = $http.get('default.config.yaml');
         var userConfigFile = localStorageService.get('config') ? localStorageService.get('config') : 'config.yaml';
         var userConfig = $http.get(userConfigFile).then(
@@ -40,7 +42,7 @@
           var defaultConfigYaml = jsyaml.safeLoad(values[0].data);
           var userConfigYaml = jsyaml.safeLoad(values[1]);
           var axisConfig;
-          
+
           // Oddly, js-yaml returns string 'undefined' on fail and not type undefined
           userConfigYaml = userConfigYaml !== 'undefined' ? userConfigYaml : {};
           axisConfig = angular.extend(defaultConfigYaml, userConfigYaml);

@@ -8,10 +8,12 @@ describe('Service: wordpressOutput', function () {
   foo = '',
   element,
   scope,
-  body;
+  body,
+  c3;
 
   // Initialize the controller and a mock MainCtrl scope
-  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend, $window) {
+    c3 = $window.c3;
     body = angular.element('body');
     body.empty(); // clean up previous tests
     body.append(angular.element('<a href="#" class="savePNG">png</a>'));
@@ -29,7 +31,7 @@ describe('Service: wordpressOutput', function () {
     $httpBackend.whenGET('config.yaml').respond({});
 
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainController', {
+    MainCtrl = $controller('MainController as main', {
       $scope: scope,
       appConfig: {
         renderer: 'c3',

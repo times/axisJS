@@ -15,7 +15,7 @@
     toastr.options.positionClass = 'toast-top-right';
     toastr.options.preventDuplicates = true;
     toastr.options.progressBar = true;
-    
+
     // Translation options
     $translateProvider.useStaticFilesLoader({
         prefix: 'assets/i18n/',
@@ -23,7 +23,7 @@
     });
     $translateProvider.preferredLanguage('en_GB');
     $translateProvider.useSanitizeValueStrategy('sanitize');
-    
+
     // Popover options
     $tooltipProvider.options({trigger: 'mouseenter'});
   }

@@ -4,7 +4,7 @@
     ng-class="{collapsed: main.axesOptionsAreCollapsed}">
       {{ 'PANEL_HEADING_AXES' | translate }}
   </div>
-  <div class="panel-body" collapse="!axesOptionsAreCollapsed">
+  <div class="panel-body" collapse="!main.axesOptionsAreCollapsed">
     <form class="form-horizontal" role="form">
       <fieldset ng-disabled="main.config.chartGlobalType !== 'series'">
         <h4 ng-repeat-start="axis in main.axesConfig">

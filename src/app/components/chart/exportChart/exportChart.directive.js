@@ -4,7 +4,7 @@
  * @description
  * Inlines styles and renders to canvas.
  * Also does some PNG and SVG stuff. It's not very well-written...
- * 
+ *
  * Most of this is shamelessly stolen from Quartz's ChartBuilder.
  * @TODO Refactor the hell out of this.
  */
@@ -12,20 +12,22 @@
 
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .directive('exportChart', exportChart);
-    
+
   /** @ngInject */
   function exportChart (outputService) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
+        var main = scope.main; // This is the entire main controller scope. @TODO isolate.
+
         element.on('click', function(){
-          createChartImages(scope.config.chartWidth);
+          createChartImages(main.config.chartWidth);
           if (attrs.exportChart !== 'save') {
-            outputService(scope, attrs.exportChart);
+            outputService(main, attrs.exportChart);
           }
         });
 
@@ -61,12 +63,12 @@
 
           canvasContext.drawSvg(svg,0,0);
           var filename = [];
-          for (var i=0; i < scope.columns.length; i++) {
-            filename.push(scope.columns[i]);
+          for (var i=0; i < main.columns.length; i++) {
+            filename.push(main.columns[i]);
           }
 
-          if(scope.chartTitle) {
-            filename.unshift(scope.chartTitle);
+          if(main.chartTitle) {
+            filename.unshift(main.chartTitle);
           }
 
           filename = filename.join('-').replace(/[^\w\d]+/gi, '-');
@@ -86,7 +88,7 @@
         /* Take styles from CSS and put as inline SVG attributes so that Canvg
            can properly parse them. */
         var inlineAllStyles = function() {
-          var chartStyle = {}, 
+          var chartStyle = {},
               selector;
 
           // Get rules from c3.css
@@ -99,7 +101,7 @@
               }
             }
           }
-          
+
           if (chartStyle !== null && chartStyle !== undefined) {
             // SVG doesn't use CSS visibility and opacity is an attribute, not a style property. Change hidden stuff to "display: none"
             var changeToDisplay = function(){
@@ -109,7 +111,7 @@
             };
 
             // Inline apply all the CSS rules as inline
-            for (i = 0; i < chartStyle.length; i++) {
+            for (i = 0; i < Object.keys(chartStyle).length; i++) {
               if (chartStyle[i].type === 1) {
                 selector = chartStyle[i].selectorText;
                 styles = makeStyleObject(chartStyle[i]);
