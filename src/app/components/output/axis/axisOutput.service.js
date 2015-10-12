@@ -8,11 +8,11 @@
 
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .factory('axisOutput', axisOutput);
-    
+
   /** @ngInject */
   function axisOutput(genericOutput) {
     var maker = angular.copy(genericOutput);
@@ -48,6 +48,7 @@
       );
     };
 
+    /* istanbul ignore next */
     maker.complete = function() {
       console.log('Complete.');
     };
@@ -57,13 +58,13 @@
       maker.process(payload);
       maker.complete();
     };
-    
+
     maker.import = function(inputService) {
       if (typeof parent.axisConfig !== 'undefined') {
         var importData = {};
         importData.config = angular.fromJson(parent.axisConfig);
         importData.inputData = inputService.convert(importData.config.data.columns);
-        
+
         /* jshint ignore:start */
         importData.config.axis.x.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.x.type){var b=d3.format(config.axis.x.commas?',':config.axis.x.accuracy);return config.axis.x.prefix+b(a).toString()+config.axis.x.suffix}return a};
         importData.config.axis.y.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y.type){var b=d3.format(config.axis.y.commas?',':config.axis.y.accuracy);return config.axis.y.prefix+b(a).toString()+config.axis.y.suffix}return a};
@@ -72,7 +73,7 @@
         importData.config.pie.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
         importData.config.gauge.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
         /* jshint ignore:end */
-        
+
         if (importData.config && importData.inputData) {
           return importData;
         }

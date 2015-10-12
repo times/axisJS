@@ -1,6 +1,6 @@
 describe('Service: configLoader', function () {
   'use strict';
-  
+
   // load the service's module
   beforeEach(module('axis'));
 
@@ -26,4 +26,7 @@ describe('Service: configLoader', function () {
 
     expect(config.colors.length).toBe(2);
   }));
+
+  it('should return an empty object if request 404s');
+  it('should reject the promise on any other HTTP error code');
 });

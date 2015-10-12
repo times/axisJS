@@ -49,6 +49,12 @@
       var wordyCSV = '"The PM should pay up","The PM should try to reduce the bill, but if unsuccessful, should still pay","The PM should try to reduce the bill, and refuse to pay if unsuccessful","Don\'t know"\n9,25,54,12';
       expect(scope.main.validateData(wordyCSV)).toBeTruthy();
     });
+
+    it('should be able to reset config to standard');
+    it('should be able to set the global chart type');
+    it('should be able to set data groups for stacked charts');
+    it('should be able to set the input service');
+    it('should be able to detect if a chart type uses areas');
   });
 
   describe('Controller: MainController -- WITH external data', function() {

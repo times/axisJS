@@ -95,4 +95,10 @@ describe('Service: wordpressOutput', function () {
     expect(parent.tinymce.activeEditor.windowManager.close).toHaveBeenCalled();
     expect(foo.length).toBeGreaterThan(1);
   }));
+
+  describe('Edge cases', function(){
+    it('should throw a WordPressOutputServiceException on failure');
+
+    it('should transform array into flat object');
+  });
 });

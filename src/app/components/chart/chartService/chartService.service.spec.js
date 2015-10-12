@@ -27,4 +27,5 @@ describe('Service: chartProvider', function () {
     expect(chartService.dependencies.js[1]).toBe('//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.js');
   });
 
+  it('should be able to get configuration from the renderer');
 });

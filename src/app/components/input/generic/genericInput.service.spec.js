@@ -14,7 +14,8 @@ describe('Service: genericInput', function () {
    genericInput = _genericInput_;
   }));
 
-  xit('should do something', function () {
-   expect(!!genericInput).toBe(true);
-  });
+  it('should validate() as true if any value given');
+  it('should validate() as false if no value given');
+  it('should return the scope object on input()');
+  it('should return the scope object on convert()');
 });

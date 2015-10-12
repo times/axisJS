@@ -11,14 +11,15 @@ describe('Service: pdfOutput', function () {
 
   beforeEach(inject(function (_pdfOutput_) {
     pdfOutput = _pdfOutput_;
-    jsPDF = pdfOutput.process({data: canvasPNG, margins: {}});
   }));
 
+  it('should return an object with data and margins when this.preprocess() runs');
+
   it('should return a jsPDF object when this.process() runs', function () {
+    jsPDF = pdfOutput.process({data: canvasPNG, margins: {}});
     expect(typeof jsPDF === 'object').toBe(true); // This could be better...
   });
 
   // I have no idea how to test this.
-  xit('should attempt to download a PDF when this.complete() runs', function () {
-  });
+  it('should attempt to download a PDF when this.complete() runs');
 });

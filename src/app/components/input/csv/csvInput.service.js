@@ -15,9 +15,18 @@
 
   /** @ngInject */
   function csvInput($window) {
+    function CsvInputServiceException(message) {
+      this.name = 'CsvInputServiceException';
+      this.message = 'Input has failed: ' + message;
+    }
+    CsvInputServiceException.prototype = new Error();
+    CsvInputServiceException.prototype.constructor = CsvInputServiceException;
+
+
     var Papa = $window.Papa;
-    
+
     var validateCSV = function (value) {
+      var csv, noDelimiter;
       var parserConfig = {
         header: true,
         dynamicTyping: true
@@ -28,8 +37,13 @@
         parserConfig.delimiter = '\t';
       }
 
-      var csv = Papa.parse(value, parserConfig);
-      var noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
+      try {
+        csv = Papa.parse(value, parserConfig);
+      } catch(e) {
+        throw new CsvInputServiceException(e);
+      }
+
+      noDelimiter = /^[^,\t\s]*\n[^,\t\s]*$/gm; // Edge-case for gauge charts (one column of data)
 
       return (csv.errors.length > 0 && !value.match(noDelimiter) ? false : true);
     };
@@ -51,7 +65,11 @@
           parserConfig.delimiter = '\t';
         }
 
-        scope.chartData = Papa.parse(scope.inputs.inputData, parserConfig).data;
+        try {
+          scope.chartData = Papa.parse(scope.inputs.inputData, parserConfig).data;
+        } catch(e) {
+          throw new CsvInputServiceException(e);
+        }
 
         // Convert objects into arrays. Might be better long-term to use C3's JSON input.
         // Lots of this stuff is C3-specific. TODO move to c3Service.
@@ -80,6 +98,7 @@
     var convertColsToCSV = function(columns) {
       var data = [];
       var headers = [];
+      var output;
       for (var i = 0; i < columns.length; i++) {
         headers.push(columns[i].shift());
         for (var j = 0; j < columns[i].length; j++) {
@@ -90,7 +109,13 @@
         }
       }
 
-      return Papa.unparse({fields: headers, data: data}, {delimiter: '\t'});
+      try {
+        output = Papa.unparse({fields: headers, data: data}, {delimiter: '\t'});
+      } catch(e) {
+        throw new CsvInputServiceException(e);
+      }
+
+      return output;
     };
 
     // Public API here

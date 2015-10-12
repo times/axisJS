@@ -15,6 +15,17 @@
 
   /** @ngInject */
   function wordpressOutput(genericOutput, $http, $window) {
+    function WordPressOutputServiceException(data, status, headers, config) {
+      this.name = 'WordPressOutputServiceException';
+      this.message = 'WordPress Output has failed: ' + status;
+      this.data = data;
+      this.status = status;
+      this.headers = headers;
+      this.config = config;
+    }
+    WordPressOutputServiceException.prototype = new Error();
+    WordPressOutputServiceException.prototype.constructor = WordPressOutputServiceException;
+
     var wordpress = angular.copy(genericOutput);
 
     wordpress.serviceConfig = {
@@ -48,15 +59,14 @@
         transformRequest: function(obj) { // Via http://stackoverflow.com/a/19270196/467760
           var str = [];
           for (var key in obj) {
-            if (obj[key] instanceof Array) {
+            if (obj[key] instanceof Array) { // Transform array into flat object.
               for(var idx in obj[key]){
                 var subObj = obj[key][idx];
                 for(var subKey in subObj){
                   str.push(encodeURIComponent(key) + '[' + idx + '][' + encodeURIComponent(subKey) + ']=' + encodeURIComponent(subObj[subKey]));
                 }
               }
-            }
-            else {
+            } else { // Already flat; just push key-value pairs.
               str.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
             }
           }
@@ -69,7 +79,7 @@
         parent.tinymce.activeEditor.windowManager.close();
       })
       .error(function(data, status, headers, config){
-        console.dir([data, status, headers, config]);
+        throw new WordPressOutputServiceException(data, status, headers, config);
       });
     };
 

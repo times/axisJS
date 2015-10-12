@@ -24,7 +24,7 @@
   function c3Service($window) {
     var c3 = $window.c3;
     var d3 = $window.d3;
-    
+
     function C3ServiceException(message) {
       this.name = 'C3ServiceException';
       this.message = 'Chart rendering has failed: ' + message;
@@ -45,7 +45,7 @@
         try {
           result = c3.generate(chartConfig);
         } catch (e) {
-          console.dir(e);
+          throw new C3ServiceException(e);
         }
 
         return result;

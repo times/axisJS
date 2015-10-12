@@ -1,5 +1,5 @@
 /**
- * @TODO write a better spec for csvInput
+ * @TODO fill in pending specs.
  */
 
 describe('Service: csvInput', function () {
@@ -11,10 +11,28 @@ describe('Service: csvInput', function () {
   // instantiate service
   var csvInput;
   beforeEach(inject(function (_csvInput_) {
-   csvInput = _csvInput_;
+    csvInput = _csvInput_;
   }));
 
-  xit('should do something', function () {
-   expect(!!csvInput).toBe(true);
+  describe('basic functionality', function(){
+    it('should have default data', function(){
+      expect(csvInput.defaultCSV);
+    });
+
+    it('should validate CSV');
+
+    it('should parse a CSV into an array of columns');
+
+    it('should be able to convert an array of columns into a CSV string');
+  });
+
+  describe('edge cases', function(){
+    it('should throw a CsvInputServiceException if invalid data', function () {
+      expect(!!csvInput).toBe(true);
+    });
+
+    it('should remove separator commas from numbers');
+
+    it('should be able to validate CSVs with only one column');
   });
 });

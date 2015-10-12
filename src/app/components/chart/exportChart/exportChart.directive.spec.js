@@ -94,6 +94,15 @@ describe('Directive: exportChart', function () {
     expect(angular.element('.saveSVG').attr('href')).toMatch(/\?xml/);
   }));
 
+  it('should set image dimensions if specified');
+  it('should have a test for whatever the heck it is doing on ln 70');
+  it('should create a chart style object from C3 css');
+  it('should change elements with 0 opacity or visibility: hidden to display: none');
+  it('should inline all CSS rules');
+  it('should change .c3-line path fill CSS to an attribute');
+  it('should create a style object');
+
+
   describe('a spec with tests intended to prevent regression on closed issues', function() {
     it('should not add cruft that prevents Illustrator from opening (#31)', inject(function ($compile) {
       // Arrange

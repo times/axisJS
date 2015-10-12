@@ -36,11 +36,14 @@ describe('Service: embedcodeOutput', function() {
     });
   }));
 
-  // DISABLED @TODO move this to an E2E test.
-  xit('should launch a modal window', function() {
-    // var a = embedcodeOutput.export(scope);
-    // var modal = angular.element('.modal');
-    // console.log(modal);
-    // expect(modal.length).toBe(1);
+  it('should return the chart config and dependencies on preprocess()');
+  it('should return an output object on process()');
+
+  describe('embedcodeOutput.complete() method', function(){
+    it('should open a modal window');
+    it('should default to including dependencies');
+    it('output complete JS + deps if includeDeps is true');
+    it('should output JS and no deps if includeDeps is false');
+    it('should update output if includeDeps changes');
   });
 });

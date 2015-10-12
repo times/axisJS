@@ -1,4 +1,4 @@
-// TODO write tests for inputService. I'm not really sure how, TBH...
+// @TODO fill out the pending specs.
 
 describe('Service: inputService', function () {
   'use strict';
@@ -15,8 +15,6 @@ describe('Service: inputService', function () {
     instanceType = Object.prototype.toString.call(inputService);
   }));
 
-  xit('should do something', function () {
-    expect(!!inputService).toBe(true);
-  });
-
+  it('should return an injected input service');
+  it('should return the first input service if there are multiple listed');
 });

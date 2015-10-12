@@ -1,22 +1,23 @@
-// describe('Directive: inputChooser', function () {
-//   'use strict';
-//
-//   // load the directive's module
-//   beforeEach(module('axis'));
-//
-//   var scope;
-//
-//   // Initialize the controller and a mock scope
-//   beforeEach(inject(function ($rootScope) {
-//     scope = $rootScope.$new();
-//   }));
-//
-//   afterEach(function(){
-//     angular.element('body').empty();
-//   });
-//
-//   xit('should create a bunch of buttons for input methods', inject(function ($compile, $timeout,  $httpBackend) {
-//     $httpBackend.expectGET('assets/i18n/en_GB.json');
-//     $httpBackend.whenGET('assets/i18n/en_GB.json').respond('{}');
-//   }));
-// });
+// @TODO fill out the pending specs.
+
+describe('Directive: spreadsheetInput', function () {
+  'use strict';
+
+  // load the directive's module
+  beforeEach(module('axis'));
+
+  var element,
+      scope;
+
+  beforeEach(inject(function ($rootScope, $compile) {
+    // scope = $rootScope.$new();
+    // element = angular.element('<textarea id="data-input" maintain-focus></textarea>');
+    // element = $compile(element)(scope);
+    // angular.element('body').append(element);
+    // angular.element('#data-input').focus(); // grant focus
+    // angular.element.event.trigger('keydown', {keyCode: 9}); // emulate pressing tab
+  }));
+
+  it('should attach the input provider from main controller');
+  it('should clear HandsOnTable before adding data if data is pasted');
+});

@@ -20,7 +20,7 @@
     return {
       $get: function($http, $q, localStorageService, $window) {
         var jsyaml = $window.jsyaml;
-        
+
         var defaultConfig = $http.get('default.config.yaml');
         var userConfigFile = localStorageService.get('config') ? localStorageService.get('config') : 'config.yaml';
         var userConfig = $http.get(userConfigFile).then(
@@ -28,12 +28,11 @@
             return response.data;
           },
           function(response){
-            if( response.status === 404 ) {
-                response.data = {};
-                return response;
-            }
-            else {
-                return $q.reject(response);
+            if (response.status === 404) {
+              response.data = {};
+              return response;
+            } else {
+              return $q.reject(response);
             }
           }
         );

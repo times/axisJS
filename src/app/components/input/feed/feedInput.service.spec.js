@@ -1,10 +1,10 @@
 /**
- * @TODO convert this from csvInput to financialInput
+ * @TODO convert this from csvInput to feedInput
  */
 
 'use strict';
 
-xdescribe('Service: financialInput', function() {
+xdescribe('Service: feedInput', function() {
 
   // load the service's module
   beforeEach(module('axis'));
