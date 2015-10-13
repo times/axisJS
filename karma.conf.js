@@ -68,7 +68,7 @@ module.exports = function(config) {
       'src/*.js': ['coverage']
     },
 
-    reporters: ['progress', 'coverage'],
+    reporters: ['nyan', 'coverage'],
 
     coverageReporter: {
       reporters: [{type: 'lcov'}]

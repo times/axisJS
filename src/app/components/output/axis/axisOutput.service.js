@@ -14,8 +14,9 @@
     .factory('axisOutput', axisOutput);
 
   /** @ngInject */
-  function axisOutput(genericOutput) {
+  function axisOutput(genericOutput, $window) {
     var maker = angular.copy(genericOutput);
+    var parent = $window.parent;
 
     maker.serviceConfig = {
       type: 'export', // Options: 'save' and 'export'.
@@ -23,7 +24,7 @@
     };
 
     maker.preprocess = function(scope) { // @TODO Replace with JSONfn.
-      var chartConfig = scope.config;
+      var chartConfig = scope.main.config;
       chartConfig.axis.x.tick.format = chartConfig.axis.x.tick.format.toString();
       chartConfig.axis.y.tick.format = chartConfig.axis.y.tick.format.toString();
       chartConfig.axis.y2.tick.format = chartConfig.axis.y2.tick.format.toString();
@@ -42,7 +43,7 @@
 
     maker.process = function(payload) {
       // Have use PostMessage to push outside the iframe
-      window.parent.postMessage(
+      parent.postMessage(
         JSON.stringify(payload),
         '*' // The intended origin, in this example we use the any origin wildcard.
       );
@@ -77,6 +78,8 @@
         if (importData.config && importData.inputData) {
           return importData;
         }
+      } else {
+        return false;
       }
     };
 

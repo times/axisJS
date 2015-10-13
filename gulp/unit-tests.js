@@ -10,7 +10,8 @@ function runTests (singleRun, done) {
   karma.server.start({
     configFile: path.join(__dirname, '/../karma.conf.js'),
     singleRun: singleRun,
-    autoWatch: !singleRun
+    autoWatch: !singleRun,
+    reporters: singleRun ? ['nyan', 'coverage'] : ['nyan'],
   }, function() {
     done();
   });

@@ -52,20 +52,20 @@
 
     var parseCSV = function (scope) {
       if (scope.inputs.inputData) {
-        scope.chartData = []; // Empty, or else new column names will break ng-grid
-        scope.columns = []; // Clear existing
-        scope.config.data.columns = [];
-        var parserConfig = {
-          header: true,
-          dynamicTyping: true
-        };
-
-        // Detect TSV; fallback to auto-detection. @see #39.
-        if (scope.inputs.inputData.match('\t')) {
-          parserConfig.delimiter = '\t';
-        }
-
         try {
+          scope.chartData = []; // Empty, or else new column names will break ng-grid
+          scope.columns = []; // Clear existing
+          scope.config.data.columns = [];
+          var parserConfig = {
+            header: true,
+            dynamicTyping: true
+          };
+
+          // Detect TSV; fallback to auto-detection. @see #39.
+          if (scope.inputs.inputData.match('\t')) {
+            parserConfig.delimiter = '\t';
+          }
+          
           scope.chartData = Papa.parse(scope.inputs.inputData, parserConfig).data;
         } catch(e) {
           throw new CsvInputServiceException(e);
