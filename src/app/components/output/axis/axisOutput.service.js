@@ -78,8 +78,6 @@
         if (importData.config && importData.inputData) {
           return importData;
         }
-      } else {
-        return false;
       }
     };
 

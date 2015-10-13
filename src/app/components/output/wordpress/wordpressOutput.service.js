@@ -17,7 +17,7 @@
   function wordpressOutput(genericOutput, $http, $window) {
     function WordPressOutputServiceException(data, status, headers, config) {
       this.name = 'WordPressOutputServiceException';
-      this.message = 'WordPress Output has failed: ' + status;
+      this.message = 'WordPressOutputServiceException: ' + status;
       this.data = data;
       this.status = status;
       this.headers = headers;
@@ -56,6 +56,7 @@
       // Have WordPress process the data-URI PNG and return some config data
       $http.post(parent.ajaxurl, payload, {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}, // $http sends as JSON, WP expects form.
+        /* istanbul ignore next */
         transformRequest: function(obj) { // Via http://stackoverflow.com/a/19270196/467760
           var str = [];
           for (var key in obj) {

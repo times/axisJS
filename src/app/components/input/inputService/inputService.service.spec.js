@@ -8,13 +8,39 @@ describe('Service: inputService', function () {
 
   // instantiate service
   var inputService,
-      instanceType;
+      inputProvider,
+      appConfig;
 
   beforeEach(inject(function (_inputService_) {
-    inputService = _inputService_;
-    instanceType = Object.prototype.toString.call(inputService);
+    inputProvider = _inputService_;
   }));
 
-  it('should return an injected input service');
-  it('should return the first input service if there are multiple listed');
+
+  describe('one input service listed', function(){
+    beforeEach(function(){
+      appConfig = {
+        input: 'csv'
+      };
+
+      inputService = inputProvider(appConfig);
+    });
+
+    it('should return an injected input service', function(){
+      expect(inputService.name).toBe('csvInputService');
+    });
+  });
+
+  describe('multiple inputs listed', function(){
+    beforeEach(function(){
+      appConfig = {
+        input: ['spreadsheet', 'csv']
+      };
+
+      inputService = inputProvider(appConfig);
+    });
+
+    it('should return the first input service if there are multiple listed', function(){
+      expect(inputService.name).toBe('spreadsheetInputService');
+    });
+  });
 });

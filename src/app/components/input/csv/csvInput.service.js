@@ -65,7 +65,7 @@
           if (scope.inputs.inputData.match('\t')) {
             parserConfig.delimiter = '\t';
           }
-          
+
           scope.chartData = Papa.parse(scope.inputs.inputData, parserConfig).data;
         } catch(e) {
           throw new CsvInputServiceException(e);
@@ -120,6 +120,12 @@
 
     // Public API here
     return {
+      /**
+       * Service name. Useful for tests.
+       * @type {String}
+       */
+      name: 'csvInputService',
+      
       /**
        * Validates the CSV input.
        * @param  {string} value The raw CSV input

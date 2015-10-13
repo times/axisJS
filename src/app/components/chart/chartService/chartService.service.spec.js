@@ -6,6 +6,7 @@ describe('Service: chartProvider', function () {
 
   var chartProvider,
       chartService,
+      result,
       appConfig = {
         renderer: 'c3',
         colors: [
@@ -27,5 +28,8 @@ describe('Service: chartProvider', function () {
     expect(chartService.dependencies.js[1]).toBe('//cdnjs.cloudflare.com/ajax/libs/c3/0.4.7/c3.min.js');
   });
 
-  it('should be able to get configuration from the renderer');
+  it('should be able to get configuration from the renderer', function(){
+    result = chartService.getConfig();
+    expect(result).toBeDefined();
+  });
 });

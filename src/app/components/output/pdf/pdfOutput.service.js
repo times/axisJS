@@ -13,10 +13,12 @@
   angular
     .module('axis')
     .service('pdfOutput', pdfOutput);
-    
+
   /** @ngInject */
   function pdfOutput(genericOutput) {
     var pdf = angular.copy(genericOutput);
+
+    pdf.name = 'pdfOutputService';
 
     pdf.preprocess = function(scope) {
       return {

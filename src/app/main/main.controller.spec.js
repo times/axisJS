@@ -35,23 +35,41 @@
       expect(typeof scope.main.config).not.toBe('undefined');
     });
 
+    // Move to CSVInput
     it('should validate if the data is only one column', function() {
       var gaugeCSV = 'llamas\n70';
       expect(scope.main.validateData(gaugeCSV)).toBeTruthy();
     });
 
+    // Move to CSVInput
     it('should validate non-string-delimited TSV input with commas (#39)', function() {
       var wordyTSV = 'The PM should pay up	The PM should try to reduce the bill, but if unsuccessful, should still pay	The PM should try to reduce the bill, and refuse to pay if unsuccessful	Don\'t know\n9	25	54	12';
       expect(scope.main.validateData(wordyTSV)).toBeTruthy();
     });
 
+    // Move to CSVInput
     it('should also still validate CSV (#39)', function() {
       var wordyCSV = '"The PM should pay up","The PM should try to reduce the bill, but if unsuccessful, should still pay","The PM should try to reduce the bill, and refuse to pay if unsuccessful","Don\'t know"\n9,25,54,12';
       expect(scope.main.validateData(wordyCSV)).toBeTruthy();
     });
 
-    it('should be able to reset config to standard');
-    it('should be able to set the global chart type');
+    it('should be able to reset config to standard', function(){
+      expect(scope.main.config.llama).not.toBeDefined();
+      scope.main.config.llama = 'hurr';
+      MainController.resetConfig();
+
+      expect(scope.main.config.llama).not.toBeDefined();
+    });
+
+    it('should be able to set the global chart type', function(){
+      expect(scope.main.config.data.types.data1).toBe('line');
+      expect(scope.main.config.data.types.data2).toBe('line');
+
+      MainController.setGlobalType('pie');
+      expect(scope.main.config.data.types.data1).toBe('pie');
+      expect(scope.main.config.data.types.data2).toBe('pie');
+    });
+
     it('should be able to set data groups for stacked charts');
     it('should be able to set the input service');
     it('should be able to detect if a chart type uses areas');

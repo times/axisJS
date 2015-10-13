@@ -8,11 +8,11 @@
 
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .factory('genericInput', genericInput);
-  
+
   /** @ngInject */
   function genericInput() {
     var defaultData = [
@@ -27,6 +27,12 @@
 
     // Public API here
     return {
+      /**
+       * Service name
+       * @type {String}
+       */
+      name: 'genericInputService',
+
       /**
        * Validate input
        * @param  {array} value   Some output

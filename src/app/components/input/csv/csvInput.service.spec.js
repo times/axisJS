@@ -70,10 +70,22 @@ describe('Service: csvInput', function () {
   });
 
   describe('edge cases', function(){
-    it('should throw a CsvInputServiceException if invalid data', function() {
+
+    // @TODO make these throw actual CsvInputServiceExceptions.
+    // Given that Papa Parse returns an error object instead of throwing, may need rewriting.
+    it('should throw a CsvInputServiceException upon problem', function() {
+      // These need to be wrapped in an anonymous function to catch the exception.
       expect(function(){
-        csvInput.input({inputs: {inputData: 'hurrrr'}});
-      }).toThrow(); // This needs to be wrapped in an anonymous function to catch the exception.
+        csvInput.input('hurrrrr');
+      }).toThrow();//.toThrowError(/CsvInputServiceException/);
+
+      expect(function(){
+        csvInput.validate(false);
+      }).toThrow();//.toThrowError(/CsvInputServiceException/);
+
+      expect(function(){
+        csvInput.convert('this is a string');
+      }).toThrow();//.toThrowError(/CsvInputServiceException/);
     });
 
     it('should remove separator commas from numbers', function(){

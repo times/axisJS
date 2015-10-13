@@ -5,7 +5,7 @@ describe('Service: wordpressOutput', function () {
   beforeEach(module('axis'));
 
   var MainCtrl,
-  foo = '',
+  insertContent,
   element,
   scope,
   body,
@@ -58,7 +58,7 @@ describe('Service: wordpressOutput', function () {
     parent.tinymce = {
       activeEditor: {
         insertContent: function(val) {
-          foo = val;
+          insertContent = val;
         },
         windowManager: {
           getParams: function() {
@@ -93,12 +93,20 @@ describe('Service: wordpressOutput', function () {
 
     expect(parent.tinymce.activeEditor.insertContent).toHaveBeenCalled();
     expect(parent.tinymce.activeEditor.windowManager.close).toHaveBeenCalled();
-    expect(foo.length).toBeGreaterThan(1);
+    expect(insertContent.length).toBeGreaterThan(1);
   }));
 
   describe('Edge cases', function(){
-    it('should throw a WordPressOutputServiceException on failure');
-
-    it('should transform array into flat object');
+    it('should throw a WordPressOutputServiceException on failure', inject(function($httpBackend, $compile){
+      // Arrange
+      element = angular.element('<a href="#" export-chart="wordpress" id="a-button">');
+      element = $compile(element)(scope);
+      scope.$apply();
+      expect(function(){
+        element.trigger('click');
+        $httpBackend.whenPOST('/test-wordpress').respond(500, '');
+        $httpBackend.flush();
+      }).toThrowError(/WordPressOutputServiceException/);
+    }));
   });
 });

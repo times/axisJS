@@ -8,6 +8,7 @@ describe('Service: configLoader', function () {
   var configProvider, config;
   beforeEach(inject(function (_configProvider_) {
     configProvider = _configProvider_;
+    config = undefined;
   }));
 
   it('should load the default config', inject(function ($httpBackend) {
@@ -27,6 +28,38 @@ describe('Service: configLoader', function () {
     expect(config.colors.length).toBe(2);
   }));
 
-  it('should return an empty object if request 404s');
-  it('should reject the promise on any other HTTP error code');
+  // TODO make this spec work.
+  xit('should return an empty object if request 404s', inject(function ($httpBackend) {
+    $httpBackend.expectGET('assets/i18n/en_GB.json');
+    $httpBackend.whenGET('assets/i18n/en_GB.json').respond('{}');
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.whenGET('default.config.yaml').respond(404, '{}');
+    $httpBackend.expectGET('config.yaml');
+    $httpBackend.whenGET('config.yaml').respond(404, '{}');
+
+    configProvider.then(function(data){ // TODO figure out why this is needed.
+      dump(data);
+      config = data;
+    });
+
+    $httpBackend.flush();
+
+    expect(config).toBe({});
+  }));
+
+  // TODO decide what to do when promise is rejected.
+  xit('should reject the promise on any other HTTP error code', inject(function ($httpBackend) {
+    $httpBackend.expectGET('assets/i18n/en_GB.json');
+    $httpBackend.whenGET('assets/i18n/en_GB.json').respond('{}');
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.whenGET('default.config.yaml').respond(500, '');
+    $httpBackend.expectGET('config.yaml');
+    $httpBackend.whenGET('config.yaml').respond(500, '');
+
+    configProvider.then(function(data){ // TODO figure out why this is needed.
+      config = data;
+    });
+
+    $httpBackend.flush();
+  }));
 });

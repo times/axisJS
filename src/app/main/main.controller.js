@@ -84,7 +84,7 @@
       try {
         vm.config = chart.getConfig();
       } catch(e) {
-        console.dir(e);
+        throw new MainControllerException('resetConfig failed');
       }
     };
 
@@ -97,7 +97,7 @@
       try {
         chart.setGlobalType(type, vm);
       } catch(e) {
-        console.dir(e);
+        throw new MainControllerException('setGlobalType failed');
       }
 
     };
@@ -111,7 +111,7 @@
       try {
         chart.setGroups(vm);
       } catch(e) {
-        console.dir(e);
+        throw new MainControllerException('setGroups failed');
       }
 
     };
@@ -174,5 +174,12 @@
 
     // Finally, update and render.
     vm.updateData();
+
+    function MainControllerException(message) {
+      this.name = 'MainControllerException';
+      this.message = message;
+    }
+    MainControllerException.prototype = new Error();
+    MainControllerException.prototype.constructor = MainControllerException;
   }
 })();

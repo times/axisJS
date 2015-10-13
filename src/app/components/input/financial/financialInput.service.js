@@ -8,11 +8,11 @@
 
 (function(){
   'use strict';
-  
+
   angular
     .module('axis')
     .factory('financialInput', financialInput);
-  
+
   /** @ngInject */
   function financialInput($q, $http, $window) {
     /**
@@ -26,12 +26,12 @@
       var dateEnd = inputs.dateEnd ? inputs.dateEnd : $window.moment().format('YYYY-MM-DD');
       var endpoint;
       var financialData = [];
-      
+
       for (var i = 0; i < symbols.length; i++) {
         endpoint = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22' + symbols[i] + '%22%20and%20startDate%20%3D%20%22' + dateStart + '%22%20and%20endDate%20%3D%20%22' + dateEnd + '%22&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
         financialData.push($http.get(endpoint)); // Add promise to array, to resolve in parseData
       }
-      
+
       return financialData;
     };
 
@@ -42,7 +42,7 @@
           dateStart: typeof scope.inputs.inputData.dateStart === 'string' ? scope.inputs.inputData.dateStart : $window.moment(scope.inputs.inputData.dateStart).format('YYYY-MM-DD'),
           dateEnd: typeof scope.inputs.inputData.dateEnd === 'string' ? scope.inputs.inputData.dateEnd : $window.moment(scope.inputs.inputData.dateEnd).format('YYYY-MM-DD')
         });
-        
+
         // Resolve all the promises and populate the chart
         $q.all(financialData).then(function(res){
           scope.chartData = []; // Empty, or else new column names will break ng-grid
@@ -50,7 +50,7 @@
           scope.config.data.columns = [];
           var cols = [];
           var colNames = [];
-          
+
           angular.forEach(res, function(item, index){
             var stockData = item.data.query.results.quote;
             if (index === 0) {
@@ -61,7 +61,7 @@
               cols.push(dates);
               colNames.push('Date');
             }
-            
+
             if (stockData.length > 0) {
               var symbol = stockData[0].Symbol;
               var col = stockData.map(function(v){
@@ -72,7 +72,7 @@
               colNames.push(symbol);
             }
           });
-            
+
           if (cols.length > 0) {
             scope.chartData = cols;
             scope.columns = colNames;
@@ -109,6 +109,12 @@
 
     // Public API here
     return {
+      /**
+       * Service name.
+       * @type {String}
+       */
+      name: 'financialInputService',
+
       /**
        * Validate spreadsheet input
        * @param  {array} value   The output from HOT.getData()

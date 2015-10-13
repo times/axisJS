@@ -48,6 +48,9 @@
 
           axisConfig.framework = axisConfig.renderer; // Needed for backwards compat.
           return axisConfig;
+        },
+        function(err){ // Return default on failure.
+          console.dir(err);
         });
       }
     };

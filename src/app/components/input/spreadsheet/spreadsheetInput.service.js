@@ -80,6 +80,12 @@
     // Public API here
     return {
       /**
+       * Service name
+       * @type {String}
+       */
+      name: 'spreadsheetInputService',
+
+      /**
        * Validate spreadsheet input
        * @param  {array} value   The output from HOT.getData()
        * @return {boolean}       True if validates, false if not.
