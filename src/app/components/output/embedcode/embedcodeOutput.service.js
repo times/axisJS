@@ -88,8 +88,11 @@
      * Open a modal with the complete embed code.
      * @param  {[type]} output [description]
      * @return {[type]}        [description]
+     *
+     * @NB Istanbul instrumentation disabled until I can figure how to mock $modal here.
      */
     embed.complete = function(output) {
+      /* istanbul ignore next */
       $modal.open({
         templateUrl: 'partials/outputModal.html',
         controller: 'EmbedcodeOutputController',

@@ -20,7 +20,7 @@ describe('Service: embedcodeOutput', function() {
     $httpBackend.expectGET('config.yaml');
     $httpBackend.whenGET('config.yaml').respond('');
     $httpBackend.expectGET('partials/configChooser.html'); // due to angular-off-canvas.
-    $httpBackend.whenGET('partials/configChooser.html').respond('');
+    $httpBackend.whenGET('partials/configCh dooser.html').respond('');
     $httpBackend.expectGET('partials/outputModal.html'); // due to angular-off-canvas.
     $httpBackend.whenGET('partials/outputModal.html').respond('');
 
@@ -77,13 +77,16 @@ describe('Service: embedcodeOutput', function() {
     });
 
     it('should output complete JS + deps if includeDeps is true', function(){
+      embed.includeDeps = true;
+      embed.updateOutput(embed.includeDeps);
+
       expect(embed.output).toMatch(/d3\.min\.js/);
       expect(embed.output).toMatch(/var configJSON/);
     });
 
     it('should output JS and no deps if includeDeps is false', function(){
       embed.includeDeps = false;
-      embed.updateOutput();
+      embed.updateOutput(embed.includeDeps);
 
       expect(embed.output).not.toMatch(/d3\.min\.js/);
       expect(embed.output).toMatch(/var configJSON/);

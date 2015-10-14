@@ -20,22 +20,29 @@
         'main': '=config'
       },
       controllerAs: 'inputCtrl',
-      controller: function postLink($scope) {
-        var main = $scope.main;
-        var vm = this;
+      controller: 'InputChooserController'
+    };
+  }
 
-        vm.isArray = angular.isArray;
-        vm.template = false;
-        vm.setTemplate = function(type) {
-          vm.template = type;
-          main.appConfig.input = type; // Replace array with string form.
-          main.setInput(type); // Set input in MainController to this input provider.
-          main.resetConfig(); // Reset chart config to default
-          main.inputs.inputData = inputService(main.appConfig).defaultData; // Replace default data
-          main.config.inputType = type; // Set type in config object to restore on load.
-          main.updateData(main.appConfig);
-        };
-      }
+  angular
+    .module('axis')
+    .controller('InputChooserController', InputChooserController);
+
+  /** @ngInject **/
+  function InputChooserController($scope) {
+    var main = $scope.main;
+    var vm = this;
+
+    vm.isArray = angular.isArray;
+    vm.template = false;
+    vm.setTemplate = function(type) {
+      vm.template = type;
+      main.appConfig.input = type; // Replace array with string form.
+      main.setInput(type); // Set input in MainController to this input provider.
+      main.resetConfig(); // Reset chart config to default
+      main.inputs.inputData = inputService(main.appConfig).defaultData; // Replace default data
+      main.config.inputType = type; // Set type in config object to restore on load.
+      main.updateData(main.appConfig);
     };
   }
 })();
