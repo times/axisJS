@@ -60,7 +60,7 @@
       return scope;
     };
 
-    var convertColsToSheet = function(columns) { // This is untested. @TODO test.
+    var convertColsToRows = function(columns) {
       var data = [];
       var headers = [];
       for (var i = 0; i < columns.length; i++) {
@@ -115,7 +115,7 @@
        * @return {array}      Array with header column values as first element.
        */
       convert: function(data) {
-        return convertColsToSheet(data);
+        return convertColsToRows(data);
       }
     };
   }

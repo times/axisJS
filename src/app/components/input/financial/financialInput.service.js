@@ -90,21 +90,8 @@
       return scope;
     };
 
-    var populateInput = function(columns) { // This is untested. @TODO test.
-      var data = [];
-      var headers = [];
-      for (var i = 0; i < columns.length; i++) {
-        headers.push(columns[i].shift());
-        for (var j = 0; j < columns[i].length; j++) {
-          if (!data[j]) {
-            data[j] = [];
-          }
-
-          data[j][i] = columns[i][j];
-        }
-      }
-
-      return [headers].concat(data);
+    var populateInput = function(columns) { // This doesn't do anything yet.
+      
     };
 
     // Public API here
@@ -117,7 +104,7 @@
 
       /**
        * Validate spreadsheet input
-       * @param  {array} value   The output from HOT.getData()
+       * @param  {array} value   A financial picker symbol
        * @return {boolean}       True if validates, false if not.
        */
       validate: function(value) {
@@ -135,7 +122,7 @@
       },
 
       /**
-       * Parses sheet into columns. Called whenever sheet updated.
+       * Grabs the symbol data and applies to scope
        * @param  {object} scope The AxisJS scope object.
        * @return {object}       The updated scope object.
        */

@@ -18,20 +18,40 @@
     var embed = angular.copy(genericOutput);
     var JSONfn = $window.JSONfn;
 
+    /**
+     * Service name
+     * @type {String}
+     */
+    embed.name = 'embedcodeOutputService';
+
+    /**
+     * Service config. This isn't really used yet.
+     * @type {Object}
+     */
     embed.serviceConfig = {
       type: 'export', // Options: 'save' and 'export'.
       label: 'Generate embed code' // Label to use on button.
     };
 
+    /**
+     * Preprocess scope
+     * @param  {Object} scope Axis MainCtrl scope
+     * @return {object}       Chart config and deps.
+     */
     embed.preprocess = function(scope){
-      var chartConfig = angular.copy(scope.config); // Needs to copy or else scope breaks. See #45.
+      var chartConfig = angular.copy(scope.main.config); // Needs to copy or else scope breaks. See #45.
       chartConfig.bindto = '#chart-' + Math.floor((Math.random()*10000)+1);
       return {
         config: chartConfig,
-        dependencies: chartService(scope.appConfig).dependencies
+        dependencies: chartService(scope.main.appConfig).dependencies
       };
     };
 
+    /**
+     * Process request.
+     * @param  {Object} payload Needs config and dependencies.
+     * @return {Object}         Embed code output with depenencies (complete) and not (partial).
+     */
     embed.process = function(payload) {
       var output = {};
       var deps = [];
@@ -64,23 +84,39 @@
       return output;
     };
 
+    /**
+     * Open a modal with the complete embed code.
+     * @param  {[type]} output [description]
+     * @return {[type]}        [description]
+     */
     embed.complete = function(output) {
       $modal.open({
         templateUrl: 'partials/outputModal.html',
-        controller: function($scope) {
-          $scope.includeDeps = true;
-          $scope.output = $scope.includeDeps ? output.complete : output.partial;
-          $scope.updateOutput = function(deps) {
-            if (deps) {
-              $scope.output = output.complete;
-            } else {
-              $scope.output = output.partial;
-            }
-          };
+        controller: 'EmbedcodeOutputController',
+        resolve: {
+          output: output
         }
       });
     };
 
     return embed;
+  }
+
+
+  angular
+    .module('axis')
+    .controller('EmbedcodeOutputController', EmbedcodeOutputController);
+
+  function EmbedcodeOutputController(output) {
+    var vm = this;
+    vm.includeDeps = true;
+    vm.output = vm.includeDeps ? output.complete : output.partial;
+    vm.updateOutput = function(deps) {
+      if (deps) {
+        vm.output = output.complete;
+      } else {
+        vm.output = output.partial;
+      }
+    };
   }
 })();

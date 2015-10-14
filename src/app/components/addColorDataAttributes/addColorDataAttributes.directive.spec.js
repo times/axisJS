@@ -1,6 +1,6 @@
 describe('Directive: addColors', function () {
   'use strict';
-  
+
   // load the directive's module
   beforeEach(module('axis'));
 

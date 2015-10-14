@@ -3,7 +3,9 @@
  * @name axis.feedInput
  * @description
  * # feedInput
- * Enables a fancy user-friendly data picker for feed data.
+ * Basic feed-based input service to extend.
+ * @TODO fill this out and write unit tests.
+ * @NB current ignored by istanbul (see below comment)
  */
 
 (function(){
@@ -11,15 +13,15 @@
 
   angular
     .module('axis')
-    .factory('financialInput', financialInput);
+    .factory('feedInput', feedInput);
 
-  /** @ngInject */
-  function financialInput($q, $http, $window, $interpolate) {
+  /* istanbul ignore next *//** @ngInject */
+  function feedInput($q, $http, $window, $interpolate) {
     /**
      * The feed URL to query.
      * @type {String}
      */
-    this.feedUrl = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22{{ symbol }}%22%20and%20startDate%20%3D%20%22{{ dateStart }}%22%20and%20endDate%20%3D%20%22{{ dateEnd }}%22&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+    this.feedUrl = 'https://www.random.org/integers/?num={{ count }}&min={{ min }}&max={{ max }}&col=1&base=10&format=plain&rnd=new';
 
     /**
      * Creates a bunch of promises to query a RSS feed
@@ -121,7 +123,7 @@
        * @type {String}
        */
       name: 'feedInputService',
-      
+
       /**
        * Validate spreadsheet input
        * @param  {array} value   The output from HOT.getData()

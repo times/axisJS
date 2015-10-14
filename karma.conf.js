@@ -61,17 +61,19 @@ module.exports = function(config) {
 
     preprocessors: {
       'src/**/*.html': ['ng-html2js'],
-      'src/**/*.directive.js': ['coverage'],
-      'src/**/*.service.js': ['coverage'],
-      'src/**/*.controller.js': ['coverage'],
-      'src/**/*.provider.js': ['coverage'],
-      'src/*.js': ['coverage']
+      'src/**/!(*.spec).js': ['coverage']
     },
 
     reporters: ['nyan', 'coverage'],
 
     coverageReporter: {
-      reporters: [{type: 'lcov'}]
+      reporters: [
+        {type: 'lcov'},
+        {type: 'text-summary'}
+      ],
+      instrumenterOptions: {
+        istanbul: { noCompact: true }
+      }
     }
   };
 

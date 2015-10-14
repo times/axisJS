@@ -1,53 +1,57 @@
-/**
- * @TODO convert this from csvInput to financialInput
- */
-
-'use strict';
-
-xdescribe('Service: financialInput', function() {
+describe('Service: financialInput', function() {
+  'use strict';
 
   // load the service's module
   beforeEach(module('axis'));
 
-  // instantiate service
-  var csvInput,
-      sampleTSV = 'data1\tdata2\n30\t50\n200\t20\n100\t10\n400\t40\n150\t15\n250\t25',
-      sampleCSV = 'data1,data2\n30,50\n200,20\n100,10\n400,40\n150,15\n250,25',
-      sampleBroken = 'llama llama duck';
+  var financialInput,
+      testScope;
 
-  var testScope = {
-        inputs: {
-          inputData: sampleTSV
-        },
-        config: {
-          data: {
-            types: {}
-          }
-        },
-      };
+  beforeEach(inject(function(_financialInput_, $rootScope) {
+    financialInput = _financialInput_;
+    testScope = $rootScope.$new();
 
-  beforeEach(inject(function(_csvInput_) {
-    csvInput = _csvInput_;
+    testScope.inputs = {
+      symbol: 'NWS',
+      dateStart: '2015-09-13',
+      dateEnd: '2015-10-14'
+    };
+    testScope.config = {};
   }));
 
-  it('should include default data', function() {
-    expect(csvInput.defaultData).toEqual(sampleTSV);
+  it('should identify itself', function(){
+    expect(financialInput.name).toBe('financialInputService');
   });
 
-  it('should validate compliant CSV', function() {
-    expect(csvInput.validate(sampleTSV)).toBe(true);
+  it('should return the default data', function(){
+    var defaultData = financialInput.defaultData;
+    var baseTime = new Date(2015, 10, 14);
+    jasmine.clock().mockDate(baseTime);
+
+    expect(defaultData.symbol).toBe('NWS');
+    expect(defaultData.dateStart).toBe('2015-09-13');
+    expect(defaultData.dateEnd).toBe('2015-10-14');
   });
 
-  it('should not validate non-compliant CSV', function() {
-    expect(csvInput.validate(sampleBroken)).toBe(false);
+  it('should validate picker symbols', function(){
+    expect(financialInput.validate([])).toBeTruthy(); // This isn't a real test because the validator doesn't work yet.
   });
 
-  it('parse TSV and return a Papaparse Object', function() {
-    expect(csvInput.input(testScope).config.data.columns.length).toBe(2);
-  });
+  xit('should parse the data', inject(function($httpBackend){
+    $httpBackend.expectGET('assets/i18n/en_GB.json');
+    $httpBackend.whenGET('assets/i18n/en_GB.json').respond('{}');
 
-  it('should recognise CSV and parse it properly', function() {
-    testScope.inputs.csvData = sampleCSV;
-    expect(csvInput.input(testScope).config.data.columns.length).toBe(2);
-  });
+    var output = financialInput.input(testScope); // This resolves a promise inside the function and is thus borked.
+    testScope.$digest();
+    $httpBackend.flush();
+    $httpBackend.expectGET('default.config.yaml');
+    $httpBackend.whenGET('default.config.yaml').respond('');
+    $httpBackend.expectGET('config.yaml');
+    $httpBackend.whenGET('config.yaml').respond('');
+
+    expect(output.chartData).toBeDefined();
+  }));
+
+  it('should convert loaded data'); // Not sure if convert is functional yet.
+
 });
