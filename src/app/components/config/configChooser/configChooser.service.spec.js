@@ -2,10 +2,9 @@
  * Spec for configChooserService
  */
 
-// There is like literally nothing to test with this.
 describe('Service: configChooser', function () {
   'use strict';
-  
+
   // load the service's module
   beforeEach(module('axis'));
 

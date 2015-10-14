@@ -1,4 +1,4 @@
-# Sunday Times axisJS configuration
+# The Times axisJS configuration
 ---
 renderer: 'c3'
 
@@ -40,7 +40,7 @@ colors:
   - label: 'Travel'
     value: '#00AEEF'
 
-stylesheet: 'themes/sundaytimes.css'
+stylesheet: 'themes/thetimes.css'
 
 screen margins: # in pixels
   top: '12px'
@@ -55,7 +55,7 @@ print margins: # in points
   right: '5'
 
 defaults:
-  grid x: false
+  grid x: true
   grid y: true
   axis y: false
   axis y2: true
@@ -64,25 +64,14 @@ defaults:
   legend position: 'bottom'
   point: false
   y axis: 'y2'
-
-titles:
-  align: 'left'
-  title size: '15px'
-  title translateY: -220
-  credit size: '30px'
-  credit translateY:
-  source size: '12px'
-  source style: 'oblique'
-  source translateY: 250
-  translateX: 0
-  translateY: 235
-  append source: true
-  title background: true
-  background padding: 4
+  series type: 'area'
 
 fonts:
-  - 'http://www.thetimes.co.uk/fonts/Solido-Bold.css'
-  - 'http://www.thetimes.co.uk/fonts/Solido-ExtraBold.css'
-  - 'http://www.thetimes.co.uk/fonts/Solido-Book-Italic.css'
+  - 'http://www.thetimes.co.uk/fonts/TimesClassicText-Bold-Italic.css'
+  - 'http://www.thetimes.co.uk/fonts/TimesClassicText-Medium.css'
+  - 'http://www.thetimes.co.uk/fonts/StagSans-SemiBold.css'
+  - 'http://www.thetimes.co.uk/fonts/StagSans-Medium.css'
+  - 'http://www.thetimes.co.uk/fonts/StagSans-Book.css'
+
 
 colorPicker: 'simple'

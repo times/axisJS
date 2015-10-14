@@ -23,7 +23,7 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController as main',
         resolve: {
-          appConfig: function(configProvider, $rootScope) {
+          appConfig: function(configProvider, $rootScope) { /* istanbul ignore next */
             $rootScope.version = '1.1.0';
             return configProvider;
           }
