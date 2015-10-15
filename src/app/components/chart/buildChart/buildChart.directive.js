@@ -17,7 +17,7 @@
   /** @ngInject */
   function buildChart(chartService, $window) {
     var d3 = $window.d3;
-    
+
     return {
       restrict: 'A',
       scope: {
@@ -39,12 +39,17 @@
           main.config.chartHeight = main.config.size.height;
 
           if (chart && chart.hasOwnProperty('destroy')) { // Needed to prevent memory holes.
-            chart.destroy();
+            try {
+              chart.destroy();
+            } catch(e) {
+              throw new BuildChartServiceException(e);
+            }
           }
+
           try {
             chart = chartService(main.appConfig).generate(element[0].id, main.config);
           } catch(e) {
-            console.dir(e);
+            throw new BuildChartServiceException(e);
           }
 
         }
@@ -225,4 +230,11 @@
       }
     };
   }
+
+  function BuildChartServiceException(message) {
+    this.name = 'BuildChartServiceException';
+    this.message = 'Chart rendering has failed: ' + message;
+  }
+  BuildChartServiceException.prototype = new Error();
+  BuildChartServiceException.prototype.constructor = BuildChartServiceException;
 })();

@@ -88,7 +88,7 @@
       </div>
       <div
         class="checkbox"
-        ng-if="main.config.chartGlobalType === 'series' && hasAreas()">
+        ng-if="main.config.chartGlobalType === 'series' && main.hasAreas()">
         <label>
             <input type="checkbox" id="chartZerobased" ng-model="main.config.area.zerobased" />
           {{ 'CHART_OPTIONS_ZERO_BASED' | translate }}

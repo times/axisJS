@@ -99,14 +99,26 @@
               // tick: {
               //   format: function(d){return d;}
               // }
+              padding: {
+                left: typeof appConfig.defaults['axis x padding left'] !== 'undefined' ? appConfig.defaults['axis x padding left'] : 0,
+                right: typeof appConfig.defaults['axis x padding right'] !== 'undefined' ? appConfig.defaults['axis x padding left'] : 0
+              }
             },
             y: {
               show: typeof appConfig.defaults['axis y'] !== 'undefined' ? appConfig.defaults['axis y'] : true,
-              invert: false
+              invert: false,
+              padding: {
+                top: typeof appConfig.defaults['axis y padding top'] !== 'undefined' ? appConfig.defaults['axis y padding top'] : 0,
+                bottom: typeof appConfig.defaults['axis y padding bottom'] !== 'undefined' ? appConfig.defaults['axis y padding bottom'] : 0
+              }
             },
             y2: {
               show: typeof appConfig.defaults['axis y2'] !== 'undefined' ? appConfig.defaults['axis y2'] : false,
-              invert: false
+              invert: false,
+              padding: {
+                top: typeof appConfig.defaults['axis y2 padding top'] !== 'undefined' ? appConfig.defaults['axis y2 padding top'] : 0,
+                bottom: typeof appConfig.defaults['axis y2 padding bottom'] !== 'undefined' ? appConfig.defaults['axis y2 padding bottom'] : 0
+              }
             }
           },
           point: {
@@ -136,6 +148,12 @@
             author: undefined,
             source: undefined,
             position: 'top-right'
+          },
+          padding: {
+            top: typeof appConfig.defaults['padding top'] !== 'undefined' ? appConfig.defaults['padding top'] : 50,
+            bottom: typeof appConfig.defaults['padding bottom'] !== 'undefined' ? appConfig.defaults['padding bottom'] : 50,
+            left: typeof appConfig.defaults['padding left'] !== 'undefined' ? appConfig.defaults['padding left'] : 50,
+            right: typeof appConfig.defaults['padding right'] !== 'undefined' ? appConfig.defaults['padding right'] : 50
           }
         };
 
@@ -207,7 +225,7 @@
 
         config.chartGlobalType = 'series';
         config.chartAccuracy = 1;
-        config.cms = (typeof parent.tinymce !== 'undefined' ? true : false);
+        config.cms = typeof parent.tinymce !== 'undefined' ? true : false;
 
         config.pie = {
           label: {
@@ -234,7 +252,7 @@
         };
 
         config.area = {
-          zerobased: false
+          zerobased: typeof appConfig.defaults['area zerobased'] !== 'undefined' ? appConfig.defaults['area zerobased'] : false
         };
 
         return {

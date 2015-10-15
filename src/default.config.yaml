@@ -90,6 +90,10 @@ defaults:
   legend: true
   point: false
   y axis: 'y'
+  axis x padding left: 0
+  axis x padding right: 0
+  axis y padding top: 0
+  axis y padding bottom: 0
 
 titles:
   title size: '32px'

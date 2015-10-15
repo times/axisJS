@@ -29,7 +29,7 @@
     .controller('InputChooserController', InputChooserController);
 
   /** @ngInject **/
-  function InputChooserController($scope) {
+  function InputChooserController($scope, inputService) {
     var main = $scope.main;
     var vm = this;
 
