@@ -94,6 +94,7 @@
      * @return {void}
      */
     vm.setGlobalType = function(type) {
+      chart.setGlobalType(type, vm);
       try {
         chart.setGlobalType(type, vm);
       } catch(e) {

@@ -133,6 +133,18 @@
           {{ 'CHART_OPTIONS_INTERACTION_LABEL' | translate }}
         </label>
       </div>
+      <div class="checkbox" ng-if="main.config.chartGlobalType === 'series'">
+        <label>
+          <input type="checkbox" id="xGridlines" ng-model="main.config.grid.x.show" />
+          {{ 'CHART_OPTIONS_X_GRID_LABEL' | translate }}
+        </label>
+      </div>
+      <div class="checkbox" ng-if="main.config.chartGlobalType === 'series'">
+        <label>
+          <input type="checkbox" id="yGridlines" ng-model="main.config.grid.y.show" />
+          {{ 'CHART_OPTIONS_Y_GRID_LABEL' | translate }}
+        </label>
+      </div>
     </form>
   </div> <!-- /.panel-body -->
 </div> <!-- /.panel -->

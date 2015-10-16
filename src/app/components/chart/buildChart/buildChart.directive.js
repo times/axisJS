@@ -56,6 +56,14 @@
 
         redraw(); // initial draw.
 
+        scope.$watchGroup(chartService(main.appConfig).watchers, function(){
+          scope.$emit('triggerRedraw');
+        });
+
+        scope.$on('triggerRedraw', function(event){
+          redraw();
+        });
+
         /**
          * TODO refactor the following to make use of the chartService service.
          */
@@ -177,32 +185,6 @@
 
           redraw();
         });
-
-        // Do titles and other aspects needing just a simple redraw.
-        scope.$watchGroup(
-          [
-            'main.config.chartHeight',
-            'main.config.chartWidth',
-            'main.config.chartTitle',
-            'main.config.chartCredit',
-            'main.config.chartSource',
-            'main.config.chartAccuracy',
-            'main.config.legend.position',
-            'main.config.legend.show',
-            'main.config.subchart.show',
-            'main.config.zoom.enabled',
-            'main.config.interaction.enabled',
-            'main.config.transition.duration',
-            'main.config.title.text',
-            'main.config.title.author',
-            'main.config.title.source',
-            'main.config.title.position',
-            'main.config.area.zerobased'
-          ],
-          function(){
-            redraw();
-          }
-        );
 
         // Watch for groups
         scope.$watch('main.config.data.groups', function(){

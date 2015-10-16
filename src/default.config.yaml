@@ -94,6 +94,11 @@ defaults:
   axis x padding right: 0
   axis y padding top: 0
   axis y padding bottom: 0
+  charts:
+    series: false
+    pie: false
+    donut: false
+    gauge: false
 
 titles:
   title size: '32px'

@@ -17,14 +17,18 @@
   function chartService($injector) {
     return function(appConfig) {
       var renderer = $injector.get(appConfig.renderer + 'Service');
-      var config = renderer.getConfig(appConfig);
+      var chart = renderer.getConfig(appConfig);
 
-      config.getConfig = function() {
+      chart.getConfig = function() {
         return renderer.getConfig(appConfig).config;
       };
 
-      config.generate = renderer.generate;
-      return config;
+      chart.generate = renderer.generate;
+      chart.watchers = renderer.watchers.map(function(v){
+        return 'main.config.' + v;
+      });
+
+      return chart;
     };
   }
 })();

@@ -5,9 +5,9 @@
     .module('axis')
     .config(config);
 
-  angular
-    .module('axis')
-    .factory('$exceptionHandler', exceptionHandlerOverride);
+  // angular
+  //   .module('axis')
+  //   .factory('$exceptionHandler', exceptionHandlerOverride);
 
   /**
    * Main application config.

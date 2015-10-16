@@ -34,6 +34,32 @@
 
     return {
       /**
+       * Scope variables to watch
+       * @type {Array}
+       */
+      watchers: [
+        'chartHeight',
+        'chartWidth',
+        'chartTitle',
+        'chartCredit',
+        'chartSource',
+        'chartAccuracy',
+        'legend.position',
+        'legend.show',
+        'subchart.show',
+        'zoom.enabled',
+        'interaction.enabled',
+        'transition.duration',
+        'title.text',
+        'title.author',
+        'title.source',
+        'title.position',
+        'area.zerobased',
+        'grid.x.show',
+        'grid.y.show'
+      ],
+
+      /**
        * Generates a chart based on config data
        * @param  {string} selectorID DOM ID to select
        * @param  {object} config     Config object passed in from scope
@@ -265,6 +291,10 @@
         };
       },
 
+      /**
+       * Return external dependencies for embed code output.
+       * @return {object} Contains arrays of CDN URLs for CSS and JS
+       */
       getExternalDependencies: function(){
         return {
           css: [
@@ -283,6 +313,8 @@
        * @param  {object} scope Axis scope
        */
       setGlobalType: function(type, scope) {
+        // Set each data type to the new global type, unless it's a series chart,
+        // in which case set everything to either line of defaults['series type'].
         for (var key in scope.config.data.types) {
           if (scope.config.data.types.hasOwnProperty(key)) {
             if (type !== 'series') {
@@ -291,6 +323,13 @@
               scope.config.data.types[key] = scope.appConfig.defaults['series type'] || 'line';
             }
           }
+        }
+
+        // Apply any global type defaults from config
+        // @TODO write a test
+        console.dir(scope.appConfig.defaults.charts);
+        if (scope.appConfig.defaults.charts[type]) {
+          scope.config = angular.extend({}, scope.config, scope.appConfig.defaults.charts[type]);
         }
       },
 
@@ -315,6 +354,6 @@
         });
         scope.config.data.groups = groups;
       }
-    };
+    }; //end return
   }
 })();
