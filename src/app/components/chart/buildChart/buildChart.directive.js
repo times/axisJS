@@ -15,7 +15,7 @@
     .directive('buildChart', buildChart);
 
   /** @ngInject */
-  function buildChart(chartService, $window) {
+  function buildChart(chartService, $window, $timeout) {
     var d3 = $window.d3;
 
     return {
@@ -55,13 +55,16 @@
         }
 
         redraw(); // initial draw.
+        $timeout(function(){
+          toggleBackground(main.config.background);
+        }, 500);
 
         scope.$watchGroup(chartService(main.appConfig).watchers, function(){
           scope.$emit('triggerRedraw');
         });
 
         scope.$on('triggerRedraw', function(event){
-          redraw();
+          redraw(event);
         });
 
         /**
@@ -193,7 +196,25 @@
 
         // Watch for background
         scope.$watch('main.config.background', function(val){
-          if (val === true) {
+          toggleBackground(val);
+        });
+        scope.$watch('main.config.backgroundColor', function(){
+          d3.select('svg .chart-bg')
+            .attr('fill', main.config.backgroundColor);
+        });
+
+        // Redraw on browser resize.
+        angular.element($window).bind('resize', function(){
+          redraw();
+        });
+
+        /**
+         * Toggle background element
+         * @param  {boolean} visible Whether the background is visible
+         * @return {void}
+         */
+        function toggleBackground(visible) {
+          if (visible) {
             d3.select('svg')
               .insert('rect', ':first-child')
               .attr('class', 'chart-bg')
@@ -203,20 +224,20 @@
           } else {
             d3.select('.chart-bg').remove();
           }
-        });
+        }
 
-        // Redraw on browser resize.
-        angular.element($window).bind('resize', function(){
-          redraw();
-        });
+        /**
+         * Custom exception for the build chart service.
+         * @param {string} message Exception message.
+         */
+        function BuildChartServiceException(message) {
+          this.name = 'BuildChartServiceException';
+          this.message = 'Chart rendering has failed: ' + message;
+          this.config = main.config;
+        }
+        BuildChartServiceException.prototype = new Error();
+        BuildChartServiceException.prototype.constructor = BuildChartServiceException;
       }
     };
   }
-
-  function BuildChartServiceException(message) {
-    this.name = 'BuildChartServiceException';
-    this.message = 'Chart rendering has failed: ' + message;
-  }
-  BuildChartServiceException.prototype = new Error();
-  BuildChartServiceException.prototype.constructor = BuildChartServiceException;
 })();

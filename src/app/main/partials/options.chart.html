@@ -125,6 +125,18 @@
         <label>
           <input type="checkbox" id="chartRotated" ng-model="main.config.background" />
           {{ 'CHART_OPTIONS_BACKGROUND_LABEL' | translate }}
+
+          <div ng-if="main.config.background && main.appConfig['background colors'] && main.appConfig['background colors'].length > 1">
+            <select
+              add-color-data-attributes
+              ng-if="main.appConfig.colorPicker === 'simple'"
+              ng-model="main.config.backgroundColor"
+              ng-options="color.value as color.value for color in main.appConfig['background colors']">
+            </select>
+            <div ng-if="main.appConfig.colorPicker === 'default'">
+              <input minicolors type="hidden" ng-model="main.config.backgroundColor" />
+            </div>
+          </div>
         </label>
       </div>
       <div class="checkbox">
@@ -143,6 +155,12 @@
         <label>
           <input type="checkbox" id="yGridlines" ng-model="main.config.grid.y.show" />
           {{ 'CHART_OPTIONS_Y_GRID_LABEL' | translate }}
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="dataLabels" ng-model="main.config.data.labels" />
+          {{ 'CHART_OPTIONS_DATA_LABELS_LABEL' | translate }}
         </label>
       </div>
     </form>

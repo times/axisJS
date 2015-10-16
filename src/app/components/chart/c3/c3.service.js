@@ -56,7 +56,8 @@
         'title.position',
         'area.zerobased',
         'grid.x.show',
-        'grid.y.show'
+        'grid.y.show',
+        'data.labels'
       ],
 
       /**
@@ -103,83 +104,80 @@
             },
             type: '',
             types: {
-              data1: appConfig.defaults['series type'] || 'line', // Currently must set explictly on initialisation to populate view.
-              data2: appConfig.defaults['series type'] || 'line'
+              data1: angular.isDefined(appConfig.defaults['series type']) ? appConfig.defaults['series type'] : 'line', // Currently must set explictly on initialisation to populate view.
+              data2: angular.isDefined(appConfig.defaults['series type']) ? appConfig.defaults['series type'] : 'line'
             },
             colors: {
-              data1: appConfig.colors[0].value,
-              data2: appConfig.colors[1].value
+              data1: angular.isDefined(appConfig.colors[0].value) ? appConfig.colors[0].value : 'blue',
+              data2: angular.isDefined(appConfig.colors[1].value) ? appConfig.colors[1].value : 'red'
             }
           },
           grid: {
             x: {
-              show: typeof appConfig.defaults['grid x'] !== 'undefined' ? appConfig.defaults['grid x'] : false
+              show: angular.isDefined(appConfig.defaults['grid x']) ? appConfig.defaults['grid x'] : false
             },
             y: {
-              show: typeof appConfig.defaults['grid y'] !== 'undefined' ? appConfig.defaults['grid y'] : false
+              show: angular.isDefined(appConfig.defaults['grid y']) ? appConfig.defaults['grid y'] : false
             }
           },
           axis: {
             x: {
-              show: typeof appConfig.defaults['axis x'] !== 'undefined' ? appConfig.defaults['axis x'] : true,
-              // tick: {
-              //   format: function(d){return d;}
-              // }
+              show: angular.isDefined(appConfig.defaults['axis x']) ? appConfig.defaults['axis x'] : true,
               padding: {
-                left: typeof appConfig.defaults['axis x padding left'] !== 'undefined' ? appConfig.defaults['axis x padding left'] : 0,
-                right: typeof appConfig.defaults['axis x padding right'] !== 'undefined' ? appConfig.defaults['axis x padding left'] : 0
+                left: angular.isDefined(appConfig.defaults['axis x padding left']) ? appConfig.defaults['axis x padding left'] : 0,
+                right: angular.isDefined(appConfig.defaults['axis x padding right']) ? appConfig.defaults['axis x padding left'] : 0
               }
             },
             y: {
-              show: typeof appConfig.defaults['axis y'] !== 'undefined' ? appConfig.defaults['axis y'] : true,
+              show: angular.isDefined(appConfig.defaults['axis y']) ? appConfig.defaults['axis y'] : true,
               invert: false,
               padding: {
-                top: typeof appConfig.defaults['axis y padding top'] !== 'undefined' ? appConfig.defaults['axis y padding top'] : 0,
-                bottom: typeof appConfig.defaults['axis y padding bottom'] !== 'undefined' ? appConfig.defaults['axis y padding bottom'] : 0
+                top: angular.isDefined(appConfig.defaults['axis y padding top']) ? appConfig.defaults['axis y padding top'] : 0,
+                bottom: angular.isDefined(appConfig.defaults['axis y padding bottom']) ? appConfig.defaults['axis y padding bottom'] : 0
               }
             },
             y2: {
-              show: typeof appConfig.defaults['axis y2'] !== 'undefined' ? appConfig.defaults['axis y2'] : false,
+              show: angular.isDefined(appConfig.defaults['axis y2']) ? appConfig.defaults['axis y2'] : false,
               invert: false,
               padding: {
-                top: typeof appConfig.defaults['axis y2 padding top'] !== 'undefined' ? appConfig.defaults['axis y2 padding top'] : 0,
-                bottom: typeof appConfig.defaults['axis y2 padding bottom'] !== 'undefined' ? appConfig.defaults['axis y2 padding bottom'] : 0
+                top: angular.isDefined(appConfig.defaults['axis y2 padding top']) ? appConfig.defaults['axis y2 padding top'] : 0,
+                bottom: angular.isDefined(appConfig.defaults['axis y2 padding bottom']) ? appConfig.defaults['axis y2 padding bottom'] : 0
               }
             }
           },
           point: {
-            show:  typeof appConfig.defaults.point !== 'undefined' ? appConfig.defaults.point : false
+            show:  angular.isDefined(appConfig.defaults['point show']) ? appConfig.defaults['point show'] : false
           },
           legend: {
-            position: typeof appConfig.defaults['legend position'] !== 'undefined' ? appConfig.defaults['legend position'] : 'bottom',
-            show:  typeof appConfig.defaults.legend !== 'undefined' ? appConfig.defaults.legend : true
+            position: angular.isDefined(appConfig.defaults['legend position']) ? appConfig.defaults['legend position'] : 'bottom',
+            show:  angular.isDefined(appConfig.defaults['legend show']) ? appConfig.defaults['legend show'] : true
           },
           color: {
             pattern: defaultColors
           },
           subchart: {
-            show: false
+            show: angular.isDefined(appConfig.defaults['subchart show']) ? appConfig.defaults['subchart show'] : false
           },
           zoom: {
-            enabled: false
+            enabled: angular.isDefined(appConfig.defaults['zoom enabled']) ? appConfig.defaults['zoom enabled'] : false
           },
           interaction: {
-            enabled: true
+            enabled: angular.isDefined(appConfig.defaults['interaction enabled']) ? appConfig.defaults['interaction enabled'] : true
           },
           transition: {
-            duration: undefined
+            duration: angular.isDefined(appConfig.defaults['transition duration']) ? appConfig.defaults['transition duration'] : undefined
           },
           title: {
-            text: undefined,
-            author: undefined,
-            source: undefined,
-            position: 'top-right'
+            text: angular.isDefined(appConfig.defaults['title text']) ? appConfig.defaults['title text'] : undefined,
+            author: angular.isDefined(appConfig.defaults['title author']) ? appConfig.defaults['title author'] : undefined,
+            source: angular.isDefined(appConfig.defaults['title source']) ? appConfig.defaults['title source'] : undefined,
+            position: angular.isDefined(appConfig.defaults['title position']) ? appConfig.defaults['title position'] : 'top-right'
           },
           padding: {
-            top: typeof appConfig.defaults['padding top'] !== 'undefined' ? appConfig.defaults['padding top'] : 50,
-            bottom: typeof appConfig.defaults['padding bottom'] !== 'undefined' ? appConfig.defaults['padding bottom'] : 50,
-            left: typeof appConfig.defaults['padding left'] !== 'undefined' ? appConfig.defaults['padding left'] : 50,
-            right: typeof appConfig.defaults['padding right'] !== 'undefined' ? appConfig.defaults['padding right'] : 50
+            top: angular.isDefined(appConfig.defaults['padding top']) ? appConfig.defaults['padding top'] : 50,
+            bottom: angular.isDefined(appConfig.defaults['padding bottom']) ? appConfig.defaults['padding bottom'] : 50,
+            left: angular.isDefined(appConfig.defaults['padding left']) ? appConfig.defaults['padding left'] : 50,
+            right: angular.isDefined(appConfig.defaults['padding right']) ? appConfig.defaults['padding right'] : 50
           }
         };
 
@@ -278,7 +276,7 @@
         };
 
         config.area = {
-          zerobased: typeof appConfig.defaults['area zerobased'] !== 'undefined' ? appConfig.defaults['area zerobased'] : false
+          zerobased: angular.isDefined(appConfig.defaults['area zerobased']) ? appConfig.defaults['area zerobased'] : false
         };
 
         return {
@@ -326,9 +324,7 @@
         }
 
         // Apply any global type defaults from config
-        // @TODO write a test
-        console.dir(scope.appConfig.defaults.charts);
-        if (scope.appConfig.defaults.charts[type]) {
+        if (angular.isDefined(scope.appConfig.defaults.charts) && angular.isDefined(scope.appConfig.defaults.charts[type])) {
           scope.config = angular.extend({}, scope.config, scope.appConfig.defaults.charts[type]);
         }
       },

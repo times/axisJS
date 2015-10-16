@@ -141,14 +141,23 @@
     };
 
     /**
+     * Returns whether the chart type needs an axis.
+     * @return {boolean} Whether the current chart global type needs an axis.
+     */
+    vm.hasAxis = function(){
+
+    };
+
+    /**
      * Debugging function — run getConfig() in the console to log current config object.
      * Also attaches $scope.config to window.chartConfig so it's visible in console.
-     * @return {void}
+     * @return {object} Chart config object.
      */
     /* istanbul ignore next */
     $window.getConfig = function() {
       console.dir(vm);
       $window.chartConfig = vm.config;
+      return vm;
     };
 
     /**

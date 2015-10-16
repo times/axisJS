@@ -39,8 +39,8 @@
       if (scope.inputs.inputData) {
         var financialData = getData({
           symbol: scope.inputs.inputData.symbol,
-          dateStart: typeof scope.inputs.inputData.dateStart === 'string' ? scope.inputs.inputData.dateStart : $window.moment(scope.inputs.inputData.dateStart).format('YYYY-MM-DD'),
-          dateEnd: typeof scope.inputs.inputData.dateEnd === 'string' ? scope.inputs.inputData.dateEnd : $window.moment(scope.inputs.inputData.dateEnd).format('YYYY-MM-DD')
+          dateStart: angular.isString(scope.inputs.inputData.dateStart) ? scope.inputs.inputData.dateStart : $window.moment(scope.inputs.inputData.dateStart).format('YYYY-MM-DD'),
+          dateEnd: angular.isString(scope.inputs.inputData.dateEnd) ? scope.inputs.inputData.dateEnd : $window.moment(scope.inputs.inputData.dateEnd).format('YYYY-MM-DD')
         });
 
         // Resolve all the promises and populate the chart
@@ -91,7 +91,7 @@
     };
 
     var populateInput = function(columns) { // This doesn't do anything yet.
-      
+
     };
 
     // Public API here

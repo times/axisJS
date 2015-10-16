@@ -49,13 +49,13 @@
       exception.message += ' (caused by "' + cause + '")';
       $log.error(exception);
 
-      // Save current config to localStorage.
-      try {
-        // localStorageService.set('backup_' + Date.now(), $rootScope.main.config);
-        // $log.info('localStorage backup successful');
-        throw new Error('Backup not yet implemented.');
-      } catch(e) {
-        $log.warn('Warning: localStorage backup failed');
+      if (angular.isDefined(exception.config)) { // Save current config to localStorage.
+        try {
+          localStorage.setItem('ls.backup_' + Date.now(), exception.config);
+          $log.info('localStorage backup successful');
+        } catch(e) {
+          $log.warn('Warning: localStorage backup failed');
+        }
       }
     };
   }

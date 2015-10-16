@@ -5,7 +5,11 @@ describe('Service: financialInput', function() {
   beforeEach(module('axis'));
 
   var financialInput,
-      testScope;
+      testScope,
+      baseTime;
+
+  baseTime = new Date('2015-10-14');
+  jasmine.clock().mockDate(baseTime);
 
   beforeEach(inject(function(_financialInput_, $rootScope) {
     financialInput = _financialInput_;
@@ -25,8 +29,6 @@ describe('Service: financialInput', function() {
 
   it('should return the default data', function(){
     var defaultData = financialInput.defaultData;
-    var baseTime = new Date(2015, 10, 14);
-    jasmine.clock().mockDate(baseTime);
 
     expect(defaultData.symbol).toBe('NWS');
     expect(defaultData.dateStart).toBe('2015-09-13');

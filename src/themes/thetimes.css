@@ -14,3 +14,11 @@ path.c3-line {
 path.c3-area {
   fill: #cfdfef
 }
+
+g.c3-axis {
+  g.tick {
+    text {
+      font-family: 'StagSans-Medium', sans-serif;
+    }
+  }
+}
