@@ -88,7 +88,7 @@
           <div class="form-group" ng-if="main.config.data[axis.value]">
             <label class="col-sm-3 control-label" for="{{axis.value}}TimeseriesBoolean">{{ 'AXES_TIMESERIES_FIELD_LABEL' | translate }}</label>
             <div class="col-sm-9 checkbox">
-              <input type="checkbox" id="{{axis.value}}TimeseriesBoolean" ng-true-value="'timeseries'" ng-model="main.config.axis[axis.value].type" />
+              <input type="checkbox" id="{{axis.value}}TimeseriesBoolean" ng-true-value="'timeseries'" ng-false-value="'categorical'" ng-model="main.config.axis[axis.value].type" />
             </div>
           </div>
           <div class="form-group" ng-if="main.config.axis[axis.value].type === 'timeseries'">

@@ -24,7 +24,7 @@
 
   "PANEL_HEADING_AXES": "Axes",
   "AXES_SECTION_HEADING": "{{axisPosition}} Axis",
-  "AXES_COLUMN_SELECT_LABEL": "Categorical?",
+  "AXES_COLUMN_SELECT_LABEL": "Ordinal?",
   "AXES_LABEL_FIELD_LABEL": "Label",
   "AXES_PREFIX_FIELD_LABEL": "Prefix",
   "AXES_SUFFIX_FIELD_LABEL": "Suffix",
@@ -77,7 +77,7 @@
   "POPOVER_TEXT_LEGEND_CHECKBOX": "Turn the chart legend on or off with this checkbox",
   "POPOVER_TEXT_ROTATED_CHECKBOX": "Rotate the chart 90 degrees",
   "POPOVER_TEXT_BACKGROUND_CHECKBOX": "Adds a solid background to image outputs",
-  "POPOVER_TEXT_COLUMN_SELECT": "Choose a column here to make it a categorical axis",
+  "POPOVER_TEXT_COLUMN_SELECT": "Choose a column here to make it a ordinal/categorical axis",
   "POPOVER_TEXT_ACCURACY_CHECKBOX": "Toggle grouping zeroes with commas",
   "POPOVER_TEXT_CULLING_FIELD": "Set the number of axis labels",
   "POPOVER_TEXT_COUNT_FIELD": "Set the number of axis ticks",
