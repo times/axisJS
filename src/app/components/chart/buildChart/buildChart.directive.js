@@ -91,13 +91,14 @@
 
             main.config.data.axes = {};
 
-            angular.forEach(main.columns, function(column){
+            angular.forEach(main.columns, function(column, idx){
               // Set default y-axis. Should maybe be in csvInput or main?
               if (!main.config.data.axes[column]) {
                 main.config.data.axes[column] = main.appConfig.defaults['y axis'] ? main.appConfig.defaults['y axis'] : 'y';
               }
-              // Configure colours.
-              main.config.data.colors[column] = chart.data.colors()[column];
+
+              // Configure colours. @TODO move this somewhere else, make less shit. See #99.
+              main.config.data.colors[column] = typeof chart.data.colors()[column] !== 'undefined' ? chart.data.colors()[column] : main.appConfig.colors[idx].value;
 
               // configure datum types
               if (main.config.chartGlobalType === 'series') {

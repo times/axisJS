@@ -76,7 +76,6 @@
         }
 
         return result;
-
       },
 
       /**
