@@ -40,6 +40,19 @@ colors:
   - label: 'Travel'
     value: '#00AEEF'
 
+background colors:
+  - label: 'normal'
+    value: '#F3F2E5'
+  - label: 'tempus'
+    value: '#E4EEEF'
+  - label: 'white'
+    value: '#ffffff'
+  - label: 'black'
+    value: '#000000'
+
+backgroundColor: '#F3F2E5'
+background: true
+
 stylesheet: 'themes/thetimes.css'
 
 screen margins: # in pixels
@@ -60,11 +73,15 @@ defaults:
   axis y: false
   axis y2: true
   axis x: true
-  legend: false
+  legend show: false
   legend position: 'bottom'
   point: false
   y axis: 'y2'
   series type: 'area'
+  padding left: 50
+  padding right: 50
+  padding top: 100
+  padding bottom: 10
 
 fonts:
   - 'http://www.thetimes.co.uk/fonts/TimesClassicText-Bold-Italic.css'

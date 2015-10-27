@@ -102,6 +102,10 @@ defaults:
   padding right: 0
   padding top: 0
   padding bottom: 0
+  title text:
+  title author:
+  title source:
+  title position: top-left
   charts:
     series:
       grid:
@@ -125,13 +129,6 @@ defaults:
           show: false
         x:
           show: false
-
-titles:
-  title size: '32px'
-  credit size: '30px'
-  source size: '28px'
-  source style: 'oblique'
-  align: 'middle'
 
 backgroundColor: 'white'
 

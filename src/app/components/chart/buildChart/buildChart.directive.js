@@ -2,10 +2,9 @@
  * @ngdoc directive
  * @name axis.directive:buildChart
  * @description
- * Builds the chart preview and sets titles. Watches for specific scope changes
- * and redraws when appropriate.
+ * Builds the chart preview. Watches for specific scope changes and redraws when appropriate.
  *
- * This file is admittedly a bit of a mess and needs a bit of a rewrite.
+ * This file is admittedly a bit of a mess and needs a total rewrite.
  */
 
 (function(){

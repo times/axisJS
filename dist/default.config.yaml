@@ -5,7 +5,7 @@ renderer: 'c3'
 input:
   - 'spreadsheet'
   - 'csv'
-  - 'financial' # Disabled until financial data becomes more open. :(
+#  - 'financial' # Disabled until financial data becomes more open. :(
 
 export:
   - 'Embed code'
@@ -81,6 +81,10 @@ colors:
   - label: '#9edae5'
     value: '#9edae5'
 
+background colors:
+  - label: 'white'
+    value: '#ffffff'
+
 defaults:
   grid x: false
   grid y: false
@@ -90,13 +94,41 @@ defaults:
   legend: true
   point: false
   y axis: 'y'
-
-titles:
-  title size: '32px'
-  credit size: '30px'
-  source size: '28px'
-  source style: 'oblique'
-  align: 'middle'
+  axis x padding left: 0
+  axis x padding right: 0
+  axis y padding top: 0
+  axis y padding bottom: 0
+  padding left: 0
+  padding right: 0
+  padding top: 0
+  padding bottom: 0
+  title text:
+  title author:
+  title source:
+  title position: top-left
+  charts:
+    series:
+      grid:
+        y:
+          show: true
+        x:
+          show: true
+    pie:
+      grid:
+        y:
+          show: false
+        x:
+          show: false
+    donut:
+        y:
+          show: false
+        x:
+          show: false
+    gauge:
+        y:
+          show: false
+        x:
+          show: false
 
 backgroundColor: 'white'
 

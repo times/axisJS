@@ -65,21 +65,6 @@ defaults:
   point: false
   y axis: 'y2'
 
-titles:
-  align: 'left'
-  title size: '15px'
-  title translateY: -220
-  credit size: '30px'
-  credit translateY:
-  source size: '12px'
-  source style: 'oblique'
-  source translateY: 250
-  translateX: 0
-  translateY: 235
-  append source: true
-  title background: true
-  background padding: 4
-
 fonts:
   - 'http://www.thetimes.co.uk/fonts/Solido-Bold.css'
   - 'http://www.thetimes.co.uk/fonts/Solido-ExtraBold.css'
