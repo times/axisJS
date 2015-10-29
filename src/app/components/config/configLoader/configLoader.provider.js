@@ -52,15 +52,12 @@
 
         return $q.all([defaultConfig, userConfig]).then(function(values){
           var defaultConfigYaml = jsyaml.safeLoad(values[0].data);
-          console.dir(defaultConfigYaml);
           var userConfigYaml = jsyaml.safeLoad(values[1].data);
-          console.dir(userConfigYaml);
           var axisConfig;
 
           // Oddly, js-yaml returns string 'undefined' on fail and not type undefined
           userConfigYaml = userConfigYaml !== 'undefined' ? userConfigYaml : {};
           axisConfig = angular.extend({}, defaultConfigYaml, userConfigYaml);
-          console.dir(axisConfig);
 
           axisConfig.framework = axisConfig.renderer; // Needed for backwards compat.
           return axisConfig;

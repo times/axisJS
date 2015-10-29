@@ -75,10 +75,19 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('extraCSS', function(){
-  return gulp.src([
-    'bower_components/c3/c3.css'
-  ])
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/bower_components/c3')));
+  var c3CSS = function() {
+    return gulp.src([
+        'bower_components/c3/c3.css'
+      ]).pipe(gulp.dest(path.join(conf.paths.dist, '/bower_components/c3')));
+  };
+
+  var themeCSS = function() {
+    return gulp.src([
+      'src/themes/*.css'
+    ]).pipe(gulp.dest(path.join(conf.paths.dist, '/themes')));
+  };
+
+  return c3CSS().on('end', themeCSS);
 });
 
 gulp.task('other', function () {
@@ -98,4 +107,4 @@ gulp.task('clean', function (done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('build', ['html', 'fonts', 'extraCSS', 'other']);
+gulp.task('build', ['clean', 'html', 'fonts', 'extraCSS', 'other']);
