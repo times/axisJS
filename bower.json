@@ -64,7 +64,6 @@
   "resolutions": {
     "jquery": "~2.1.4",
     "angular": "~1.4.0",
-    "c3": "title_options",
     "angular-bootstrap": "0.12.1",
     "moment": "~2.10.3",
     "handsontable": "~0.18.0",

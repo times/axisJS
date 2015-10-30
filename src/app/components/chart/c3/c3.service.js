@@ -72,7 +72,8 @@
         try {
           result = c3.generate(chartConfig);
         } catch (e) {
-          throw new C3ServiceException(e);
+          console.dir(e);
+          // throw new C3ServiceException(e);
         }
 
         return result;

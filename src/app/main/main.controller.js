@@ -77,12 +77,17 @@
     };
 
     /**
-     * Resets the config to factory default from chartService
+     * Resets the config to factory default from chartService.
+     *
+     * N.b., there's a bug (axisWP#16) wherein this keeps nuking config.issueType. The line
+     * below resolves it, though it's a short-term fix given I'm not entirely sure what's going on.
+     *
      * @return {void}
      */
-    vm.resetConfig = function() {
+    vm.resetConfig = function(type) {
       try {
         vm.config = chart.getConfig();
+        vm.config.inputType = type; // Explicitly set inputType. See Axis-WordPress#16.
       } catch(e) {
         throw new MainControllerException('resetConfig failed');
       }

@@ -11,8 +11,7 @@
     .module('axis')
     .directive('inputChooser', inputChooser);
 
-  /** @ngInject */
-  function inputChooser(inputService) {
+  function inputChooser() {
     return {
       templateUrl: 'app/components/input/inputChooser/inputChooser.html',
       restrict: 'E',
@@ -39,10 +38,10 @@
       vm.template = type;
       main.appConfig.input = type; // Replace array with string form.
       main.setInput(type); // Set input in MainController to this input provider.
-      main.resetConfig(); // Reset chart config to default
+      main.resetConfig(type); // Reset chart config to default
       main.inputs.inputData = inputService(main.appConfig).defaultData; // Replace default data
       main.config.inputType = type; // Set type in config object to restore on load.
-      main.updateData(main.appConfig);
+      main.updateData();
     };
   }
 })();

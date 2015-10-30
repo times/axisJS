@@ -96,14 +96,15 @@
         importData.config = angular.fromJson($window.atob(parent.tinymce.activeEditor.windowManager.getParams().axisJS));
         importData.inputData = inputService.convert(importData.config.data.columns);
 
-        /* jshint ignore:start */
-        importData.config.axis.x.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.x.type){var b=d3.format(config.axis.x.commas?',':config.axis.x.accuracy);return config.axis.x.prefix+b(a).toString()+config.axis.x.suffix}return a};
-        importData.config.axis.y.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y.type){var b=d3.format(config.axis.y.commas?',':config.axis.y.accuracy);return config.axis.y.prefix+b(a).toString()+config.axis.y.suffix}return a};
-        importData.config.axis.y2.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y2.type){var b=d3.format(config.axis.y2.commas?',':config.axis.y2.accuracy);return config.axis.y2.prefix+b(a).toString()+config.axis.y2.suffix}return a};
-        importData.config.donut.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
-        importData.config.pie.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
-        importData.config.gauge.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
-        /* jshint ignore:end */
+        var config = importData.config;
+        /* jshint ignore:start */ // Whatever Crockford, all the cool kids use eval.
+        importData.config.axis.x.tick.format = eval('(' + importData.config.axis.x.tick.format + ')'); //function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.x.type){var b=d3.format(config.axis.x.commas?',':config.axis.x.accuracy);return config.axis.x.prefix+b(a).toString()+config.axis.x.suffix}return a};
+        importData.config.axis.y.tick.format = eval('(' + importData.config.axis.y.tick.format + ')');//function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y.type){var b=d3.format(config.axis.y.commas?',':config.axis.y.accuracy);return config.axis.y.prefix+b(a).toString()+config.axis.y.suffix}return a};
+        importData.config.axis.y2.tick.format = eval('(' + importData.config.axis.y2.tick.format + ')');//function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y2.type){var b=d3.format(config.axis.y2.commas?',':config.axis.y2.accuracy);return config.axis.y2.prefix+b(a).toString()+config.axis.y2.suffix}return a};
+        importData.config.donut.label.format = eval('(' + importData.config.donut.label.format + ')');//function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
+        importData.config.pie.label.format = eval('(' + importData.config.pie.label.format + ')');//function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
+        importData.config.gauge.label.format = eval('(' + importData.config.gauge.label.format + ')');//function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
+        /* jshint ignore:end */ // WHAT EVAL LURKS IN THE HEARTS OF MEN?!
 
         if (importData.config && importData.inputData) {
           return importData;
