@@ -32,6 +32,15 @@
     C3ServiceException.prototype = new Error();
     C3ServiceException.prototype.constructor = C3ServiceException;
 
+    function traverse(o,func) {
+      for (var i in o) {
+        o[i] = func.apply(this,[i,o[i]]);
+        if (o[i] !== null && typeof(o[i]) === 'object') {
+          traverse(o[i],func);
+        }
+      }
+    }
+
     return {
       /**
        * Scope variables to watch
@@ -349,6 +358,42 @@
           return item;
         });
         scope.config.data.groups = groups;
+      },
+
+      /**
+       * Store all callbacks as strings
+       * @param  {object} config Copy of C3 config object
+       * @return {object}        Updated C3 config object
+       */
+      saveCallbacks: function(config){
+        function fixFormatters(key, value) {
+          if (key === 'format' && typeof value === 'function') {
+            return value.toString();
+          } else {
+            return value;
+          }
+        }
+
+        traverse(config, fixFormatters);
+        return config;
+      },
+
+      /**
+       * Changes all the string callbacks to function callbacks
+       * @param  {object} config Imported C3 config object
+       * @return {object}        Updated C3 config object
+       */
+      restoreCallbacks: function(config){
+        function evalFormatters(key, value) {
+          if (key === 'format' && typeof value === 'string') {
+            return eval('(' + value + ')'); // jshint ignore:line
+          } else {
+            return value;
+          }
+        }
+
+        traverse(config, evalFormatters);
+        return config;
       }
     }; //end return
   }

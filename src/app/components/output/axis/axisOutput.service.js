@@ -14,7 +14,7 @@
     .factory('axisOutput', axisOutput);
 
   /** @ngInject */
-  function axisOutput(genericOutput, $window) {
+  function axisOutput(genericOutput, $window, chartService) {
     var maker = angular.copy(genericOutput);
     var parent = $window.parent;
 
@@ -23,15 +23,10 @@
       label: 'Save' // Label to use on button.
     };
 
-    maker.preprocess = function(scope) { // @TODO Replace with JSONfn.
-      var chartConfig = scope.main.config;
-      chartConfig.axis.x.tick.format = chartConfig.axis.x.tick.format.toString();
-      chartConfig.axis.y.tick.format = chartConfig.axis.y.tick.format.toString();
-      chartConfig.axis.y2.tick.format = chartConfig.axis.y2.tick.format.toString();
-      chartConfig.pie.label.format = chartConfig.pie.label.format.toString();
-      chartConfig.donut.label.format = chartConfig.donut.label.format.toString();
-      chartConfig.gauge.label.format = chartConfig.gauge.label.format.toString();
-      var chartTitle = chartConfig.chartTitle;
+    maker.preprocess = function(scope) {
+      var chartConfig = angular.copy(scope.config);
+      chartConfig = chartService(scope.appConfig).saveCallbacks(chartConfig);
+      var chartTitle = chartConfig.hasOwnProperty('chartTitle') ? chartConfig.chartTitle : 'A Chart';
       var axisConfig = String(angular.toJson(chartConfig));
       var axisChart = String(angular.element('.savePNG').attr('href'));
       return {
@@ -60,20 +55,14 @@
       maker.complete();
     };
 
-    maker.import = function(inputService) {
+    maker.import = function(inputService, appConfig) {
       if (typeof parent.axisConfig !== 'undefined') {
         var importData = {};
         importData.config = angular.fromJson(parent.axisConfig);
         importData.inputData = inputService.convert(importData.config.data.columns);
 
-        /* jshint ignore:start */
-        importData.config.axis.x.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.x.type){var b=d3.format(config.axis.x.commas?',':config.axis.x.accuracy);return config.axis.x.prefix+b(a).toString()+config.axis.x.suffix}return a};
-        importData.config.axis.y.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y.type){var b=d3.format(config.axis.y.commas?',':config.axis.y.accuracy);return config.axis.y.prefix+b(a).toString()+config.axis.y.suffix}return a};
-        importData.config.axis.y2.tick.format = function(b) {if('series'===config.chartGlobalType&&'category'!==config.axis.y2.type){var b=d3.format(config.axis.y2.commas?',':config.axis.y2.accuracy);return config.axis.y2.prefix+b(a).toString()+config.axis.y2.suffix}return a};
-        importData.config.donut.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
-        importData.config.pie.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
-        importData.config.gauge.label.format = function(b,c) {return(100*c).toFixed(importData.config.chartAccuracy)+'%';};
-        /* jshint ignore:end */
+        var config = importData.config;
+        importData.config = chartService(appConfig).restoreCallbacks(importData.config);
 
         if (importData.config && importData.inputData) {
           return importData;

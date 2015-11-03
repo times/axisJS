@@ -21,7 +21,7 @@
      * Sets up the configuration object from YAML
      */
     var input = inputService(appConfig);
-    var chart = chartService(appConfig);
+    var chart = vm.chart = chartService(appConfig);
 
     vm.inputs = {};
     vm.columns = [];
@@ -174,7 +174,7 @@
       var output = $injector.get(type.toLowerCase().replace(' ', '') + 'Output');
       var importData;
       if (typeof output.import !== 'undefined') {
-        importData = output.import(input);
+        importData = output.import(input, appConfig);
         if (importData) {
           vm.inputs.inputData = importData.inputData;
           vm.config = importData.config;

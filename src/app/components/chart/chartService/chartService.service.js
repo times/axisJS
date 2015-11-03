@@ -28,6 +28,9 @@
         return 'main.config.' + v;
       });
 
+      chart.saveCallbacks = renderer.saveCallbacks;
+      chart.restoreCallbacks = renderer.restoreCallbacks;
+
       return chart;
     };
   }
