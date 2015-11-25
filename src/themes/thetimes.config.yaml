@@ -47,11 +47,6 @@ background colors:
     value: '#E4EEEF'
   - label: 'white'
     value: '#ffffff'
-  - label: 'black'
-    value: '#000000'
-
-backgroundColor: '#F3F2E5'
-background: true
 
 stylesheet: 'themes/thetimes.css'
 
@@ -83,6 +78,35 @@ defaults:
   padding top: 100
   padding bottom: 10
 
+
+presets:
+  - label: 'Need To Know'
+    class: 'need-to-know'
+    settings:
+      background: true
+      backgroundColor: '#F3F2E5'
+
+  - label: 'Graph Of The Day'
+    class: 'gotd'
+    settings:
+      background: true
+      backgroundColor: '#F3F2E5'
+
+  - label: 'Home News'
+    class: 'home-news'
+    settings:
+      background: true
+      backgroundColor: '#F3F2E5'
+
+  - label: 'Tempus'
+    class: 'tempus'
+    settings:
+      background: true
+      backgroundColor: '#E4EEEF'
+      axis y show: false
+      axis y2 show: false
+      axis x show: false
+
 fonts:
   - 'http://www.thetimes.co.uk/fonts/TimesClassicText-Bold-Italic.css'
   - 'http://www.thetimes.co.uk/fonts/TimesClassicText-Medium.css'
@@ -90,5 +114,13 @@ fonts:
   - 'http://www.thetimes.co.uk/fonts/StagSans-Medium.css'
   - 'http://www.thetimes.co.uk/fonts/StagSans-Book.css'
 
+# This is to prevent Adobe Illustrator from borking due to non-standard font names.
+# Format — 'webfont name': 'local font name'
+font replacements:
+  'TimesClassicText-Bold-Italic': 'TIMESCLASSICTEXTBOLDITALIC'
+  'TimesClassicText-Medium': 'TIMESCLASSICTEXT-MD'
+  'StagSans-SemiBold': 'STAGSANS-SEMIBOLD'
+  'StagSans-Medium': 'STAGSANS-MEDIUM'
+  'StagSans-Book': 'STAGSANS-BOOK'
 
 colorPicker: 'simple'

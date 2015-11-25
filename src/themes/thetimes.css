@@ -8,17 +8,58 @@
 
 path.c3-line {
   stroke: #bf1f10 !important;
-  stroke-width: 3;
+  stroke-width: 2;
 }
 
 path.c3-area {
   fill: #cfdfef
 }
 
-g.c3-axis {
-  g.tick {
-    text {
-      font-family: 'StagSans-Medium', sans-serif;
-    }
-  }
+.c3-axis .tick text {
+  font-family: 'StagSans-Book', sans-serif;
+}
+
+#chart.home-news .chart-bg, #chart.need-to-know .chart-bg, #chart.gotd .chart-bg {
+  fill: #F3F2E5;
+}
+
+#chart.tempus .chart-bg {
+  fill: #E4EEEF;
+}
+
+.gotd path.c3-line {
+  stroke: #004668 !important;
+  stroke-width: 2;
+}
+
+.need-to-know .c3-axis-x .tick text {
+  font-family: 'StagSans-Medium', sans-serif;
+}
+
+.need-to-know .c3-axis-y2 .tick text, .need-to-know .c3-axis-y .tick text {
+  font-family: 'StagSans-Book', sans-serif;
+}
+
+.gotd .c3-axis-x .tick text {
+  font-family: 'StagSans-Medium', sans-serif;
+}
+
+.gotd .c3-axis-y2 .tick text, .gotd .c3-axis-y .tick text {
+  font-family: 'StagSans-Book', sans-serif;
+}
+
+.tempus .c3-axis-x .tick text {
+  font-family: 'StagSans-Book', sans-serif;
+}
+
+.tempus .c3-axis-y2 .tick text, .tempus .c3-axis-y .tick text {
+  font-family: 'StagSans-Medium', sans-serif;
+}
+
+.home-news .c3-axis-x .tick text {
+  font-family: 'StagSans-Book', sans-serif;
+}
+
+.home-news .c3-axis-y2 .tick text, .home-news .c3-axis-y .tick text {
+  font-family: 'StagSans-Medium', sans-serif;
 }
