@@ -32,8 +32,8 @@ function runTests (singleRun, done) {
     autoWatch: !singleRun,
     reporters: reporters,
     preprocessors: preprocessors
-  }, function() {
-    done();
+  }, function(exitCode) {
+    done(exitCode ? new Error('Karma has exited with ' + exitCode) : null);
   });
 }
 

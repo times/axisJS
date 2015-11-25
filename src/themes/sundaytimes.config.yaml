@@ -75,6 +75,6 @@ fonts:
 font replacements:
   'Solido-Bold': 'SOLIDO-BOLD'
   'Solido-ExtraBold': 'SOLIDO-EXTRABOLD'
-  'Solido-Book-Italic': 'SOLIDO-BOLDITALIC'
+  'Solido-Book-Italic': 'SOLIDO-BOOKITALIC'
 
 colorPicker: 'simple'

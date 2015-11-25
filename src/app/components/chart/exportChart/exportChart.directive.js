@@ -38,30 +38,29 @@
           angular.element('defs').remove();
 
           // Copy CSS styles to Canvas
-          inlineAllStyles();
+          var svgContent = inlineAllStyles(angular.element('#chart-container')[0]);
 
           // Create PNG image
           var canvas = angular.element('#canvas').empty()[0];
 
           if (!width) {
             // Zoom! Enhance!
-            angular.element('#chart > svg').attr('transform', 'scale(2)');
-            canvas.width = angular.element('#chart > svg').width() * 2;
-            canvas.height = angular.element('#chart > svg').height() *2;
+            angular.element('svg#chart-container').attr('transform', 'scale(2)');
+            canvas.width = angular.element('svg#chart-container').width() * 2;
+            canvas.height = angular.element('svg#chart-container').height() *2;
           } else {
-            var scaleFactor = (width / angular.element('#chart').width()) * 2;
-            angular.element('#chart > svg').attr('transform', 'scale(' + scaleFactor + ')');
-            canvas.width = angular.element('#chart > svg').width() * scaleFactor;
-            canvas.height = angular.element('#chart > svg').height() * scaleFactor;
+            var scaleFactor = (width / angular.element('svg#chart-container').width()) * 2;
+            angular.element('svg#chart-container').attr('transform', 'scale(' + scaleFactor + ')');
+            canvas.width = angular.element('svg#chart-container').width() * scaleFactor;
+            canvas.height = angular.element('svg#chart-container').height() * scaleFactor;
           }
-
 
           var canvasContext = canvas.getContext('2d');
           var svg = document.getElementsByTagName('svg')[0];
           var serializer = new XMLSerializer();
           svg = serializer.serializeToString(svg);
-
           canvasContext.drawSvg(svg,0,0);
+
           var filename = [];
           for (var i=0; i < main.columns.length; i++) {
             filename.push(main.columns[i]);
@@ -77,8 +76,6 @@
             .attr('download', function(){ return filename + '_axisJS.png';
             });
 
-          var svgContent = createSVGContent(angular.element('#chart > svg')[0]);
-
           $('.saveSVG').attr('href','data:text/svg,'+ svgContent.source[0])
             .attr('download', function(){ return filename + '_axisJS.svg';});
         };
@@ -87,73 +84,57 @@
 
         /* Take styles from CSS and put as inline SVG attributes so that Canvg
            can properly parse them. */
-        var inlineAllStyles = function() {
-          var chartStyle = {},
-              selector;
+        var inlineAllStyles = function(chart) {
+          var svg = angular.element('#chart-container')[0];
+          var prefix = {
+            xmlns: "http://www.w3.org/2000/xmlns/",
+            xlink: "http://www.w3.org/1999/xlink",
+            svg: "http://www.w3.org/2000/svg"
+          };
 
-          // Get rules from c3.css
-          for (var i = 0; i <= document.styleSheets.length - 1; i++) {
-            if (document.styleSheets[i].href && document.styleSheets[i].href.indexOf('c3.css') !== -1) {
-              if (document.styleSheets[i].rules !== undefined) {
-                chartStyle = angular.extend(chartStyle, document.styleSheets[i].rules);
-              } else {
-                chartStyle = angular.extend(chartStyle, document.styleSheets[i].cssRules);
+          var emptySvg = window.document.createElementNS(prefix.svg, 'svg');
+          window.document.body.appendChild(emptySvg);
+          var emptySvgDeclarationComputed = getComputedStyle(emptySvg);
+
+          function explicitlySetStyle (element) {
+            var cSSStyleDeclarationComputed = getComputedStyle(element);
+            var i, len, key, value;
+            var computedStyleStr = "";
+            for (i=0, len=cSSStyleDeclarationComputed.length; i<len; i++) {
+              key=cSSStyleDeclarationComputed[i];
+              value=cSSStyleDeclarationComputed.getPropertyValue(key);
+              if (value!==emptySvgDeclarationComputed.getPropertyValue(key)) {
+                computedStyleStr+=key+":"+value+";";
               }
             }
+            element.setAttribute('style', computedStyleStr);
           }
-
-          if (chartStyle !== null && chartStyle !== undefined) {
-            // SVG doesn't use CSS visibility and opacity is an attribute, not a style property. Change hidden stuff to "display: none"
-            var changeToDisplay = function(){
-              if (angular.element(this).css('visibility') === 'hidden' || angular.element(this).css('opacity') === '0') {
-                angular.element(this).css('display', 'none');
+          function traverse(obj){
+            var tree = [];
+            tree.push(obj);
+            visit(obj);
+            function visit(node) {
+              if (node && node.hasChildNodes()) {
+                var child = node.firstChild;
+                while (child) {
+                  if (child.nodeType === 1 && child.nodeName != 'SCRIPT'){
+                    tree.push(child);
+                    visit(child);
+                  }
+                  child = child.nextSibling;
+                }
               }
-            };
-
-            // Inline apply all the CSS rules as inline
-            for (i = 0; i < Object.keys(chartStyle).length; i++) {
-              if (chartStyle[i].type === 1) {
-                selector = chartStyle[i].selectorText;
-                styles = makeStyleObject(chartStyle[i]);
-                angular.element('svg *').each(changeToDisplay);
-                angular.element(selector).not('.c3-chart path').not('.c3-legend-item-tile').css(styles);
-              }
-
-              /* C3 puts line colour as a style attribute, which gets overridden
-                 by the global ".c3 path, .c3 line" in c3.css. The .not() above
-                 prevents that, but now we need to set fill to "none" to prevent
-                 weird beziers.
-
-                 Which screws with pie charts and whatnot, ergo the is() callback.
-              */
-              angular.element('.c3-chart path')
-                .filter(function(){
-                  return angular.element(this).css('fill') === 'none';
-                })
-                .attr('fill', 'none');
-
-              angular.element('.c3-chart path')
-                .filter(function(){
-                  return angular.element(this).css('fill') !== 'none';
-                })
-                .attr('fill', function(){
-                  return angular.element(this).css('fill');
-                });
             }
+            return tree;
           }
-        };
-
-        // Create an object containing all the CSS styles.
-        // TODO move into inlineAllStyles
-        var makeStyleObject = function (rule) {
-          var styleDec = rule.style;
-          var output = {};
-          var s;
-
-          for (s = 0; s < styleDec.length; s++) {
-            output[styleDec[s]] = styleDec[styleDec[s]];
+          // hardcode computed css styles inside svg
+          var allElements = traverse(svg);
+          var i = allElements.length;
+          while (i--){
+            explicitlySetStyle(allElements[i]);
           }
-          return output;
+
+          return createSVGContent(chart);
         };
 
         // Create a SVG.
@@ -205,9 +186,22 @@
           var source = (new XMLSerializer()).serializeToString(svg).replace('</style>', '<![CDATA[' + styles + ']]></style>');
 
           // Quick 'n' shitty hacks to remove stuff that prevents AI from opening SVG
-          source = source.replace(/\sfont-.*?: .*?;/gi, '');
+
+          if (typeof scope.main.appConfig['font replacements'] !== 'undefined') {
+            angular.forEach(scope.main.appConfig['font replacements'], function(val, key){
+              source = source.replace(new RegExp(key, 'g'), val);
+            });
+          }
+
+          // source = source.replace(/\sfont-.*?: .*?;/gi, '');
+          // Fix font-family declarations. See https://twitter.com/aendrew/status/669222525746982913
+          source = source.replace(/font-family:\s?['"]?([^,;'"]+)['"]?[^;]*?;/gi, 'font-family: \'$1\';');
+          source = source.replace(/font-family: \'sans-serif\';/g, 'font-family: \'Arial\';');
+          source = source.replace(/font-family: \'(serif|Times)\';/g, 'font-family: \'Times New Roman\';');
+
           source = source.replace(/\sclip-.*?="url\(http:\/\/.*?\)"/gi, '');
           source = source.replace(/\stransform="scale\(2\)"/gi, '');
+
           // not needed but good so it validates
           source = source.replace(/<defs xmlns="http:\/\/www.w3.org\/1999\/xhtml">/gi, '<defs>');
 
