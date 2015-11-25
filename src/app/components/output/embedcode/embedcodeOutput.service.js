@@ -38,12 +38,12 @@
      * @param  {Object} scope Axis MainCtrl scope
      * @return {object}       Chart config and deps.
      */
-    embed.preprocess = function(scope){
-      var chartConfig = angular.copy(scope.main.config); // Needs to copy or else scope breaks. See #45.
+    embed.preprocess = function(mainScope){
+      var chartConfig = angular.copy(mainScope.config); // Needs to copy or else scope breaks. See #45.
       chartConfig.bindto = '#chart-' + Math.floor((Math.random()*10000)+1);
       return {
         config: chartConfig,
-        dependencies: chartService(scope.main.appConfig).dependencies
+        dependencies: chartService(mainScope.appConfig).dependencies
       };
     };
 
@@ -86,18 +86,20 @@
 
     /**
      * Open a modal with the complete embed code.
-     * @param  {[type]} output [description]
-     * @return {[type]}        [description]
+     * @param  {string} output Rendered output
+     * @return {embedModal}        Embed Modal
      *
      * @NB Istanbul instrumentation disabled until I can figure how to mock $modal here.
      */
     embed.complete = function(output) {
       /* istanbul ignore next */
       $modal.open({
-        templateUrl: 'partials/outputModal.html',
-        controller: 'EmbedcodeOutputController',
+        templateUrl: 'app/components/output/embedcode/embedcode.modal.html',
+        controller: 'EmbedcodeOutputController as embed',
         resolve: {
-          output: output
+          output: function(){
+            return output;
+          }
         }
       });
     };
