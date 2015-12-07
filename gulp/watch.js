@@ -27,7 +27,8 @@ gulp.task('watch', ['inject'], function () {
 
   gulp.watch(path.join(conf.paths.src, '/app/**/*.js'), function(event) {
     if(isOnlyChange(event)) {
-      gulp.start('scripts');
+      // gulp.start('scripts');
+      browserSync.reload(event.path);
     } else {
       gulp.start('inject');
     }

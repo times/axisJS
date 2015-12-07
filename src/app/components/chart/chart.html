@@ -1,3 +1,25 @@
 <!-- this is where the chart actually renders -->
-<div id="chart" build-chart config="main" ng-style="{'background-color': main.config.chartBackground}"></div> <!-- everything gets rendered inside of this -->
+<svg
+  build-chart
+  config="main"
+  class="{{main.config.preset.class}}"
+  id="chart-container">
+
+  <!-- Background fill -->
+  <rect
+    ng-style="{'fill': main.config.backgroundColor}"
+    width="100%" height="100%"
+    ng-if="main.config.background && main.config.backgroundColor" />
+
+  <g ng-if="main.config.title.position === 'top-right'">
+    <ng-include src="'app/main/partials/titles.html'"></ng-include>
+  </g>
+
+  <!-- everything gets rendered inside of this -->
+  <svg id="chart"></svg>
+
+  <g ng-if="main.config.title.position === 'bottom'">
+    <ng-include src="'app/main/partials/titles.html'"></ng-include>
+  </g>
+</svg>
 <canvas id="canvas" width="1072px" height="676px" /> <!-- needed for PNG output -->

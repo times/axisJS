@@ -94,14 +94,14 @@ defaults:
   legend: true
   point: false
   y axis: 'y'
-  axis x padding left: 0
-  axis x padding right: 0
-  axis y padding top: 0
-  axis y padding bottom: 0
-  padding left: 0
-  padding right: 0
-  padding top: 0
-  padding bottom: 0
+  axis x padding left: 
+  axis x padding right:
+  axis y padding top:
+  axis y padding bottom:
+  padding left: 25
+  padding right: 25
+  padding top: 25
+  padding bottom: 25
   title text:
   title author:
   title source:

@@ -8,7 +8,8 @@ input:
 #  - 'financial' # Disabled until financial data becomes more open. :(
 
 export:
-  - 'wordpress'
+  - 'axis'
+  - 'Embed code'
 
 save:
   - 'png'

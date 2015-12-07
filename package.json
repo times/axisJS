@@ -7,8 +7,8 @@
     "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "devDependencies": {
-    "browser-sync": "~2.7.12",
-    "browser-sync-spa": "~1.0.2",
+    "browser-sync": "^2.7.13",
+    "browser-sync-spa": "^1.0.3",
     "chalk": "~1.0.0",
     "codecov.io": "^0.1.6",
     "concat-stream": "~1.5.0",

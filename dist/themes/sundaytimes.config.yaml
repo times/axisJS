@@ -70,4 +70,11 @@ fonts:
   - 'http://www.thetimes.co.uk/fonts/Solido-ExtraBold.css'
   - 'http://www.thetimes.co.uk/fonts/Solido-Book-Italic.css'
 
+# This is to prevent Adobe Illustrator from borking due to non-standard font names.
+# Format — 'webfont name': 'local font name'
+font replacements:
+  'Solido-Bold': 'SOLIDO-BOLD'
+  'Solido-ExtraBold': 'SOLIDO-EXTRABOLD'
+  'Solido-Book-Italic': 'SOLIDO-BOOKITALIC'
+
 colorPicker: 'simple'

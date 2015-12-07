@@ -33,7 +33,9 @@
     "type": "git",
     "url": "git://github.com/times/axisJS.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "css-layout": "facebook/css-layout#~1.1.1"
+  },
   "devDependencies": {
     "angular-animate": "~1.4.0",
     "angular-touch": "~1.4.0",
@@ -69,5 +71,10 @@
     "handsontable": "~0.18.0",
     "ngHandsontable": "0.7.0-beta2"
   },
-  "appPath": "src"
+  "appPath": "src",
+  "overrides": {
+    "css-layout": {
+      "main": "dist/css-layout.js"
+    }
+  }
 }

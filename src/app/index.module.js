@@ -3,11 +3,11 @@
 
   angular
     .module('axis', [
-      'ngAnimate', 
-      'ngResource', 
-      'ngTouch', 
-      'ngSanitize', 
-      'ui.router', 
+      'ngAnimate',
+      'ngResource',
+      'ngTouch',
+      'ngSanitize',
+      'ui.router',
       'ui.bootstrap',
       'minicolors',
       'ngAside',

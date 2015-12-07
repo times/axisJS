@@ -26,7 +26,7 @@
         var main = scope.main;
         var chart;
 
-        element.children('svg').attr('transform', 'scale(2)'); // Needed to prevent pixely canvas
+        element.children('svg#chart-container').attr('transform', 'scale(2)'); // Needed to prevent pixely canvas
 
         function redraw() {
           // Sets size. @TODO move to chartService somehow.
@@ -36,6 +36,8 @@
           };
           main.config.chartWidth = main.config.size.width;
           main.config.chartHeight = main.config.size.height;
+          element.attr('height', main.config.chartHeight);
+          element.attr('width', main.config.chartWidth);
 
           if (chart && chart.hasOwnProperty('destroy')) { // Needed to prevent memory holes.
             try {
@@ -46,7 +48,7 @@
           }
 
           try {
-            chart = chartService(main.appConfig).generate(element[0].id, main.config);
+            chart = chartService(main.appConfig).generate(element.children('svg#chart')[0].id, main.config);
           } catch(e) {
             throw new BuildChartServiceException(e);
           }
@@ -194,13 +196,25 @@
           redraw();
         }, true);
 
-        // Watch for background
-        scope.$watch('main.config.background', function(val){
-          toggleBackground(val);
-        });
-        scope.$watch('main.config.backgroundColor', function(){
-          d3.select('svg .chart-bg')
-            .attr('fill', main.config.backgroundColor);
+        // Watch for presets
+        scope.$watch('main.config.preset', function(){
+          if (typeof main.config.preset !== 'undefined' && typeof main.config.preset.settings !== 'undefined') {
+            // This is effectively a recursive function, should probs be rewritten as such sometime.
+            angular.forEach(Object.keys(main.config.preset.settings), function(topLevelKey){
+              var keys = topLevelKey.split(' '), target = main.config;
+              angular.forEach(keys, function(key, idx){
+                // console.log(key, keys.length, target, target[key]);
+                if (keys.length - idx === 1) {
+                  target[key] = main.config.preset.settings[topLevelKey];
+                } else if (typeof target[key] === 'undefined' && keys.length - idx > 1) {
+                  target[key] = {};
+                  target = target[key];
+                } else if (typeof target[key] !== 'undefined' && keys.length - idx > 1) {
+                  target = target[key];
+                }
+              });
+            });
+          }
         });
 
         // Redraw on browser resize.
