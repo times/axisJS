@@ -11,7 +11,9 @@
 
   angular
     .module('axis')
-    .controller('MainController', MainController);
+    .controller('MainController', MainController)
+    .controller('NewController', NewController)
+    .controller('EditController', EditController);
 
   /** @ngInject */
   function MainController($injector, $window, appConfig, chartService, inputService, configChooser) {
@@ -196,5 +198,22 @@
     }
     MainControllerException.prototype = new Error();
     MainControllerException.prototype.constructor = MainControllerException;
+  }
+
+  /** @ngInject **/
+  function NewController(){
+    // Step 0: Launch left-side off-canvas wizard
+    // Step 1: Import data
+    // Step 2: Choose chart type
+    // Step 2a: Initial render
+    // Step 2b: If axes, configure axes
+    // Step 3: Tweak output
+  }
+
+  /** @ngInject **/
+  function EditController(){
+    // Step 1: Load in data
+    // Step 2: Populate scope
+    // Step 3: Render chart
   }
 })();

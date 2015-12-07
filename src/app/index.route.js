@@ -18,7 +18,8 @@
   function routeConfig($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
-      .state('index', {
+      .state('main', {
+        abstract: true,
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController as main',
@@ -28,6 +29,14 @@
             return configProvider;
           }
         }
+      })
+      .state('main.new', {
+        url: '/new',
+        controller: 'NewController as newCtrl'
+      })
+      .state('main.edit', {
+        url: '/edit/:id',
+        controller: 'EditController as editCtrl'
       });
   }
 
