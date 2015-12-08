@@ -1,0 +1,11 @@
+<select
+  ng-model="main.config.chartGlobalType"
+  class="form-control"
+  id="chartGlobalType"
+  ng-change="main.setGlobalType(main.config.chartGlobalType)"
+  popover="{{ 'POPOVER_TEXT_CHART_GLOBAL_TYPE' | translate }}">
+    <option value="series">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_SERIES' | translate }}</option>
+    <option value="pie">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_PIE' | translate }}</option>
+    <option value="donut">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_DONUT' | translate }}</option>
+    <option value="gauge" ng-disabled="main.config.data.columns.length > 1">{{ 'DATA_OPTIONS_GLOBAL_CHART_TYPE_SELECT_GAUGE' | translate }}</option>
+</select>

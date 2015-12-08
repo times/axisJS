@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="form-group">
+    <label for="chartWidth" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_WIDTH_LABEL' | translate }}</label>
+    <div class="col-sm-8 input-group chartWidth-group">
+      <input type="number" class="form-control" id="chartWidth" ng-model="main.config.chartWidth">
+      <span class="input-group-addon">px</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="chartHeight" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_HEIGHT_LABEL' | translate }}</label>
+    <div class="col-sm-8 input-group chartHeight-group">
+      <input type="number" class="form-control" id="chartHeight" ng-model="main.config.chartHeight">
+      <span class="input-group-addon">px</span>
+    </div>
+  </div>
+
+  <div class="panel-body" style="text-align: center;" collapse="outputOptionsAreCollapsed">
+    <div class="btn-group">
+      <save-button type="export" />
+    </div>
+    <div class="btn-group">
+      <save-button type="save" />
+    </div>
+  </div> <!-- /.panel-body -->
+</div> <!-- /.panel -->

@@ -11,15 +11,8 @@
     width="100%" height="100%"
     ng-if="main.config.background && main.config.backgroundColor" />
 
-  <g ng-if="main.config.title.position === 'top-right'">
-    <ng-include src="'app/main/partials/titles.html'"></ng-include>
-  </g>
-
   <!-- everything gets rendered inside of this -->
   <svg id="chart"></svg>
 
-  <g ng-if="main.config.title.position === 'bottom'">
-    <ng-include src="'app/main/partials/titles.html'"></ng-include>
-  </g>
 </svg>
 <canvas id="canvas" width="1072px" height="676px" /> <!-- needed for PNG output -->

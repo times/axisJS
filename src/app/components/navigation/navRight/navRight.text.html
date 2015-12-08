@@ -1,0 +1,31 @@
+<div class="form-group">
+  <label for="chartTitle" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_TITLE_LABEL' | translate }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" id="chartTitle" ng-model="main.config.title.text" placeholder="">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="chartCredit" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_CREDIT_LABEL' | translate }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" id="chartCredit" ng-model="main.config.title.author" placeholder="{{ 'CHART_OPTIONS_CREDIT_FIELD_PLACEHOLDER' | translate }}" ng-model="chartCredit">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="chartSource" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_SOURCE_LABEL' | translate }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" id="chartSource" ng-model="main.config.title.source" placeholder="{{ 'CHART_OPTIONS_SOURCE_FIELD_PLACEHOLDER' | translate }}" ng-model="chartSource">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="chartTitlePosition" class="col-sm-4 control-label">{{ 'CHART_OPTIONS_TITLES_POSITION' | translate }}</label>
+  <div class="col-sm-8">
+    <select id="chartTitlePosition" class="form-control" ng-model="main.config.title.position">
+      <option value="top-left">{{ 'CHART_OPTIONS_TITLES_POSITION_SELECT_OPTION_TOP_LEFT' | translate }}</option>
+      <option value="top-center">{{ 'CHART_OPTIONS_TITLES_POSITION_SELECT_OPTION_TOP_CENTER' | translate }}</option>
+      <option value="top-right">{{ 'CHART_OPTIONS_TITLES_POSITION_SELECT_OPTION_TOP_RIGHT' | translate }}</option>
+    </select>
+  </div>
+</div>
