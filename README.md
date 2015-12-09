@@ -63,3 +63,11 @@ View API docs online [here](http://times.github.io/axisJS/docs/).
 - [x] Make adding categorical axes more straight-forward
 - [ ] Create adapters for [nvd3](http://www.nvd3.org) and other SVG-based charting libraries.
 - [ ] Componentise so it can be easily dropped into any CMS or app
+
+### Contributors
+
+#### Lead developer: Ændrew Rininsland ([@aendrew](http://github.com/aendrew))
+
+#### Design contributions
+* Ben Rixon ([@WiseOgre](http://github.com/wiseogre))
+* Samantha Boelhouwer ([@mataulvr](https://github.com/mataulvr))
