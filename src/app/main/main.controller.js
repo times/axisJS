@@ -13,7 +13,9 @@
     .module('axis')
     .controller('MainController', MainController)
     .controller('NewController', NewController)
-    .controller('EditController', EditController);
+    .controller('EditController', EditController)
+    .controller('RenderController', RenderController)
+    .controller('LoadController', LoadController);
 
   /** @ngInject */
   function MainController($injector, $window, appConfig, chartService, inputService, configChooser) {
@@ -212,6 +214,20 @@
 
   /** @ngInject **/
   function EditController(){
+    // Step 1: Load in data
+    // Step 2: Populate scope
+    // Step 3: Render chart
+  }
+
+  /** @ngInject **/
+  function RenderController(){
+    // Step 1: Load in data
+    // Step 2: Populate scope
+    // Step 3: Render chart
+  }
+
+  /** @ngInject **/
+  function LoadController(){
     // Step 1: Load in data
     // Step 2: Populate scope
     // Step 3: Render chart

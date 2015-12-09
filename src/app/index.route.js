@@ -31,12 +31,18 @@
         }
       })
       .state('main.new', {
+        name: 'new',
         url: '/new',
         controller: 'NewController as newCtrl'
       })
       .state('main.edit', {
+        name: 'edit',
         url: '/edit/:id',
         controller: 'EditController as editCtrl'
+      })
+      .state('main.edit.load', {
+        url: '/edit/',
+        controller: 'LoadController as loadCtrl'
       });
   }
 
