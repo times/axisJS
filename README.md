@@ -31,7 +31,7 @@ from where much of the PNG/SVG output code is taken (in addition to some of the 
 
 1. `npm install`
 2. `bower install`
-3. `grunt build`
+3. `gulp build`
 
 ### Modifying
 
@@ -47,7 +47,7 @@ any documentation or unit testing PRs!
 
 ### API Docs
 
-Inline documentation is in ngDoc format and gets built to `docs` during `grunt build`.
+Inline documentation is in ngDoc format and gets built to `docs` during `gulp build`.
 View API docs online [here](http://times.github.io/axisJS/docs/).
 
 ### Roadmap/ToDos
